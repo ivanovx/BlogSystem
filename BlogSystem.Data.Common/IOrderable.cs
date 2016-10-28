@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlogSystem.Data.Common
 {
-    public class Class1
+    class IOrderable
     {
     }
 }
