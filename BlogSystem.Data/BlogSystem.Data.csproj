@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -54,12 +58,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201610281331383_InitialCreate.cs" />
+    <Compile Include="Migrations\201610281331383_InitialCreate.Designer.cs">
+      <DependentUpon>201610281331383_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Common\BlogSystem.Common.csproj">
+      <Project>{F807CD9B-FEAA-4430-BF47-BD151D32D8C0}</Project>
+      <Name>BlogSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Data.Common\BlogSystem.Data.Common.csproj">
       <Project>{EEEE776E-83F0-45B0-8962-E5F14DD60DF5}</Project>
       <Name>BlogSystem.Data.Common</Name>
@@ -68,6 +81,11 @@
       <Project>{9C8142B2-4324-4D72-A92A-A1604A2F0D26}</Project>
       <Name>BlogSystem.Data.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610281331383_InitialCreate.resx">
+      <DependentUpon>201610281331383_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
