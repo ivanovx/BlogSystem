@@ -1,2 +1,2 @@
 # BlogSystem
-Simply ASP.NET MVC Blog System like WordPress!
+High-Quality blog system using ASP.NET MVC.
