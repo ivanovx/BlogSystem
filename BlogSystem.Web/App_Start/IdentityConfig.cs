@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BlogSystem.Web.Models;
+using BlogSystem.Data.Models;
+using BlogSystem.Data;
 
 namespace BlogSystem.Web
 {

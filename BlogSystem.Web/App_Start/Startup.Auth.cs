@@ -1,4 +1,6 @@
 ﻿using System;
+using BlogSystem.Data;
+using BlogSystem.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
