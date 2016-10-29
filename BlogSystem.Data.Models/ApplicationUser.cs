@@ -1,26 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using BlogSystem.Data.Common;
-using Microsoft.AspNet.Identity;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using BlogSystem.Data.Common.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser, IAuditInfo
     {
-        private ICollection<Comment> comments;
-        private ICollection<Post> posts;
+        private ICollection<PostComment> comments;
+
+        private ICollection<BlogPost> posts;
 
         public ApplicationUser()
         {
-            this.posts = new HashSet<Post>();
-            this.comments = new HashSet<Comment>();
+            this.posts = new HashSet<BlogPost>();
+            this.comments = new HashSet<PostComment>();
         }
 
-        public virtual ICollection<Post> Posts
+        public virtual ICollection<BlogPost> Posts
         {
             get
             {
@@ -33,7 +37,7 @@ namespace BlogSystem.Data.Models
             }
         }
 
-        public virtual ICollection<Comment> Comments
+        public virtual ICollection<PostComment> Comments
         {
             get
             {

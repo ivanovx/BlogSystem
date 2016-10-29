@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using BlogSystem.Data.Common;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
-    public class Post : AuditInfo, IDeletableEntity
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
+    using BlogSystem.Data.Common.Models;
+
+    public class BlogPost : AuditInfo, IDeletableEntity
     {
-        public Post()
+        public BlogPost()
         {
-            this.Comments = new HashSet<Comment>();
+            this.Comments = new HashSet<PostComment>();
         }
 
         [Key]
@@ -36,7 +37,7 @@ namespace BlogSystem.Data.Models
 
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<PostComment> Comments { get; set; }
 
         public bool IsDeleted { get; set; }
 

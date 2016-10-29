@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using BlogSystem.Data.Models;
-using BlogSystem.Data.Common;
-
 namespace BlogSystem.Data
 {
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+
+    using BlogSystem.Data.Common.Models;
+    using BlogSystem.Data.Models;
+
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -17,9 +16,9 @@ namespace BlogSystem.Data
         {
         }
 
-        public virtual IDbSet<Post> Posts { get; set; }
+        public virtual IDbSet<BlogPost> Posts { get; set; }
 
-        public virtual IDbSet<Comment> PostComments { get; set; }
+        public virtual IDbSet<PostComment> PostComments { get; set; }
 
         public static ApplicationDbContext Create()
         {

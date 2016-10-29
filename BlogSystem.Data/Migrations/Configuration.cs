@@ -1,23 +1,22 @@
-using BlogSystem.Data.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
 namespace BlogSystem.Data.Migrations
 {
-    using BlogSystem.Common;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BlogSystem.Data.ApplicationDbContext>
+    using BlogSystem.Common;
+    using BlogSystem.Data.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         private UserManager<ApplicationUser> userManager;
 
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "BlogSystem.Data.ApplicationDbContext";
+            this.AutomaticMigrationsEnabled = true;
 
             // TODO: Remove in production
             this.AutomaticMigrationDataLossAllowed = true;
@@ -38,11 +37,11 @@ namespace BlogSystem.Data.Migrations
             }
 
             var admin = new ApplicationUser
-            {
-                Email = "admin@mysite.com",
-                UserName = "Administrator",
-                CreatedOn = DateTime.Now
-            };
+                            {
+                                Email = "admin@mysite.com", 
+                                UserName = "Administrator", 
+                                CreatedOn = DateTime.Now
+                            };
             this.userManager.Create(admin, "admin123456");
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdminRoleName);
         }

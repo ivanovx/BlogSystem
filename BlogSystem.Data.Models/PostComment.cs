@@ -1,11 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using BlogSystem.Data.Common;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
-    public class Comment : AuditInfo, IDeletableEntity
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
+    using BlogSystem.Data.Common.Models;
+
+    public class PostComment : AuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -19,7 +20,7 @@ namespace BlogSystem.Data.Models
         [Required]
         public int BlogPostId { get; set; }
 
-        public virtual Post BlogPost { get; set; }
+        public virtual BlogPost BlogPost { get; set; }
 
         public string UserId { get; set; }
 

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BlogSystem.Data.Common
+﻿namespace BlogSystem.Data.Common.Models
 {
+    using System;
+
     public interface IAuditInfo
     {
         DateTime CreatedOn { get; set; }
