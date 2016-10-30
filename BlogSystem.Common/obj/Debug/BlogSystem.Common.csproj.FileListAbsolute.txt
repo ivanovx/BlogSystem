@@ -1,0 +1,5 @@
+C:\Users\csyntax\Desktop\BlogSystem\BlogSystem\BlogSystem.Common\bin\Debug\BlogSystem.Common.dll
+C:\Users\csyntax\Desktop\BlogSystem\BlogSystem\BlogSystem.Common\bin\Debug\BlogSystem.Common.pdb
+C:\Users\csyntax\Desktop\BlogSystem\BlogSystem\BlogSystem.Common\obj\Debug\BlogSystem.Common.csprojResolveAssemblyReference.cache
+C:\Users\csyntax\Desktop\BlogSystem\BlogSystem\BlogSystem.Common\obj\Debug\BlogSystem.Common.dll
+C:\Users\csyntax\Desktop\BlogSystem\BlogSystem\BlogSystem.Common\obj\Debug\BlogSystem.Common.pdb

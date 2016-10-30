@@ -1,0 +1,91 @@
+﻿@using System.Linq
+@using PagedList.Mvc
+@model PagedList.IPagedList<BlogSystem.Web.ViewModels.Home.BlogPostConciseViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        @if (Model.Any())
+        {
+            foreach (var post in Model)
+            {
+                <div class="container blog-post">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div class="blog-word-wrap">
+                                        <h3>@Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })</h3>
+                                    </div>
+
+                                    <hr/>
+
+                                    <div class="blog-post-tags blog-post-home-page-info">
+                                        <ul class="list-unstyled list-inline blog-post-tags">
+                                            <li>
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                @post.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                                            </li>
+                                            <li>
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                                @post.Author
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = post.Id })@("#comments")">
+                                                    <i class="glyphicon glyphicon-comment"></i>
+                                                    @(post.CommentsCount) comments
+                                                </a>
+
+                                            </li>
+                                        </ul>
+
+                                        <hr/>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="blog-word-wrap">
+                                        @Html.Raw(post.ShortContent)
+                                    </div>
+                                </div>
+                                <div class="blog-button-short-content">
+                                    <div class="col-md-12">
+                                        <a href="@Url.Action("Post", "Blog", new { id = post.Id })" class="btn btn-danger">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>Read More</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2 class="blog-gray-info">No posts available.</h2>
+            </div>
+        }
+
+        <div class="col-md-12">
+            <div class="text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+
+    </div>
+</div>

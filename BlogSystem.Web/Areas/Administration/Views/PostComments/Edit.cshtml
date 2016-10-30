@@ -1,0 +1,70 @@
+﻿@model BlogSystem.Data.Models.PostComment
+
+@{
+    ViewBag.Title = "Edit comment";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.BlogPostId)
+            @Html.HiddenFor(model => model.UserId)
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#editContent">
+                        <strong>Content</strong>
+                        <i class="glyphicon glyphicon-collapse-down"></i>
+                    </button>
+                </div>
+                <div id="editContent" class="col-md-10 collapse in" >
+                    @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedOn, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedOn, string.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-success"/>
+
+                    @if (Request.UrlReferrer == null)
+                    {
+                        <a href="@Url.Action("Index", "PostComments", new { area = "Administration" })" class="btn btn-danger">
+                            <span>Cancel</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Request.UrlReferrer" class="btn btn-danger">
+                            <span>Cancel</span>
+                        </a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

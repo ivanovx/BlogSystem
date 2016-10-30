@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+@model BlogSystem.Web.ViewModels.Manage.IndexViewModel
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h5>
+        You're logged in as <strong>@User.Identity.GetUserName()</strong>
+    </h5>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change password", "ChangePassword", new { area = string.Empty }, new { @class = "btn btn-warning" })
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+        </dd>
+
+
+    </dl>
+</div>

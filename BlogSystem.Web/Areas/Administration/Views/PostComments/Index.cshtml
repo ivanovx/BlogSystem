@@ -1,0 +1,95 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BlogSystem.Data.Models.PostComment>
+
+@{
+    ViewBag.Title = "All Comments";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
+            <tr>
+                <th class="col-md-3">
+                    Post Title
+                </th>
+                <th class="col-md-2">
+                    User
+                </th>
+                <th class="col-md-1">
+                    IsDeleted
+                </th>
+                <th class="col-md-1">
+                    DeletedOn
+                </th>
+                <th class="col-md-2">
+                    CreatedOn
+                </th>
+                <th class="col-md-2">
+                    ModifiedOn
+                </th>
+                <th class="col-md-1">
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = item.BlogPostId })">
+                            @Html.DisplayFor(modelItem => item.BlogPost.Title)
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = item.UserId })">
+                            @Html.DisplayFor(modelItem => item.User.UserName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeletedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
+                            <i class="glyphicon glyphicon-menu-hamburger"></i>
+                            <span>Details</span>
+                        </a>
+                        <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <span>Edit</span>
+                        </a>
+                        <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = item.Id })" class="btn btn-danger btn-sm center-block ">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="col-md-12">
+            <div class="text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", "PostComments", new { area = "Administration", page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+    </div>
+</div>
+

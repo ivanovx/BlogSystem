@@ -1,0 +1,206 @@
+﻿@model BlogSystem.Data.Models.BlogPost
+
+@{
+    ViewBag.Title = "Details for blog post";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-word-wrap">
+                <h2 class="blog-gray-info blog-post-title">@Model.Title</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading blog-panel-heading">
+                    <div class="panel-title">
+                        <i class="glyphicon glyphicon-collapse-down"></i>
+                        Author Details
+                    </div>
+                </div>
+                <div id="authorDetails" class="panel-collapse collapse in">
+                    <div class="panel-body blog-word-wrap">
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Author Id: </strong>
+                                @Html.DisplayFor(model => model.AuthorId)
+                            </li>
+                            <li>
+                                <strong>Email: </strong>
+                                @Html.DisplayFor(model => model.Author.Email)
+                            </li>
+                            <li>
+                                <strong>Username: </strong>
+                                @Html.DisplayFor(model => model.Author.UserName)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div data-toggle="collapse" data-target="#postDetails" class="panel-heading blog-panel-heading">
+                    <div class="panel-title">
+                        <i class="glyphicon glyphicon-collapse-down"></i>
+                        Post Details
+                    </div>
+                </div>
+                <div id="postDetails" class="panel-collapse collapse in">
+                    <div class="panel-body blog-word-wrap">
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Post Id: </strong>
+                                @Html.DisplayFor(model => model.Id)
+                            </li>
+                            <li>
+                                <strong>Title: </strong>
+                                @Html.DisplayFor(model => model.Title)
+                            </li>
+                            <li>
+                                <strong>Created On: </strong>
+                                @Html.DisplayFor(model => model.CreatedOn)
+                            </li>
+                            <li>
+                                <strong>Modified On: </strong>
+                                @Html.DisplayFor(model => model.ModifiedOn)
+                            </li>
+                            <li>
+                                <strong>Is Deleted: </strong>
+                                @Html.DisplayFor(model => model.IsDeleted)
+                            </li>
+                            <li>
+                                <strong>Deleted On: </strong>
+                                @Html.DisplayFor(model => model.DeletedOn)
+                            </li>
+                        </ul>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div data-toggle="collapse" data-target="#postShortContent" class="panel-heading blog-panel-heading">
+                                            <div class="panel-title">
+                                                <i class="glyphicon glyphicon-collapse-down"></i>
+                                                <strong>Short Content</strong>
+                                            </div>
+                                        </div>
+                                        <div id="postShortContent" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @Html.DisplayFor(model => model.ShortContent)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div data-toggle="collapse" data-target="#postContent" class="panel-heading blog-panel-heading">
+                                            <div class="panel-title">
+                                                <i class="glyphicon glyphicon-collapse-down"></i>
+                                                <strong>Content</strong>
+                                            </div>
+                                        </div>
+                                        <div id="postContent" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @Html.DisplayFor(model => model.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                        <div data-toggle="collapse" data-target="#postComments" class="panel-heading blog-panel-heading">
+                                            <div class="panel-title">
+                                                <i class="glyphicon glyphicon-collapse-down"></i>
+                                                <strong>Comments - (@(Model.Comments.Count()) comments) </strong>
+                                            </div>
+                                        </div>
+                                        <div id="postComments" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @foreach (var comment in Model.Comments)
+                                                {
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body blog-word-wrap">
+                                                            <div class="col-md-12">
+                                                                <h3>
+                                                                    <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = comment.BlogPostId })@($"#comment-{comment.Id}")">
+                                                                        @comment.BlogPost.Title
+                                                                    </a>
+                                                                    <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info btn-sm">
+                                                                        <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                                                        <span>Details</span>
+                                                                    </a>
+                                                                </h3>
+                                                                <p>
+                                                                    <span class="post-details">User:</span>
+                                                                    @comment.BlogPost.Author.UserName
+                                                                    <strong>|</strong>
+                                                                    <span class="post-details">Commented On: </span>
+                                                                    @comment.CreatedOn
+                                                                    <strong>|</strong>
+                                                                    <span class="post-details">Modified On: </span>
+                                                                    @comment.ModifiedOn
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="btn btn-primary">
+        <i class="glyphicon glyphicon-align-justify"></i>
+        <span>Blog Posts</span>
+    </a>
+
+    <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
+        <i class="glyphicon glyphicon-edit"></i>
+        <span>Edit Post</span>
+    </a>
+</div>
