@@ -1,5 +1,5 @@
 ﻿/*!
- * Mvc.Grid 3.2.0
+ * Mvc.Grid 3.0.0
  * https://github.com/NonFactors/MVC5.Grid
  *
  * Copyright © NonFactors
@@ -54,7 +54,7 @@ var MvcGrid = (function () {
         var pager = grid.find('.mvc-grid-pager');
         if (pager.length > 0) {
             this.pager = {
-                currentPage: pager.find('li.active').data('page') || 0,
+                currentPage: pager.find('li.active').data('page') || '',
                 rowsPerPage: pager.find('.mvc-grid-pager-rows'),
                 pages: pager.find('li:not(.disabled)'),
                 element: pager
@@ -171,7 +171,7 @@ var MvcGrid = (function () {
                 $.ajax({
                     cache: false,
                     url: grid.sourceUrl + '?' + grid.query
-                }).done(function (result) {
+                }).success(function (result) {
                     grid.element.hide();
                     grid.element.after(result);
 
@@ -191,7 +191,7 @@ var MvcGrid = (function () {
                         grid.reloadEnded(newGrid);
                     }
                 })
-                .fail(function (result) {
+                .error(function (result) {
                     if (grid.reloadFailed) {
                         grid.reloadFailed(grid, result);
                     }
@@ -358,7 +358,6 @@ var MvcGridTextFilter = (function () {
                         '<select class="mvc-grid-type">' +
                             '<option value="Contains"' + (filter.first.type == 'Contains' ? ' selected="selected"' : '') + '>' + lang.Contains + '</option>' +
                             '<option value="Equals"' + (filter.first.type == 'Equals' ? ' selected="selected"' : '') + '>' + lang.Equals + '</option>' +
-                            '<option value="NotEquals"' + (filter.first.type == 'NotEquals' ? ' selected="selected"' : '') + '>' + lang.NotEquals + '</option>' +
                             '<option value="StartsWith"' + (filter.first.type == 'StartsWith' ? ' selected="selected"' : '') + '>' + lang.StartsWith + '</option>' +
                             '<option value="EndsWith"' + (filter.first.type == 'EndsWith' ? ' selected="selected"' : '') + '>' + lang.EndsWith + '</option>' +
                         '</select>' +
@@ -452,7 +451,6 @@ var MvcGridNumberFilter = (function () {
                     '<div class="first-filter popup-group">' +
                         '<select class="mvc-grid-type">' +
                             '<option value="Equals"' + (filter.first.type == 'Equals' ? ' selected="selected"' : '') + '>' + lang.Equals + '</option>' +
-                            '<option value="NotEquals"' + (filter.first.type == 'NotEquals' ? ' selected="selected"' : '') + '>' + lang.NotEquals + '</option>' +
                             '<option value="LessThan"' + (filter.first.type == 'LessThan' ? ' selected="selected"' : '') + '>' + lang.LessThan + '</option>' +
                             '<option value="GreaterThan"' + (filter.first.type == 'GreaterThan' ? ' selected="selected"' : '') + '>' + lang.GreaterThan + '</option>' +
                             '<option value="LessThanOrEqual"' + (filter.first.type == 'LessThanOrEqual' ? ' selected="selected"' : '') + '>' + lang.LessThanOrEqual + '</option>' +
@@ -570,7 +568,6 @@ var MvcGridDateFilter = (function () {
                     '<div class="first-filter popup-group">' +
                         '<select class="mvc-grid-type">' +
                             '<option value="Equals"' + (filter.first.type == 'Equals' ? ' selected="selected"' : '') + '>' + lang.Equals + '</option>' +
-                            '<option value="NotEquals"' + (filter.first.type == 'NotEquals' ? ' selected="selected"' : '') + '>' + lang.NotEquals + '</option>' +
                             '<option value="LessThan"' + (filter.first.type == 'LessThan' ? ' selected="selected"' : '') + '>' + lang.LessThan + '</option>' +
                             '<option value="GreaterThan"' + (filter.first.type == 'GreaterThan' ? ' selected="selected"' : '') + '>' + lang.GreaterThan + '</option>' +
                             '<option value="LessThanOrEqual"' + (filter.first.type == 'LessThanOrEqual' ? ' selected="selected"' : '') + '>' + lang.LessThanOrEqual + '</option>' +
@@ -748,13 +745,11 @@ $.fn.mvcgrid.lang = {
     Text: {
         Contains: 'Contains',
         Equals: 'Equals',
-        NotEquals: 'Not equals',
         StartsWith: 'Starts with',
         EndsWith: 'Ends with'
     },
     Number: {
         Equals: 'Equals',
-        NotEquals: 'Not equals',
         LessThan: 'Less than',
         GreaterThan: 'Greater than',
         LessThanOrEqual: 'Less than or equal',
@@ -762,7 +757,6 @@ $.fn.mvcgrid.lang = {
     },
     Date: {
         Equals: 'Equals',
-        NotEquals: 'Not equals',
         LessThan: 'Is before',
         GreaterThan: 'Is after',
         LessThanOrEqual: 'Is before or equal',

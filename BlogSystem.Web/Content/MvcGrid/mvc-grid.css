@@ -1,5 +1,5 @@
 ﻿/*!
- * Mvc.Grid 3.2.0
+ * Mvc.Grid 3.0.0
  * https://github.com/NonFactors/MVC5.Grid
  *
  * Copyright © NonFactors
@@ -63,9 +63,9 @@
 
 .mvc-grid-popup {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     background-clip: padding-box;
     background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
     position: absolute;
     border-radius: 4px;
     z-index: 1000;
@@ -77,31 +77,19 @@
     }
 
     .mvc-grid-popup .popup-arrow {
-        border-right: 7px solid transparent;
-        border-left: 7px solid transparent;
-        border-bottom: 8px solid #FFFFFF;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAICAMAAAD+zz7+AAAAP1BMVEX////////////////////////////////////////////////////////MzMzn5+f////d3d3W1tb29vbv7+/jdafZAAAADnRSTlMAAQgRBQcCGgMLKSUZIkFRd6sAAABPSURBVHhePcoJDoVACAPQ4u5fyjb3P6ugiYWkeQQIAJncf2v12ZSPkvoHsGDfsAyOWjkgNfOgmmm5P79JN2vnDEytO84UWEQ+zAhD0N4wLuqDBO7lVsPjAAAAAElFTkSuQmCC');
         position: absolute;
-        height: 9px;
+        height: 8px;
+        width: 14px;
         top: -8px;
     }
 
-        .mvc-grid-popup .popup-arrow::after {
-            border-right: 8px solid transparent;
-            border-left: 8px solid transparent;
-            border-bottom: 9px solid #CCCCCC;
-            position: absolute;
-            content: " ";
-            z-index: -1;
-            left: -8px;
-            top: -1px;
-        }
-
     .mvc-grid-popup .popup-content {
-        padding: 0.5em;
+        padding: 3px;
     }
 
     .mvc-grid-popup .popup-group {
-        padding: 0.2em;
+        padding: 5px 8px 0;
     }
 
     .mvc-grid-popup .popup-group-operator {
@@ -109,14 +97,13 @@
     }
 
     .mvc-grid-popup .popup-button-group {
+        padding: 8px 8px 5px;
         text-align: center;
-        padding: 0.4em;
     }
 
         .mvc-grid-popup .popup-button-group button {
-            padding: 0.3em 1.5em;
-            margin: 0 0.4em;
-            font-size: 1em;
+            padding: 5px 20px;
+            margin: 0 5px;
         }
 
     .mvc-grid-popup .mvc-grid-boolean-filter {
@@ -129,7 +116,7 @@
         .mvc-grid-popup .mvc-grid-boolean-filter li {
             cursor: pointer;
             display: block;
-            padding: 0.2em;
+            padding: 3px;
             width: 100%;
         }
 
@@ -147,8 +134,8 @@
     .mvc-grid-popup .mvc-grid-operator {
         border: 1px solid #CCCCCC;
         box-sizing: border-box;
-        font-size: 0.9em;
-        padding: 0.4em;
+        font-size: 13px;
+        padding: 5px;
         width: 100%;
     }
 
@@ -158,7 +145,7 @@
     }
 
     .mvc-grid-popup .mvc-grid-input {
-        padding: 0.4em;
+        padding: 5px 8px;
     }
 
 .mvc-grid-empty {

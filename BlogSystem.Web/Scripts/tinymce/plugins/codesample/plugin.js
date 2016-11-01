@@ -1098,23 +1098,18 @@ define("tinymce/codesampleplugin/Dialog", [
 ], function(DOMUtils, Utils, Prism) {
 	var DOM = DOMUtils.DOM;
 
-	function getLanguages(editor) {
-		var defaultLanguages = [
-			{text: 'HTML/XML', value: 'markup'},
-			{text: 'JavaScript', value: 'javascript'},
-			{text: 'CSS', value: 'css'},
-			{text: 'PHP', value: 'php'},
-			{text: 'Ruby', value: 'ruby'},
-			{text: 'Python', value: 'python'},
-			{text: 'Java', value: 'java'},
-			{text: 'C', value: 'c'},
-			{text: 'C#', value: 'csharp'},
-			{text: 'C++', value: 'cpp'}
-		];
-
-		var customLanguages = editor.settings.codesample_languages;
-		return customLanguages ? customLanguages : defaultLanguages;
-	}
+	var languages = [
+		{text: 'HTML/XML', value: 'markup'},
+		{text: 'JavaScript', value: 'javascript'},
+		{text: 'CSS', value: 'css'},
+		{text: 'PHP', value: 'php'},
+		{text: 'Ruby', value: 'ruby'},
+		{text: 'Python', value: 'python'},
+		{text: 'Java', value: 'java'},
+		{text: 'C', value: 'c'},
+		{text: 'C#', value: 'csharp'},
+		{text: 'C++', value: 'cpp'}
+	];
 
 	function insertCodeSample(editor, language, code) {
 		editor.undoManager.transact(function() {
@@ -1169,11 +1164,9 @@ define("tinymce/codesampleplugin/Dialog", [
 		open: function(editor) {
 			editor.windowManager.open({
 				title: "Insert/Edit code sample",
-				minWidth: Math.min(DOM.getViewPort().w, editor.getParam('codesample_dialog_width', 800)),
-				minHeight: Math.min(DOM.getViewPort().h, editor.getParam('codesample_dialog_height', 650)),
-				layout: 'flex',
-				direction: 'column',
-				align: 'stretch',
+				minWidth: Math.min(DOM.getViewPort().w, 800),
+				minHeight: Math.min(DOM.getViewPort().h, 650),
+				layout: 'fit',
 				body: [
 					{
 						type: 'listbox',
@@ -1181,7 +1174,7 @@ define("tinymce/codesampleplugin/Dialog", [
 						label: 'Language',
 						maxWidth: 200,
 						value: getCurrentLanguage(editor),
-						values: getLanguages(editor)
+						values: languages
 					},
 
 					{
