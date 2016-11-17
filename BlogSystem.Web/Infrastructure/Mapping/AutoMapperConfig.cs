@@ -32,7 +32,11 @@
                         where
                             i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) && !t.IsAbstract
                             && !t.IsInterface
-                        select new { Source = i.GetGenericArguments()[0], Destination = t });
+                        select new
+                        {
+                            Source = i.GetGenericArguments()[0],
+                            Destination = t
+                        });
 
             foreach (var map in maps)
             {
