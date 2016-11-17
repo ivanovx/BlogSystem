@@ -10,8 +10,7 @@
 
     public class BlogController : BaseController
     {
-        public BlogController(IBlogSystemData data)
-            : base(data)
+        public BlogController(IBlogSystemData data) : base(data)
         {
         }
 
@@ -19,12 +18,17 @@
         public ActionResult Post(int? id)
         {
             var post = this.Data.Posts.Find(id);
+
             if (post == null)
             {
                 return this.HttpNotFound("Blog post not foud!");
             }
 
-            var viewModel = this.Data.Posts.All().Where(p => p.Id == id).ProjectTo<BlogPostViewModel>().FirstOrDefault();
+            var viewModel = this.Data.Posts
+                                .All()
+                                .Where(p => p.Id == id)
+                                .ProjectTo<BlogPostViewModel>()
+                                .FirstOrDefault();
 
             return this.View(viewModel);
         }
