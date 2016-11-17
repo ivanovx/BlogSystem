@@ -17,9 +17,7 @@ namespace BlogSystem.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-
-            // TODO: Remove in production
-            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationDataLossAllowed = true; // TODO: Remove in production
         }
 
         protected override void Seed(ApplicationDbContext context)
@@ -37,11 +35,12 @@ namespace BlogSystem.Data.Migrations
             }
 
             var admin = new ApplicationUser
-                            {
-                                Email = "admin@mysite.com", 
-                                UserName = "Administrator", 
-                                CreatedOn = DateTime.Now
-                            };
+            {
+                Email = "admin@mysite.com",
+                UserName = "Administrator",
+                CreatedOn = DateTime.Now
+            };
+
             this.userManager.Create(admin, "admin123456");
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdminRoleName);
         }

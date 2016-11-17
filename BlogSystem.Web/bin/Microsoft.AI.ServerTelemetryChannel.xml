@@ -227,12 +227,6 @@
             If endpoint address is set to null, the default endpoint address will be used. 
             </remarks>
         </member>
-        <member name="P:Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.Implementation.ThrottlingTransmissionPolicy.PauseDuration">
-            <summary>
-            Gets a value that determines amount of time transmission sending will
-            be paused before attempting to resume transmission after a network error is detected.
-            </summary>
-        </member>
         <member name="P:Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.Implementation.TransmissionBuffer.Capacity">
             <summary>
             Gets or sets the maximum amount of memory in bytes for buffering <see cref="T:Microsoft.ApplicationInsights.Channel.Transmission"/> objects.

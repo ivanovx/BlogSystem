@@ -4,7 +4,6 @@ using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
-
 namespace BlogSystem.Web.App_Start
 {
     using System;

@@ -312,12 +312,12 @@
             <param name="asyncResult">The asyncResult parameter.</param>
             <param name="transportContext">The transportContext parameter.</param>
         </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.ProfilerHttpProcessing.GetResourceName(System.Object)">
+        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.ProfilerHttpProcessing.GetUrl(System.Net.WebRequest)">
             <summary>
-            Gets HTTP request resource name.
+            Gets HTTP request url.
             </summary>
-            <param name="thisObj">Represents web request.</param>
-            <returns>The resource name if possible otherwise empty string.</returns>
+            <param name="webRequest">Represents web request.</param>
+            <returns>The url if possible otherwise empty string.</returns>
         </member>
         <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.ProfilerHttpProcessing.OnBegin(System.Object,System.Boolean)">
             <summary>

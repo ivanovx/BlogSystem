@@ -24,8 +24,7 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IUserStore<ApplicationUser> UserStore
-            => this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.dbContext));
+        public IUserStore<ApplicationUser> UserStore => this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.dbContext));
 
         public IRepository<ApplicationUser> Users => this.GetRepository<ApplicationUser>();
 
@@ -33,16 +32,14 @@
 
         public IRepository<PostComment> PostComments => this.GetRepository<PostComment>();
 
-        public int SaveChanges()
-        {
-             return this.dbContext.SaveChanges();
-        }
+        public int SaveChanges() => this.dbContext.SaveChanges();
 
         private IRepository<T> GetRepository<T>() where T : class
         {
             if (!this.repositories.ContainsKey(typeof(T)))
             {
                 var type = typeof(GenericEfRepository<T>);
+
                 this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.dbContext));
             }
 

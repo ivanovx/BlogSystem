@@ -17,8 +17,7 @@
             this.Data = data;
         }
 
-        protected BaseController(IBlogSystemData data, ApplicationUser userProfile)
-            : this(data)
+        protected BaseController(IBlogSystemData data, ApplicationUser userProfile) : this(data)
         {
             this.UserProfile = userProfile;
         }
@@ -27,15 +26,13 @@
 
         public ApplicationUser UserProfile { get; private set; }
 
-        protected override IAsyncResult BeginExecute(
-            RequestContext requestContext, 
-            AsyncCallback callback, 
-            object state)
+        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 var username = requestContext.HttpContext.User.Identity.GetUserName();
                 var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
+
                 this.UserProfile = user;
                 this.ViewBag.UserProfile = user;
             }

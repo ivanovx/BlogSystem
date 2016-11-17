@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using System;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Data.Entity;
     using System.Linq;
@@ -14,11 +16,9 @@
     public class BlogPostsController : AdministrationController
     {
         private const int PostsPerPageDefaultValue = 5;
-
         private readonly ISanitizer sanitizer;
 
-        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer)
-            : base(data)
+        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer) : base(data)
         {
             this.sanitizer = sanitizer;
         }
@@ -44,6 +44,7 @@
             }
 
             var blogPost = this.Data.Posts.Find(id);
+
             if (blogPost == null)
             {
                 return this.HttpNotFound();
@@ -61,27 +62,46 @@
         // POST: Administration/BlogPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(
-            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
-                blogPost)
+       /* public ActionResult Create(
+            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)*/
+            public ActionResult Create(BlogPost blogPost)
         {
             if (blogPost != null)
             {
-                blogPost.Author = this.UserProfile;
-                blogPost.AuthorId = this.UserProfile.Id;
+                /* 
+                 blogPost.Author = this.UserProfile;
+                 blogPost.AuthorId = this.UserProfile.Id;
+ 
+                 if (this.ModelState.IsValid)
+                 {
+                     blogPost.ShortContent = this.sanitizer.Sanitize(blogPost.ShortContent);
+                     blogPost.Content = this.sanitizer.Sanitize(blogPost.Content);
+ 
+                     this.Data.Posts.Add(blogPost);
+                     this.Data.SaveChanges();
+ 
+                     return this.RedirectToAction("Index");
+                 }*/
+
 
                 if (this.ModelState.IsValid)
                 {
-                    blogPost.ShortContent = this.sanitizer.Sanitize(blogPost.ShortContent);
-                    blogPost.Content = this.sanitizer.Sanitize(blogPost.Content);
+                    var post = new BlogPost
+                    {
+                        Title = blogPost.Title,
+                        Content = this.sanitizer.Sanitize(blogPost.Content),
+                        ShortContent = this.sanitizer.Sanitize(blogPost.Content.ToUpper()),
+                        Author = this.UserProfile,
+                        AuthorId = this.UserProfile.Id,
+                        CreatedOn = DateTime.Now
+                    };
 
-                    this.Data.Posts.Add(blogPost);
+                    this.Data.Posts.Add(post);
                     this.Data.SaveChanges();
 
                     return this.RedirectToAction("Index");
                 }
             }
-
             return this.View(blogPost);
         }
 
@@ -94,6 +114,7 @@
             }
 
             var blogPost = this.Data.Posts.Find(id);
+
             if (blogPost == null)
             {
                 return this.HttpNotFound();
@@ -113,6 +134,7 @@
             {
                 this.Data.Posts.Update(blogPost);
                 this.Data.SaveChanges();
+
                 return this.RedirectToAction("Index");
             }
 
@@ -128,6 +150,7 @@
             }
 
             var blogPost = this.Data.Posts.Find(id);
+
             if (blogPost == null)
             {
                 return this.HttpNotFound();
@@ -143,6 +166,7 @@
         public ActionResult DeleteConfirmed(int id)
         {
             var blogPost = this.Data.Posts.Find(id);
+
             this.Data.Posts.Remove(blogPost);
             this.Data.SaveChanges();
 

@@ -224,5 +224,15 @@
             <param name="ctx">The context.</param>
             <returns>The scope.</returns>
         </member>
+        <member name="T:Ninject.Web.Common.WebCommonNinjectModule">
+            <summary>
+            Defines the bindings that are common for all web extensions.
+            </summary>
+        </member>
+        <member name="M:Ninject.Web.Common.WebCommonNinjectModule.Load">
+            <summary>
+            Loads the module into the kernel.
+            </summary>
+        </member>
     </members>
 </doc>

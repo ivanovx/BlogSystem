@@ -4,6 +4,14 @@
         <name>Microsoft.AI.Web</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.ApplicationInsights.Web.Implementation.HttpRequestExtensions">
+            <summary>
+            HttpRequest Extensions.
+            </summary>
+            <summary>
+            HttpRequest Extensions.
+            </summary>
+        </member>
         <member name="T:Microsoft.ApplicationInsights.Web.Implementation.RequestTrackingConstants">
             <summary>
             Request tracking constants and keys.

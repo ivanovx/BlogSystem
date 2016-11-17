@@ -3,7 +3,6 @@
 using Microsoft.Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
-
 namespace BlogSystem.Web
 {
     using Owin;

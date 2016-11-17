@@ -3,8 +3,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class GenericEfRepository<TEntity> : IRepository<TEntity>
-        where TEntity : class
+    public class GenericEfRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly DbContext dbContext;
 
@@ -44,7 +43,9 @@
         public TEntity Remove(object id)
         {
             var entity = this.Find(id);
+
             this.Remove(entity);
+
             return entity;
         }
 
@@ -56,12 +57,14 @@
         private TEntity ChangeState(TEntity entity, EntityState state)
         {
             var entry = this.dbContext.Entry(entity);
+
             if (entry.State == EntityState.Detached)
             {
                 this.EntitySet.Attach(entity);
             }
 
             entry.State = state;
+
             return entity;
         }
     }

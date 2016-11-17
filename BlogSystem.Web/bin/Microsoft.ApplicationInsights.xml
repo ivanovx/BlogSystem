@@ -61,6 +61,26 @@
             Gets or sets the application version.
             </summary>
         </member>
+        <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.HttpWebResponseWrapper">
+            <summary>
+            HttpWebResponse wrapper object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationInsights.Extensibility.Implementation.HttpWebResponseWrapper.Content">
+            <summary>
+            Gets or sets HttpWebResponse content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationInsights.Extensibility.Implementation.HttpWebResponseWrapper.StatusCode">
+            <summary>
+            Gets or sets HttpWebResponse StatusCode. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationInsights.Extensibility.Implementation.HttpWebResponseWrapper.RetryAfterHeader">
+            <summary>
+            Gets or sets HttpWebResponse Retry-After header value.
+            </summary>
+        </member>
         <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryDebugWriter">
             <summary>
             Writes telemetry items to debug output.
@@ -433,6 +453,22 @@
             <param name="telemetryItems">The list of telemetry items to serialize.</param>
             <param name="compress">Should serialization also perform compression.</param>
             <returns>The compressed and serialized telemetry items.</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.JsonSerializer.ConvertToByteArray(System.String,System.Boolean)">
+            <summary>
+            Converts serialized telemetry items to a byte array.
+            </summary>
+            <param name="telemetryItems">Serialized telemetry items.</param>
+            <param name="compress">Should serialization also perform compression.</param>
+            <returns>The compressed and serialized telemetry items.</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.JsonSerializer.Deserialize(System.Byte[],System.Boolean)">
+            <summary>
+            Deserializes and decompress the telemetry items into a JSON string.
+            </summary>
+            <param name="telemetryItemsData">Serialized telemetry items.</param>
+            <param name="compress">Should deserialization also perform decompression.</param>
+            <returns>Telemetry items serialized as a string.</returns>
         </member>
         <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.JsonSerializer.Serialize(Microsoft.ApplicationInsights.Channel.ITelemetry,System.Boolean)">
             <summary>
@@ -1244,16 +1280,6 @@
             Process a collected telemetry item.
             </summary>
             <param name="item">A collected Telemetry item.</param>
-        </member>
-        <member name="T:Microsoft.ApplicationInsights.Extensibility.SdkVersionPropertyTelemetryInitializer">
-            <summary>
-            Initializes SDK Properties: SDK Version and SDKMode.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.SdkVersionPropertyTelemetryInitializer.Initialize(Microsoft.ApplicationInsights.Channel.ITelemetry)">
-            <summary>
-            Adds a telemetry property for the version of SDK.
-            </summary>
         </member>
         <member name="T:Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration">
             <summary>
