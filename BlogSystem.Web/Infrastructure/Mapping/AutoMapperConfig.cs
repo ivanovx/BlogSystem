@@ -9,7 +9,7 @@
 
     public class AutoMapperConfig
     {
-        private Assembly assembly;
+        private readonly Assembly assembly;
 
         public AutoMapperConfig(Assembly assembly)
         {
