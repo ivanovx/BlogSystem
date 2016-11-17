@@ -26,6 +26,7 @@
 
         public ApplicationUser UserProfile { get; private set; }
 
+        //[NonAction]
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
