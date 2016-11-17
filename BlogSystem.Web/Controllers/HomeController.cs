@@ -12,10 +12,9 @@
 
     public class HomeController : BaseController
     {
-        private const int PostsPerPageDefaultValue = 5;
+        private const int PostsPerPageDefaultValue = 5;  // TODO
 
-        public HomeController(IBlogSystemData data)
-            : base(data)
+        public HomeController(IBlogSystemData data) : base(data)
         {
         }
 
@@ -28,20 +27,6 @@
             var model = viewModel.Posts.ToPagedList(pageNumber, PostsPerPageDefaultValue);
 
             return this.View(model);
-        }
-
-        public ActionResult About()
-        {
-            this.ViewBag.Message = "Your application description page.";
-
-            return this.View();
-        }
-
-        public ActionResult Contact()
-        {
-            this.ViewBag.Message = "Your contact page.";
-
-            return this.View();
         }
     }
 }
