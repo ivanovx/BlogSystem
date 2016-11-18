@@ -3,17 +3,17 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class GenericEfRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class DbRepository<TEntity> : IDbRepository<TEntity> where TEntity : class
     {
         private readonly DbContext dbContext;
 
-        public GenericEfRepository(DbContext dbContext)
+        public DbRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
             this.EntitySet = dbContext.Set<TEntity>();
         }
 
-        public IDbSet<TEntity> EntitySet { get; }
+        private IDbSet<TEntity> EntitySet { get; }
 
         public IQueryable<TEntity> All()
         {

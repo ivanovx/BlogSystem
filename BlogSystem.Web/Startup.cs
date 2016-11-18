@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BlogSystem.Data.Models;
-using BlogSystem.Web;
-using BlogSystem.Web.ViewModels.Home;
+﻿using BlogSystem.Web;
 using Microsoft.Owin;
 
 [assembly: OwinStartup(typeof(Startup))]

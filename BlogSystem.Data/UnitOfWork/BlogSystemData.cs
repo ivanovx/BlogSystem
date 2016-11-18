@@ -26,24 +26,22 @@
 
         public IUserStore<ApplicationUser> UserStore => this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.dbContext));
 
-        public IRepository<ApplicationUser> Users => this.GetRepository<ApplicationUser>();
+        public IDbRepository<ApplicationUser> Users => this.GetRepository<ApplicationUser>();
 
-        public IRepository<BlogPost> Posts => this.GetRepository<BlogPost>();
+        public IDbRepository<BlogPost> Posts => this.GetRepository<BlogPost>();
 
-        public IRepository<PostComment> PostComments => this.GetRepository<PostComment>();
+        public IDbRepository<PostComment> PostComments => this.GetRepository<PostComment>();
 
         public int SaveChanges() => this.dbContext.SaveChanges();
 
-        private IRepository<T> GetRepository<T>() where T : class
+        private IDbRepository<T> GetRepository<T>() where T : class
         {
             if (!this.repositories.ContainsKey(typeof(T)))
             {
-                var type = typeof(GenericEfRepository<T>);
-
-                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.dbContext));
+                this.repositories.Add(typeof(T), Activator.CreateInstance(typeof(DbRepository<T>), this.dbContext));
             }
 
-            return (IRepository<T>)this.repositories[typeof(T)];
+            return (IDbRepository<T>) this.repositories[typeof(T)];
         }
     }
 }

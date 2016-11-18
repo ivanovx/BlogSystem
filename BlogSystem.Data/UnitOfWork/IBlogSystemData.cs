@@ -5,11 +5,9 @@
 
     public interface IBlogSystemData
     {
-        IRepository<ApplicationUser> Users { get; }
-
-        IRepository<BlogPost> Posts { get; }
-
-        IRepository<PostComment> PostComments { get; }
+        IDbRepository<ApplicationUser> Users { get; }
+        IDbRepository<BlogPost> Posts { get; }
+        IDbRepository<PostComment> PostComments { get; }
 
         int SaveChanges();
     }
