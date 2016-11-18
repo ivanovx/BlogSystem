@@ -126,12 +126,14 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // POST: Administration/BlogPosts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
+        /*public ActionResult Edit(
             [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
-                blogPost)
+                blogPost)*/
+        public ActionResult Edit(BlogPost blogPost)
         {
             if (this.ModelState.IsValid)
             {
+                //this.Data.Posts.Update(blogPost);
                 this.Data.Posts.Update(blogPost);
                 this.Data.SaveChanges();
 
