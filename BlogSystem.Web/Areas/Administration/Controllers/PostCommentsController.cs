@@ -14,8 +14,7 @@
     {
         private const int CommentsPerPageDefaultValue = 7;
 
-        public PostCommentsController(IBlogSystemData data)
-            : base(data)
+        public PostCommentsController(IBlogSystemData data) : base(data)
         {
         }
 
