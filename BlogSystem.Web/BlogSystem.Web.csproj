@@ -233,6 +233,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\ApplicationSignInManager.cs" />
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

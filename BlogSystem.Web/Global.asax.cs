@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web
+﻿using BlogSystem.Web.App_Start;
+
+namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -15,6 +17,9 @@
     {
         protected void Application_Start()
         {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 
             AreaRegistration.RegisterAllAreas();

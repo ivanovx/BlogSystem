@@ -9,8 +9,7 @@
     using BlogSystem.Data.UnitOfWork;
 
     using Microsoft.AspNet.Identity;
-
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected BaseController(IBlogSystemData data)
         {
@@ -26,7 +25,6 @@
 
         public ApplicationUser UserProfile { get; private set; }
 
-        //[NonAction]
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
