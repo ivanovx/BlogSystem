@@ -1,10 +1,10 @@
-﻿namespace BlogSystem.Data.Models
+﻿using BlogSystem.Data.Contracts;
+
+namespace BlogSystem.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-
-    using BlogSystem.Data.Common.Models;
 
     public class PostComment : AuditInfo, IDeletableEntity
     {

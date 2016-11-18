@@ -1,10 +1,11 @@
+using BlogSystem.Data.Contracts;
+
 namespace BlogSystem.Data
 {
     using System;
     using System.Data.Entity;
     using System.Linq;
 
-    using BlogSystem.Data.Common.Models;
     using BlogSystem.Data.Models;
 
     using Microsoft.AspNet.Identity.EntityFramework;

@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Data.Common.Models
+﻿namespace BlogSystem.Data.Contracts
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;

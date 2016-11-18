@@ -1,12 +1,12 @@
-﻿namespace BlogSystem.Data.Models
+﻿using BlogSystem.Data.Contracts;
+
+namespace BlogSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
-    using BlogSystem.Data.Common.Models;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

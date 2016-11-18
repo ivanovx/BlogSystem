@@ -81,9 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlogSystem.Data.Common\BlogSystem.Data.Common.csproj">
+    <ProjectReference Include="..\BlogSystem.Data.Common\BlogSystem.Data.Contracts.csproj">
       <Project>{482B4C3E-0155-4FFD-B42F-A024FD5E3E0A}</Project>
-      <Name>BlogSystem.Data.Common</Name>
+      <Name>BlogSystem.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

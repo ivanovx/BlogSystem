@@ -34,7 +34,7 @@ namespace BlogSystem.Data.Migrations
                 return;
             }
 
-            var admin = new ApplicationUser
+            ApplicationUser admin = new ApplicationUser
             {
                 Email = "admin@mysite.com",
                 UserName = "Administrator",
