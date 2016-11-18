@@ -5,10 +5,11 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    using Microsoft.AspNet.Identity;
+
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
 
-    using Microsoft.AspNet.Identity;
     public abstract class BaseController : Controller
     {
         protected BaseController(IBlogSystemData data)
@@ -29,8 +30,8 @@
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                var username = requestContext.HttpContext.User.Identity.GetUserName();
-                var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
+                string username = requestContext.HttpContext.User.Identity.GetUserName();
+                ApplicationUser user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
                 this.UserProfile = user;
                 this.ViewBag.UserProfile = user;

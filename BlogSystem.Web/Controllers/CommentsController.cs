@@ -10,8 +10,7 @@
     [Authorize]
     public class CommentsController : BaseController
     {
-        public CommentsController(IBlogSystemData data)
-            : base(data)
+        public CommentsController(IBlogSystemData data) : base(data)
         {
         }
 

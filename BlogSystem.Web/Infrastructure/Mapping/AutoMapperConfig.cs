@@ -21,7 +21,6 @@
             var types = this.assembly.GetExportedTypes();
 
             LoadStandardMappings(types);
-
             LoadCustomMappings(types);
         }
 
