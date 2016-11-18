@@ -21,9 +21,9 @@
             this.UserProfile = userProfile;
         }
 
-        public IBlogSystemData Data { get; }
+        protected IBlogSystemData Data { get; }
 
-        public ApplicationUser UserProfile { get; private set; }
+        protected ApplicationUser UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {

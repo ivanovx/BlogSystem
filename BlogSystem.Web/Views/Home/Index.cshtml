@@ -1,6 +1,8 @@
 ﻿@using System.Linq
 @using PagedList.Mvc
+
 @model PagedList.IPagedList<BlogSystem.Web.ViewModels.Home.BlogPostConciseViewModel>
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -57,7 +59,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="blog-word-wrap">
-                                        @Html.Raw(post.ShortContent)
+                                        @Html.Raw(post.Content.Substring(0, post.Content.Length / 2))
                                     </div>
                                 </div>
                                 <div class="blog-button-short-content">
