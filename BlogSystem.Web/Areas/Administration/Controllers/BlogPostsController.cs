@@ -90,7 +90,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                     {
                         Title = blogPost.Title,
                         Content = this.sanitizer.Sanitize(blogPost.Content),
-                        ShortContent = this.sanitizer.Sanitize(blogPost.Content.ToUpper()),
+                        //ShortContent = this.sanitizer.Sanitize(blogPost.Content.ToUpper()),
                         Author = this.UserProfile,
                         AuthorId = this.UserProfile.Id,
                         CreatedOn = DateTime.Now
@@ -127,7 +127,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
+            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
                 blogPost)
         {
             if (this.ModelState.IsValid)

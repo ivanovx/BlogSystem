@@ -1,10 +1,11 @@
-using BlogSystem.Web.App_Start;
+using BlogSystem.Web;
+//using BlogSystem.Web.App_Start;
 
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
-namespace BlogSystem.Web.App_Start
+namespace BlogSystem.Web
 {
     using System;
     using System.Web;
@@ -22,7 +23,7 @@ namespace BlogSystem.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-   public static class NinjectWebCommon
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -51,17 +52,20 @@ namespace BlogSystem.Web.App_Start
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
+
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
                 return kernel;
             }
             catch
             {
                 kernel.Dispose();
+
                 throw;
             }
         }
@@ -76,12 +80,12 @@ namespace BlogSystem.Web.App_Start
                 .To<BlogSystemData>()
                 .InRequestScope()
                 .WithConstructorArgument("context", p => new ApplicationDbContext());
+
             kernel.Bind<IUserStore<ApplicationUser>>()
                 .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
                 .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
 
-            // kernel.Bind<IAuthenticationManager>().To<>();
             kernel.Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
