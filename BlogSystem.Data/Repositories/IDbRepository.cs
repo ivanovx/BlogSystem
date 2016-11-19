@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace BlogSystem.Data.Repositories
+﻿namespace BlogSystem.Data.Repositories
 {
+    using System;
     using System.Linq;
 
     public interface IDbRepository<T> : IDisposable where T : class

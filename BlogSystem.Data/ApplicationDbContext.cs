@@ -1,5 +1,3 @@
-using System.Data.Entity.Infrastructure;
-using  System.Collections.Generic;
 namespace BlogSystem.Data
 {
     using System;
@@ -7,7 +5,8 @@ namespace BlogSystem.Data
     using System.Linq;
     using BlogSystem.Data.Contracts;
     using BlogSystem.Data.Models;
-
+    using System.Data.Entity.Infrastructure;
+    using System.Collections.Generic;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
