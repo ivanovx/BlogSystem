@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -12,9 +13,11 @@
 
     public class PostCommentsController : AdministrationController
     {
+        // Todo
         private const int CommentsPerPageDefaultValue = 7;
 
-        public PostCommentsController(IBlogSystemData data) : base(data)
+        public PostCommentsController(IBlogSystemData data) 
+            : base(data)
         {
         }
 
@@ -23,13 +26,14 @@
         {
             int pageNumber = page ?? 1;
 
-            var postComments =
+            List<PostComment> postComments =
                 this.Data.PostComments.All()
                     .OrderByDescending(p => p.CreatedOn)
                     .Include(p => p.BlogPost)
                     .Include(p => p.User)
                     .ToList();
-            var model = new PagedList<PostComment>(postComments, pageNumber, CommentsPerPageDefaultValue);
+
+            PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, CommentsPerPageDefaultValue);
 
             return this.View(model);
         }
@@ -42,7 +46,8 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var postComment = this.Data.PostComments.Find(id);
+            PostComment postComment = this.Data.PostComments.Find(id);
+
             if (postComment == null)
             {
                 return this.HttpNotFound();
@@ -52,6 +57,7 @@
         }
 
         // GET: Administration/PostComments/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -59,7 +65,8 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var postComment = this.Data.PostComments.Find(id);
+            PostComment postComment = this.Data.PostComments.Find(id);
+
             if (postComment == null)
             {
                 return this.HttpNotFound();
@@ -68,6 +75,7 @@
             return this.View(postComment);
         }
 
+        // Todo
         // POST: Administration/PostComments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -87,6 +95,7 @@
         }
 
         // GET: Administration/PostComments/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -94,7 +103,8 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var postComment = this.Data.PostComments.Find(id);
+            PostComment postComment = this.Data.PostComments.Find(id);
+
             if (postComment == null)
             {
                 return this.HttpNotFound();
@@ -110,6 +120,7 @@
         public ActionResult DeleteConfirmed(int id)
         {
             PostComment postComment = this.Data.PostComments.Find(id);
+
             this.Data.PostComments.Remove(postComment);
             this.Data.SaveChanges();
 

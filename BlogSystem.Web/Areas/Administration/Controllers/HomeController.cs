@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.ViewModels.Home;
 
@@ -21,11 +20,11 @@
             var applicationUsers = this.Data.Users.All().Count();
 
             var model = new IndexAdminPageViewModel
-                            {
-                                BlogPostsCount = blogPosts, 
-                                CommentsCount = comments, 
-                                ApplicationUsersCount = applicationUsers
-                            };
+            {
+                BlogPostsCount = blogPosts, 
+                CommentsCount = comments, 
+                ApplicationUsersCount = applicationUsers
+            };
 
             return this.View(model);
         }

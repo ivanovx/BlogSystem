@@ -2,14 +2,11 @@
 {
     using System;
     using System.Linq;
-
     using AutoMapper;
-
     using BlogSystem.Common;
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -31,9 +28,9 @@
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
-            var context = new ApplicationDbContext();
-            var rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var administratorRoleId =
+            ApplicationDbContext context = new ApplicationDbContext();
+            RoleManager<IdentityRole> rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            string administratorRoleId =
                 rolerManager.Roles.Where(r => r.Name == GlobalConstants.AdminRoleName)
                     .Select(r => r.Id)
                     .FirstOrDefault();

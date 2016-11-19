@@ -1,30 +1,23 @@
-﻿using BlogSystem.Common;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-
     using AutoMapper.QueryableExtensions;
-
+    using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.InputModels.ApplicationUsers;
     using BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
-
     using PagedList;
 
     public class ApplicationUsersController : AdministrationController
     {
-        //private const int UsersPerPageDefaultValue = 6;
-
         public ApplicationUsersController(IBlogSystemData data)
             : base(data)
         {
@@ -49,7 +42,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var applicationUser = this.Data.Users.Find(id);
+            ApplicationUser applicationUser = this.Data.Users.Find(id);
+
             if (applicationUser == null)
             {
                 return this.HttpNotFound();
@@ -59,6 +53,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/ApplicationUsers/Edit/5
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -66,21 +61,22 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var applicationUser = this.Data.Users.Find(id);
+            ApplicationUser applicationUser = this.Data.Users.Find(id);
+
             if (applicationUser == null)
             {
                 return this.HttpNotFound();
             }
 
-            var model = new ApplicationUserEditModel
-                            {
-                                Id = applicationUser.Id, 
-                                Email = applicationUser.Email, 
-                                UserName = applicationUser.UserName, 
-                                PasswordHash = applicationUser.PasswordHash, 
-                                SecurityStamp = applicationUser.SecurityStamp, 
-                                CreatedOn = applicationUser.CreatedOn
-                            };
+            ApplicationUserEditModel model = new ApplicationUserEditModel
+            {
+                Id = applicationUser.Id, 
+                Email = applicationUser.Email, 
+                UserName = applicationUser.UserName, 
+                PasswordHash = applicationUser.PasswordHash, 
+                SecurityStamp = applicationUser.SecurityStamp, 
+                CreatedOn = applicationUser.CreatedOn
+            };
 
             return this.View(model);
         }
@@ -115,6 +111,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 {
                     var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                     var newHashedPassword = userManager.PasswordHasher.HashPassword(applicationUser.PasswordHash);
+
                     user.PasswordHash = newHashedPassword;
                     user.SecurityStamp = Guid.NewGuid().ToString();
                 }
@@ -129,6 +126,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/ApplicationUsers/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return this.View();
@@ -141,16 +139,17 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var applicationUser = new ApplicationUser
-                                          {
-                                              Email = userModel.Email, 
-                                              UserName = userModel.UserName, 
-                                              PasswordHash = userModel.Password, 
-                                              CreatedOn = DateTime.Now
-                                          };
+                ApplicationUser applicationUser = new ApplicationUser
+                {
+                    Email = userModel.Email, 
+                    UserName = userModel.UserName, 
+                    PasswordHash = userModel.Password, 
+                    CreatedOn = DateTime.Now
+                };
 
                 var userManager = this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var userCreateResult = userManager.Create(applicationUser, applicationUser.PasswordHash);
+
                 if (!userCreateResult.Succeeded)
                 {
                     return this.Content(string.Join("; ", userCreateResult.Errors));

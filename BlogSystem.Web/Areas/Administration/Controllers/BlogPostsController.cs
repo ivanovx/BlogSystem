@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using BlogSystem.Common;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using BlogSystem.Common;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Infrastructure;
-
     using PagedList;
 
     public class BlogPostsController : AdministrationController
@@ -71,7 +68,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var post = new BlogPost
+                    BlogPost post = new BlogPost
                     {
                         Title = blogPost.Title,
                         Content = this.sanitizer.Sanitize(blogPost.Content),
@@ -91,6 +88,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/BlogPosts/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,7 +96,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var blogPost = this.Data.Posts.Find(id);
+            BlogPost blogPost = this.Data.Posts.Find(id);
 
             if (blogPost == null)
             {
@@ -111,14 +109,10 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // POST: Administration/BlogPosts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        /*public ActionResult Edit(
-            [Bind(Include = "Id,Title,Content,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost
-                blogPost)*/
         public ActionResult Edit(BlogPost blogPost)
         {
             if (this.ModelState.IsValid)
             {
-                //this.Data.Posts.Update(blogPost);
                 this.Data.Posts.Update(blogPost);
                 this.Data.SaveChanges();
 
@@ -129,6 +123,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/BlogPosts/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -152,7 +147,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var blogPost = this.Data.Posts.Find(id);
+            BlogPost blogPost = this.Data.Posts.Find(id);
 
             this.Data.Posts.Remove(blogPost);
             this.Data.SaveChanges();
