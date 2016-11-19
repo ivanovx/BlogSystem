@@ -1,11 +1,11 @@
-using BlogSystem.Data.Contracts;
+
 
 namespace BlogSystem.Data
 {
     using System;
     using System.Data.Entity;
     using System.Linq;
-
+    using BlogSystem.Data.Contracts;
     using BlogSystem.Data.Models;
 
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -17,6 +17,7 @@ namespace BlogSystem.Data
         {
         }
 
+        // Todo
         public virtual IDbSet<BlogPost> Posts { get; set; }
 
         public virtual IDbSet<PostComment> PostComments { get; set; }
@@ -29,6 +30,7 @@ namespace BlogSystem.Data
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
+
             return base.SaveChanges();
         }
 
