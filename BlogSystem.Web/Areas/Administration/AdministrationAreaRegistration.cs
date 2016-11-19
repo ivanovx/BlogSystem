@@ -15,10 +15,6 @@
                 {
                     action = "Index",
                     id = UrlParameter.Optional
-                }, 
-                new []
-                {
-                    "BlogSystem.Web.Areas.Administration.Controllers"
                 });
         }
     }

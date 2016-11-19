@@ -17,10 +17,6 @@
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
-                }, 
-                new[]
-                {
-                    "BlogSystem.Web.Controllers"
                 });
         }
     }
