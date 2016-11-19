@@ -1,5 +1,5 @@
-
-
+using System.Data.Entity.Infrastructure;
+using  System.Collections.Generic;
 namespace BlogSystem.Data
 {
     using System;
@@ -16,6 +16,7 @@ namespace BlogSystem.Data
             : base("DefaultConnection", false)
         {
         }
+
         public IDbSet<BlogPost> Posts { get; set; }
 
         public IDbSet<PostComment> PostComments { get; set; }
@@ -34,14 +35,12 @@ namespace BlogSystem.Data
 
         private void ApplyAuditInfoRules()
         {
-            // Approach via @julielerman: http://bit.ly/123661P
-            foreach (var entry in
-                this.ChangeTracker.Entries()
-                    .Where(
-                        e =>
-                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
+            IEnumerable<DbEntityEntry> entryset = this.ChangeTracker.Entries()
+                .Where(e => e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+
+            foreach (var entry in entryset)
             {
-                var entity = (IAuditInfo)entry.Entity;
+                IAuditInfo entity = (IAuditInfo) entry.Entity;
 
                 if (entry.State == EntityState.Added)
                 {
