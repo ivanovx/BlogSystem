@@ -1,6 +1,4 @@
 using BlogSystem.Web;
-//using BlogSystem.Web.App_Start;
-
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
@@ -9,17 +7,14 @@ namespace BlogSystem.Web
 {
     using System;
     using System.Web;
-
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Infrastructure;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
 
@@ -34,6 +29,7 @@ namespace BlogSystem.Web
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+
             bootstrapper.Initialize(CreateKernel);
         }
 

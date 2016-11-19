@@ -1,10 +1,8 @@
 namespace BlogSystem.Web
 {
     using System;
-
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;

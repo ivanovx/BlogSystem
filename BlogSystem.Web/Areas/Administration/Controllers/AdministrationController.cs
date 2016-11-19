@@ -9,7 +9,8 @@
     [Authorize(Roles = GlobalConstants.AdminRoleName)]
     public class AdministrationController : BaseController
     {
-        protected AdministrationController(IBlogSystemData data) : base(data)
+        protected AdministrationController(IBlogSystemData data) 
+            : base(data)
         {
         }
     }
