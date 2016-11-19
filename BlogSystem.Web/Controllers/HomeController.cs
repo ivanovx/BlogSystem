@@ -14,7 +14,8 @@
 
     public class HomeController : BaseController
     {
-        public HomeController(IBlogSystemData data) : base(data)
+        public HomeController(IBlogSystemData data) 
+            : base(data)
         { 
         }
 

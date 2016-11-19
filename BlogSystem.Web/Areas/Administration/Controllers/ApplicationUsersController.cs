@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Common;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -21,7 +23,7 @@
 
     public class ApplicationUsersController : AdministrationController
     {
-        private const int UsersPerPageDefaultValue = 6;
+        //private const int UsersPerPageDefaultValue = 6;
 
         public ApplicationUsersController(IBlogSystemData data)
             : base(data)
@@ -34,7 +36,7 @@
             int pageNumber = page ?? 1;
 
             var users = this.Data.Users.All().OrderByDescending(x => x.CreatedOn).ProjectTo<ApplicationUserViewModel>().ToList();
-            var model = new PagedList<ApplicationUserViewModel>(users, pageNumber, UsersPerPageDefaultValue);
+            var model = new PagedList<ApplicationUserViewModel>(users, pageNumber, GlobalConstants.UsersPerPageDefaultValue);
 
             return this.View(model);
         }

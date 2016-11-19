@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using BlogSystem.Common;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {
@@ -15,10 +17,10 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
     public class BlogPostsController : AdministrationController
     {
-        private const int PostsPerPageDefaultValue = 5;
         private readonly ISanitizer sanitizer;
 
-        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer) : base(data)
+        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer) 
+            : base(data)
         {
             this.sanitizer = sanitizer;
         }
@@ -28,9 +30,9 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             int pageNumber = page ?? 1;
 
-            var blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author).ToList();
+            List<BlogPost> blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author).ToList();
 
-            var model = new PagedList<BlogPost>(blogPosts, pageNumber, PostsPerPageDefaultValue);
+            PagedList<BlogPost> model = new PagedList<BlogPost>(blogPosts, pageNumber, GlobalConstants.PostsPerPageDefaultValue);
 
             return this.View(model);
         }
@@ -43,7 +45,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var blogPost = this.Data.Posts.Find(id);
+            BlogPost blogPost = this.Data.Posts.Find(id);
 
             if (blogPost == null)
             {
@@ -54,6 +56,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/BlogPosts/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return this.View();
@@ -62,35 +65,16 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // POST: Administration/BlogPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-       /* public ActionResult Create(
-            [Bind(Include = "Id,Title,Content,ShortContent,AuthorId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] BlogPost blogPost)*/
-            public ActionResult Create(BlogPost blogPost)
+        public ActionResult Create(BlogPost blogPost)
         {
             if (blogPost != null)
             {
-                /* 
-                 blogPost.Author = this.UserProfile;
-                 blogPost.AuthorId = this.UserProfile.Id;
- 
-                 if (this.ModelState.IsValid)
-                 {
-                     blogPost.ShortContent = this.sanitizer.Sanitize(blogPost.ShortContent);
-                     blogPost.Content = this.sanitizer.Sanitize(blogPost.Content);
- 
-                     this.Data.Posts.Add(blogPost);
-                     this.Data.SaveChanges();
- 
-                     return this.RedirectToAction("Index");
-                 }*/
-
-
                 if (this.ModelState.IsValid)
                 {
                     var post = new BlogPost
                     {
                         Title = blogPost.Title,
                         Content = this.sanitizer.Sanitize(blogPost.Content),
-                        //ShortContent = this.sanitizer.Sanitize(blogPost.Content.ToUpper()),
                         Author = this.UserProfile,
                         AuthorId = this.UserProfile.Id,
                         CreatedOn = DateTime.Now
@@ -102,6 +86,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                     return this.RedirectToAction("Index");
                 }
             }
+
             return this.View(blogPost);
         }
 
