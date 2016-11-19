@@ -10,17 +10,15 @@ namespace BlogSystem.Data
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", false)
         {
         }
+        public IDbSet<BlogPost> Posts { get; set; }
 
-        // Todo
-        public virtual IDbSet<BlogPost> Posts { get; set; }
-
-        public virtual IDbSet<PostComment> PostComments { get; set; }
+        public IDbSet<PostComment> PostComments { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -57,6 +55,11 @@ namespace BlogSystem.Data
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
         }
     }
 }
