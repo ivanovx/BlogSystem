@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B02A40
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSystem.Common", "BlogSystem.Common\BlogSystem.Common.csproj", "{427EF7D0-4DE3-4656-B4E9-35C191B504CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSystem.Data.Contracts", "BlogSystem.Data.Common\BlogSystem.Data.Contracts.csproj", "{482B4C3E-0155-4FFD-B42F-A024FD5E3E0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSystem.Data.Contracts", "BlogSystem.Data.Contracts\BlogSystem.Data.Contracts.csproj", "{482B4C3E-0155-4FFD-B42F-A024FD5E3E0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
