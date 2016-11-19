@@ -67,5 +67,10 @@
 
             return entity;
         }
+
+        public void Dispose()
+        {
+            this.dbContext.Dispose();
+        }
     }
 }

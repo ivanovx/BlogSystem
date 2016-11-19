@@ -1,8 +1,10 @@
-﻿namespace BlogSystem.Data.Repositories
+﻿using System;
+
+namespace BlogSystem.Data.Repositories
 {
     using System.Linq;
 
-    public interface IDbRepository<T>
+    public interface IDbRepository<T> : IDisposable where T : class
     {
         IQueryable<T> All();
 
