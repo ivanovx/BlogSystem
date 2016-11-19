@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Common;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -13,9 +15,6 @@
 
     public class PostCommentsController : AdministrationController
     {
-        // Todo
-        private const int CommentsPerPageDefaultValue = 7;
-
         public PostCommentsController(IBlogSystemData data) 
             : base(data)
         {
@@ -33,7 +32,7 @@
                     .Include(p => p.User)
                     .ToList();
 
-            PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, CommentsPerPageDefaultValue);
+            PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
 
             return this.View(model);
         }
@@ -75,13 +74,10 @@
             return this.View(postComment);
         }
 
-        // Todo
         // POST: Administration/PostComments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-            [Bind(Include = "Id,Content,BlogPostId,UserId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] PostComment
-                postComment)
+        public ActionResult Edit(PostComment postComment)
         {
             if (this.ModelState.IsValid)
             {
