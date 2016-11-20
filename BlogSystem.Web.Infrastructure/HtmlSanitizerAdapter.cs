@@ -1,7 +1,7 @@
-﻿namespace BlogSystem.Web.Infrastructure
-{
-    using Ganss.XSS;
+﻿using Ganss.XSS;
 
+namespace BlogSystem.Web.Infrastructure
+{
     public class HtmlSanitizerAdapter : ISanitizer
     {
         public string Sanitize(string html)
