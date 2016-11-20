@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using AutoMapper.QueryableExtensions;
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.ViewModels.Home;
@@ -23,7 +23,7 @@
         {
             var pageNumber = page ?? 1;
 
-            var posts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).ProjectTo<BlogPostConciseViewModel>();
+            var posts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).To<BlogPostConciseViewModel>();
             var viewModel = new IndexPageViewModel
             {
                 Posts = posts

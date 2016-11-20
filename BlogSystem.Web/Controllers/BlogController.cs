@@ -4,6 +4,7 @@
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.ViewModels.Blog;
@@ -27,7 +28,7 @@
             var viewModel = this.Data.Posts
                                 .All()
                                 .Where(p => p.Id == id)
-                                .ProjectTo<BlogPostViewModel>()
+                                .To<BlogPostViewModel>()
                                 .FirstOrDefault();
 
             return this.View(viewModel);
