@@ -14,12 +14,12 @@
 
     public class BlogPostsController : AdministrationController
     {
-        private readonly ISanitizer sanitizer;
+        //private readonly ISanitizer sanitizer;
 
-        public BlogPostsController(IBlogSystemData data, ISanitizer sanitizer) 
+        public BlogPostsController(IBlogSystemData data/*, ISanitizer sanitizer*/) 
             : base(data)
         {
-            this.sanitizer = sanitizer;
+            //this.sanitizer = sanitizer;
         }
 
         // GET: Administration/BlogPosts
@@ -71,7 +71,7 @@
                     BlogPost post = new BlogPost
                     {
                         Title = blogPost.Title,
-                        Content = this.sanitizer.Sanitize(blogPost.Content),
+                        Content = blogPost.Content,
                         Author = this.UserProfile,
                         AuthorId = this.UserProfile.Id,
                         CreatedOn = DateTime.Now

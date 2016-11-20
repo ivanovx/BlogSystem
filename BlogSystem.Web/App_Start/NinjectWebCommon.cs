@@ -85,7 +85,7 @@ namespace BlogSystem.Web
             kernel.Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
-            kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
+            //kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
         }
     }
 }
