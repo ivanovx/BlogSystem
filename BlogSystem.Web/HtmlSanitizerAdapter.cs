@@ -1,6 +1,6 @@
 ﻿using Ganss.XSS;
 
-namespace BlogSystem.Web.Infrastructure
+namespace BlogSystem.Web
 {
     public class HtmlSanitizerAdapter : ISanitizer
     {
