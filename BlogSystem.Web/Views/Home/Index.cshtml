@@ -1,7 +1,4 @@
-﻿@using System.Linq
-@using PagedList.Mvc
-
-@model PagedList.IPagedList<BlogSystem.Web.ViewModels.Home.BlogPostConciseViewModel>
+﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -19,9 +16,10 @@
 
 <div class="container">
     <div class="row">
-        @if (Model.Any())
+        
+        @if (Model.Posts.Any())
         {
-            foreach (var post in Model)
+            foreach (var post in Model.Posts)
             {
                 <div class="container blog-post">
                     <div class="col-md-12">
@@ -29,7 +27,7 @@
                             <div class="panel-body">
                                 <div class="col-md-12">
                                     <div class="blog-word-wrap">
-                                        <h3>@Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id }, new { @class = "blog-post-title" })</h3>
+                                        <h3>@Html.ActionLink(post.Title, "Post", "Blog", new {id = post.Id}, new {@class = "blog-post-title"})</h3>
                                     </div>
 
                                     <hr/>
@@ -45,7 +43,7 @@
                                                 @post.Author
                                             </li>
                                             <li>
-                                                <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = post.Id })@("#comments")">
+                                                <a href="@Url.Action("Post", "Blog", new {area = string.Empty, id = post.Id})@("#comments")">
                                                     <i class="glyphicon glyphicon-comment"></i>
                                                     @(post.CommentsCount) comments
                                                 </a>
@@ -62,7 +60,7 @@
                                 </div>
                                 <div class="blog-button-short-content">
                                     <div class="col-md-12">
-                                        <a href="@Url.Action("Post", "Blog", new { id = post.Id })" class="btn btn-danger">
+                                        <a href="@Url.Action("Post", "Blog", new {id = post.Id})" class="btn btn-danger">
                                             <i class="glyphicon glyphicon-plus"></i>
                                             <span>Read More</span>
                                         </a>
@@ -81,11 +79,30 @@
             </div>
         }
 
-        <div class="col-md-12">
-            <div class="text-center">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
-            </div>
-        </div>
+       
 
     </div>
 </div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li><a href="/?page=@Model.PreviousPage"><i class="fa fa-backward"></i></a></li>
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active"><a href="/?page=@i">@i</a></li>
+                }
+                else
+                {
+                    <li><a href="/?page=@i">@i</a></li>
+                }
+            }
+            <li><a href="/?page=@Model.NextPage"><i class="fa fa-forward"></i></a></li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}
