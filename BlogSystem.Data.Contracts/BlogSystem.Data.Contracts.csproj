@@ -7,8 +7,8 @@
     <ProjectGuid>{482B4C3E-0155-4FFD-B42F-A024FD5E3E0A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlogSystem.Data.Common</RootNamespace>
-    <AssemblyName>BlogSystem.Data.Common</AssemblyName>
+    <RootNamespace>BlogSystem.Data.Contracts</RootNamespace>
+    <AssemblyName>BlogSystem.Data.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
