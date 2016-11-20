@@ -17,7 +17,7 @@ namespace BlogSystem.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = true; // TODO: Remove in production
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ApplicationDbContext context)
