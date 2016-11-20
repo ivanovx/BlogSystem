@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Infrastructure.Mapping;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -28,7 +30,7 @@
         {
             int pageNumber = page ?? 1;
 
-            var users = this.Data.Users.All().OrderByDescending(x => x.CreatedOn).ProjectTo<ApplicationUserViewModel>().ToList();
+            var users = this.Data.Users.All().OrderByDescending(x => x.CreatedOn).To<ApplicationUserViewModel>().ToList();
             var model = new PagedList<ApplicationUserViewModel>(users, pageNumber, GlobalConstants.UsersPerPageDefaultValue);
 
             return this.View(model);
