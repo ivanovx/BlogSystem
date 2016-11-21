@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using System;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Net;
     using System.Web.Mvc;
@@ -21,12 +23,13 @@
             if (this.ModelState.IsValid)
             {
                 var newComment = new PostComment
-                                     {
-                                         Content = comment.Content, 
-                                         BlogPostId = id, 
-                                         User = this.UserProfile, 
-                                         UserId = this.UserProfile.Id
-                                     };
+                {
+                    Content = comment.Content, 
+                    BlogPostId = id, 
+                    User = this.UserProfile, 
+                    UserId = this.UserProfile.Id,
+                    CreatedOn = DateTime.Now
+                };
 
                 this.Data.PostComments.Add(newComment);
                 this.Data.SaveChanges();
@@ -46,6 +49,7 @@
             }
 
             var postComment = this.Data.PostComments.Find(id);
+
             if (postComment == null)
             {
                 return this.HttpNotFound();
@@ -62,9 +66,7 @@
         // POST: Comments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-            [Bind(Include = "Id,Content,BlogPostId,UserId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] PostComment
-                postComment)
+        public ActionResult Edit(PostComment postComment)
         {
             if (this.ModelState.IsValid)
             {
