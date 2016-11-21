@@ -1,13 +1,10 @@
-﻿using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-    using AutoMapper.QueryableExtensions;
     using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
@@ -16,7 +13,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
-    using PagedList;
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     public class ApplicationUsersController : AdministrationController
     {
