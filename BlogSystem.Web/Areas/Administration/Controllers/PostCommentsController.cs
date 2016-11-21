@@ -1,20 +1,16 @@
-﻿using System;
-using BlogSystem.Common;
-using BlogSystem.Web.Areas.Administration.ViewModels.PostComments;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System;
+    using BlogSystem.Common;
+    using BlogSystem.Web.Areas.Administration.ViewModels.PostComments;
+    using BlogSystem.Web.Infrastructure.Mapping;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-
-    using PagedList;
 
     public class PostCommentsController : AdministrationController
     {
