@@ -1,13 +1,7 @@
-﻿
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.BlogPost
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.BlogPost
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using AutoMapper;
-    using BlogSystem.Data.Contracts;
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Data.Models;
 

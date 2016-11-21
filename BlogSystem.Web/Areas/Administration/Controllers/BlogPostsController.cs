@@ -1,19 +1,16 @@
-﻿using BlogSystem.Web.Infrastructure.Mapping;
-
+﻿
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using BlogSystem.Common;
-    using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Infrastructure;
-    using PagedList;
-    using ViewModels.BlogPost;
+    using BlogSystem.Web.Areas.Administration.ViewModels.BlogPost;
+    using BlogSystem.Web.Infrastructure.Mapping;
+
 
     public class BlogPostsController : AdministrationController
     {
