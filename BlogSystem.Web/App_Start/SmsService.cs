@@ -1,7 +1,6 @@
 namespace BlogSystem.Web
 {
     using System.Threading.Tasks;
-
     using Microsoft.AspNet.Identity;
 
     public class SmsService : IIdentityMessageService

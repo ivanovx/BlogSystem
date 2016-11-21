@@ -13,8 +13,7 @@
 
         private static void RegisterStyles(BundleCollection bundles)
         {
-            bundles.Add(
-                new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.css", 
                     "~/Content/site.css", 
                     "~/Content/site.bootstrap.darkly.custom.css", 

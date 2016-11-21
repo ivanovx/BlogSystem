@@ -1,15 +1,12 @@
 ﻿namespace BlogSystem.Web
 {
     using System;
-
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
-
     using Owin;
 
     public partial class Startup
