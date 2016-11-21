@@ -25,12 +25,6 @@
         // GET: Administration/ApplicationUsers
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            /*int pageNumber = page ?? 1;
-
-            var users = this.Data.Users.All().OrderByDescending(x => x.CreatedOn).To<ApplicationUserViewModel>().ToList();
-            var model = new PagedList<ApplicationUserViewModel>(users, pageNumber, GlobalConstants.UsersPerPageDefaultValue);
-            */
-
             int pagesCount = (int)Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
 
             var users = this.Data.Users

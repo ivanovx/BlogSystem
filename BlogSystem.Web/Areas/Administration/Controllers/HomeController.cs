@@ -15,9 +15,17 @@
         // GET: Administration/Home
         public ActionResult Index()
         {
-            var blogPosts = this.Data.Posts.All().Count();
-            var comments = this.Data.PostComments.All().Count();
-            var applicationUsers = this.Data.Users.All().Count();
+            var blogPosts = this.Data.Posts
+                .All()
+                .Count();
+
+            var comments = this.Data.PostComments
+                .All()
+                .Count();
+
+            var applicationUsers = this.Data.Users
+                .All()
+                .Count();
 
             var model = new IndexAdminPageViewModel
             {

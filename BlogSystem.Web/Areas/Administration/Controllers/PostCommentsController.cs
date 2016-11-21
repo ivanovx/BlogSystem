@@ -22,15 +22,6 @@
         // GET: Administration/PostComments
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.CommentsPerPageDefaultValue)
         {
-            /* int pageNumber = page ?? 1;
-
-             List<PostComment> postComments = this.Data.PostComments
-                 .All()
-                 .OrderByDescending(p => p.CreatedOn)
-                 .Include(p => p.BlogPost)
-                 .Include(p => p.User)
-                 .ToList();*/
-
             int pagesCount = (int) Math.Ceiling(this.Data.PostComments.All().Count() / (decimal) perPage);
 
             var comments = this.Data.PostComments
@@ -42,8 +33,6 @@
                 .To<PostCommentViewModel>()
                 .Skip(perPage*(page - 1))
                 .Take(perPage);
-
-            //PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
 
             var model = new IndexPageViewModel
             {

@@ -17,9 +17,7 @@
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            //var pageNumber = page ?? 1;
-
-            var pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
 
             var posts = this.Data.Posts
                 .All()
@@ -36,7 +34,6 @@
                 CurrentPage = page,
                 PagesCount = pagesCount,
             };
-            //var model = viewModel.Posts.ToPagedList(pageNumber, GlobalConstants.PostsPerPageDefaultValue);
 
             return this.View(model);
         }
