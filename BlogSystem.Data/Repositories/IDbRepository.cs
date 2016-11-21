@@ -3,7 +3,8 @@
     using System;
     using System.Linq;
 
-    public interface IDbRepository<T> : IDisposable where T : class
+    public interface IDbRepository<T> : IDisposable 
+        where T : class
     {
         IQueryable<T> All();
 

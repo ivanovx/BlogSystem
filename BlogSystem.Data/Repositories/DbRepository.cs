@@ -3,44 +3,45 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class DbRepository<TEntity> : IDbRepository<TEntity> where TEntity : class
+    public class DbRepository<T> : IDbRepository<T> 
+        where T : class
     {
         private readonly DbContext dbContext;
 
         public DbRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.EntitySet = dbContext.Set<TEntity>();
+            this.EntitySet = dbContext.Set<T>();
         }
 
-        private IDbSet<TEntity> EntitySet { get; }
+        private IDbSet<T> EntitySet { get; }
 
-        public IQueryable<TEntity> All()
+        public IQueryable<T> All()
         {
             return this.EntitySet;
         }
 
-        public TEntity Find(object id)
+        public T Find(object id)
         {
             return this.EntitySet.Find(id);
         }
 
-        public TEntity Add(TEntity entity)
+        public T Add(T entity)
         {
             return this.ChangeState(entity, EntityState.Added);
         }
 
-        public TEntity Update(TEntity entity)
+        public T Update(T entity)
         {
             return this.ChangeState(entity, EntityState.Modified);
         }
 
-        public void Remove(TEntity entity)
+        public void Remove(T entity)
         {
             this.ChangeState(entity, EntityState.Deleted);
         }
 
-        public TEntity Remove(object id)
+        public T Remove(object id)
         {
             var entity = this.Find(id);
 
@@ -54,7 +55,7 @@
            return this.dbContext.SaveChanges();
         }
 
-        private TEntity ChangeState(TEntity entity, EntityState state)
+        private T ChangeState(T entity, EntityState state)
         {
             var entry = this.dbContext.Entry(entity);
 
