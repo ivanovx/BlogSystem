@@ -245,6 +245,7 @@
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\IndexPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PostComments\IndexPageViewModel.cs" />

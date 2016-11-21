@@ -1,5 +1,4 @@
-﻿@using PagedList.Mvc
-@model PagedList.IPagedList<BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers.ApplicationUserViewModel>
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers.IndexPageViewModel
 
 @{
     ViewBag.Title = "Application Users";
@@ -48,7 +47,7 @@
                 </th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Users)
             {
                 <tr>
                     <td>
@@ -91,10 +90,42 @@
             }
 
         </table>
-        <div class="col-md-12">
-            <div class="text-center">
-                @Html.PagedListPager(Model, page => Url.Action("Index", "ApplicationUsers", new { area = "Administration", page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
-            </div>
-        </div>
     </div>
 </div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li>
+                <a href="~/Administration/ApplicationUsers/?page=@Model.PreviousPage">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="/Administration/ApplicationUsers/?page=@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/Administration/ApplicationUsers/?page=@i">@i</a>
+                    </li>
+                }
+            }
+
+            <li>
+                <a href="~/Administration/ApplicationUsers/?page=@Model.NextPage">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}

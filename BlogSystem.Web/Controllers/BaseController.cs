@@ -1,15 +1,14 @@
-﻿using AutoMapper;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
+    using AutoMapper;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Microsoft.AspNet.Identity;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     public abstract class BaseController : Controller
     {
