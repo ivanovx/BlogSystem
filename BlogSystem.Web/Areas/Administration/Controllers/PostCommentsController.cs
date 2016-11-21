@@ -35,15 +35,17 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                  .Include(p => p.User)
                  .ToList();*/
 
-            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
+            int pagesCount = (int) Math.Ceiling(this.Data.PostComments.All().Count() / (decimal) perPage);
 
             var comments = this.Data.PostComments
                 .All()
                 .Where(c => !c.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
-                .Include(c => c.BlogPost)
+                .Include(c => c.BlogPost) // Todo
                 .Include(c => c.User)
-                .To<PostCommentViewModel>();
+                .To<PostCommentViewModel>()
+                .Skip(perPage*(page - 1))
+                .Take(perPage);
 
             //PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
 
