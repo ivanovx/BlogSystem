@@ -21,7 +21,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<BlogPost, BlogPostViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.Email));

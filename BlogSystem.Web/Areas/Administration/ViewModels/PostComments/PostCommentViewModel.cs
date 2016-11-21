@@ -23,7 +23,7 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.PostComments
 
         public DateTime? DeletedOn { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<PostComment, PostCommentViewModel>()
                 .ForMember(model => model.User, config => config.MapFrom(post => post.User.Email));

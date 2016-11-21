@@ -21,7 +21,7 @@
 
         public DateTime CommentedOn { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<PostComment, CommentViewModel>()
                 .ForMember(model => model.CommentedOn, config => config.MapFrom(post => post.CreatedOn));
