@@ -1,5 +1,4 @@
-﻿@using PagedList.Mvc
-@model PagedList.IPagedList<BlogSystem.Data.Models.PostComment>
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.PostComments.IndexPageViewModel
 
 @{
     ViewBag.Title = "All Comments";
@@ -42,7 +41,7 @@
                 </th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.Comments)
             {
                 <tr>
                     <td>
@@ -50,10 +49,8 @@
                             @Html.DisplayFor(modelItem => item.BlogPost.Title)
                         </a>
                     </td>
-                    <td>
-                        <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = item.UserId })">
-                            @Html.DisplayFor(modelItem => item.User.UserName)
-                        </a>
+                    <td>  
+                        @Html.DisplayFor(modelItem => item.User)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IsDeleted)
@@ -65,7 +62,6 @@
                         @Html.DisplayFor(modelItem => item.CreatedOn)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
                     </td>
                     <td>
                         <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
@@ -83,13 +79,47 @@
                     </td>
                 </tr>
             }
-
-        </table>
-        <div class="col-md-12">
-            <div class="text-center">
-                @Html.PagedListPager(Model, page => Url.Action("Index", "PostComments", new { area = "Administration", page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
-            </div>
-        </div>
+        </table>   
     </div>
 </div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li>
+                <a href="~/Administration/PostComments/?page=@Model.PreviousPage">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="~/Administration/PostComments?page=@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="~/Administration/PostComments/?page=@i">@i</a>
+                    </li>
+                }
+            }
+
+            <li>
+                <a href="~/Administration/PostComments?page=@Model.NextPage">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}
+
+
+
 

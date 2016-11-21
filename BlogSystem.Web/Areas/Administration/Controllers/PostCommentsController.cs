@@ -1,4 +1,7 @@
-﻿using BlogSystem.Common;
+﻿using System;
+using BlogSystem.Common;
+using BlogSystem.Web.Areas.Administration.ViewModels.PostComments;
+using BlogSystem.Web.Infrastructure.Mapping;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {
@@ -21,17 +24,35 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/PostComments
-        public ActionResult Index(int? page)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.CommentsPerPageDefaultValue)
         {
-            int pageNumber = page ?? 1;
+            /* int pageNumber = page ?? 1;
 
-            List<PostComment> postComments = this.Data.PostComments.All()
+             List<PostComment> postComments = this.Data.PostComments
+                 .All()
+                 .OrderByDescending(p => p.CreatedOn)
+                 .Include(p => p.BlogPost)
+                 .Include(p => p.User)
+                 .ToList();*/
+
+            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
+
+            var comments = this.Data.PostComments
+                .All()
+                .Where(c => !c.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
-                .Include(p => p.BlogPost)
-                .Include(p => p.User)
-                .ToList();
+                .Include(c => c.BlogPost)
+                .Include(c => c.User)
+                .To<PostCommentViewModel>();
 
-            PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
+            //PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
+
+            var model = new IndexPageViewModel
+            {
+                Comments = comments.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
+            };
 
             return this.View(model);
         }

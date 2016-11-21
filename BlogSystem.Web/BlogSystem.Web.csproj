@@ -247,6 +247,8 @@
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PostComments\IndexPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PostComments\PostCommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
