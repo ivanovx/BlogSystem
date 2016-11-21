@@ -22,16 +22,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // GET: Administration/BlogPosts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            var pagesCount = (int)Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
-
-            /*int pageNumber = page ?? 1;
-
-            List<BlogPost> blogPosts = this.Data
-                .Posts
-                .All()
-                .OrderByDescending(p => p.CreatedOn)
-                .Include(b => b.Author)
-                .ToList();*/
+            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
 
             var posts = this.Data.Posts
                 .All()
@@ -41,7 +32,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-            //PagedList<BlogPost> model = new PagedList<BlogPost>(blogPosts, pageNumber, GlobalConstants.PostsPerPageDefaultValue);
             var model = new IndexPageViewModel
             {
                 Posts = posts.ToList(),
@@ -60,14 +50,14 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            BlogPost blogPost = this.Data.Posts.Find(id);
+            var post = this.Data.Posts.Find(id);
 
-            if (blogPost == null)
+            if (post == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(blogPost);
+            return this.View(post);
         }
 
         // GET: Administration/BlogPosts/Create
@@ -114,14 +104,14 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            BlogPost blogPost = this.Data.Posts.Find(id);
+            var post = this.Data.Posts.Find(id);
 
-            if (blogPost == null)
+            if (post == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(blogPost);
+            return this.View(post);
         }
 
         // POST: Administration/BlogPosts/Edit/5
@@ -165,7 +155,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogPost blogPost = this.Data.Posts.Find(id);
+            var blogPost = this.Data.Posts.Find(id);
 
             this.Data.Posts.Remove(blogPost);
             this.Data.SaveChanges();
