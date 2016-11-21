@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Infrastructure.Mapping;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -11,25 +13,44 @@
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Infrastructure;
     using PagedList;
+    using ViewModels.BlogPost;
 
     public class BlogPostsController : AdministrationController
     {
-        //private readonly ISanitizer sanitizer;
-
-        public BlogPostsController(IBlogSystemData data/*, ISanitizer sanitizer*/) 
+        public BlogPostsController(IBlogSystemData data)
             : base(data)
         {
-            //this.sanitizer = sanitizer;
         }
 
         // GET: Administration/BlogPosts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            int pageNumber = page ?? 1;
+            var pagesCount = (int)Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
 
-            List<BlogPost> blogPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).Include(b => b.Author).ToList();
+            /*int pageNumber = page ?? 1;
 
-            PagedList<BlogPost> model = new PagedList<BlogPost>(blogPosts, pageNumber, GlobalConstants.PostsPerPageDefaultValue);
+            List<BlogPost> blogPosts = this.Data
+                .Posts
+                .All()
+                .OrderByDescending(p => p.CreatedOn)
+                .Include(b => b.Author)
+                .ToList();*/
+
+            var posts = this.Data.Posts
+                .All()
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.CreatedOn)
+                .To<BlogPostViewModel>()
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
+            //PagedList<BlogPost> model = new PagedList<BlogPost>(blogPosts, pageNumber, GlobalConstants.PostsPerPageDefaultValue);
+            var model = new IndexPageViewModel
+            {
+                Posts = posts.ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount,
+            };
 
             return this.View(model);
         }

@@ -1,8 +1,7 @@
-using BlogSystem.Web;
 using WebActivatorEx;
 
-[assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
+[assembly: PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
 {
     using System;
@@ -10,7 +9,6 @@ namespace BlogSystem.Web
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Infrastructure;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
@@ -85,7 +83,6 @@ namespace BlogSystem.Web
             kernel.Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
-            //kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
         }
     }
 }

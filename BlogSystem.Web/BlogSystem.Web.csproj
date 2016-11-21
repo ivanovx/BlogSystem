@@ -241,6 +241,7 @@
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administration\ViewModels\BlogPost\IndexPageViewModel.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

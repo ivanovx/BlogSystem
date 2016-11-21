@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using PagedList.Mvc
-@model PagedList.IPagedList<BlogSystem.Data.Models.BlogPost>
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.BlogPost.IndexPageViewModel
 
 @{
     ViewBag.Title = "Blog posts";
@@ -48,39 +46,48 @@
                     Actions
                 </th>
             </tr>
-            @if (Model.Any())
+            @if (Model.Posts.Any())
             {
-                foreach (var item in Model)
+                foreach (var item in Model.Posts)
                 {
                     <tr>
+                        
                         <td>
-                            @Html.DisplayFor(modelItem => item.Author.Email)
+                            @Html.DisplayFor(modelItem => item.Author)
                         </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.IsDeleted)
                         </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.DeletedOn)
                         </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.CreatedOn)
                         </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.ModifiedOn)
                         </td>
+
+
+
                         <td>
-                            <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
+                            <a href="@Url.Action("Details", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-info btn-sm center-block">
                                 <i class="glyphicon glyphicon-menu-hamburger"></i>
                                 <span>Details</span>
                             </a>
-                            <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
+                            <a href="@Url.Action("Edit", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-warning btn-sm center-block">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 <span>Edit</span>
                             </a>
-                            <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = item.Id })" class="btn btn-danger btn-sm center-block ">
+                            <a href="@Url.Action("Delete", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-danger btn-sm center-block ">
                                 <i class="glyphicon glyphicon-trash"></i>
                                 <span>Delete</span>
                             </a>
@@ -97,14 +104,45 @@
 
 
         </table>
-
-        <div class="col-md-12">
-            <div class="text-center">
-                @Html.PagedListPager(Model, page => Url.Action("Index", "BlogPosts", new { area = "Administration", page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
-            </div>
-        </div>
     </div>
 </div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li>
+                <a href="/?page=@Model.PreviousPage">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="/?page=@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/?page=@i">@i</a>
+                    </li>
+                }
+            }
+
+            <li>
+                <a href="/?page=@Model.NextPage">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}
 
 
 
