@@ -113,7 +113,7 @@
     <div class="text-center">
         <ul class="pagination">
             <li>
-                <a href="/?page=@Model.PreviousPage">
+                <a href="~/Administration/BlogPosts/?page=@Model.PreviousPage">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </li>
@@ -123,19 +123,19 @@
                 if (i == Model.CurrentPage)
                 {
                     <li class="active">
-                        <a href="/?page=@i">@i</a>
+                        <a href="/Administration/BlogPosts/?page=@i">@i</a>
                     </li>
                 }
                 else
                 {
                     <li>
-                        <a href="/?page=@i">@i</a>
+                        <a href="/Administration/BlogPosts/?page=@i">@i</a>
                     </li>
                 }
             }
 
             <li>
-                <a href="/?page=@Model.NextPage">
+                <a href="~/Administration/BlogPosts/?page=@Model.NextPage">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>
