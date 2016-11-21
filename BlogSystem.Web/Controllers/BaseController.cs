@@ -7,9 +7,7 @@ namespace BlogSystem.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
-
     using Microsoft.AspNet.Identity;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
 

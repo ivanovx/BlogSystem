@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
+    using System;
     using System.Net;
     using System.Web.Mvc;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.InputModels.Comment;
@@ -12,7 +10,8 @@ namespace BlogSystem.Web.Controllers
     [Authorize]
     public class CommentsController : BaseController
     {
-        public CommentsController(IBlogSystemData data) : base(data)
+        public CommentsController(IBlogSystemData data) 
+            : base(data)
         {
         }
 
@@ -73,7 +72,10 @@ namespace BlogSystem.Web.Controllers
                 this.Data.PostComments.Update(postComment);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("Post", "Blog", new { id = postComment.BlogPostId });
+                return this.RedirectToAction("Post", "Blog", new
+                {
+                    id = postComment.BlogPostId
+                });
             }
 
             return this.View(postComment);

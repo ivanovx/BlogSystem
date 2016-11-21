@@ -2,16 +2,14 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
-    using AutoMapper.QueryableExtensions;
     using BlogSystem.Web.Infrastructure.Mapping;
-
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.ViewModels.Blog;
 
     public class BlogController : BaseController
     {
-        public BlogController(IBlogSystemData data) : base(data)
+        public BlogController(IBlogSystemData data) 
+            : base(data)
         {
         }
 
@@ -26,10 +24,10 @@
             }
 
             var viewModel = this.Data.Posts
-                                .All()
-                                .Where(p => p.Id == id)
-                                .To<BlogPostViewModel>()
-                                .FirstOrDefault();
+                .All()
+                .Where(p => p.Id == id)
+                .To<BlogPostViewModel>()
+                .FirstOrDefault();
 
             return this.View(viewModel);
         }

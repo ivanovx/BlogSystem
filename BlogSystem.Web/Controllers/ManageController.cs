@@ -4,10 +4,8 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.ViewModels.Manage;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
