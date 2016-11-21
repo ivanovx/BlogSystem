@@ -25,12 +25,11 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             int pageNumber = page ?? 1;
 
-            List<PostComment> postComments =
-                this.Data.PostComments.All()
-                    .OrderByDescending(p => p.CreatedOn)
-                    .Include(p => p.BlogPost)
-                    .Include(p => p.User)
-                    .ToList();
+            List<PostComment> postComments = this.Data.PostComments.All()
+                .OrderByDescending(p => p.CreatedOn)
+                .Include(p => p.BlogPost)
+                .Include(p => p.User)
+                .ToList();
 
             PagedList<PostComment> model = new PagedList<PostComment>(postComments, pageNumber, GlobalConstants.CommentsPerPageDefaultValue);
 

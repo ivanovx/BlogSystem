@@ -21,8 +21,8 @@
 
             var model = new IndexAdminPageViewModel
             {
-                BlogPostsCount = blogPosts, 
-                CommentsCount = comments, 
+                BlogPostsCount = blogPosts,
+                CommentsCount = comments,
                 ApplicationUsersCount = applicationUsers
             };
 

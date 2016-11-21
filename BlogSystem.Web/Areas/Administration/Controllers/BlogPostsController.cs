@@ -1,5 +1,4 @@
-﻿
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using BlogSystem.Common;
@@ -10,7 +9,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.ViewModels.BlogPost;
     using BlogSystem.Web.Infrastructure.Mapping;
-
 
     public class BlogPostsController : AdministrationController
     {
