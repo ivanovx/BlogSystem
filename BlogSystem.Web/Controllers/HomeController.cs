@@ -32,7 +32,7 @@
             {
                 Posts = posts.ToList(),
                 CurrentPage = page,
-                PagesCount = pagesCount,
+                PagesCount = pagesCount
             };
 
             return this.View(model);
