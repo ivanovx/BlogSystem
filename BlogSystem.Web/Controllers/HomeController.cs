@@ -27,7 +27,6 @@
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-
             var model = new IndexPageViewModel
             {
                 Posts = posts.ToList(),

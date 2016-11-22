@@ -1,6 +1,4 @@
-﻿//using BlogSystem.Web.App_Start;
-
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -27,7 +25,7 @@ namespace BlogSystem.Web
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 
-            var autoMapperConfig = new AutoMapperConfig();
+            AutoMapperConfig autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }

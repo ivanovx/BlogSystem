@@ -31,7 +31,6 @@
         }
 
         protected IBlogSystemData Data { get; }
-
         protected ApplicationUser UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
