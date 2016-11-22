@@ -10,7 +10,7 @@
     {
         public static MapperConfiguration Configuration { get; private set; }
 
-        public void Execute(Assembly assembly)
+        public static void Execute(Assembly assembly)
         {
             Configuration = new MapperConfiguration(cfg =>
             {

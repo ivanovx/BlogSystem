@@ -6,7 +6,6 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-
     using BlogSystem.Data;
     using BlogSystem.Data.Migrations;
     using BlogSystem.Web.Infrastructure.Mapping;
@@ -25,8 +24,9 @@
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 
-            AutoMapperConfig autoMapperConfig = new AutoMapperConfig();
-            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            /*AutoMapperConfig autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());*/
+            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }

@@ -10,15 +10,15 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default",
-                "{controller}/{action}/{id}",
-                new
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new
                 {
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
                 },
-                new[]
+                namespaces: new[]
                 {
                     "BlogSystem.Web.Controllers"
                 });
