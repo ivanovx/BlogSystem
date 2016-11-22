@@ -6,7 +6,7 @@
     using System.Reflection;
     using AutoMapper;
 
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
         public static MapperConfiguration Configuration { get; private set; }
 
