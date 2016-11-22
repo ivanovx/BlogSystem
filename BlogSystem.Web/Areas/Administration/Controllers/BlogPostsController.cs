@@ -22,7 +22,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // GET: Administration/BlogPosts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal)perPage);
+            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
 
             var posts = this.Data.Posts
                 .All()
@@ -70,7 +70,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // POST: Administration/BlogPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BlogPostCreateInputMoodel blogPost)
+        public ActionResult Create(BlogPostCreateInputModel blogPost)
         {
             if (blogPost != null)
             {
@@ -111,23 +111,45 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return this.HttpNotFound();
             }
 
-            return this.View(post);
+            var model = new BlogPostEditInputModel
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                CreatedOn = post.CreatedOn,
+                AuthorId = post.AuthorId
+            };
+
+
+            return this.View(model);
         }
 
         // POST: Administration/BlogPosts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BlogPost blogPost)
+        public ActionResult Edit(BlogPostEditInputModel postInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                this.Data.Posts.Update(blogPost);
+                var post = this.Data.Posts.Find(postInputModel.Id);
+
+                post.Id = postInputModel.Id;
+                post.Title = postInputModel.Title;
+                post.Content = postInputModel.Content;
+                post.AuthorId = postInputModel.AuthorId;
+                post.CreatedOn = postInputModel.CreatedOn;
+                post.ModifiedOn = DateTime.Now;
+
+                this.Data.Posts.Update(post);
                 this.Data.SaveChanges();
+
+                /*this.Data.Posts.Update(blogPost);
+                this.Data.SaveChanges();*/
 
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(blogPost);
+            return this.View(postInputModel);
         }
 
         // GET: Administration/BlogPosts/Delete/5

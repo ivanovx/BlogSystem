@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public class BlogPostCreateInputMoodel
+    public class BlogPostCreateInputModel
     {
         [Key]
         public int Id { get; set; }
