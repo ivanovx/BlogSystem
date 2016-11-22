@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Areas.Administration.InputModels.BlogPost;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using BlogSystem.Common;
@@ -68,7 +70,7 @@
         // POST: Administration/BlogPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BlogPost blogPost)
+        public ActionResult Create(BlogPostCreateInputMoodel blogPost)
         {
             if (blogPost != null)
             {

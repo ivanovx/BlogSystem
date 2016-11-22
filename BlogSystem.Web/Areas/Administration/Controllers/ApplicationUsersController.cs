@@ -25,7 +25,7 @@
         // GET: Administration/ApplicationUsers
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
         {
-            int pagesCount = (int)Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
 
             var users = this.Data.Users
                 .All()
