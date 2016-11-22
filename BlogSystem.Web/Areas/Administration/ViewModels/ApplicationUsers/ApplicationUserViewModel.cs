@@ -31,15 +31,13 @@
             ApplicationDbContext context = new ApplicationDbContext();
             RoleManager<IdentityRole> rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            string administratorRoleId =
-                rolerManager.Roles.Where(r => r.Name == GlobalConstants.AdminRoleName)
-                    .Select(r => r.Id)
-                    .FirstOrDefault();
+            string administratorRoleId = rolerManager.Roles
+                .Where(r => r.Name == GlobalConstants.AdminRoleName)
+                .Select(r => r.Id)
+                .FirstOrDefault();
 
             configuration.CreateMap<ApplicationUser, ApplicationUserViewModel>()
-                .ForMember(
-                    model => model.IsAdmin, 
-                    config => config.MapFrom(e => e.Roles.Any(r => r.RoleId == administratorRoleId)));
+                .ForMember(model => model.IsAdmin, config => config.MapFrom(e => e.Roles.Any(user => user.RoleId == administratorRoleId)));
         }
     }
 }

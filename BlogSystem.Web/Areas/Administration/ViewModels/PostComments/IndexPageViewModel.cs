@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.PostComments
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.PostComments
 {
+    using System.Collections.Generic;
+
     public class IndexPageViewModel
     {
         public IEnumerable<PostCommentViewModel> Comments { get; set; }

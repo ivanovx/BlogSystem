@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers
 {
+    using System.Collections.Generic;
+
     public class IndexPageViewModel
     {
         public IEnumerable<ApplicationUserViewModel> Users { get; set; }
