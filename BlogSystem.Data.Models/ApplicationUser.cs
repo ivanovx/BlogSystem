@@ -13,9 +13,7 @@
     public class ApplicationUser : IdentityUser, IAuditInfo
     {
         private ICollection<PostComment> comments;
-
         private ICollection<BlogPost> posts;
-
         private ICollection<Page> pages;
 
         public ApplicationUser()

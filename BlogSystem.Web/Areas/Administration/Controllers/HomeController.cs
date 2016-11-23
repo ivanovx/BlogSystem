@@ -27,11 +27,16 @@
                 .All()
                 .Count();
 
+            var pages = this.Data.Pages
+                .All()
+                .Count();
+
             var model = new IndexAdminPageViewModel
             {
                 BlogPostsCount = blogPosts,
                 CommentsCount = comments,
-                ApplicationUsersCount = applicationUsers
+                ApplicationUsersCount = applicationUsers,
+                PagesCount = pages
             };
 
             return this.View(model);

@@ -4,7 +4,6 @@ namespace BlogSystem.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     using BlogSystem.Data.Contracts;
 
     public class PostComment : AuditInfo, IDeletableEntity
