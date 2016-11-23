@@ -1,7 +1,5 @@
-using WebActivatorEx;
-
-[assembly: PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
-[assembly: ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
 {
     using System;

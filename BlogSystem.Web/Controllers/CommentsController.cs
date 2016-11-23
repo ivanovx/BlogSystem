@@ -5,7 +5,7 @@
     using System.Web.Mvc;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.InputModels.Comment;
+    using BlogSystem.Web.InputModels.PostComment;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -17,23 +17,26 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, CommentInputModel comment)
+        public ActionResult Create(int id, CreateCommentInputModel commentInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                var newComment = new PostComment
+                var comment = new PostComment
                 {
-                    Content = comment.Content, 
-                    BlogPostId = id, 
+                    BlogPostId = id,
                     User = this.UserProfile, 
                     UserId = this.UserProfile.Id,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    Content = commentInputModel.Content
                 };
 
-                this.Data.PostComments.Add(newComment);
+                this.Data.PostComments.Add(comment);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("Post", "Blog", new { id });
+                return this.RedirectToAction("Post", "Blog", new
+                {
+                    id
+                });
             }
 
             return this.Content("Content is required");
@@ -47,38 +50,64 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var postComment = this.Data.PostComments.Find(id);
+            var comment = this.Data.PostComments.Find(id);
 
-            if (postComment == null)
+            if (comment == null)
             {
                 return this.HttpNotFound();
             }
 
-            if (postComment.UserId != this.UserProfile.Id)
+            if (comment.UserId != this.UserProfile.Id)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(postComment);
+            var model = new EditPostCommentInputModel
+            {
+                Id = comment.Id,
+                Content = comment.Content,
+                CreatedOn = comment.CreatedOn,
+                BlogPostId = comment.BlogPostId,
+                UserId = comment.UserId
+            };
+
+            return this.View(model);
         }
 
         // POST: Comments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PostComment postComment)
+        public ActionResult Edit(EditPostCommentInputModel commentInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                this.Data.PostComments.Update(postComment);
+                var comment = this.Data.PostComments.Find(commentInputModel.Id);
+
+                comment.Id = commentInputModel.Id;
+                comment.Content = commentInputModel.Content;
+                comment.CreatedOn = commentInputModel.CreatedOn;
+                comment.BlogPostId = commentInputModel.BlogPostId;
+                comment.UserId = commentInputModel.UserId;
+                comment.ModifiedOn = DateTime.Now;
+
+                this.Data.PostComments.Update(comment);
                 this.Data.SaveChanges();
+
+                /* this.Data.PostComments.Update(postComment);
+                 this.Data.SaveChanges();
+ 
+                 return this.RedirectToAction("Post", "Blog", new
+                 {
+                     id = postComment.BlogPostId
+                 });*/
 
                 return this.RedirectToAction("Post", "Blog", new
                 {
-                    id = postComment.BlogPostId
+                    id = commentInputModel.BlogPostId
                 });
             }
 
-            return this.View(postComment);
+            return this.View(commentInputModel);
         }
     }
 }

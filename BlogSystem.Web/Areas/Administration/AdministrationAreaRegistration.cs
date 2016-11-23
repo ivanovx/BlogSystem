@@ -24,7 +24,7 @@
                 },
                 namespaces: new[]
                 {
-                    "BlogSystem.Web.Areas.Administration.Conrollers"
+                    "BlogSystem.Web.Areas.Administration.Controllers"
                 });
         }
     }

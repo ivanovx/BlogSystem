@@ -1,19 +1,10 @@
-﻿namespace BlogSystem.Web.InputModels.Comment
+﻿namespace BlogSystem.Web.InputModels.PostComment
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public class CommentInputModel
+    public class CreateCommentInputModel
     {
-        public CommentInputModel()
-        {
-        }
-
-        public CommentInputModel(int blogPostId)
-        {
-            this.BlogPostId = blogPostId;
-        }
-
         public int Id { get; set; }
 
         [Required]
