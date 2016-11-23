@@ -18,7 +18,9 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         // GET: Administration/Pages
         public ActionResult Index()
         {
-            var pages = this.Data.Pages.All().ToList();
+            var pages = this.Data.Pages
+                .All()
+                .ToList();
 
             return View(pages);
         }

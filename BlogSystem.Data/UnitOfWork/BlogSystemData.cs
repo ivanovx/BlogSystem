@@ -21,46 +21,15 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IUserStore<ApplicationUser> UserStore
-        {
-            get
-            {
-                return this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.context));
-            }
-        }
+        public IUserStore<ApplicationUser> UserStore => this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.context));
 
-        public IDbRepository<ApplicationUser> Users
-        {
-            get
-            {
-                return this.GetRepository<ApplicationUser>();
-            }
-        }
+        public IDbRepository<ApplicationUser> Users => this.GetRepository<ApplicationUser>();
 
+        public IDbRepository<BlogPost> Posts => this.GetRepository<BlogPost>();
 
-        public IDbRepository<BlogPost> Posts
-        {
-            get
-            {
-                return this.GetRepository<BlogPost>();
-            }
-        } 
+        public IDbRepository<PostComment> PostComments => this.GetRepository<PostComment>();
 
-        public IDbRepository<PostComment> PostComments
-        {
-            get
-            {
-                return this.GetRepository<PostComment>();
-            }
-        }
-
-        public IDbRepository<Page> Pages
-        {
-            get
-            {
-                return  this.GetRepository<Page>();
-            }
-        }
+        public IDbRepository<Page> Pages => this.GetRepository<Page>();
 
         public int SaveChanges()
         {
