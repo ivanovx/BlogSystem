@@ -11,6 +11,9 @@ High-Quality blog system using ASP.NET MVC.
 * Templates
 	* Site
 	* Admin
+* Helpers
+	* Url Post Helper
+	* Page Permalink Helper
 
 ## Other todos
 * AutoMapperConfigs
