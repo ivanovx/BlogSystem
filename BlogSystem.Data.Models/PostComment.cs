@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Data.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BlogSystem.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -11,7 +13,7 @@
         public int Id { get; set; }
 
         [Required]
-        [AllowHtml]
+        //[AllowHtml]
         [DataType(DataType.Html)]
         //[UIHint("tinymce_full")]
         public string Content { get; set; }
@@ -23,6 +25,7 @@
 
         public string UserId { get; set; }
 
+        [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
 
         public bool IsDeleted { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Data.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BlogSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,11 +19,11 @@
         public int Id { get; set; }
 
         [Required]
-        [AllowHtml]
+       // [AllowHtml]
         public string Title { get; set; }
 
         [Required]
-        [AllowHtml]
+        //[AllowHtml]
         [DataType(DataType.Html)]
         //[UIHint("tinymce_full")]
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
@@ -29,6 +31,7 @@
 
         public string AuthorId { get; set; }
 
+        [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
 
         public virtual ICollection<PostComment> Comments { get; set; }

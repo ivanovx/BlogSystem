@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="BlogPost.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="PostComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

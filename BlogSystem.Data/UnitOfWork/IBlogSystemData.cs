@@ -9,6 +9,8 @@
         IDbRepository<BlogPost> Posts { get; }
         IDbRepository<PostComment> PostComments { get; }
 
+        IDbRepository<Page> Pages { get; }
+
         int SaveChanges();
     }
 }

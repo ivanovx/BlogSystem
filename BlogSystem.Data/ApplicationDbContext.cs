@@ -3,18 +3,20 @@ namespace BlogSystem.Data
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using BlogSystem.Data.Contracts;
-    using BlogSystem.Data.Models;
     using System.Data.Entity.Infrastructure;
     using System.Collections.Generic;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using BlogSystem.Data.Contracts;
+    using BlogSystem.Data.Models;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", false)
+            : base(nameOrConnectionString: "DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public IDbSet<Page> Pages { get; set; }
 
         public IDbSet<BlogPost> Posts { get; set; }
 
