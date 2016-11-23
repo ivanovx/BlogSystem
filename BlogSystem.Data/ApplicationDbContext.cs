@@ -65,5 +65,7 @@ namespace BlogSystem.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<BlogSystem.Data.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

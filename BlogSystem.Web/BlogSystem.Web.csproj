@@ -255,6 +255,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UrlGenerator.cs" />
     <Compile Include="InputModels\PostComment\EditPostCommentInputModel.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administration\Views\Pages\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -564,7 +566,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Administration\" />
-    <Folder Include="Areas\Administration\Views\Pages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
