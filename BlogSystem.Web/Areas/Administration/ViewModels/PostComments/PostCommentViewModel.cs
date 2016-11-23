@@ -1,10 +1,10 @@
-﻿using System;
-using BlogSystem.Data.Models;
-using BlogSystem.Web.Infrastructure.Mapping;
-using AutoMapper;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.PostComments
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.PostComments
 {
+    using System;
+    using AutoMapper;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Web.Infrastructure.Mapping;
+
     public class PostCommentViewModel: IMapFrom<PostComment>, IHaveCustomMappings
     {
         public int Id { get; set; }

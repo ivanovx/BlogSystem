@@ -3,12 +3,12 @@
     using System;
     using System.Linq;
     using AutoMapper;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using BlogSystem.Common;
     using BlogSystem.Data;
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ApplicationUserViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
     {

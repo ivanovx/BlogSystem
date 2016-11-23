@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.Areas.Administration.InputModels.BlogPost
+﻿namespace BlogSystem.Web.Areas.Administration.InputModels.BlogPost
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
     public class BlogPostEditInputModel
     {
         [Key]

@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Areas.Administration.InputModels.PostComment;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using BlogSystem.Common;
@@ -13,6 +11,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using System.Web.Mvc;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
+    using BlogSystem.Web.Areas.Administration.InputModels.PostComment;
 
     public class PostCommentsController : AdministrationController
     {

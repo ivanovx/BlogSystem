@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.Areas.Administration.InputModels.PostComment
+﻿namespace BlogSystem.Web.Areas.Administration.InputModels.PostComment
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public class EditPostCommentInputModel
     {
         [Key]
