@@ -233,6 +233,7 @@
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Controllers\PostCommentsController.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
@@ -563,6 +564,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Administration\" />
+    <Folder Include="Areas\Administration\Views\Pages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

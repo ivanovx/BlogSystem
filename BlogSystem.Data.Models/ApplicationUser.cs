@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using BlogSystem.Data.Contracts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using BlogSystem.Data.Contracts;
 
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser, IAuditInfo
@@ -16,10 +16,13 @@
 
         private ICollection<BlogPost> posts;
 
+        private ICollection<Page> pages;
+
         public ApplicationUser()
         {
             this.posts = new HashSet<BlogPost>();
             this.comments = new HashSet<PostComment>();
+            this.pages = new HashSet<Page>();
         }
 
         public virtual ICollection<BlogPost> Posts
@@ -45,6 +48,19 @@
             set
             {
                 this.comments = value;
+            }
+        }
+
+        public virtual ICollection<Page> Pages
+        {
+            get
+            {
+                return this.pages;
+            }
+
+            set
+            {
+                this.pages = value;
             }
         }
 
