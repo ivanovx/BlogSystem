@@ -14,13 +14,9 @@
     public class ManageController : BaseController
     {
         private ApplicationSignInManager signInManager;
-
         private ApplicationUserManager userManager;
 
-        public ManageController(
-            IBlogSystemData data, 
-            ApplicationUserManager userManager, 
-            ApplicationSignInManager signInManager)
+        public ManageController(IBlogSystemData data, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
             : base(data)
         {
             this.UserManager = userManager;
@@ -71,16 +67,15 @@
                                                                            : string.Empty;
 
             var userId = this.User.Identity.GetUserId();
-            var model = new IndexViewModel
-                            {
-                                HasPassword = this.HasPassword(), 
-                                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId), 
-                                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId), 
-                                Logins = await this.UserManager.GetLoginsAsync(userId), 
-                                BrowserRemembered =
-                                    await
-                                    this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-                            };
+
+            var model = new IndexViewModel {
+                HasPassword = this.HasPassword(), 
+                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId), 
+                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId), 
+                Logins = await this.UserManager.GetLoginsAsync(userId), 
+                BrowserRemembered = await this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+            };
+
             return this.View(model);
         }
 
@@ -90,14 +85,13 @@
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
-            var result =
-                await
-                this.UserManager.RemoveLoginAsync(
-                    this.User.Identity.GetUserId(), 
-                    new UserLoginInfo(loginProvider, providerKey));
+
+            var result = await this.UserManager.RemoveLoginAsync(this.User.Identity.GetUserId(),  new UserLoginInfo(loginProvider, providerKey));
+
             if (result.Succeeded)
             {
                 var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
                 if (user != null)
                 {
                     await this.SignInManager.SignInAsync(user, false, false);
@@ -110,7 +104,10 @@
                 message = ManageMessageId.Error;
             }
 
-            return this.RedirectToAction("ManageLogins", new { Message = message });
+            return this.RedirectToAction("ManageLogins", new
+            {
+                Message = message
+            });
         }
 
         // GET: /Manage/AddPhoneNumber
@@ -130,19 +127,23 @@
             }
 
             // Generate the token and send it
-            var code =
-                await this.UserManager.GenerateChangePhoneNumberTokenAsync(this.User.Identity.GetUserId(), model.Number);
+            var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(this.User.Identity.GetUserId(), model.Number);
+
             if (this.UserManager.SmsService != null)
             {
                 var message = new IdentityMessage
-                                  {
-                                      Destination = model.Number, 
-                                      Body = "Your security code is: " + code
-                                  };
+                {
+                    Destination = model.Number, 
+                    Body = "Your security code is: " + code
+                };
+
                 await this.UserManager.SmsService.SendAsync(message);
             }
 
-            return this.RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            return this.RedirectToAction("VerifyPhoneNumber", new
+            {
+                PhoneNumber = model.Number
+            });
         }
 
         // POST: /Manage/EnableTwoFactorAuthentication
@@ -151,7 +152,9 @@
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
             await this.UserManager.SetTwoFactorEnabledAsync(this.User.Identity.GetUserId(), true);
+
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
             if (user != null)
             {
                 await this.SignInManager.SignInAsync(user, false, false);
@@ -166,7 +169,9 @@
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
             await this.UserManager.SetTwoFactorEnabledAsync(this.User.Identity.GetUserId(), false);
+
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
             if (user != null)
             {
                 await this.SignInManager.SignInAsync(user, false, false);
@@ -178,13 +183,13 @@
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
-            var code =
-                await this.UserManager.GenerateChangePhoneNumberTokenAsync(this.User.Identity.GetUserId(), phoneNumber);
+            var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(this.User.Identity.GetUserId(), phoneNumber);
 
             // Send an SMS through the SMS provider to verify the phone number
-            return phoneNumber == null
-                       ? this.View("Error")
-                       : this.View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
+            return phoneNumber == null ? this.View("Error") : this.View(new VerifyPhoneNumberViewModel
+            {
+                PhoneNumber = phoneNumber
+            });
         }
 
         // POST: /Manage/VerifyPhoneNumber
@@ -197,22 +202,25 @@
                 return this.View(model);
             }
 
-            var result =
-                await
-                this.UserManager.ChangePhoneNumberAsync(this.User.Identity.GetUserId(), model.PhoneNumber, model.Code);
+            var result = await this.UserManager.ChangePhoneNumberAsync(this.User.Identity.GetUserId(), model.PhoneNumber, model.Code);
             if (result.Succeeded)
             {
                 var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
                 if (user != null)
                 {
                     await this.SignInManager.SignInAsync(user, false, false);
                 }
 
-                return this.RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
+                return this.RedirectToAction("Index", new
+                {
+                    Message = ManageMessageId.AddPhoneSuccess
+                });
             }
 
             // If we got this far, something failed, redisplay form
             this.ModelState.AddModelError(string.Empty, "Failed to verify phone");
+
             return this.View(model);
         }
 
@@ -222,18 +230,26 @@
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await this.UserManager.SetPhoneNumberAsync(this.User.Identity.GetUserId(), null);
+
             if (!result.Succeeded)
             {
-                return this.RedirectToAction("Index", new { Message = ManageMessageId.Error });
+                return this.RedirectToAction("Index", new
+                {
+                    Message = ManageMessageId.Error
+                });
             }
 
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
             if (user != null)
             {
                 await this.SignInManager.SignInAsync(user, false, false);
             }
 
-            return this.RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
+            return this.RedirectToAction("Index", new
+            {
+                Message = ManageMessageId.RemovePhoneSuccess
+            });
         }
 
         // GET: /Manage/ChangePassword
@@ -252,24 +268,25 @@
                 return this.View(model);
             }
 
-            var result =
-                await
-                this.UserManager.ChangePasswordAsync(
-                    this.User.Identity.GetUserId(), 
-                    model.OldPassword, 
-                    model.NewPassword);
+            var result = await this.UserManager.ChangePasswordAsync(this.User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
             if (result.Succeeded)
             {
                 var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
                 if (user != null)
                 {
                     await this.SignInManager.SignInAsync(user, false, false);
                 }
 
-                return this.RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return this.RedirectToAction("Index", new
+                {
+                    Message = ManageMessageId.ChangePasswordSuccess
+                });
             }
 
             this.AddErrors(result);
+
             return this.View(model);
         }
 
@@ -287,9 +304,11 @@
             if (this.ModelState.IsValid)
             {
                 var result = await this.UserManager.AddPasswordAsync(this.User.Identity.GetUserId(), model.NewPassword);
+
                 if (result.Succeeded)
                 {
                     var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
                     if (user != null)
                     {
                         await this.SignInManager.SignInAsync(user, false, false);
@@ -313,19 +332,27 @@
                                              : message == ManageMessageId.Error
                                                    ? "An error has occurred."
                                                    : string.Empty;
+
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
+
             if (user == null)
             {
                 return this.View("Error");
             }
 
             var userLogins = await this.UserManager.GetLoginsAsync(this.User.Identity.GetUserId());
-            var otherLogins =
-                this.AuthenticationManager.GetExternalAuthenticationTypes()
-                    .Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider))
-                    .ToList();
+            var otherLogins = this.AuthenticationManager
+                .GetExternalAuthenticationTypes()
+                .Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider))
+                .ToList();
+
             this.ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-            return this.View(new ManageLoginsViewModel { CurrentLogins = userLogins, OtherLogins = otherLogins });
+
+            return this.View(new ManageLoginsViewModel
+            {
+                CurrentLogins = userLogins,
+                OtherLogins = otherLogins
+            });
         }
 
         // POST: /Manage/LinkLogin
@@ -334,26 +361,28 @@
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(
-                provider, 
-                this.Url.Action("LinkLoginCallback", "Manage"), 
-                this.User.Identity.GetUserId());
+            return new AccountController.ChallengeResult(provider, this.Url.Action("LinkLoginCallback", "Manage"), this.User.Identity.GetUserId());
         }
 
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo =
-                await this.AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, this.User.Identity.GetUserId());
+            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, this.User.Identity.GetUserId());
+
             if (loginInfo == null)
             {
-                return this.RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                return this.RedirectToAction("ManageLogins", new
+                {
+                    Message = ManageMessageId.Error
+                });
             }
 
             var result = await this.UserManager.AddLoginAsync(this.User.Identity.GetUserId(), loginInfo.Login);
-            return result.Succeeded
-                       ? this.RedirectToAction("ManageLogins")
-                       : this.RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+
+            return result.Succeeded ? this.RedirectToAction("ManageLogins") : this.RedirectToAction("ManageLogins", new
+            {
+                Message = ManageMessageId.Error
+            });
         }
 
         protected override void Dispose(bool disposing)
@@ -391,6 +420,7 @@
         private bool HasPassword()
         {
             var user = this.UserManager.FindById(this.User.Identity.GetUserId());
+
             if (user != null)
             {
                 return user.PasswordHash != null;
@@ -402,6 +432,7 @@
         private bool HasPhoneNumber()
         {
             var user = this.UserManager.FindById(this.User.Identity.GetUserId());
+
             if (user != null)
             {
                 return user.PhoneNumber != null;
@@ -412,18 +443,12 @@
 
         public enum ManageMessageId
         {
-            AddPhoneSuccess, 
-
-            ChangePasswordSuccess, 
-
-            SetTwoFactorSuccess, 
-
-            SetPasswordSuccess, 
-
-            RemoveLoginSuccess, 
-
-            RemovePhoneSuccess, 
-
+            AddPhoneSuccess,
+            ChangePasswordSuccess,
+            SetTwoFactorSuccess,
+            SetPasswordSuccess,
+            RemoveLoginSuccess,
+            RemovePhoneSuccess,
             Error
         }
 

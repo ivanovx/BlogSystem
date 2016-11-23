@@ -238,6 +238,7 @@
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\InputModels\BlogPost\BlogPostCreateInputModel.cs" />
     <Compile Include="Areas\Administration\InputModels\BlogPost\BlogPostEditInputModel.cs" />
+    <Compile Include="Areas\Administration\InputModels\PostComment\EditPostCommentInputModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\IndexPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />

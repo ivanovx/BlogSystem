@@ -16,13 +16,9 @@
     public class AccountController : BaseController
     {
         private ApplicationSignInManager signInManager;
-
         private ApplicationUserManager userManager;
 
-        public AccountController(
-            IBlogSystemData data, 
-            ApplicationUserManager userManager, 
-            ApplicationSignInManager signInManager)
+        public AccountController(IBlogSystemData data, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
             : base(data)
         {
             this.UserManager = userManager;
@@ -85,7 +81,11 @@
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
+                    return this.RedirectToAction("SendCode", new
+                    {
+                        ReturnUrl = returnUrl,
+                        model.RememberMe
+                    });
                 case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -103,9 +103,14 @@
                 return this.View("Error");
             }
 
-            return
-                this.View(
-                    new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            var model = new VerifyCodeViewModel
+            {
+                Provider = provider,
+                ReturnUrl = returnUrl,
+                RememberMe = rememberMe
+            };
+
+            return this.View(model);
         }
 
         // POST: /Account/VerifyCode
@@ -123,13 +128,12 @@
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result =
-                await
-                this.SignInManager.TwoFactorSignInAsync(
-                    model.Provider, 
-                    model.Code, 
-                    model.RememberMe, 
-                    model.RememberBrowser);
+            var result = await this.SignInManager.TwoFactorSignInAsync(
+                model.Provider, 
+                model.Code, 
+                model.RememberMe, 
+                model.RememberBrowser);
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -169,13 +173,14 @@
             if (this.ModelState.IsValid)
             {
                 var user = new ApplicationUser
-                               {
-                                   UserName = model.UserName, 
-                                   Email = model.Email, 
-                                   CreatedOn = DateTime.Now
-                               };
+                {
+                    UserName = model.UserName, 
+                    Email = model.Email, 
+                    CreatedOn = DateTime.Now
+                };
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await this.SignInManager.SignInAsync(user, false, false);
@@ -205,6 +210,7 @@
             }
 
             var result = await this.UserManager.ConfirmEmailAsync(userId, code);
+
             return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -224,6 +230,7 @@
             if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
+
                 if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -268,6 +275,7 @@
             }
 
             var user = await this.UserManager.FindByNameAsync(model.Email);
+
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -275,12 +283,14 @@
             }
 
             var result = await this.UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+
             if (result.Succeeded)
             {
                 return this.RedirectToAction("ResetPasswordConfirmation", "Account");
             }
 
             this.AddErrors(result);
+
             return this.View();
         }
 
@@ -298,9 +308,10 @@
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(
-                provider, 
-                this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, this.Url.Action("ExternalLoginCallback", "Account", new
+            {
+                ReturnUrl = returnUrl
+            }));
         }
 
         // GET: /Account/SendCode
@@ -308,17 +319,28 @@
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await this.SignInManager.GetVerifiedUserIdAsync();
+
             if (userId == null)
             {
                 return this.View("Error");
             }
 
             var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions =
-                userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return
-                this.View(
-                    new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+
+            var factorOptions = userFactors.Select(purpose => new SelectListItem
+            {
+                Text = purpose,
+                Value = purpose
+            });
+
+            var model = new SendCodeViewModel
+            {
+                Providers = factorOptions.ToList(),
+                ReturnUrl = returnUrl,
+                RememberMe = rememberMe
+            };
+
+            return this.View(model);
         }
 
         // POST: /Account/SendCode
@@ -338,9 +360,12 @@
                 return this.View("Error");
             }
 
-            return this.RedirectToAction(
-                "VerifyCode", 
-                new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
+            return this.RedirectToAction("VerifyCode", new
+            {
+                Provider = model.SelectedProvider,
+                model.ReturnUrl,
+                model.RememberMe
+            });
         }
 
         // GET: /Account/ExternalLoginCallback
@@ -348,6 +373,7 @@
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
+
             if (loginInfo == null)
             {
                 return this.RedirectToAction("Login");
@@ -362,16 +388,21 @@
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return this.RedirectToAction("SendCode", new
+                    {
+                        ReturnUrl = returnUrl,
+                        RememberMe = false
+                    });
                 case SignInStatus.Failure:
                 default:
-
                     // If the user does not have an account, then prompt the user to create an account
                     this.ViewBag.ReturnUrl = returnUrl;
                     this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View(
-                        "ExternalLoginConfirmation", 
-                        new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+
+                    return this.View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                    {
+                        Email = loginInfo.Email
+                    });
             }
         }
 
@@ -379,9 +410,7 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(
-            ExternalLoginConfirmationViewModel model, 
-            string returnUrl)
+        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (this.User.Identity.IsAuthenticated)
             {
@@ -392,19 +421,28 @@
             {
                 // Get the information about the user from the external login provider
                 var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
+
                 if (info == null)
                 {
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
                 var result = await this.UserManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
                     result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
+
                     if (result.Succeeded)
                     {
                         await this.SignInManager.SignInAsync(user, false, false);
+
                         return this.RedirectToLocal(returnUrl);
                     }
                 }
@@ -413,6 +451,7 @@
             }
 
             this.ViewBag.ReturnUrl = returnUrl;
+
             return this.View(model);
         }
 
@@ -422,6 +461,7 @@
         public ActionResult LogOff()
         {
             this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
             return this.RedirectToAction("Index", "Home");
         }
 
@@ -505,7 +545,11 @@
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties { RedirectUri = this.RedirectUri };
+                var properties = new AuthenticationProperties
+                {
+                    RedirectUri = this.RedirectUri
+                };
+
                 if (this.UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = this.UserId;

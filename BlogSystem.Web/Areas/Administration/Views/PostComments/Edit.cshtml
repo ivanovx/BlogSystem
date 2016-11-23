@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Data.Models.PostComment
+﻿@model BlogSystem.Web.Areas.Administration.InputModels.PostComment.EditPostCommentInputModel
 
 @{
     ViewBag.Title = "Edit comment";
@@ -24,6 +24,7 @@
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.BlogPostId)
             @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.CreatedOn)
 
             <div class="form-group">
                 <div class="col-md-2">
@@ -35,14 +36,6 @@
                 <div id="editContent" class="col-md-10 collapse in" >
                     @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CreatedOn, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedOn, string.Empty, new { @class = "text-danger" })
                 </div>
             </div>
 

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Areas.Administration.InputModels.PostComment;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using BlogSystem.Common;
@@ -71,30 +73,51 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PostComment postComment = this.Data.PostComments.Find(id);
+            var comment = this.Data.PostComments.Find(id);
 
-            if (postComment == null)
+            if (comment == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(postComment);
+            var model = new EditPostCommentInputModel
+            {
+                Id = comment.Id,
+                BlogPostId = comment.BlogPostId,
+                UserId = comment.UserId,
+                Content = comment.Content,
+                CreatedOn = comment.CreatedOn
+            };
+
+            return this.View(model);
         }
 
         // POST: Administration/PostComments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PostComment postComment)
+        public ActionResult Edit(EditPostCommentInputModel commentInputModel)
         {
             if (this.ModelState.IsValid)
             {
-                this.Data.PostComments.Update(postComment);
+                var comment = this.Data.PostComments.Find(commentInputModel.Id);
+
+                comment.Id = commentInputModel.Id;
+                comment.BlogPostId = commentInputModel.BlogPostId;
+                comment.Content = commentInputModel.Content;
+                comment.CreatedOn = commentInputModel.CreatedOn;
+                comment.UserId = commentInputModel.UserId;
+                comment.ModifiedOn = DateTime.Now;
+
+                /*this.Data.PostComments.Update(postComment);
+                this.Data.SaveChanges();*/
+
+                this.Data.PostComments.Update(comment);
                 this.Data.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(postComment);
+            return this.View(commentInputModel);
         }
 
         // GET: Administration/PostComments/Delete/5

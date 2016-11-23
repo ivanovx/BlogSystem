@@ -52,14 +52,14 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ApplicationUser applicationUser = this.Data.Users.Find(id);
+            var user = this.Data.Users.Find(id);
 
-            if (applicationUser == null)
+            if (user == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(applicationUser);
+            return this.View(user);
         }
 
         // GET: Administration/ApplicationUsers/Edit/5
@@ -99,8 +99,14 @@
             if (this.ModelState.IsValid)
             {
                 var user = this.Data.Users.Find(applicationUser.Id);
-                var checkEmail = this.Data.Users.All().Any(e => e.Email == applicationUser.Email);
-                var checkUsername = this.Data.Users.All().Any(u => u.UserName == applicationUser.UserName);
+
+                var checkEmail = this.Data.Users
+                    .All()
+                    .Any(e => e.Email == applicationUser.Email);
+
+                var checkUsername = this.Data.Users
+                    .All()
+                    .Any(u => u.UserName == applicationUser.UserName);
 
                 if (checkEmail && user.Email != applicationUser.Email)
                 {
@@ -157,7 +163,10 @@
                     CreatedOn = DateTime.Now
                 };
 
-                var userManager = this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var userManager = this.HttpContext
+                    .GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>();
+
                 var userCreateResult = userManager.Create(applicationUser, applicationUser.PasswordHash);
 
                 if (!userCreateResult.Succeeded)
