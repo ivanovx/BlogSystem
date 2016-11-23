@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BlogSystem.Data.Contracts;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogSystem.Data.Models
 {
-    public class Page
+    public class Page : AuditInfo
     {
         [Key]
         public int Id { get; set; }
