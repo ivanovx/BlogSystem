@@ -3,12 +3,10 @@ namespace BlogSystem.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
-    using BlogSystem.Common;
-    using BlogSystem.Data.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using BlogSystem.Common;
+    using BlogSystem.Data.Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
