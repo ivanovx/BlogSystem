@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BlogSystem.Data.Models.Page>
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Page.IndexPagesViewModel
 
 @{
     ViewBag.Title = "List Pages";
@@ -11,36 +11,30 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Author.Email)
+            Author
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+           Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            Permalink
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Permalink)
+           CreatedOn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
+            ModifiedOn
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Pages) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Author.Email)
+            @Html.DisplayFor(modelItem => item.Author)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Permalink)

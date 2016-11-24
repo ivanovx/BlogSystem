@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using BlogSystem.Data.Models;
 using BlogSystem.Data.UnitOfWork;
+using BlogSystem.Web.Areas.Administration.InputModels.Page;
+using BlogSystem.Web.Areas.Administration.ViewModels.Page;
 using BlogSystem.Web.Helpers;
+using BlogSystem.Web.Infrastructure.Mapping;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {
@@ -21,9 +24,15 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             var pages = this.Data.Pages
                 .All()
-                .ToList();
+                .OrderByDescending(p => p.CreatedOn)
+                .To<PageViewModel>();
 
-            return View(pages);
+            var model = new IndexPagesViewModel
+            {
+                Pages = pages.ToList()
+            };
+
+            return View(model);
         }
 
         public ActionResult Details(int? id)
@@ -39,25 +48,26 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Page page)
+        public ActionResult Create(CreatePageInputModel pageInputModel)
         {
             if (ModelState.IsValid)
             {
-                this.Data.Pages.Add(new Page
+                var page = new Page
                 {
-                    Title = page.Title,
-                    Content = page.Content,
-                    CreatedOn = DateTime.Now,
+                    Title = pageInputModel.Title,
+                    Content = pageInputModel.Content,
                     Author = this.UserProfile,
                     AuthorId = this.UserProfile.Id,
-                    Permalink = new UrlGenerator().GenerateUrl(page.Title)
-                });
+                    Permalink = new UrlGenerator().GenerateUrl(pageInputModel.Title)
+                };
+
+                this.Data.Pages.Add(page);
                 this.Data.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(pageInputModel);
         }
 
         [HttpGet]

@@ -7,5 +7,6 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 {
     public class IndexPagesViewModel
     {
+        public IEnumerable<PageViewModel> Pages { get; set; }
     }
 }
