@@ -239,11 +239,15 @@
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\InputModels\BlogPost\BlogPostCreateInputModel.cs" />
     <Compile Include="Areas\Administration\InputModels\BlogPost\BlogPostEditInputModel.cs" />
+    <Compile Include="Areas\Administration\InputModels\Page\CreatePageInputModel.cs" />
+    <Compile Include="Areas\Administration\InputModels\Page\EditPageInputModel.cs" />
     <Compile Include="Areas\Administration\InputModels\PostComment\EditPostCommentInputModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\IndexPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Page\IndexPagesViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Page\PageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PostComments\IndexPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PostComments\PostCommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />

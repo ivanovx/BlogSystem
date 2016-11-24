@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
     using AutoMapper;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Web.ViewModels.Comment;

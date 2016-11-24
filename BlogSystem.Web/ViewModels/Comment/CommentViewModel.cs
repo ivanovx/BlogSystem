@@ -1,9 +1,7 @@
 ﻿namespace BlogSystem.Web.ViewModels.Comment
 {
     using System;
-
     using AutoMapper;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
 
@@ -24,9 +22,9 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<PostComment, CommentViewModel>()
-                .ForMember(model => model.CommentedOn, config => config.MapFrom(post => post.CreatedOn));
+                .ForMember(model => model.CommentedOn, config => config.MapFrom(comment => comment.CreatedOn));
             configuration.CreateMap<PostComment, CommentViewModel>()
-                .ForMember(model => model.User, config => config.MapFrom(post => post.User.UserName));
+                .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.UserName));
         }
     }
 }

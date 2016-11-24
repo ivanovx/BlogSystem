@@ -1,9 +1,7 @@
 ﻿namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
-
     using AutoMapper;
-
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
 
