@@ -330,6 +330,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Administration\Views\Pages\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />

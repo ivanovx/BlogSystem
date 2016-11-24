@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BlogSystem.Data.Models;
@@ -33,11 +34,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             };
 
             return View(model);
-        }
-
-        public ActionResult Details(int? id)
-        {
-            return View();
         }
 
         [HttpGet]
@@ -73,14 +69,51 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var page = this.Data.Pages.Find(id);
+
+            if (page == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var model = new EditPageInputModel
+            {
+                Id = page.Id,
+                Content = page.Content,
+                CreatedOn = page.CreatedOn,
+                Title = page.Title,
+                AuthorId = page.AuthorId
+            };
+
+            return this.View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Page page)
+        public ActionResult Edit(EditPageInputModel pageInputModel)
         {
-            return View();
+            if (this.ModelState.IsValid)
+            {
+                var page = this.Data.Pages.Find(pageInputModel.Id);
+
+                page.Id = pageInputModel.Id;
+                page.Title = pageInputModel.Title;
+                page.Content = pageInputModel.Content;
+                page.AuthorId = pageInputModel.AuthorId;
+                page.CreatedOn = pageInputModel.CreatedOn;
+
+                this.Data.Pages.Update(page);
+                this.Data.SaveChanges();
+
+                return this.RedirectToAction("Index");
+           }
+
+            return this.View(pageInputModel);
         }
 
         public ActionResult Delete()
