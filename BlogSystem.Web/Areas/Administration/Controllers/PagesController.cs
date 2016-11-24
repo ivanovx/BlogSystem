@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BlogSystem.Data.Models;
 using BlogSystem.Data.UnitOfWork;
+using BlogSystem.Web.Helpers;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {
@@ -40,6 +41,22 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Page page)
         {
+            if (ModelState.IsValid)
+            {
+                this.Data.Pages.Add(new Page
+                {
+                    Title = page.Title,
+                    Content = page.Content,
+                    CreatedOn = DateTime.Now,
+                    Author = this.UserProfile,
+                    AuthorId = this.UserProfile.Id,
+                    Permalink = new UrlGenerator().GenerateUrl(page.Title)
+                });
+                this.Data.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
