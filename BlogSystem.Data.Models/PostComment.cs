@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using BlogSystem.Data.Contracts;
 
     public class PostComment : AuditInfo, IDeletableEntity
@@ -12,9 +11,7 @@ namespace BlogSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        //[AllowHtml]
         [DataType(DataType.Html)]
-        //[UIHint("tinymce_full")]
         public string Content { get; set; }
 
         [Required]

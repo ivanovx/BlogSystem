@@ -1,9 +1,9 @@
-﻿using BlogSystem.Data.Contracts;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
+    using BlogSystem.Data.Contracts;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Page : AuditInfo
     {
         [Key]

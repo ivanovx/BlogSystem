@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using BlogSystem.Data.Contracts;
 
     public class BlogPost : AuditInfo, IDeletableEntity
@@ -18,13 +17,10 @@ namespace BlogSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-       // [AllowHtml]
         public string Title { get; set; }
 
         [Required]
-        //[AllowHtml]
         [DataType(DataType.Html)]
-        //[UIHint("tinymce_full")]
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
