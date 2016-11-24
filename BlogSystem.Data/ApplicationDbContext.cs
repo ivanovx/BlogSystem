@@ -36,7 +36,10 @@ namespace BlogSystem.Data
 
         private void ApplyAuditInfoRules()
         {
-            IEnumerable<DbEntityEntry> entrySet = this.ChangeTracker.Entries().Where(e => e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+            var entrySet = this.ChangeTracker
+                .Entries()
+                .Where(e => 
+                    e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
 
             foreach (var entry in entrySet)
             {
