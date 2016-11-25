@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.InputModels.PostComment
+﻿namespace BlogSystem.Web.InputModels.PostComment
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public class EditPostCommentInputModel
     {
         public int Id { get; set; }

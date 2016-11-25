@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using BlogSystem.Data.Models;
-using BlogSystem.Data.UnitOfWork;
-using BlogSystem.Web.Areas.Administration.InputModels.Page;
-using BlogSystem.Web.Areas.Administration.ViewModels.Page;
-using BlogSystem.Web.Helpers;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.UnitOfWork;
+    using BlogSystem.Web.Areas.Administration.InputModels.Page;
+    using BlogSystem.Web.Areas.Administration.ViewModels.Page;
+    using BlogSystem.Web.Helpers;
+    using BlogSystem.Web.Infrastructure.Mapping;
+
     public class PagesController : AdministrationController
     {
         public PagesController(IBlogSystemData data) 

@@ -8,7 +8,6 @@
     using Microsoft.AspNet.Identity;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Infrastructure.Mapping;
 
     public abstract class BaseController : Controller
     {
@@ -17,17 +16,10 @@
             this.Data = data;
         }
 
-        protected BaseController(IBlogSystemData data, ApplicationUser userProfile) : this(data)
+        protected BaseController(IBlogSystemData data, ApplicationUser userProfile) 
+            : this(data)
         {
             this.UserProfile = userProfile;
-        }
-
-        protected IMapper Mapper
-        {
-            get
-            {
-                return AutoMapperConfig.Configuration.CreateMapper();
-            }
         }
 
         protected IBlogSystemData Data { get; }

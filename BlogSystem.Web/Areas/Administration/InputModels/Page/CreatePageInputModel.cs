@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using BlogSystem.Data.Models;
-
-namespace BlogSystem.Web.Areas.Administration.InputModels.Page
+﻿namespace BlogSystem.Web.Areas.Administration.InputModels.Page
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public class CreatePageInputModel
     {
         [Key]

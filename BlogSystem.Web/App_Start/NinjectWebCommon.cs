@@ -4,15 +4,15 @@ namespace BlogSystem.Web
 {
     using System;
     using System.Web;
-    using BlogSystem.Data;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using BlogSystem.Data;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.UnitOfWork;
 
     public static class NinjectWebCommon
     {

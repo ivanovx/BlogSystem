@@ -1,7 +1,6 @@
 ﻿namespace BlogSystem.Web.ViewModels.Manage
 {
     using System.Collections.Generic;
-
     using Microsoft.AspNet.Identity;
 
     public class IndexViewModel

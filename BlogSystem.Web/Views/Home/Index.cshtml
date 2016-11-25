@@ -4,72 +4,69 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
-        </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
     </div>
 </div>
 
 <hr/>
 
-<div class="container">
-    <div class="row">
-        
-        @if (Model.Posts.Any())
+<div class="row">
+    @if (Model.Posts.Any())
+    {
+        foreach (var post in Model.Posts)
         {
-            foreach (var post in Model.Posts)
-            {
-                <div class="container blog-post">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                    <div class="blog-word-wrap">
-                                        <h3>@Html.ActionLink(post.Title, "Post", "Blog", new {id = post.Id}, new {@class = "blog-post-title"})</h3>
-                                    </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="blog-word-wrap">
+                                <h3>
+                                    @Html.ActionLink(post.Title, "Post", "Blog", new { id = post.Id}, new {@class = "blog-post-title"})
+                                </h3>
+                            </div>
 
-                                    <hr/>
+                            <hr/>
 
-                                    <div class="blog-post-tags blog-post-home-page-info">
-                                        <ul class="list-unstyled list-inline blog-post-tags">
-                                            <li>
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                                @post.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
-                                            </li>
-                                            <li>
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                                @post.Author
-                                            </li>
-                                            <li>
-                                                <a href="@Url.Action("Post", "Blog", new {area = string.Empty, id = post.Id})@("#comments")">
-                                                    <i class="glyphicon glyphicon-comment"></i>
-                                                    @(post.CommentsCount) comments
-                                                </a>
-
-                                            </li>
-                                        </ul>
-
-                                        <hr/>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    @Html.Raw(post.Content)
-                                </div>
-                                <div class="blog-button-short-content">
-                                    <div class="col-md-12">
-                                        <a href="@Url.Action("Post", "Blog", new {id = post.Id})" class="btn btn-danger">
-                                            <i class="glyphicon glyphicon-plus"></i>
-                                            <span>Read More</span>
+                            <div class="blog-post-home-page-info">
+                                <ul class="list-unstyled list-inline blog-post-tags">
+                                    <li>
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        @post.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                                    </li>
+                                    <li>
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                        @post.Author
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Post", "Blog", new {area = string.Empty, id = post.Id})@("#comments")">
+                                            <i class="glyphicon glyphicon-comment"></i>
+                                            @(post.CommentsCount) comments
                                         </a>
-                                    </div>
-                                </div>
+
+                                    </li>
+                                </ul>
+
+                                <hr/>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            @Html.Raw(post.Content)
+                        </div>
+                        <div class="blog-button-short-content">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Post", "Blog", new {id = post.Id})" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>Read More</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             }
         }
         else
@@ -79,7 +76,7 @@
             </div>
         }
     </div>
-</div>
+
 
 @if (Model.PagesCount > 0)
 {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using BlogSystem.Web.Areas.Administration.ViewModels.BlogPost;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.ViewModels.Page
+﻿namespace BlogSystem.Web.ViewModels.Page
 {
+    using System;
+    using AutoMapper;
+    using BlogSystem.Web.Infrastructure.Mapping;
+
     public class PageViewModel : IMapFrom<Data.Models.Page>, IHaveCustomMappings
     {
         public int Id { get; set; }

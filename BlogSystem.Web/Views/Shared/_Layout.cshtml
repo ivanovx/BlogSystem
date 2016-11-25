@@ -14,10 +14,20 @@
         @Html.Partial("_Navbar")
     
         <div class="container">
-            @RenderBody()
-
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <!--Sidebar-->
+                    </div>
+                    <div class="col-md-8">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            
             <footer>
-                <p>&copy; @DateTime.Now.Year - Ivan Ivanov</p>
+                <hr />
+                <p>&copy @DateTime.Now.Year Ivan Ivanov</p>
             </footer>
         </div>
 

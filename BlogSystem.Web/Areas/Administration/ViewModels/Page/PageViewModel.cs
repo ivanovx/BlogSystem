@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web;
+    using AutoMapper;
+    using BlogSystem.Web.Infrastructure.Mapping;
+
     public class PageViewModel : IMapFrom<Data.Models.Page>, IHaveCustomMappings
     {
         [Key]
