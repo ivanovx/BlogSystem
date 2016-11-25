@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.ViewModels;
+
+namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -35,6 +37,18 @@
             };
 
             return this.View(model);
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 6 * 10 * 60)]
+        public ActionResult Menu()
+        {
+            var menu = this.Data.Pages
+                .All()
+                .To<MenuItemViewModel>()
+                .ToList();
+
+            return this.PartialView("_Menu", menu);
         }
     }
 }
