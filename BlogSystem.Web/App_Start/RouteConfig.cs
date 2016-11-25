@@ -22,6 +22,19 @@
                 {
                     "BlogSystem.Web.Controllers"
                 });
+
+            routes.MapRoute(
+                name: "Page",
+                url: "Pages/{permalink}",
+                defaults: new
+                {
+                    controller = "Pages",
+                    action = "Page"
+                },
+                namespaces: new[]
+                {
+                    "BlogSystem.Web.Controllers"
+                });
         }
     }
 }

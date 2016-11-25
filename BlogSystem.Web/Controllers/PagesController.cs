@@ -18,10 +18,10 @@
 
         // GET: Pages
         [HttpGet]
-        public ActionResult Page(int id)
+        public ActionResult Page(string permalink)
         {
             var page = this.Data.Pages.All()
-                .Where(x => x.Id == id)
+                .Where(p => p.Permalink == permalink)
                 .To<PageViewModel>()
                 .FirstOrDefault();
 

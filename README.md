@@ -14,8 +14,6 @@ High-Quality blog system using ASP.NET MVC.
 * Helpers
 	* Url Post Helper
 	* Page Permalink Helper
-
-## Other todos
 * AutoMapperConfigs
 * Ninject
 * Pages
@@ -28,3 +26,4 @@ High-Quality blog system using ASP.NET MVC.
 * Menu
 * async controller actions
 * Cashe Services
+* Move filters in Infrastructure
