@@ -20,8 +20,9 @@
         [HttpGet]
         public ActionResult Page(string permalink)
         {
-            var page = this.Data.Pages.All()
-                .Where(p => p.Permalink == permalink)
+            var page = this.Data.Pages
+                .All()
+                .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
                 .To<PageViewModel>()
                 .FirstOrDefault();
 
