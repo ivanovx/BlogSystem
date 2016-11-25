@@ -40,7 +40,6 @@ namespace BlogSystem.Web.Controllers
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration = 6 * 10 * 60)]
         public ActionResult Menu()
         {
             var menu = this.Data.Pages

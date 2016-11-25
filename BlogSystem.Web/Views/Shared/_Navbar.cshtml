@@ -3,17 +3,18 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
 
-            @Html.ActionLink("BlogSystem", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
+            @Html.ActionLink("BlogSystem", "Index", "Home", new { Area = string.Empty }, new { @class = "navbar-brand" })
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                
                 @Html.Action("Menu", "Home", routeValues: new { Area = string.Empty })
 
                 @if (User.IsInRole(GlobalConstants.AdminRoleName))

@@ -116,9 +116,35 @@
             return this.View(pageInputModel);
         }
 
-        public ActionResult Delete()
+        [HttpGet]
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var page = this.Data.Pages.Find(id);
+
+            if (page == null)
+            {
+                return this.HttpNotFound();
+            }
+
+
+            return View(page);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var page = this.Data.Pages.Find(id);
+
+            this.Data.Pages.Remove(page);
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
     }
 }
