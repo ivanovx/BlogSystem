@@ -32,7 +32,7 @@ namespace BlogSystem.Data.Migrations
                 return;
             }
 
-            ApplicationUser admin = new ApplicationUser
+            var admin = new ApplicationUser
             {
                 Email = "admin@mysite.com",
                 UserName = "Administrator",
@@ -45,7 +45,7 @@ namespace BlogSystem.Data.Migrations
 
         private void SeedRoles(ApplicationDbContext context)
         {
-            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole(GlobalConstants.AdminRoleName));
+            context.Roles.AddOrUpdate(u => u.Name, new IdentityRole(GlobalConstants.AdminRoleName));
             context.SaveChanges();
         }
     }
