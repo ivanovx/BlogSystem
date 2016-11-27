@@ -13,3 +13,4 @@ High-Quality blog system using ASP.NET MVC.
 	* Latest 5 Posts
 	* Latest 5 Comments
 * Move filters in Infrastructure
+* Add requirements
