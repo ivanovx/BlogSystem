@@ -15,7 +15,9 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 
-                @Html.Action("Menu", "Home", routeValues: new { Area = string.Empty })
+                @{ 
+                    Html.RenderAction("Menu", "Nav");
+                }
 
                 @if (User.IsInRole(GlobalConstants.AdminRoleName))
                 {

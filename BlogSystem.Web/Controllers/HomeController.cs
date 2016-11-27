@@ -39,7 +39,7 @@ namespace BlogSystem.Web.Controllers
             return this.View(model);
         }
 
-        [ChildActionOnly]
+       /* [ChildActionOnly]
         public ActionResult Menu()
         {
             var menu = this.Data.Pages
@@ -48,6 +48,6 @@ namespace BlogSystem.Web.Controllers
                 .ToList();
 
             return this.PartialView("_Menu", menu);
-        }
+        }*/
     }
 }
