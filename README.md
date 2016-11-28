@@ -5,12 +5,10 @@ High-Quality blog system using ASP.NET MVC.
 * Templates
 	* Site
 	* Admin
-* AutoMapperConfigs
-* Ninject
 * Pages
 * Sidebar Controller
-	* Social Links
-	* Latest 5 Posts
-	* Latest 5 Comments
-* Move filters in Infrastructure
-* Add requirements
+
+## Requirements
+* Visual Studio 2015
+* MS SQL Server 2014 / 2016
+* IIS 10
