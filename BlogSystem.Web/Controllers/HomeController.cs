@@ -38,16 +38,5 @@ namespace BlogSystem.Web.Controllers
 
             return this.View(model);
         }
-
-       /* [ChildActionOnly]
-        public ActionResult Menu()
-        {
-            var menu = this.Data.Pages
-                .All()
-                .To<MenuItemViewModel>()
-                .ToList();
-
-            return this.PartialView("_Menu", menu);
-        }*/
     }
 }

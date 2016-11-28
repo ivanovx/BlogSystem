@@ -16,6 +16,7 @@ namespace BlogSystem.Web.Controllers
         {
         }
 
+        [ChildActionOnly]
         public PartialViewResult Menu()
         {
             var menu = this.Data.Pages
@@ -23,7 +24,7 @@ namespace BlogSystem.Web.Controllers
                 .To<MenuItemViewModel>()
                 .ToList();
 
-            return this.PartialView(menu);
+            return this.PartialView("_Menu", menu);
         }
     }
 }

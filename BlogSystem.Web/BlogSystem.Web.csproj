@@ -575,8 +575,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Pages\Page.cshtml" />
-    <Content Include="Views\Shared\_Menu.cshtml" />
-    <Content Include="Views\Nav\Menu.cshtml" />
+    <Content Include="Views\Nav\_Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Administration\" />
