@@ -10,8 +10,8 @@
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.InputModels.Page;
     using BlogSystem.Web.Areas.Administration.ViewModels.Page;
-    using BlogSystem.Web.Helpers;
     using BlogSystem.Web.Infrastructure.Mapping;
+    using Infrastructure.Helpers;
 
     public class PagesController : AdministrationController
     {
@@ -60,10 +60,10 @@
                 this.Data.Pages.Add(page);
                 this.Data.SaveChanges();
 
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
 
-            return View(pageInputModel);
+            return this.View(pageInputModel);
         }
 
         [HttpGet]

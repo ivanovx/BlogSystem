@@ -1,0 +1,14 @@
+﻿.social-links a {
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: none;
+}
+.social-links img {
+    width: 100px;
+    height: 100px;
+    max-width: 100%;
+    height: auto;
+    padding: 1em;
+}

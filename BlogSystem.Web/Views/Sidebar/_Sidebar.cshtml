@@ -1,0 +1,35 @@
+﻿@model BlogSystem.Web.ViewModels.SidebarViewModel
+
+<section>
+    <h3>Latest Posts</h3>
+
+    <ol>
+
+        @foreach (var post in Model.RecentPosts)
+        {
+            <li>
+                <a href="~/Blog/Post/@post.Id">@post.Title</a>
+            </li>
+        }
+    </ol>
+</section>
+
+<section class="social-links">
+    <h3>Social Links</h3>
+    
+    <a href="#">
+        <img src="~/Content/Images/Social/twitter-logo-silhouette.svg" alt="Twitter" />
+    </a>
+    
+    <a href="#">
+        <img src="~/Content/Images/Social/facebook-logo.svg" alt="Facebook" />
+    </a>
+    
+    <a href="#">
+        <img src="~/Content/Images/Social/github-logo.svg" alt="GitHub" /> 
+    </a>
+
+    <a href="#">
+        <img src="~/Content/Images/Social/linkedin-logo.svg" alt="LinkedIn" />
+    </a>
+</section>

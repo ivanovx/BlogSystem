@@ -9,6 +9,8 @@
 
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        
+        <link rel="stylesheet" href="~/Content/Styles/BlogSystem.css" />
     </head>
     <body>
         @Html.Partial("_Navbar")
@@ -17,7 +19,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-4">
-                        <!--Sidebar-->
+                        @{
+                            Html.RenderAction("Sidebar", "Sidebar");
+                        }
                     </div>
                     <div class="col-md-8">
                         @RenderBody()

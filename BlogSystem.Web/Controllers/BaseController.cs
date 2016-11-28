@@ -1,7 +1,6 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
     using System;
-    using AutoMapper;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -23,6 +22,7 @@
         }
 
         protected IBlogSystemData Data { get; }
+
         protected ApplicationUser UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)

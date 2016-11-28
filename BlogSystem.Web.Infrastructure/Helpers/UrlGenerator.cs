@@ -1,21 +1,22 @@
-﻿using System;
-using System.Text;
-
-namespace BlogSystem.Web.Helpers
+﻿namespace BlogSystem.Web.Infrastructure.Helpers
 {
+    using System;
+    using System.Text;
+
     public class UrlGenerator
     {
         public string GenerateUrl(string title)
         {
             return this.ToUrl(title);
         }
-
+   
         private string ToUrl(string uglyString)
         {
             var resultString = new StringBuilder(uglyString.Length);
             bool isLastCharacterDash = false;
 
             uglyString = uglyString.Replace("C#", "CSharp");
+            uglyString = uglyString.Replace("F#", "FSharp");
             uglyString = uglyString.Replace("C++", "CPlusPlus");
 
             foreach (var character in uglyString)

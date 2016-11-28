@@ -1,5 +1,4 @@
-﻿@using System.Linq
-@using BlogSystem.Common
+﻿@using BlogSystem.Common
 @using BlogSystem.Web.InputModels.PostComment
 @using Microsoft.AspNet.Identity
 
@@ -103,44 +102,40 @@
                             </a>
                         }
 
-                            if (User.IsInRole(GlobalConstants.AdminRoleName))
-                            {
-                                <a href="@Url.Action("Edit", "PostComments", new {area = "Administration", id = comment.Id})" class="btn btn-warning btn-sm">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                    <span>Edit Comment as Admin</span>
-                                </a>
-                                <a href="@Url.Action("Details", "PostComments", new {area = "Administration", id = comment.Id})" class="btn btn-info btn-sm">
-                                    <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                    <span>Comment Details</span>
-                                </a>
-                                <a href="@Url.Action("Details", "ApplicationUsers", new {area = "Administration", id = comment.UserId})" class="btn btn-info btn-sm">
-                                    <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                    <span>User Details</span>
-                                </a>
-                                <a href="@Url.Action("Delete", "PostComments", new {area = "Administration", id = comment.Id})" class="btn btn-danger btn-sm">
-                                    <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                    <span>Delete Comment</span>
-                                </a>
-                            }
+                        if (User.IsInRole(GlobalConstants.AdminRoleName))
+                        {
+                            <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                <span>Edit Comment as Admin</span>
+                            </a>
+                            <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info">
+                                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                <span>Comment Details</span>
+                            </a>
+                            <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId})" class="btn btn-info">
+                                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                <span>User Details</span>
+                            </a>
+                            <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                <span>Delete Comment</span>
+                            </a>
                         }
-
-                    </div>
+                    }
                 </div>
+            </div>
         }
     }
     else
     {
         <h4>No available comments</h4>
     }
-
 </div>
-    <div class="col-md-12">
-        @Html.Partial("_CreateComment", new CreateCommentInputModel
-        {
-            BlogPostId = Model.Id
-        })
-        <hr/>
-    </div>
 
-
-
+<div class="col-md-12">
+    @Html.Partial(string.Format(GlobalConstants.CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel
+    {
+        BlogPostId = Model.Id
+    })
+    <hr/>
+</div>

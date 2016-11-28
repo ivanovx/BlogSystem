@@ -35,7 +35,7 @@
 
                 return this.RedirectToAction("Post", "Blog", new
                 {
-                    id
+                    id = id
                 });
             }
 
