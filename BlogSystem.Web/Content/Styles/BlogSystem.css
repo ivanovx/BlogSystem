@@ -1,4 +1,12 @@
-﻿.social-links a {
+﻿body {
+    padding-top: 1em;
+}
+
+img {
+    max-width: 100%;
+}
+
+.social-links a {
     text-decoration: none;
 }
 
@@ -6,8 +14,8 @@
     text-decoration: none;
 }
 .social-links img {
-    width: 100px;
-    height: 100px;
+    width: 65px;
+    height: 65px;
     max-width: 100%;
     height: auto;
     padding: 1em;

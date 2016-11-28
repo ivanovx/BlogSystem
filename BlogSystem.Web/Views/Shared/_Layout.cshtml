@@ -13,27 +13,26 @@
         <link rel="stylesheet" href="~/Content/Styles/BlogSystem.css" />
     </head>
     <body>
+    <div class="container">
         @Html.Partial("_Navbar")
-    
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-4">
-                        @{
-                            Html.RenderAction("Sidebar", "Sidebar");
-                        }
-                    </div>
-                    <div class="col-md-8">
-                        @RenderBody()
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    @{
+                        Html.RenderAction("Sidebar", "Sidebar");
+                    }
+                </div>
+                <div class="col-md-8">
+                    @RenderBody()
                 </div>
             </div>
-            
-            <footer>
-                <hr />
-                <p>&copy @DateTime.Now.Year Ivan Ivanov</p>
-            </footer>
         </div>
+
+        <footer>
+            <hr/>
+            <p>&copy @DateTime.Now.Year Ivan Ivanov</p>
+        </footer>
+    </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

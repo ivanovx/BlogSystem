@@ -3,6 +3,6 @@
 @foreach (var item in Model)
 {
     <li>
-        <a href="~/Pages/@item.Permalink">@item.Title</a>
+        @Html.ActionLink(item.Title, item.Permalink, "Pages")
     </li>
 }
