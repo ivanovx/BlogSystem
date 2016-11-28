@@ -7,7 +7,6 @@
 
 @{
     ViewBag.Title = Model.Title;
-    const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
 <div class="container">
@@ -138,7 +137,10 @@
 
     </div>
     <div class="col-md-12">
-        @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel{BlogPostId = Model.Id})
+        @Html.Partial("_CreateComment", new CreateCommentInputModel
+        {
+            BlogPostId = Model.Id
+        })
         <hr/>
     </div>
 
