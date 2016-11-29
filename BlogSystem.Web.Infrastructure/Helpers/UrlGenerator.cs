@@ -1,6 +1,5 @@
 ﻿namespace BlogSystem.Web.Infrastructure.Helpers
 {
-    using System;
     using System.Text;
 
     public class UrlGenerator
@@ -24,11 +23,13 @@
                 if (char.IsLetterOrDigit(character))
                 {
                     resultString.Append(character);
+
                     isLastCharacterDash = false;
                 }
                 else if (!isLastCharacterDash)
                 {
                     resultString.Append('-');
+
                     isLastCharacterDash = true;
                 }
             }
