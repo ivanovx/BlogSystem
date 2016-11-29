@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class IndexPageViewModel
+    public class IndexCommentsPageViewModel
     {
         public IEnumerable<PostCommentViewModel> Comments { get; set; }
 

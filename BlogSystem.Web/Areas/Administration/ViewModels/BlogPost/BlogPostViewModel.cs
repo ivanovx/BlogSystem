@@ -25,18 +25,6 @@
         {
             configuration.CreateMap<BlogPost, BlogPostViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.Email));
-
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
-                .ForMember(model => model.IsDeleted, config => config.MapFrom(post => post.IsDeleted));
-
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
-                .ForMember(model => model.DeletedOn, config => config.MapFrom(post => post.DeletedOn));
-
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
-                .ForMember(model => model.CreatedOn, config => config.MapFrom(post => post.CreatedOn));
-
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
-                .ForMember(model => model.ModifiedOn, config => config.MapFrom(post => post.ModifiedOn));
         }
     }
 }

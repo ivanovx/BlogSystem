@@ -6,7 +6,6 @@
 
     public class BlogPostEditInputModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]

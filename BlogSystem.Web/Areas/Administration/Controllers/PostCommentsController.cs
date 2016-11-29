@@ -35,7 +35,7 @@
                 .Skip(perPage*(page - 1))
                 .Take(perPage);
 
-            var model = new IndexPageViewModel
+            var model = new IndexCommentsPageViewModel
             {
                 Comments = comments.ToList(),
                 CurrentPage = page,

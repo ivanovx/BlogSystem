@@ -27,18 +27,6 @@
         {
             configuration.CreateMap<PostComment, PostCommentViewModel>()
                 .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.Email));
-
-            configuration.CreateMap<PostComment, PostCommentViewModel>()
-                .ForMember(model => model.IsDeleted, config => config.MapFrom(comment => comment.IsDeleted));
-
-            configuration.CreateMap<PostComment, PostCommentViewModel>()
-                .ForMember(model => model.DeletedOn, config => config.MapFrom(comment => comment.DeletedOn));
-
-            configuration.CreateMap<PostComment, PostCommentViewModel>()
-                .ForMember(model => model.CreatedOn, config => config.MapFrom(comment => comment.CreatedOn));
-
-            configuration.CreateMap<PostComment, PostCommentViewModel>()
-                .ForMember(model => model.ModifiedOn, config => config.MapFrom(comment => comment.ModifiedOn));
         }
     }
 }

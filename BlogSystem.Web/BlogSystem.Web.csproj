@@ -244,7 +244,7 @@
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Page\IndexPagesViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Page\PageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\PostComments\IndexPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PostComments\IndexCommentsPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\PostComments\PostCommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -285,10 +285,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\Page\PageViewModel.cs" />
-    <Compile Include="ViewModels\SidebarViewModel.cs" />
+    <Compile Include="ViewModels\Sidebar\SidebarViewModel.cs" />
+    <Compile Include="ViewModels\Sidebar\RecentPostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Administration\ViewModels\BlogPost\IndexPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\BlogPost\IndexPostsPageViewModel.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -574,6 +575,7 @@
     <Content Include="Views\Nav\_Menu.cshtml" />
     <Content Include="Views\Comments\_CreateComment.cshtml" />
     <Content Include="Views\Sidebar\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Administration\" />

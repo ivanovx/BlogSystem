@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class IndexPageViewModel
+    public class IndexPostsPageViewModel
     {
         public IEnumerable<BlogPostViewModel> Posts { get; set; }
 

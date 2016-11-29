@@ -6,10 +6,21 @@
     ViewBag.Title = Model.Title;
 }
 
-@Html.Raw(Model.Content)
-
-@if (User.IsInRole(GlobalConstants.AdminRoleName))
-{
-    <span class="fa fa-pencil"></span> 
-    <a href="~/Administration/Pages/Edit/@Model.Id">Edit</a>
-}
+<section class="page">
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+    <strong>@Html.DisplayFor(model => model.LastModified)</strong>
+    
+    <div>
+        @if (User.IsInRole(GlobalConstants.AdminRoleName))
+        {
+            <a href="~/Administration/Pages/Edit/@Model.Id" class="btn btn-primary">
+                Edit
+            </a>
+        }
+    </div>
+</section>

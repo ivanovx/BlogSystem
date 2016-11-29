@@ -5,7 +5,6 @@
 
     public class BlogPostCreateInputModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]

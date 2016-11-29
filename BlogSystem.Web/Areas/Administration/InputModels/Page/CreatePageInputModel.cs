@@ -5,7 +5,6 @@
 
     public class CreatePageInputModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]

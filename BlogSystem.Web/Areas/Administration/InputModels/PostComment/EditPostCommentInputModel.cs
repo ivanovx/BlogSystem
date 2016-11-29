@@ -6,7 +6,6 @@
 
     public class EditPostCommentInputModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]

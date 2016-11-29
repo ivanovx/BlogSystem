@@ -11,7 +11,6 @@
 
         public string Content { get; set; }
 
-        // Todo
         public int BlogPostId { get; set; }
 
         public string UserId { get; set; }
