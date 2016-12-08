@@ -1,3 +1,5 @@
+using BlogSystem.Web.Infrastructure.Helpers;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
@@ -80,6 +82,10 @@ namespace BlogSystem.Web
 
             kernel.Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
+                .InRequestScope();
+
+            kernel.Bind<IUrlGenerator>()
+                .To<UrlGenerator>()
                 .InRequestScope();
         }
     }

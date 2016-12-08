@@ -14,7 +14,7 @@
         }
 
         // GET: Blog/Post/5
-        public ActionResult Post(int? id)
+        public  ActionResult Post(int? id)
         {
             var post = this.Data.Posts.Find(id);
 

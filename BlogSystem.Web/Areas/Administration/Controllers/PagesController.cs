@@ -3,18 +3,21 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.InputModels.Page;
-    using BlogSystem.Web.Areas.Administration.ViewModels.Page;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using InputModels.Page;
+    using ViewModels.Page;
+    using Infrastructure.Mapping;
     using Infrastructure.Helpers;
 
     public class PagesController : AdministrationController
     {
-        public PagesController(IBlogSystemData data) 
+        private IUrlGenerator urlGenerator;
+
+        public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator) 
             : base(data)
         {
+            this.urlGenerator = urlGenerator;
         }
 
         // GET: Administration/Pages
@@ -49,7 +52,7 @@
                 {
                     Title = pageInputModel.Title,
                     Content = pageInputModel.Content,
-                    Permalink = new UrlGenerator().GenerateUrl(pageInputModel.Title),
+                    Permalink = this.urlGenerator.GenerateUrl(pageInputModel.Title),
                     Author = this.UserProfile,
                     AuthorId = this.UserProfile.Id,
                 };
@@ -131,7 +134,8 @@
             return this.View(page);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

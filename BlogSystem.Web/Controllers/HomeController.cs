@@ -1,4 +1,5 @@
-﻿using BlogSystem.Web.ViewModels;
+﻿using System.Threading.Tasks;
+using BlogSystem.Web.ViewModels;
 
 namespace BlogSystem.Web.Controllers
 {
