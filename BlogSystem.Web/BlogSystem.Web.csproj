@@ -568,9 +568,7 @@
     <Content Include="Views\Comments\_CreateComment.cshtml" />
     <Content Include="Views\Sidebar\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Views\Administration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
