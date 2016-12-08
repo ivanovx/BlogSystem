@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.ViewModels.Blog;
+    using Data.UnitOfWork;
+    using ViewModels.Blog;
+    using Infrastructure.Mapping;
 
     public class BlogController : BaseController
     {
