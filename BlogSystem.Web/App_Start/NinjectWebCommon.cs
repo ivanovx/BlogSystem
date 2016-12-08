@@ -49,8 +49,13 @@ namespace BlogSystem.Web
 
             try
             {
-                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                kernel
+                    .Bind<Func<IKernel>>()
+                    .ToMethod(ctx => () => new Bootstrapper().Kernel);
+
+                kernel
+                    .Bind<IHttpModule>()
+                    .To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
 

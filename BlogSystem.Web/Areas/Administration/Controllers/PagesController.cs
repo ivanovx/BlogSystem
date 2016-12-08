@@ -12,7 +12,7 @@
 
     public class PagesController : AdministrationController
     {
-        private IUrlGenerator urlGenerator;
+        private readonly IUrlGenerator urlGenerator;
 
         public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator) 
             : base(data)
@@ -84,9 +84,9 @@
             var model = new EditPageInputModel
             {
                 Id = page.Id,
+                Title = page.Title,
                 Content = page.Content,
                 CreatedOn = page.CreatedOn,
-                Title = page.Title,
                 AuthorId = page.AuthorId
             };
 
