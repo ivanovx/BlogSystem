@@ -5,7 +5,7 @@
     using System.Web.Mvc;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.InputModels.PostComment;
+    using BlogSystem.Web.InputModels.Comments;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -24,10 +24,9 @@
                 var comment = new PostComment
                 {
                     BlogPostId = id,
+                    Content = commentInputModel.Content,
                     User = this.UserProfile, 
-                    UserId = this.UserProfile.Id,
-                    CreatedOn = DateTime.Now,
-                    Content = commentInputModel.Content
+                    UserId = this.UserProfile.Id
                 };
 
                 this.Data.PostComments.Add(comment);
@@ -42,6 +41,7 @@
             return this.Content("Content is required");
         }
 
+        [HttpGet]
         // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -62,7 +62,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = new EditPostCommentInputModel
+            var model = new EditCommentInputModel
             {
                 Id = comment.Id,
                 Content = comment.Content,
@@ -77,7 +77,7 @@
         // POST: Comments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditPostCommentInputModel commentInputModel)
+        public ActionResult Edit(EditCommentInputModel commentInputModel)
         {
             if (this.ModelState.IsValid)
             {
@@ -88,7 +88,6 @@
                 comment.CreatedOn = commentInputModel.CreatedOn;
                 comment.BlogPostId = commentInputModel.BlogPostId;
                 comment.UserId = commentInputModel.UserId;
-                comment.ModifiedOn = DateTime.Now;
 
                 this.Data.PostComments.Update(comment);
                 this.Data.SaveChanges();

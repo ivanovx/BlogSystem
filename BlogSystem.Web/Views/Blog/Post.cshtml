@@ -1,5 +1,5 @@
 ﻿@using BlogSystem.Common
-@using BlogSystem.Web.InputModels.PostComment
+@using BlogSystem.Web.InputModels.Comments
 @using Microsoft.AspNet.Identity
 
 @model BlogSystem.Web.ViewModels.Blog.BlogPostViewModel
@@ -43,16 +43,13 @@
         <hr/>
 
         <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-            <span>Details</span>
+            <span class="glyphicon glyphicon-menu-hamburger"></span> Details
         </a>
         <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
-            <span class="glyphicon glyphicon-edit"></span>
-            <span>Edit</span>
+            <span class="glyphicon glyphicon-edit"></span> Edit
         </a>
         <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger">
-            <span class="glyphicon glyphicon-trash"></span>
-            <span>Delete</span>
+            <span class="glyphicon glyphicon-trash"></span> Delete
         </a>
     }
 </p>
@@ -73,12 +70,11 @@
                         <div class="media-heading">
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <span>@comment.User</span>
+                                    <span class="glyphicon glyphicon-user"></span> @comment.User
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-calendar"></span>
-                                    <span>@comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")</span>
+                                    @comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
                                 </li>
                             </ul>
 
@@ -96,21 +92,18 @@
                         if (User.Identity.GetUserId() == comment.UserId)
                         {
                             <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-default">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                <span>Edit Comment</span>
+                                <span class="glyphicon glyphicon-edit"></span> Edit
                             </a>
                         }
 
                         if (User.IsInRole(GlobalConstants.AdminRoleName))
                         {
                             <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                <span>Edit Comment as Admin</span>
+                                <span class="glyphicon glyphicon-edit"></span> Edit as Admin
                             </a>
 
                             <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                                <span>Comment Details</span>
+                                <span class="glyphicon glyphicon-menu-hamburger"></span> Details
                             </a>
 
                             <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId})" class="btn btn-info">
@@ -119,8 +112,7 @@
                             </a>
 
                             <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                                <span>Delete Comment</span>
+                                <span class="glyphicon glyphicon-menu-hamburger"></span> Delete
                             </a>
                         }
                     }

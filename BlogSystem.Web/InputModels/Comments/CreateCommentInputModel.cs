@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.InputModels.PostComment
+﻿namespace BlogSystem.Web.InputModels.Comments
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
