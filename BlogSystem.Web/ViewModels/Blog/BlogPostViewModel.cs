@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.ViewModels.Blog
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BlogSystem.Web.ViewModels.Blog
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +19,7 @@
 
         public string Author { get; set; }
 
+       // [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy, HH:mm:ss tt}")]
         public DateTime CreatedOn { get; set; }
 
         public IEnumerable<CommentViewModel> Comments { get; set; }

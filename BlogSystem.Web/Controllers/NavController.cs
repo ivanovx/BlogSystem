@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Web.ViewModels;
+    using BlogSystem.Web.ViewModels.Nav;
 
     public class NavController : BaseController
     {
@@ -21,7 +21,7 @@
                 .To<MenuItemViewModel>()
                 .ToList();
 
-            return this.PartialView("_Menu", menu);
+            return this.PartialView(menu);
         }
     }
 }

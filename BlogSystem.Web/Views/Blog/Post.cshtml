@@ -1,6 +1,6 @@
-﻿@using BlogSystem.Common
+﻿@using Microsoft.AspNet.Identity
+@using BlogSystem.Common
 @using BlogSystem.Web.InputModels.Comments
-@using Microsoft.AspNet.Identity
 
 @model BlogSystem.Web.ViewModels.Blog.BlogPostViewModel
 
@@ -10,7 +10,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2 class="pull-left blog-gray-info blog-word-wrap">@ViewBag.Title</h2>
+        <h2 class="pull-left blog-gray-info blog-word-wrap">
+            @Html.DisplayFor(model => model.Title)
+        </h2>
     </div>
 </div>
 
@@ -21,11 +23,12 @@
         <ul class="list-unstyled list-inline blog-info">
             <li>
                 <span class="glyphicon glyphicon-calendar"></span>
-                @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                @Html.DisplayFor(model => model.CreatedOn)
+                
             </li>
             <li>
                 <span class="glyphicon glyphicon-pencil"></span>
-                @Model.Author
+                @Html.DisplayFor(model => model.Author)
             </li>
         </ul>
         <hr/>

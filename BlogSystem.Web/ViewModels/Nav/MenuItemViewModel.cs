@@ -1,8 +1,9 @@
-﻿namespace BlogSystem.Web.ViewModels
+﻿namespace BlogSystem.Web.ViewModels.Nav
 {
+    using Data.Models;
     using Infrastructure.Mapping;
 
-    public class MenuItemViewModel: IMapFrom<Data.Models.Page>
+    public class MenuItemViewModel: IMapFrom<Page>
     {
         public string Title { get; set; }
 
