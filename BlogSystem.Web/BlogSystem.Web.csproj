@@ -567,7 +567,7 @@
     <Content Include="Views\Pages\Page.cshtml" />
     <Content Include="Views\Nav\_Menu.cshtml" />
     <Content Include="Views\Comments\_CreateComment.cshtml" />
-    <Content Include="Views\Sidebar\_Sidebar.cshtml" />
+    <Content Include="Views\Sidebar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Administration\" />

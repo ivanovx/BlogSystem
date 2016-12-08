@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Web.ViewModels.Sidebar;
+    using Data.UnitOfWork;
+    using Infrastructure.Mapping;
+    using ViewModels.Sidebar;
 
     public class SidebarController : BaseController
     {
@@ -14,7 +14,7 @@
         }
 
         [ChildActionOnly]
-        public PartialViewResult Sidebar()
+        public PartialViewResult Index()
         {
             var recentPosts = this.Data.Posts
                 .All()
@@ -27,7 +27,7 @@
                 RecentPosts = recentPosts.ToList()
             };
 
-            return this.PartialView("_Sidebar", model);
+            return this.PartialView(model);
         }
     }
 }

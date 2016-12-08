@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <title>@ViewBag.Title - BlogSystem</title>
+        <title>@ViewBag.Title - Blog System</title>
 
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
@@ -13,27 +13,29 @@
         <link rel="stylesheet" href="~/Content/Styles/BlogSystem.css" />
     </head>
     <body>
-    <div class="container">
-        @Html.Partial("_Navbar")
+        <div class="container">
+            @Html.Partial("_Navbar")
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-4">
-                    @{
-                        Html.RenderAction("Sidebar", "Sidebar");
-                    }
-                </div>
-                <div class="col-md-8">
-                    @RenderBody()
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        @{
+                            Html.RenderAction("Index", "Sidebar");
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <footer>
-            <hr/>
-            <p>&copy @DateTime.Now.Year Ivan Ivanov</p>
-        </footer>
-    </div>
+            <footer>
+                <hr/>
+                <p>
+                    &copy @DateTime.Now.Year Ivan Ivanov.
+                </p>
+            </footer>
+        </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
