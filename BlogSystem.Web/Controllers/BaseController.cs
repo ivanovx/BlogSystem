@@ -5,8 +5,8 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Microsoft.AspNet.Identity;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
+    using Data.Models;
+    using Data.UnitOfWork;
 
     public abstract class BaseController : Controller
     {
