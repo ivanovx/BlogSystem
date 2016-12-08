@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Cache\HttpCacheService.cs" />
     <Compile Include="Cache\ICacheService.cs" />
+    <Compile Include="Helpers\IUrlGenerator.cs" />
     <Compile Include="Helpers\UrlGenerator.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />

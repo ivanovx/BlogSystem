@@ -6,21 +6,31 @@
     ViewBag.Title = Model.Title;
 }
 
-<section class="page">
-    <h1 class="blog-gray-info">@Html.DisplayFor(model => model.Title)</h1>
-    <div class="row">
-        <div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="pull-left blog-gray-info blog-word-wrap">@Model.Title</h2>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-unstyled list-inline blog-info">
+            <li>
+                <span class="glyphicon glyphicon-calendar"></span>
+                @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-pencil"></span>
+                @Model.Author
+            </li>
+        </ul>
+        <hr/>
+    </div>
+    <div class="col-md-12">
+        <div class="blog-word-wrap">
             @Html.Raw(Model.Content)
         </div>
     </div>
-    <strong>@Html.DisplayFor(model => model.LastModified)</strong>
-    
-    <div>
-        @if (User.IsInRole(GlobalConstants.AdminRoleName))
-        {
-            <a href="~/Administration/Pages/Edit/@Model.Id" class="btn btn-primary">
-                Edit
-            </a>
-        }
-    </div>
-</section>
+</div>

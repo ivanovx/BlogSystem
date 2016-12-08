@@ -2,6 +2,7 @@
 @using System.Web
 @using Microsoft.Owin.Security
 @model BlogSystem.Web.ViewModels.Manage.ManageLoginsViewModel
+
 @{
     ViewBag.Title = "Manage your external logins";
 }
@@ -9,8 +10,10 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
     if (loginProviders.Count() == 0)
     {
         <div>
@@ -25,6 +28,7 @@
         if (Model.CurrentLogins.Count > 0)
         {
             <h4>Registered Logins</h4>
+
             <table class="table">
                 <tbody>
                     @foreach (var account in Model.CurrentLogins)
@@ -60,6 +64,7 @@
             using (Html.BeginForm("LinkLogin", "Manage"))
             {
                 @Html.AntiForgeryToken()
+
                 <div id="socialLoginList">
                     <p>
                         @foreach (AuthenticationDescription p in Model.OtherLogins)

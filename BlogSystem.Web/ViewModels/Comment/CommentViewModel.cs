@@ -11,7 +11,7 @@
 
         public string Content { get; set; }
 
-        public int BlogPostId { get; set; }
+        //public int BlogPostId { get; set; }
 
         public string UserId { get; set; }
 
@@ -23,6 +23,7 @@
         {
             configuration.CreateMap<PostComment, CommentViewModel>()
                 .ForMember(model => model.CommentedOn, config => config.MapFrom(comment => comment.CreatedOn));
+
             configuration.CreateMap<PostComment, CommentViewModel>()
                 .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.UserName));
         }

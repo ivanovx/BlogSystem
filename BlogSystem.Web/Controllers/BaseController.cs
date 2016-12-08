@@ -14,7 +14,7 @@
         {
             this.Data = data;
         }
-
+ 
         protected BaseController(IBlogSystemData data, ApplicationUser userProfile) 
             : this(data)
         {
@@ -29,13 +29,13 @@
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                string username = requestContext
+                var username = requestContext
                     .HttpContext
                     .User
                     .Identity
                     .GetUserName();
 
-                ApplicationUser user = this.Data.Users
+                var user = this.Data.Users
                     .All()
                     .FirstOrDefault(u => u.UserName == username);
 

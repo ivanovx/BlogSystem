@@ -17,9 +17,10 @@
                 .Add(new StyleBundle("~/Content/css")
                 .Include(
                     "~/Content/bootstrap.css", 
-                    "~/Content/site.css", 
-                    "~/Content/site.bootstrap.darkly.custom.css", 
-                    "~/Content/site.blog.css"));
+                    "~/Content/site.css"
+                    //"~/Content/site.bootstrap.darkly.custom.css", 
+                   // "~/Content/site.blog.css"
+                    ));
         }
 
         private static void RegisterScripts(BundleCollection bundles)

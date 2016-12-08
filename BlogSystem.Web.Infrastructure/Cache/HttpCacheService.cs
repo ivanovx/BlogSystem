@@ -16,9 +16,7 @@
                 {
                     if (HttpRuntime.Cache[itemName] == null)
                     {
-                        var data = getDataFunc();
-
-                        HttpRuntime.Cache.Insert(itemName, data, null, DateTime.UtcNow.AddSeconds(durationInSeconds), Cache.NoSlidingExpiration);
+                        HttpRuntime.Cache.Insert(itemName, getDataFunc(), null, DateTime.UtcNow.AddSeconds(durationInSeconds), Cache.NoSlidingExpiration);
                     }
                 }
             }

@@ -3,8 +3,9 @@
     using System;
     using AutoMapper;
     using BlogSystem.Web.Infrastructure.Mapping;
+    using BlogSystem.Data.Models;
 
-    public class PageViewModel : IMapFrom<Data.Models.Page>, IHaveCustomMappings
+    public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -12,12 +13,14 @@
 
         public string Content { get; set; }
 
-        public DateTime LastModified { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public string Author { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Data.Models.Page, PageViewModel>()
-                .ForMember(model => model.LastModified, config => config.MapFrom(page => page.ModifiedOn ?? page.CreatedOn));
+            configuration.CreateMap<Page, PageViewModel>()
+                .ForMember(model => model.Author, config => config.MapFrom(page => page.Author.UserName));
         }
     }
 }

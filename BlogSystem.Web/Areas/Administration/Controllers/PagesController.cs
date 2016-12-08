@@ -1,10 +1,7 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Web;
     using System.Web.Mvc;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
@@ -33,13 +30,13 @@
                 Pages = pages.ToList()
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -52,9 +49,9 @@
                 {
                     Title = pageInputModel.Title,
                     Content = pageInputModel.Content,
+                    Permalink = new UrlGenerator().GenerateUrl(pageInputModel.Title),
                     Author = this.UserProfile,
                     AuthorId = this.UserProfile.Id,
-                    Permalink = new UrlGenerator().GenerateUrl(pageInputModel.Title)
                 };
 
                 this.Data.Pages.Add(page);
@@ -131,8 +128,7 @@
                 return this.HttpNotFound();
             }
 
-
-            return View(page);
+            return this.View(page);
         }
 
         [HttpPost, ActionName("Delete")]

@@ -5,15 +5,15 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
+    using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.UnitOfWork;
     using BlogSystem.Web.Areas.Administration.InputModels.ApplicationUsers;
     using BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.AspNet.Identity.Owin;
-    using BlogSystem.Web.Infrastructure.Mapping;
 
     public class ApplicationUsersController : AdministrationController
     {
@@ -23,7 +23,7 @@
         }
 
         // GET: Administration/ApplicationUsers
-        public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.UsersPerPageDefaultValue)
         {
             int pagesCount = (int) Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
 

@@ -25,6 +25,7 @@
         {
             configuration.CreateMap<BlogPost, BlogPostViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
+
             configuration.CreateMap<BlogPost, BlogPostViewModel>()
                 .ForMember(model => model.Comments, config => config.MapFrom(post => post.Comments));
         }

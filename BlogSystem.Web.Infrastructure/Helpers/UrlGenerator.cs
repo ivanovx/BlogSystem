@@ -2,23 +2,18 @@
 {
     using System.Text;
 
-    public class UrlGenerator
+    public class UrlGenerator: IUrlGenerator
     {
-        public string GenerateUrl(string title)
+        public string GenerateUrl(string uglyString)
         {
-            return this.ToUrl(title);
-        }
-   
-        private string ToUrl(string uglyString)
-        {
-            var resultString = new StringBuilder(uglyString.Length);
+            StringBuilder resultString = new StringBuilder(uglyString.Length);
             bool isLastCharacterDash = false;
 
             uglyString = uglyString.Replace("C#", "CSharp");
             uglyString = uglyString.Replace("F#", "FSharp");
             uglyString = uglyString.Replace("C++", "CPlusPlus");
 
-            foreach (var character in uglyString)
+            foreach (char character in uglyString)
             {
                 if (char.IsLetterOrDigit(character))
                 {

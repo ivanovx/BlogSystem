@@ -6,7 +6,6 @@
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Web.ViewModels.Sidebar;
 
-
     public class SidebarController : BaseController
     {
         public SidebarController(IBlogSystemData data) 

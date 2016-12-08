@@ -10,6 +10,7 @@
         [Required]
         public string Title { get; set; }
 
+        [Required]
         [UIHint("tinymce_full")]
         [AllowHtml]
         [DataType(DataType.Html)]

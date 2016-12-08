@@ -93,14 +93,6 @@
                 this.Data.PostComments.Update(comment);
                 this.Data.SaveChanges();
 
-                /* this.Data.PostComments.Update(postComment);
-                 this.Data.SaveChanges();
- 
-                 return this.RedirectToAction("Post", "Blog", new
-                 {
-                     id = postComment.BlogPostId
-                 });*/
-
                 return this.RedirectToAction("Post", "Blog", new
                 {
                     id = commentInputModel.BlogPostId

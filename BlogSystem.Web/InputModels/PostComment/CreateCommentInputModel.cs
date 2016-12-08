@@ -13,6 +13,7 @@
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
+        [Required]
         public int BlogPostId { get; set; }
     }
 }
