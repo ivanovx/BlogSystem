@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Infrastructure.Mapping;
 
     public class PageViewModel : IMapFrom<Data.Models.Page>, IHaveCustomMappings
     {

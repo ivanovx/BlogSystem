@@ -1,17 +1,16 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.InputModels.PostComment;
-    using BlogSystem.Common;
-    using BlogSystem.Web.Areas.Administration.ViewModels.PostComments;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Common;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using InputModels.PostComment;
+    using ViewModels.PostComments;
+    using Infrastructure.Mapping;
 
     public class PostCommentsController : AdministrationController
     {

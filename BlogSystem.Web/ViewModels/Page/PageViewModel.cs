@@ -2,8 +2,8 @@
 {
     using System;
     using AutoMapper;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Data.Models;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
     public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
     {

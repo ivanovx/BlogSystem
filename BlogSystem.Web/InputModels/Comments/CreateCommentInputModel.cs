@@ -5,6 +5,7 @@
 
     public class CreateCommentInputModel
     {
+        [Required]
         public int Id { get; set; }
 
         [Required]

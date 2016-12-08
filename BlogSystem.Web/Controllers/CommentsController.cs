@@ -1,11 +1,10 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
-    using System;
     using System.Net;
     using System.Web.Mvc;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.InputModels.Comments;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using InputModels.Comments;
 
     [Authorize]
     public class CommentsController : BaseController

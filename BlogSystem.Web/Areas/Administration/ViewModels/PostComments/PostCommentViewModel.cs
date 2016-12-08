@@ -2,8 +2,8 @@
 {
     using System;
     using AutoMapper;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
     public class PostCommentViewModel: IMapFrom<PostComment>, IHaveCustomMappings
     {

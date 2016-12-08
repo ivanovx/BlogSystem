@@ -5,10 +5,10 @@
     using AutoMapper;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using BlogSystem.Common;
-    using BlogSystem.Data;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Common;
+    using Data;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
     public class ApplicationUserViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
     {

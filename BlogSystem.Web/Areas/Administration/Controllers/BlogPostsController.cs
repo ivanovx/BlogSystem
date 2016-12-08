@@ -1,15 +1,15 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
-    using BlogSystem.Common;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.ViewModels.BlogPost;
-    using BlogSystem.Web.Areas.Administration.InputModels.BlogPost;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Common;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using ViewModels.BlogPost;
+    using InputModels.BlogPost;
+    using Infrastructure.Mapping;
 
     public class BlogPostsController : AdministrationController
     {

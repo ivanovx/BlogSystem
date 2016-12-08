@@ -7,8 +7,8 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.ViewModels.Manage;
+    using Data.UnitOfWork;
+    using ViewModels.Manage;
 
     [Authorize]
     public class ManageController : BaseController

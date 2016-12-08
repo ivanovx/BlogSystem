@@ -2,9 +2,9 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Web.ViewModels.Nav;
+    using Data.UnitOfWork;
+    using Infrastructure.Mapping;
+    using ViewModels.Nav;
 
     public class NavController : BaseController
     {

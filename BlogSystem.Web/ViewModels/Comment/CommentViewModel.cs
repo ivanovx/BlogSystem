@@ -2,8 +2,8 @@
 {
     using System;
     using AutoMapper;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
     public class CommentViewModel : IMapFrom<PostComment>, IHaveCustomMappings
     {
@@ -13,11 +13,11 @@
 
         //public int BlogPostId { get; set; }
 
-        public string UserId { get; set; }
+        public string UserId { get; set; } // Todo
 
         public string User { get; set; }
 
-        public DateTime CommentedOn { get; set; }
+        public DateTime CommentedOn { get; set; } // CreatedOn
 
         public void CreateMappings(IProfileExpression configuration)
         {

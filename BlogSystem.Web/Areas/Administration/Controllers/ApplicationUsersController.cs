@@ -8,12 +8,12 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Common;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.InputModels.ApplicationUsers;
-    using BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using Infrastructure.Mapping;
+    using Common;
+    using InputModels.ApplicationUsers;
+    using ViewModels.ApplicationUsers;
 
     public class ApplicationUsersController : AdministrationController
     {

@@ -2,8 +2,8 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.Areas.Administration.ViewModels.Home;
+    using Data.UnitOfWork;
+    using ViewModels.Home;
 
     public class HomeController : AdministrationController
     {
