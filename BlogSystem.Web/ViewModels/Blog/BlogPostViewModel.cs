@@ -1,13 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BlogSystem.Web.ViewModels.Blog
+﻿namespace BlogSystem.Web.ViewModels.Blog
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Web.ViewModels.Comment;
+    using Data.Models;
+    using Infrastructure.Mapping;
+    using Comment;
 
     public class BlogPostViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
     {
@@ -19,7 +18,7 @@ namespace BlogSystem.Web.ViewModels.Blog
 
         public string Author { get; set; }
 
-       // [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy, HH:mm:ss tt}")]
+        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy, HH:mm:ss tt}")]
         public DateTime CreatedOn { get; set; }
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
