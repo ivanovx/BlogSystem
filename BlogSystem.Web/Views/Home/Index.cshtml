@@ -1,4 +1,5 @@
-﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
+﻿@using BlogSystem.Web.Infrastructure.Extensions
+@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -33,7 +34,7 @@
                                 <ul class="list-unstyled list-inline blog-post-tags">
                                     <li>
                                         <span class="glyphicon glyphicon-calendar"></span>
-                                        @post.CreatedOn.Date
+                                        @post.CreatedOn
                                     </li>
                                     <li>
                                         <span class="glyphicon glyphicon-pencil"></span>
@@ -51,7 +52,11 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            @Html.Raw(post.Content)
+                            @{
+                                var content = HtmlTextTruncate.TruncateHtmlContent(post.Content, 1000);
+                            }
+
+                            @Html.Raw(content)
                         </div>
                         <div class="blog-button-short-content">
                             <div class="col-md-12">

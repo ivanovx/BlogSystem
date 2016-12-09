@@ -11,5 +11,7 @@
         public const int CommentsPerPageDefaultValue = 5;
 
         public const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
+
+        public const int DefaultPageSize = 5;
     }
 }
