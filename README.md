@@ -9,10 +9,10 @@ A simple blog system written in ASP.NET MVC and used best practices in the world
 
 ## Used technologies
 * ***Server-side:*** C#, ASP.NET MVC, Entity Framework, MS SQL Server, IIS, Roslyn
-* ***Client-side:*** HTML5, CSS3, JavaScript, jQuery
+* ***Client-side:*** HTML5, CSS3, JavaScript, jQuery, TinyMCE
 
 ## Related Projects
-* Blog system by Nikolay Kostov - https://github.com/NikolayIT/BlogSystem
-* Blog System by Vladislav Karamfilov - https://github.com/vladislav-karamfilov/Bloggable
+* Blog system by [Nikolay Kostov](https://github.com/NikolayIT/BlogSystem)
+* Blog System by [Vladislav Karamfilov](https://github.com/vladislav-karamfilov/Bloggable)
 
 This project is made just to play with these frameworks. :smiley:

@@ -23,6 +23,19 @@
                 });
 
             routes.MapRoute(
+               name: "Post",
+               url: "Posts/{id}",
+               defaults: new
+               {
+                   controller = "Blog",
+                   action = "Post"
+               },
+               namespaces: new[]
+               {
+                   "BlogSystem.Web.Controllers"
+               });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new

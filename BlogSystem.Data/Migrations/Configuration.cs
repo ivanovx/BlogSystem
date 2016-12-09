@@ -5,8 +5,8 @@ namespace BlogSystem.Data.Migrations
     using System.Linq;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using BlogSystem.Common;
-    using BlogSystem.Data.Models;
+    using Common;
+    using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {

@@ -58,7 +58,7 @@
 
 <hr/>
 
-<div class="col-md-12">
+<div class="col-md-12" id="comments">
     <h3 class="text-center">Comments</h3>
 
     <hr/>
@@ -72,11 +72,12 @@
                         <div class="media-heading">
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <span class="glyphicon glyphicon-user"></span> @comment.User
+                                    <span class="glyphicon glyphicon-user"></span> 
+                                    @comment.User
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-calendar"></span>
-                                    @comment.CommentedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
+                                    @comment.CommentedOn
                                 </li>
                             </ul>
 

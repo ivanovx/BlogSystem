@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.Repositories;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
+    using Repositories;
 
     public class BlogSystemData : IBlogSystemData
     {
