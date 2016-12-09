@@ -4,13 +4,15 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using BlogSystem.Data.Contracts;
+    using Contracts;
 
-    public class BlogPost : AuditInfo, IDeletableEntity
+    public class Post : AuditInfo, IDeletableEntity
     {
-        public BlogPost()
+        private ICollection<PostComment> comments;
+
+        public Post()
         {
-            this.Comments = new HashSet<PostComment>();
+            this.comments = new HashSet<PostComment>();
         }
 
         [Key]
@@ -24,15 +26,28 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual ICollection<PostComment> Comments { get; set; }
-
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public virtual ICollection<PostComment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+
+            set
+            {
+                this.comments = value;
+                
+            }
+        }
     }
 }

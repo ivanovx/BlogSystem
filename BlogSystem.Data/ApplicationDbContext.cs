@@ -20,7 +20,7 @@ namespace BlogSystem.Data
 
         public IDbSet<BlogPost> Posts { get; set; }
 
-        public IDbSet<PostComment> PostComments { get; set; }
+        public IDbSet<PostComment> Comments { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -38,12 +38,11 @@ namespace BlogSystem.Data
         {
             var entrySet = this.ChangeTracker
                 .Entries()
-                .Where(e => 
-                    e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+                .Where(e => e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
 
             foreach (var entry in entrySet)
             {
-                IAuditInfo entity = (IAuditInfo) entry.Entity;
+                var entity = (IAuditInfo) entry.Entity;
 
                 if (entry.State == EntityState.Added)
                 {
