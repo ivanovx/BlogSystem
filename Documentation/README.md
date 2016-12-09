@@ -4,3 +4,4 @@
 * Update delete views
 * Details in admininstarion update
 * Format DateTime in models
+* Create, Update mappings
