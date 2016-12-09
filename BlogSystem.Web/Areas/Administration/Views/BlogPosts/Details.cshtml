@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Data.Models.BlogPost
+﻿@model BlogSystem.Data.Models.Post
 
 @{
     ViewBag.Title = "Details for blog post";
@@ -137,8 +137,8 @@
                                                         <div class="panel-body blog-word-wrap">
                                                             <div class="col-md-12">
                                                                 <h3>
-                                                                    <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = comment.BlogPostId })@($"#comment-{comment.Id}")">
-                                                                        @comment.BlogPost.Title
+                                                                    <a href="@Url.Action("Post", "Blog", new { area = string.Empty, id = comment.PostId })@($"#comment-{comment.Id}")">
+                                                                        @comment.Post.Title
                                                                     </a>
                                                                     <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info btn-sm">
                                                                         <i class="glyphicon glyphicon-menu-hamburger"></i>
@@ -147,7 +147,7 @@
                                                                 </h3>
                                                                 <p>
                                                                     <span class="post-details">User:</span>
-                                                                    @comment.BlogPost.Author.UserName
+                                                                    @comment.Post.Author.UserName
                                                                     <strong>|</strong>
                                                                     <span class="post-details">Commented On: </span>
                                                                     @comment.CreatedOn

@@ -5,13 +5,14 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class PostCommentViewModel: IMapFrom<PostComment>, IHaveCustomMappings
+    // Todo
+    public class PostCommentViewModel: IMapFrom<Comment>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
-        public int BlogPostId { get; set; }
-    
-        public virtual Data.Models.BlogPost BlogPost { get; set; }
+        public int PostId { get; set; }
+        
+        public virtual Post Post { get; set; }
 
         public string User { get; set; }
 
@@ -25,7 +26,7 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<PostComment, PostCommentViewModel>()
+            configuration.CreateMap<Comment, PostCommentViewModel>()
                 .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.Email));
         }
     }

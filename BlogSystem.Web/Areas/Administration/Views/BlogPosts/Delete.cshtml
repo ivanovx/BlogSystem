@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Data.Models.BlogPost
+﻿@model BlogSystem.Data.Models.Post
 
 @{
     ViewBag.Title = "Delete blog post";
@@ -7,7 +7,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+            <h2 class="blog-gray-info pull-left blog-page-header">
+                @ViewBag.Title
+            </h2>
         </div>
     </div>
 </div>
@@ -17,7 +19,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="blog-post-title text-danger">Are you sure you want to delete this post?</h3>
+            <h3 class="blog-post-title text-danger">
+                Are you sure you want to delete this post?
+            </h3>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class RecentPostViewModel : IMapFrom<BlogPost>
+    public class RecentPostViewModel : IMapFrom<Post>
     {
         public int Id { get; set; }
 

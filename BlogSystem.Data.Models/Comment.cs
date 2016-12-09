@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using BlogSystem.Data.Contracts;
+    using Contracts;
 
-    public class PostComment : AuditInfo, IDeletableEntity
+    public class Comment : AuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -15,10 +15,11 @@
         public string Content { get; set; }
 
         [Required]
-        public int BlogPostId { get; set; }
+        public int PostId { get; set; }
 
-        public virtual BlogPost BlogPost { get; set; }
+        public virtual Post Post { get; set; }
 
+        [Required]
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

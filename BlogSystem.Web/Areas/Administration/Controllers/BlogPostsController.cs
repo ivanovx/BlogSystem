@@ -75,7 +75,7 @@
             {
                 if (this.ModelState.IsValid)
                 {
-                    BlogPost post = new BlogPost
+                    var post = new Post
                     {
                         Title = blogPost.Title,
                         Content = blogPost.Content,

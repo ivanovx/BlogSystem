@@ -8,7 +8,7 @@
     using Infrastructure.Mapping;
     using Comment;
 
-    public class BlogPostViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
+    public class BlogPostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -25,10 +25,10 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
+            configuration.CreateMap<Post, BlogPostViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
 
-            configuration.CreateMap<BlogPost, BlogPostViewModel>()
+            configuration.CreateMap<Post, BlogPostViewModel>()
                 .ForMember(model => model.Comments, config => config.MapFrom(post => post.Comments));
         }
     }

@@ -3,11 +3,9 @@ namespace BlogSystem.Data
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using System.Data.Entity.Infrastructure;
-    using System.Collections.Generic;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using BlogSystem.Data.Contracts;
-    using BlogSystem.Data.Models;
+    using Contracts;
+    using Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -18,9 +16,9 @@ namespace BlogSystem.Data
 
         public IDbSet<Page> Pages { get; set; }
 
-        public IDbSet<BlogPost> Posts { get; set; }
+        public IDbSet<Post> Posts { get; set; }
 
-        public IDbSet<PostComment> Comments { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
 
         public static ApplicationDbContext Create()
         {

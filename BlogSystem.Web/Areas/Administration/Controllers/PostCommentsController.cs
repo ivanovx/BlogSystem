@@ -22,13 +22,13 @@
         // GET: Administration/PostComments
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.CommentsPerPageDefaultValue)
         {
-            int pagesCount = (int) Math.Ceiling(this.Data.PostComments.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.Data.Comments.All().Count() / (decimal) perPage);
 
-            var comments = this.Data.PostComments
+            var comments = this.Data.Comments
                 .All()
                 .Where(c => !c.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
-                .Include(c => c.BlogPost) // Todo
+                .Include(c => c.Post) // Todo
                 .Include(c => c.User)
                 .To<PostCommentViewModel>()
                 .Skip(perPage*(page - 1))
@@ -52,7 +52,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PostComment postComment = this.Data.PostComments.Find(id);
+            var postComment = this.Data.Comments.Find(id);
 
             if (postComment == null)
             {
@@ -71,7 +71,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var comment = this.Data.PostComments.Find(id);
+            var comment = this.Data.Comments.Find(id);
 
             if (comment == null)
             {
@@ -81,7 +81,7 @@
             var model = new EditPostCommentInputModel
             {
                 Id = comment.Id,
-                BlogPostId = comment.BlogPostId,
+                BlogPostId = comment.PostId,
                 UserId = comment.UserId,
                 Content = comment.Content,
                 CreatedOn = comment.CreatedOn
@@ -97,10 +97,10 @@
         {
             if (this.ModelState.IsValid)
             {
-                var comment = this.Data.PostComments.Find(commentInputModel.Id);
+                var comment = this.Data.Comments.Find(commentInputModel.Id);
 
                 comment.Id = commentInputModel.Id;
-                comment.BlogPostId = commentInputModel.BlogPostId;
+                comment.PostId = commentInputModel.BlogPostId;
                 comment.Content = commentInputModel.Content;
                 comment.CreatedOn = commentInputModel.CreatedOn;
                 comment.UserId = commentInputModel.UserId;
@@ -109,7 +109,7 @@
                 /*this.Data.PostComments.Update(postComment);
                 this.Data.SaveChanges();*/
 
-                this.Data.PostComments.Update(comment);
+                this.Data.Comments.Update(comment);
                 this.Data.SaveChanges();
 
                 return this.RedirectToAction("Index");
@@ -127,7 +127,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            PostComment postComment = this.Data.PostComments.Find(id);
+            Comment postComment = this.Data.Comments.Find(id);
 
             if (postComment == null)
             {
@@ -143,9 +143,9 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PostComment postComment = this.Data.PostComments.Find(id);
+            Comment postComment = this.Data.Comments.Find(id);
 
-            this.Data.PostComments.Remove(postComment);
+            this.Data.Comments.Remove(postComment);
             this.Data.SaveChanges();
 
             return this.RedirectToAction("Index");

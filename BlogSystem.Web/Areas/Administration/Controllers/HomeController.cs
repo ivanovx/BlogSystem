@@ -19,7 +19,7 @@
                 .All()
                 .Count();
 
-            var comments = this.Data.PostComments
+            var comments = this.Data.Comments
                 .All()
                 .Count();
 

@@ -20,15 +20,15 @@
         {
             if (this.ModelState.IsValid)
             {
-                var comment = new PostComment
+                var comment = new Comment
                 {
-                    BlogPostId = id,
+                    PostId = id,
                     Content = commentInputModel.Content,
                     User = this.UserProfile, 
                     UserId = this.UserProfile.Id
                 };
 
-                this.Data.PostComments.Add(comment);
+                this.Data.Comments.Add(comment);
                 this.Data.SaveChanges();
 
                 return this.RedirectToAction("Post", "Blog", new
@@ -49,7 +49,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var comment = this.Data.PostComments.Find(id);
+            var comment = this.Data.Comments.Find(id);
 
             if (comment == null)
             {
@@ -66,7 +66,7 @@
                 Id = comment.Id,
                 Content = comment.Content,
                 CreatedOn = comment.CreatedOn,
-                BlogPostId = comment.BlogPostId,
+                BlogPostId = comment.PostId,
                 UserId = comment.UserId
             };
 
@@ -80,15 +80,15 @@
         {
             if (this.ModelState.IsValid)
             {
-                var comment = this.Data.PostComments.Find(commentInputModel.Id);
+                var comment = this.Data.Comments.Find(commentInputModel.Id);
 
                 comment.Id = commentInputModel.Id;
                 comment.Content = commentInputModel.Content;
                 comment.CreatedOn = commentInputModel.CreatedOn;
-                comment.BlogPostId = commentInputModel.BlogPostId;
+                comment.PostId = commentInputModel.BlogPostId;
                 comment.UserId = commentInputModel.UserId;
 
-                this.Data.PostComments.Update(comment);
+                this.Data.Comments.Update(comment);
                 this.Data.SaveChanges();
 
                 return this.RedirectToAction("Post", "Blog", new

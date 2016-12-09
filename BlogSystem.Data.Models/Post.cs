@@ -8,11 +8,11 @@
 
     public class Post : AuditInfo, IDeletableEntity
     {
-        private ICollection<PostComment> comments;
+        private ICollection<Comment> comments;
 
         public Post()
         {
-            this.comments = new HashSet<PostComment>();
+            this.comments = new HashSet<Comment>();
         }
 
         [Key]
@@ -26,7 +26,6 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
@@ -36,7 +35,7 @@
 
         public DateTime? DeletedOn { get; set; }
 
-        public virtual ICollection<PostComment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get
             {
@@ -46,7 +45,6 @@
             set
             {
                 this.comments = value;
-                
             }
         }
     }

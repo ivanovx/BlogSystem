@@ -6,7 +6,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class BlogPostConciseViewModel : IMapFrom<BlogPost>, IHaveCustomMappings
+    public class BlogPostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -23,10 +23,10 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<BlogPost, BlogPostConciseViewModel>()
+            configuration.CreateMap<Post, BlogPostConciseViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
 
-            configuration.CreateMap<BlogPost, BlogPostConciseViewModel>()
+            configuration.CreateMap<Post, BlogPostConciseViewModel>()
                 .ForMember(model => model.CommentsCount, config => config.MapFrom(post => post.Comments.Count));
         }
     }

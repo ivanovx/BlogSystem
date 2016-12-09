@@ -8,6 +8,7 @@
     using Models;
     using Repositories;
 
+    // Todo
     public class BlogSystemData : IBlogSystemData
     {
         private readonly DbContext context;
@@ -25,9 +26,9 @@
 
         public IDbRepository<ApplicationUser> Users => this.GetRepository<ApplicationUser>();
 
-        public IDbRepository<BlogPost> Posts => this.GetRepository<BlogPost>();
+        public IDbRepository<Post> Posts => this.GetRepository<Post>();
 
-        public IDbRepository<PostComment> PostComments => this.GetRepository<PostComment>();
+        public IDbRepository<Comment> Comments => this.GetRepository<Comment>();
 
         public IDbRepository<Page> Pages => this.GetRepository<Page>();
 

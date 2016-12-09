@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Data.Models.PostComment
+﻿@model BlogSystem.Data.Models.Comment
 
 @{
     ViewBag.Title = "Details for comment";
@@ -34,8 +34,8 @@
                                 </li>
                                 <li>
                                     <strong>Blog Title: </strong>
-                                    <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.BlogPostId })">
-                                        @Html.DisplayFor(model => model.BlogPost.Title)
+                                    <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.PostId })">
+                                        @Html.DisplayFor(model => model.Post.Title)
                                     </a>
                                 </li>
                                 <li>

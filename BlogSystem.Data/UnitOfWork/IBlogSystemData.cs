@@ -1,13 +1,16 @@
 ﻿namespace BlogSystem.Data.UnitOfWork
 {
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.Repositories;
+    using Models;
+    using Repositories;
 
     public interface IBlogSystemData
     {
         IDbRepository<ApplicationUser> Users { get; }
-        IDbRepository<BlogPost> Posts { get; }
-        IDbRepository<PostComment> PostComments { get; }
+
+        IDbRepository<Post> Posts { get; }
+
+        IDbRepository<Comment> Comments { get; }
+
         IDbRepository<Page> Pages { get; }
 
         int SaveChanges();

@@ -12,18 +12,18 @@
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser, IAuditInfo
     {
-        private ICollection<PostComment> comments;
-        private ICollection<BlogPost> posts;
+        private ICollection<Comment> comments;
+        private ICollection<Post> posts;
         private ICollection<Page> pages;
 
         public ApplicationUser()
         {
-            this.posts = new HashSet<BlogPost>();
-            this.comments = new HashSet<PostComment>();
+            this.posts = new HashSet<Post>();
+            this.comments = new HashSet<Comment>();
             this.pages = new HashSet<Page>();
         }
 
-        public virtual ICollection<BlogPost> Posts
+        public virtual ICollection<Post> Posts
         {
             get
             {
@@ -36,7 +36,7 @@
             }
         }
 
-        public virtual ICollection<PostComment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get
             {
