@@ -13,6 +13,8 @@
 
         IDbRepository<Page> Pages { get; }
 
+        IDbRepository<Setting> Settings { get; }
+
         int SaveChanges();
     }
 }

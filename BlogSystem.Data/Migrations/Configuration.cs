@@ -21,8 +21,54 @@ namespace BlogSystem.Data.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            this.SeedSettings(context);
             this.SeedRoles(context);
             this.SeedAdmin(context);
+        }
+
+        private void SeedSettings(ApplicationDbContext context)
+        {
+            if (context.Settings.Any())
+            {
+                return;
+            }
+
+            context.Settings.Add(new Setting
+            {
+                Key = "Logo URL",
+                Value = "/img/header-logo.png"
+            });
+
+            context.Settings.Add(new Setting
+            {
+                Key = "Author",
+                Value = "Author"
+            });
+
+            context.Settings.Add(new Setting
+            {
+                Key = "GitHub Profile",
+                Value = "GitHub Profile"
+            });
+
+            context.Settings.Add(new Setting
+            {
+                Key = "LinkedIn Profile",
+                Value = "LinkedIn Profile"
+            });
+
+            context.Settings.Add(new Setting
+            {
+                Key = "Twitter Profile",
+                Value = "Twitter Profile"
+            });
+
+            context.Settings.Add(new Setting
+            {
+                Key = "Facebook Profile",
+                Value = "Facebook Profile"
+            });
         }
 
         private void SeedAdmin(ApplicationDbContext context)
@@ -45,6 +91,11 @@ namespace BlogSystem.Data.Migrations
 
         private void SeedRoles(ApplicationDbContext context)
         {
+            if (context.Roles.Any())
+            {
+                return;
+            }
+
             context.Roles.AddOrUpdate(u => u.Name, new IdentityRole(GlobalConstants.AdminRoleName));
             context.SaveChanges();
         }
