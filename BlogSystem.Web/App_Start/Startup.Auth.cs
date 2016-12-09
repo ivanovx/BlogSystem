@@ -5,9 +5,10 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
+    using Identity;
     using Owin;
-    using BlogSystem.Data;
-    using BlogSystem.Data.Models;
+    using Data;
+    using Data.Models;
 
     public partial class Startup
     {

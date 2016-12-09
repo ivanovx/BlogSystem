@@ -91,11 +91,6 @@ namespace BlogSystem.Data.Migrations
 
         private void SeedRoles(ApplicationDbContext context)
         {
-            if (context.Roles.Any())
-            {
-                return;
-            }
-
             context.Roles.AddOrUpdate(u => u.Name, new IdentityRole(GlobalConstants.AdminRoleName));
             context.SaveChanges();
         }

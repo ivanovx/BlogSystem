@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
+    using Identity;
     using Data.Models;
     using Data.UnitOfWork;
     using Infrastructure.Mapping;

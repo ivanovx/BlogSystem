@@ -8,9 +8,10 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
-    using BlogSystem.Web.ViewModels.Account;
+    using Identity;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using ViewModels.Account;
 
     [Authorize]
     public class AccountController : BaseController

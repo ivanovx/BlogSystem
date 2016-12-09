@@ -1,4 +1,4 @@
-namespace BlogSystem.Web
+namespace BlogSystem.Web.Identity
 {
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;

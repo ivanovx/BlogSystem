@@ -1,20 +1,19 @@
-using BlogSystem.Web.Infrastructure.Helpers;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
 {
     using System;
-    using System.Web;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using BlogSystem.Data;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.UnitOfWork;
+    using Data;
+    using Data.Models;
+    using Data.UnitOfWork;
+    using Infrastructure.Helpers;
+    using System.Web;
 
     public static class NinjectWebCommon
     {
@@ -75,21 +74,25 @@ namespace BlogSystem.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IBlogSystemData>()
+            kernel
+                .Bind<IBlogSystemData>()
                 .To<BlogSystemData>()
                 .InRequestScope()
                 .WithConstructorArgument("context", p => new ApplicationDbContext());
 
-            kernel.Bind<IUserStore<ApplicationUser>>()
+            kernel
+                .Bind<IUserStore<ApplicationUser>>()
                 .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
                 .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
 
-            kernel.Bind<IAuthenticationManager>()
+            kernel
+                .Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
 
-            kernel.Bind<IUrlGenerator>()
+            kernel
+                .Bind<IUrlGenerator>()
                 .To<UrlGenerator>()
                 .InRequestScope();
         }

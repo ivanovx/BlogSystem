@@ -6,9 +6,9 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using BlogSystem.Data;
-    using BlogSystem.Data.Migrations;
-    using BlogSystem.Web.Infrastructure.Mapping;
+    using Data;
+    using Data.Migrations;
+    using Infrastructure.Mapping;
 
     public class MvcApplication : HttpApplication
     {
