@@ -78,7 +78,7 @@
     <Compile Include="Extensions\HtmlTextTruncate.cs" />
     <Compile Include="Helpers\IUrlGenerator.cs" />
     <Compile Include="Helpers\UrlGenerator.cs" />
-    <Compile Include="HtmlHelpers\TruncateHtmlContentHelper.cs" />
+    <Compile Include="HtmlHelpers\HtmlTextTruncateHelper.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />

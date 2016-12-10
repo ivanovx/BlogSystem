@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace BlogSystem.Web.Infrastructure.Extensions
+﻿namespace BlogSystem.Web.Infrastructure.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
     public class HtmlTextTruncate
     {
-        public static string TruncateHtmlContent(string text, int charCount)
+        public string TruncateHtmlContent(string text, int charCount)
         {
             bool inTag = false;
             int cntr = 0;
