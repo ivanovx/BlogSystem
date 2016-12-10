@@ -1,0 +1,38 @@
+﻿@using BlogSystem.Common
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            @Html.ActionLink("BlogSystem", "Index", "Home", new { Area = string.Empty }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+
+                @{
+                    Html.RenderAction("Menu", "Nav");
+                }
+
+                @if (User.IsInRole(GlobalConstants.AdminRoleName))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new { area = "Administration" })">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Administration
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</nav>
