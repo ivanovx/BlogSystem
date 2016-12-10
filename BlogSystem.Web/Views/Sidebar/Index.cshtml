@@ -1,22 +1,20 @@
 ﻿@model BlogSystem.Web.ViewModels.Sidebar.SidebarViewModel
 
-<section class="panel panel-primary">
+<section class="panel panel-default">
     <div class="panel-heading">
-        <span class="glyphicon glyphicon-pushpin"></span>
-        Latest Posts
+        <span class="glyphicon glyphicon-pushpin"></span> Latest Posts
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            @foreach (var post in Model.RecentPosts)
+    <ul class="list-group">
+        @foreach (var post in Model.RecentPosts)
             {
-                <li class="list-group-item">
-                    <a href="~/Blog/Post/@post.Id">@post.Title</a>
-                </li>
-            }
-        </ul>
-    </div>
+            <li class="list-group-item">
+                @Html.RouteLink(post.Title, "Post", new { id = post.Id })
+            </li>
+        }
+    </ul>
 </section>
 
+<!--
 <section class="panel panel-primary">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-pushpin"></span>
@@ -40,3 +38,4 @@
         </a>
     </div>
 </section>
+    --->

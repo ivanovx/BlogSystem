@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
+        <h2 class="pull-left">@ViewBag.Title</h2>
     </div>
 </div>
 
@@ -22,43 +22,37 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <div class="blog-word-wrap">
-                                <h3>
-                                    <a href="/Posts/@post.Id" class="blog-post-title">@post.Title</a>
-                                </h3>
-                            </div>
-
+                            <h3>@Html.RouteLink(post.Title, "Post", new { id = post.Id })</h3>
+                           
                             <hr/>
 
-                            <div class="blog-post-home-page-info">
-                                <ul class="list-unstyled list-inline blog-post-tags">
-                                    <li>
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                        @post.CreatedOn
-                                    </li>
-                                    <li>
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                        @post.Author
-                                    </li>
-                                    <li>
-                                        <a href="/Posts/@post.Id#comments">
-                                            <span class="glyphicon glyphicon-comment"></span>
-                                            @(post.CommentsCount) comments
-                                        </a>
-                                    </li>
-                                </ul>
+                            <ul class="list-unstyled list-inline blog-post-tags">
+                                <li>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    @post.CreatedOn
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    @post.Author
+                                </li>
+                                <li>
+                                    <a href="/Posts/@post.Id#comments">
+                                        <span class="glyphicon glyphicon-comment"></span>
+                                        @(post.CommentsCount) comments
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <hr/>
+                            <hr/>
+                            
+                            <div class="col-md-12">
+                                @{
+                                    var content = HtmlTextTruncate.TruncateHtmlContent(post.Content, 1000);
+                                }
+
+                                @Html.Raw(content)
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            @{
-                                var content = HtmlTextTruncate.TruncateHtmlContent(post.Content, 1000);
-                            }
-
-                            @Html.Raw(content)
-                        </div>
-                        <div class="blog-button-short-content">
+                            
                             <div class="col-md-12">
                                 <a href="@Url.Action("Post", "Blog", new { id = post.Id })" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-plus"></span>
@@ -67,14 +61,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>         
             </div>
         }
     }
     else
     {
         <div class="col-md-12">
-            <h2 class="blog-gray-info">No posts available.</h2>
+            <h2>No posts available.</h2>
         </div>
     }
 </div>

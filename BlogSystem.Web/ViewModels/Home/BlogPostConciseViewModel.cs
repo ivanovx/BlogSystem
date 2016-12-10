@@ -16,7 +16,6 @@
 
         public string Author { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy, HH:mm:ss tt}")]
         public DateTime CreatedOn { get; set; }
 
         public int CommentsCount { get; set; }
