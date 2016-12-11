@@ -16,7 +16,7 @@
         {
         }
 
-        public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
 

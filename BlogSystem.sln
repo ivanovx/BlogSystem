@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSystem.Data.Contracts",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSystem.Web.Infrastructure", "BlogSystem.Web.Infrastructure\BlogSystem.Web.Infrastructure.csproj", "{A887605F-BF8C-4718-A3E1-4C495C629FF9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A2974591-A939-4FEA-AF95-6D93E2F5655C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -24,7 +24,7 @@
         }
 
         // GET: Administration/ApplicationUsers
-        public ActionResult Index(int page = 1, int perPage = GlobalConstants.UsersPerPageDefaultValue)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
 

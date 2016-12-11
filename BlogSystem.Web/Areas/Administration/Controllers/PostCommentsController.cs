@@ -20,7 +20,7 @@
         }
 
         // GET: Administration/PostComments
-        public ActionResult Index(int page = 1, int perPage = GlobalConstants.CommentsPerPageDefaultValue)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.Data.Comments.All().Count() / (decimal) perPage);
 
