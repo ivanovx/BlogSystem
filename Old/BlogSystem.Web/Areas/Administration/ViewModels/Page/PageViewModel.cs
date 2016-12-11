@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Home
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -6,27 +6,28 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class BlogPostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
+    public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [DataType(DataType.Html)]
         public string Content { get; set; }
+
+        public string Permalink { get; set; }
 
         public string Author { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        public int CommentsCount { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Post, BlogPostConciseViewModel>()
+            configuration.CreateMap<Page, PageViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
-
-            configuration.CreateMap<Post, BlogPostConciseViewModel>()
-                .ForMember(model => model.CommentsCount, config => config.MapFrom(post => post.Comments.Count));
         }
     }
 }

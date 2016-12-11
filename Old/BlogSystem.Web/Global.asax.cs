@@ -24,7 +24,9 @@
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 
-            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            var autoMapperConfig = new AutoMapperConfig();
+            
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }
