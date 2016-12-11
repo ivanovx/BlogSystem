@@ -17,7 +17,7 @@
 
         public string Author { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Page, PageViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(page => page.Author.UserName));

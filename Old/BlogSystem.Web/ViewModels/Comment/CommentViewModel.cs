@@ -19,7 +19,7 @@
 
         public DateTime CommentedOn { get; set; } // CreatedOn
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Comment, CommentViewModel>()
                 .ForMember(model => model.CommentedOn, config => config.MapFrom(comment => comment.CreatedOn));

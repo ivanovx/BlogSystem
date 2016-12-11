@@ -26,7 +26,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
             var context = new ApplicationDbContext();
             var rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
