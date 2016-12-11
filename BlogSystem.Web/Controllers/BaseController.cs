@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using AutoMapper;
+using BlogSystem.Web.Infrastructure.Mapping;
+
+namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -22,6 +25,14 @@
         }
 
         protected IBlogSystemData Data { get; }
+
+        protected IMapper Mapper
+        {
+            get
+            {
+                return AutoMapperConfig.Configuration.CreateMapper();
+            }
+        }
 
         protected ApplicationUser UserProfile { get; private set; }
 
