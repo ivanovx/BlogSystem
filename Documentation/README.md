@@ -30,3 +30,7 @@
   </ul>
 </nav>
 ```
+
+```
+@Model.CreatedOn.ToString("HH:mm dd/MM/yyyy")
+```

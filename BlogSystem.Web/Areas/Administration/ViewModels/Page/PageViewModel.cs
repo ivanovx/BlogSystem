@@ -23,7 +23,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Data.Models.Page, PageViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));

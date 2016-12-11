@@ -26,10 +26,10 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            RoleManager<IdentityRole> rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var context = new ApplicationDbContext();
+            var rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             string administratorRoleId = rolerManager.Roles
                 .Where(r => r.Name == GlobalConstants.AdminRoleName)

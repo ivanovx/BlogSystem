@@ -20,7 +20,7 @@
 
         public int CommentsCount { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Post, BlogPostConciseViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));

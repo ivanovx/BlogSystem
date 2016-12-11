@@ -1,19 +1,18 @@
-﻿namespace BlogSystem.Web.Infrastructure.Extensions
+﻿namespace BlogSystem.Web.Infrastructure.Helpers.Html
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System.Web.Mvc;
 
-    public class HtmlTextTruncate
+    public static class TruncateHtmlContentHelper
     {
-        public string TruncateHtmlContent(string text, int charCount)
+        public static string TruncateHtmlContent(this HtmlHelper helper, string text, int charCount)
         {
             bool inTag = false;
             int cntr = 0;
             int cntrContent = 0;
 
-            // loop through html, counting only viewable content
-            foreach (Char c in text)
+            foreach (char c in text)
             {
                 if (cntrContent == charCount) break;
                 cntr++;

@@ -1,3 +1,4 @@
+using AutoMapper;
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web

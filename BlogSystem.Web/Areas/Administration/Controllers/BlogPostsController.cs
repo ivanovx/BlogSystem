@@ -19,7 +19,7 @@
         }
 
         // GET: Administration/BlogPosts
-        public ActionResult Index(int page = 1, int perPage = GlobalConstants.PostsPerPageDefaultValue)
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
 
@@ -69,19 +69,18 @@
         // POST: Administration/BlogPosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BlogPostCreateInputModel blogPost)
+        public ActionResult Create(BlogPostCreateInputModel postInputModel)
         {
-            if (blogPost != null)
+            if (postInputModel != null)
             {
                 if (this.ModelState.IsValid)
                 {
                     var post = new Post
                     {
-                        Title = blogPost.Title,
-                        Content = blogPost.Content,
+                        Title = postInputModel.Title,
+                        Content = postInputModel.Content,
                         Author = this.UserProfile,
                         AuthorId = this.UserProfile.Id,
-                        CreatedOn = DateTime.Now
                     };
 
                     this.Data.Posts.Add(post);
@@ -91,7 +90,7 @@
                 }
             }
 
-            return this.View(blogPost);
+            return this.View(postInputModel);
         }
 
         // GET: Administration/BlogPosts/Edit/5
@@ -119,7 +118,6 @@
                 AuthorId = post.AuthorId
             };
 
-
             return this.View(model);
         }
 
@@ -137,13 +135,9 @@
                 post.Content = postInputModel.Content;
                 post.AuthorId = postInputModel.AuthorId;
                 post.CreatedOn = postInputModel.CreatedOn;
-                post.ModifiedOn = DateTime.Now;
 
                 this.Data.Posts.Update(post);
                 this.Data.SaveChanges();
-
-                /*this.Data.Posts.Update(blogPost);
-                this.Data.SaveChanges();*/
 
                 return this.RedirectToAction("Index");
             }
@@ -160,14 +154,14 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var blogPost = this.Data.Posts.Find(id);
+            var post = this.Data.Posts.Find(id);
 
-            if (blogPost == null)
+            if (post == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(blogPost);
+            return this.View(post);
         }
 
         // POST: Administration/BlogPosts/Delete/5
@@ -176,9 +170,9 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var blogPost = this.Data.Posts.Find(id);
+            var post = this.Data.Posts.Find(id);
 
-            this.Data.Posts.Remove(blogPost);
+            this.Data.Posts.Remove(post);
             this.Data.SaveChanges();
 
             return this.RedirectToAction("Index");

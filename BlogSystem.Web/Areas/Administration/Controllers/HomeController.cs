@@ -15,28 +15,28 @@
         // GET: Administration/Home
         public ActionResult Index()
         {
-            var blogPosts = this.Data.Posts
+            int postsCount = this.Data.Posts
                 .All()
                 .Count();
 
-            var comments = this.Data.Comments
+            int commentsCount = this.Data.Comments
                 .All()
                 .Count();
 
-            var applicationUsers = this.Data.Users
+            int usersCount = this.Data.Users
                 .All()
                 .Count();
 
-            var pages = this.Data.Pages
+            int pagesCount = this.Data.Pages
                 .All()
                 .Count();
 
             var model = new IndexAdminPageViewModel
             {
-                BlogPostsCount = blogPosts,
-                CommentsCount = comments,
-                ApplicationUsersCount = applicationUsers,
-                PagesCount = pages
+                PostsCount = postsCount,
+                CommentsCount = commentsCount,
+                PagesCount = pagesCount,
+                UsersCount = usersCount
             };
 
             return this.View(model);

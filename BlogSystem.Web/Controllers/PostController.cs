@@ -6,15 +6,14 @@
     using ViewModels.Blog;
     using Infrastructure.Mapping;
 
-    public class BlogController : BaseController
+    public class PostController : BaseController
     {
-        public BlogController(IBlogSystemData data) 
+        public PostController(IBlogSystemData data) 
             : base(data)
         {
         }
 
-        // GET: Blog/Post/5
-        public  ActionResult Post(int? id)
+        public  ActionResult Index(int? id)
         {
             var post = this.Data.Posts.Find(id);
 

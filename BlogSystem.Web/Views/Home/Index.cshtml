@@ -1,5 +1,4 @@
-﻿@using BlogSystem.Web.Infrastructure.HtmlHelpers
-@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
+﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -47,14 +46,14 @@
                             
                             <div class="col-md-12">
                                 @{
-                                    var content = Html.TruncateHtmlContent(post.Content);
+                                    var content = Html.TruncateHtmlContent(post.Content, 1000);
                                 }
 
                                 @Html.Raw(content)
                             </div>
                             
                             <div class="col-md-12">
-                                <a href="@Url.Action("Post", "Blog", new { id = post.Id })" class="btn btn-danger">
+                                <a href="@Url.Action("Index", "Post", new { id = post.Id })" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-plus"></span>
                                     Read More
                                 </a>

@@ -4,124 +4,114 @@
     ViewBag.Title = "Administration";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left">@ViewBag.Title</h2>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
     </div>
 </div>
 
 <hr/>
 
+<!-- todo use badges-->
 <div class="row">
-    
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <span class="glyphicon glyphicon-tag admin-panel-icon-size"></span>
+                        <span class="glyphicon glyphicon-tag"></span>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">
-                            <span>@Model.BlogPostsCount</span>
-                        </div>
-                        <div>
-                            <span>Blog Posts</span>
+                            @Model.PostsCount Posts
                         </div>
                     </div>
                 </div>
             </div>
+
             <a href="@Url.Action("Index", "BlogPosts", new { area = "Administration" })" class="clearfix">
                 <div class="panel-footer">
                     <span>Manage</span>
                     <span class="pull-right">
-                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
                     </span>
                 </div>
             </a>
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <span class="glyphicon glyphicon-comment admin-panel-icon-size"></span>
+                        <span class="glyphicon glyphicon-comment"></span>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">
-                            <span>@Model.CommentsCount</span>
-                        </div>
-                        <div>
-                            <span>Post Comments</span>
+                            @Model.CommentsCount Comments
                         </div>
                     </div>
                 </div>
             </div>
+
             <a href="@Url.Action("Index", "PostComments", new { area = "Administration" })" class="clearfix">
                 <div class="panel-footer">
                     <span>Manage</span>
                     <span class="pull-right">
-                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
                     </span>
                 </div>
             </a>
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <span class="glyphicon glyphicon-user admin-panel-icon-size"></span>
+                        <span class="glyphicon glyphicon-user"></span>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">
-                            <span>@Model.ApplicationUsersCount</span>
-                        </div>
-                        <div>
-                            <span>Application Users</span>
+                            @Model.UsersCount Users
                         </div>
                     </div>
                 </div>
             </div>
+
             <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="clearfix">
                 <div class="panel-footer">
                     <span>Manage</span>
                     <span class="pull-right">
-                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
                     </span>
                 </div>
             </a>
         </div>
     </div>
     
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <span class="glyphicon glyphicon-file admin-panel-icon-size"></span>
+                        <span class="glyphicon glyphicon-file"></span>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">
-                            <span>@Model.PagesCount</span>
-                        </div>
-                        <div>
-                            <span>Pages</span>
+                            @Model.PagesCount Pages
                         </div>
                     </div>
                 </div>
             </div>
+
             <a href="@Url.Action("Index", "Pages", new { area = "Administration" })" class="clearfix">
                 <div class="panel-footer">
                     <span>Manage</span>
                     <span class="pull-right">
-                        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
                     </span>
                 </div>
             </a>

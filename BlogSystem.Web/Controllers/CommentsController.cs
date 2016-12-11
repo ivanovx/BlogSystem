@@ -31,7 +31,7 @@
                 this.Data.Comments.Add(comment);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("Post", "Blog", new
+                return this.RedirectToAction("Index", "Post", new
                 {
                     id = id
                 });
@@ -91,7 +91,7 @@
                 this.Data.Comments.Update(comment);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("Post", "Blog", new
+                return this.RedirectToAction("Index", "Post", new
                 {
                     id = commentInputModel.BlogPostId
                 });
