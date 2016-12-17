@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlogSystem.Web.Identity.User;
 using BlogSystem.Web.Infrastructure.Mapping;
 
 namespace BlogSystem.Web.Controllers
@@ -18,10 +19,10 @@ namespace BlogSystem.Web.Controllers
             this.Data = data;
         }
  
-        protected BaseController(IBlogSystemData data, ApplicationUser userProfile) 
+        protected BaseController(IBlogSystemData data, ICurrentUser userProfile) 
             : this(data)
         {
-            this.UserProfile = userProfile;
+            this.UserProfile = userProfile.Get();
         }
 
         protected IBlogSystemData Data { get; }
