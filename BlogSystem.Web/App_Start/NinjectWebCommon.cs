@@ -81,11 +81,11 @@ namespace BlogSystem.Web
                 .InRequestScope()
                 .WithConstructorArgument("context", p => new ApplicationDbContext());
 
-           /* kernel
+           kernel
                 .Bind<IUserStore<ApplicationUser>>()
                 .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
-                .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());*/
+                .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
 
             kernel
                 .Bind<IAuthenticationManager>()
