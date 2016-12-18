@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using BlogSystem.Web.Identity.User;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -11,6 +7,9 @@ namespace BlogSystem.Web.Controllers
     using Microsoft.AspNet.Identity;
     using Data.Models;
     using Data.UnitOfWork;
+    using AutoMapper;
+    using Identity.User;
+    using Infrastructure.Mapping;
 
     public abstract class BaseController : Controller
     {
@@ -41,15 +40,8 @@ namespace BlogSystem.Web.Controllers
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                var username = requestContext
-                    .HttpContext
-                    .User
-                    .Identity
-                    .GetUserName();
-
-                var user = this.Data.Users
-                    .All()
-                    .FirstOrDefault(u => u.UserName == username);
+                var username = requestContext.HttpContext.User.Identity.GetUserName();
+                var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
                 this.UserProfile = user;
                 this.ViewBag.UserProfile = user;

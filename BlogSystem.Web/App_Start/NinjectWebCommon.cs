@@ -1,10 +1,9 @@
-using BlogSystem.Web.Identity.User;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
 {
     using System;
+    using System.Web;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security;
@@ -15,7 +14,7 @@ namespace BlogSystem.Web
     using Data.Models;
     using Data.UnitOfWork;
     using Infrastructure.Helpers;
-    using System.Web;
+    using Identity.User;
 
     public static class NinjectWebCommon
     {
@@ -82,26 +81,20 @@ namespace BlogSystem.Web
                 .InRequestScope()
                 .WithConstructorArgument("context", p => new ApplicationDbContext());
 
-            kernel
+           /* kernel
                 .Bind<IUserStore<ApplicationUser>>()
                 .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
-                .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
+                .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());*/
 
             kernel
                 .Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
 
-            kernel
-                .Bind<ICurrentUser>()
-                .To<CurrentUser>()
-                .InRequestScope();
+            kernel.Bind<ICurrentUser>().To<CurrentUser>().InRequestScope();
 
-            kernel
-                .Bind<IUrlGenerator>()
-                .To<UrlGenerator>()
-                .InRequestScope();
+            kernel.Bind<IUrlGenerator>().To<UrlGenerator>().InRequestScope();
         }
     }
 }
