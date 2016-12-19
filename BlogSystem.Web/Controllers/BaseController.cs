@@ -8,8 +8,8 @@
     using Data.Models;
     using Data.UnitOfWork;
     using AutoMapper;
-    using Identity.User;
     using Infrastructure.Mapping;
+    using Infrastructure.Identity;
 
     public abstract class BaseController : Controller
     {
@@ -18,7 +18,7 @@
             this.Data = data;
         }
  
-        protected BaseController(IBlogSystemData data, ICurrentUser userProfile) 
+        protected BaseController(IBlogSystemData data, CurrentUser userProfile) 
             : this(data)
         {
             this.UserProfile = userProfile.Get();
@@ -41,6 +41,7 @@
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 var username = requestContext.HttpContext.User.Identity.GetUserName();
+                // var username = this.UserProfile.UserName;
                 var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
                 this.UserProfile = user;

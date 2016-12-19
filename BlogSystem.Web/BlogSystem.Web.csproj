@@ -216,9 +216,6 @@
     <Compile Include="App_Start\Identity\EmailService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\Identity\User\CurrentUser.cs" />
-    <Compile Include="App_Start\Identity\User\ICurrentUser.cs" />
-    <Compile Include="App_Start\Identity\User\IService.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Identity\SmsService.cs" />

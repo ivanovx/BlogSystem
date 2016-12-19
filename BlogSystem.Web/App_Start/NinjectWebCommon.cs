@@ -14,7 +14,7 @@ namespace BlogSystem.Web
     using Data.Models;
     using Data.UnitOfWork;
     using Infrastructure.Helpers;
-    using Identity.User;
+    using Infrastructure.Identity;
 
     public static class NinjectWebCommon
     {
@@ -92,9 +92,15 @@ namespace BlogSystem.Web
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
 
-            kernel.Bind<ICurrentUser>().To<CurrentUser>().InRequestScope();
+            kernel
+                .Bind<CurrentUser>()
+                .To<CurrentUser>()
+                .InRequestScope();
 
-            kernel.Bind<IUrlGenerator>().To<UrlGenerator>().InRequestScope();
+            kernel
+                .Bind<IUrlGenerator>()
+                .To<UrlGenerator>()
+                .InRequestScope();
         }
     }
 }
