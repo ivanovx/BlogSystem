@@ -301,6 +301,7 @@
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\Social\facebook-logo.svg" />
     <Content Include="Content\Images\Social\github-logo.svg" />
     <Content Include="Content\Images\Social\google-plus-logo-button.svg" />
@@ -347,6 +348,7 @@
     <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Delete.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="img\avatar.png" />
     <Content Include="img\bg_direction_nav.png" />
