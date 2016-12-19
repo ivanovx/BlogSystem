@@ -8,43 +8,78 @@
         <title>@ViewBag.Title - Blog System</title>
 
         @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+        
+        <!-- Todo modernizr -->
         
         <link href="~/Content/fancybox/jquery.fancybox.css" rel="stylesheet">
         <link href="~/Content/jcarousel.css" rel="stylesheet" />
         <link href="~/Content/flexslider.css" rel="stylesheet" />
         <link href="~/Content/style.css" rel="stylesheet" />
-
-        <!-- Theme skin -->
         <link href="~/Content/default.css" rel="stylesheet" />
     </head>
-<body>
+    <body>
     <div id="wrapper">
-
         @Html.Partial("_Header")
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-4">
-                    @{
-                        Html.RenderAction("Index", "Sidebar");
-                    }
-                </div>
-                <div class="col-md-8">
-                    @RenderBody()
+        
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        @RenderBody()
+                    </div>
+                    <div class="col-lg-4">
+                        <aside class="right-sidebar">
+                            <div class="widget">
+                                <h5 class="widgetheading">Latest posts</h5>
+                                <ul class="recent">
+                                    <li>
+                                        <img src="img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
+                                        <h6><a href="#">Lorem ipsum dolor sit</a></h6>
+                                        <p>
+                                            Mazim alienum appellantur eu cu ullum officiis pro pri
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
+                                        <h6><a href="#">Maiorum ponderum eum</a></h6>
+                                        <p>
+                                            Mazim alienum appellantur eu cu ullum officiis pro pri
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
+                                        <h6><a href="#">Et mei iusto dolorum</a></h6>
+                                        <p>
+                                            Mazim alienum appellantur eu cu ullum officiis pro pri
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<div class="widget">
+                                <h5 class="widgetheading">Popular tags</h5>
+                                <ul class="tags">
+                                    <li><a href="#">Web design</a></li>
+                                    <li><a href="#">Trends</a></li>
+                                    <li><a href="#">Technology</a></li>
+                                    <li><a href="#">Internet</a></li>
+                                    <li><a href="#">Tutorial</a></li>
+                                    <li><a href="#">Development</a></li>
+                                </ul>
+                            </div>-->
+                            @{
+                                Html.RenderAction("Index", "Sidebar");
+                            }
+                        </aside>
+                    </div>
                 </div>
             </div>
+        </section>
+        @Html.Partial("_Footer")
+       
         </div>
+        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
-        <footer>
-            <hr />
-            <p>&copy @DateTime.Now.Year Ivan Ivanov.</p>
-        </footer>
-    </div>
-        </div>
-
-        @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", false)
 </body>

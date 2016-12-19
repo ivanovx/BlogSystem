@@ -1,6 +1,9 @@
 ﻿namespace BlogSystem.Web.Infrastructure.Identity
 {
-    interface ICurrentUser
+    using Data.Models;
+
+    public interface ICurrentUser
     {
+        ApplicationUser Get();
     }
 }

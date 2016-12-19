@@ -16,9 +16,9 @@
 
         public ApplicationUser Get()
         {
-            string user = HttpContext.Current.User.Identity.GetUserId();
+            string userId = HttpContext.Current.User.Identity.GetUserId();
 
-            return this.data.Users.Find(user);
+            return this.data.Users.Find(userId);
         }
     }
 }

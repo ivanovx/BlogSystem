@@ -4,12 +4,12 @@
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Microsoft.AspNet.Identity;
     using Data.Models;
     using Data.UnitOfWork;
     using AutoMapper;
     using Infrastructure.Mapping;
     using Infrastructure.Identity;
+    using Microsoft.AspNet.Identity;
 
     public abstract class BaseController : Controller
     {
@@ -18,21 +18,13 @@
             this.Data = data;
         }
  
-        protected BaseController(IBlogSystemData data, CurrentUser userProfile) 
+        protected BaseController(IBlogSystemData data, ICurrentUser userProfile) 
             : this(data)
         {
             this.UserProfile = userProfile.Get();
         }
 
         protected IBlogSystemData Data { get; }
-
-        protected IMapper Mapper
-        {
-            get
-            {
-                return AutoMapperConfig.Configuration.CreateMapper();
-            }
-        }
 
         protected ApplicationUser UserProfile { get; private set; }
 

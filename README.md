@@ -13,3 +13,5 @@ A simple blog system written in ASP.NET MVC and used best practices in the world
 * Blog System by [Vladislav Karamfilov](https://github.com/vladislav-karamfilov/Bloggable)
 
 This project is made just to play with these frameworks. :smiley: and I used for runnig (http://csyntax.net/)[csyntax.net]
+
+## Todo production build

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.ViewModels.Home
+﻿using System.Web.Mvc;
+
+namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -12,6 +14,8 @@
 
         public string Title { get; set; }
 
+        [AllowHtml]
+        [DataType(DataType.Html)]
         public string Content { get; set; }
 
         public string Author { get; set; }
