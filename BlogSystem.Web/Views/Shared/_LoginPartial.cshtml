@@ -6,7 +6,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
             <li>
                 @Html.ActionLink($"Hello {User.Identity.GetUserName()}!", "Index", "Manage", new { area = string.Empty }, new { title = "Manage" })
             </li>
@@ -18,7 +18,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav ">
         <li>
             @Html.ActionLink("Register", "Register", "Account", new { area = string.Empty }, new { id = "registerLink" })
         </li>

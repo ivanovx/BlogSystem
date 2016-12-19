@@ -10,33 +10,42 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         
-        <link rel="stylesheet" href="~/Content/Styles/BlogSystem.css" />
+        <link href="~/Content/fancybox/jquery.fancybox.css" rel="stylesheet">
+        <link href="~/Content/jcarousel.css" rel="stylesheet" />
+        <link href="~/Content/flexslider.css" rel="stylesheet" />
+        <link href="~/Content/style.css" rel="stylesheet" />
+
+        <!-- Theme skin -->
+        <link href="~/Content/default.css" rel="stylesheet" />
     </head>
-    <body>
+<body>
+    <div id="wrapper">
+
         @Html.Partial("_Header")
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-4">
-                        @{
-                            Html.RenderAction("Index", "Sidebar");
-                        }
-                    </div>
-                    <div class="col-md-8">
-                        @RenderBody()
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    @{
+                        Html.RenderAction("Index", "Sidebar");
+                    }
+                </div>
+                <div class="col-md-8">
+                    @RenderBody()
                 </div>
             </div>
+        </div>
 
-            <footer>
-                <hr/>
-                <p>&copy @DateTime.Now.Year Ivan Ivanov.</p>
-            </footer>
+        <footer>
+            <hr />
+            <p>&copy @DateTime.Now.Year Ivan Ivanov.</p>
+        </footer>
+    </div>
         </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", false)
-    </body>
+</body>
 </html>
