@@ -350,6 +350,7 @@
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="images\logo.png" />
     <Content Include="js\animate.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
@@ -604,9 +605,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

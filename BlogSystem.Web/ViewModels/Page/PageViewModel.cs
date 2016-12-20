@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.ViewModels.Page
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
+namespace BlogSystem.Web.ViewModels.Page
 {
     using System;
     using AutoMapper;
@@ -11,8 +14,13 @@
 
         public string Title { get; set; }
 
+        [Required]
+        [AllowHtml]
+        [DataType(DataType.Html)]
         public string Content { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
         public string Author { get; set; }

@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.ViewModels.Comment
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
+namespace BlogSystem.Web.ViewModels.Comment
 {
     using System;
     using AutoMapper;
@@ -9,6 +12,9 @@
     {
         public int Id { get; set; }
 
+        [Required]
+        [AllowHtml]
+        [DataType(DataType.Html)]
         public string Content { get; set; }
 
         //public int BlogPostId { get; set; }
@@ -17,6 +23,8 @@
 
         public string User { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CommentedOn { get; set; } // CreatedOn
 
         public void CreateMappings(IMapperConfiguration configuration)
