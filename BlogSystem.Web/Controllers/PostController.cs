@@ -8,10 +8,12 @@
 
     public class PostController : BaseController
     {
-        public PostController(IBlogSystemData data) 
-            : base(data)
+        public PostController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         public  ActionResult Index(int? id)
         {

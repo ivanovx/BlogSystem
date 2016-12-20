@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.Infrastructure.Identity;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Net;
     using System.Web.Mvc;
@@ -9,10 +11,14 @@
     [Authorize]
     public class CommentsController : BaseController
     {
-        public CommentsController(IBlogSystemData data) 
-            : base(data)
+        private ICurrentUser currentUser;
+
+        public CommentsController(IBlogSystemData data, ICurrentUser currentUser)
         {
+            this.Data = data;
         }
+
+        private IBlogSystemData Data { get; }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -24,8 +30,8 @@
                 {
                     PostId = id,
                     Content = commentInputModel.Content,
-                    User = this.UserProfile, 
-                    UserId = this.UserProfile.Id
+                    User = this.currentUser.Get(), 
+                    UserId = this.currentUser.Get().Id
                 };
 
                 this.Data.Comments.Add(comment);
@@ -56,7 +62,7 @@
                 return this.HttpNotFound();
             }
 
-            if (comment.UserId != this.UserProfile.Id)
+            if (comment.UserId != this.currentUser.Get().Id)
             {
                 return this.HttpNotFound();
             }

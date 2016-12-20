@@ -11,7 +11,7 @@
 
     public abstract class BaseController : Controller
     {
-        protected BaseController(IBlogSystemData data)
+        /*protected BaseController(IBlogSystemData data)
         {
             this.Data = data;
         }
@@ -20,22 +20,22 @@
             : this(data)
         {
             this.UserProfile = userProfile.Get();
-        }
+        }*/
 
-        protected IBlogSystemData Data { get; }
+      /*  protected IBlogSystemData Data { get; }
 
-        protected ApplicationUser UserProfile { get; private set; }
+        protected ApplicationUser UserProfile { get; private set; }*/
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                var username = requestContext.HttpContext.User.Identity.GetUserName();
+                //var username = requestContext.HttpContext.User.Identity.GetUserName();
                 // var username = this.UserProfile.UserName;
-                var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
+                //var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
-                this.UserProfile = user;
-                this.ViewBag.UserProfile = user;
+                //this.UserProfile = user;
+                //this.ViewBag.UserProfile = user;
             }
 
             return base.BeginExecute(requestContext, callback, state);

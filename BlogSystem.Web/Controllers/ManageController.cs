@@ -17,8 +17,7 @@
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
 
-        public ManageController(IBlogSystemData data, ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-            : base(data)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;

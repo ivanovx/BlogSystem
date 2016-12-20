@@ -8,10 +8,12 @@
 
     public class NavController : BaseController
     {
-        public NavController(IBlogSystemData data) 
-            : base(data)
+        public NavController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         [ChildActionOnly]
         public PartialViewResult Menu()

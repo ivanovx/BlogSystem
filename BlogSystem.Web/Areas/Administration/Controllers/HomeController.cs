@@ -8,20 +8,18 @@
     public class HomeController : AdministrationController
     {
         public HomeController(IBlogSystemData data)
-            : base(data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         // GET: Administration/Home
         public ActionResult Index()
         {
-            int postsCount = this.Data.Posts
-                .All()
-                .Count();
+            int postsCount = this.Data.Posts.All().Count();
 
-            int commentsCount = this.Data.Comments
-                .All()
-                .Count();
+            int commentsCount = this.Data.Comments.All().Count();
 
             int usersCount = this.Data.Users
                 .All()

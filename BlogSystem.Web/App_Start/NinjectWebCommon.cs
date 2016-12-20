@@ -94,8 +94,9 @@ namespace BlogSystem.Web
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
 
+            // Fuck this
             kernel
-                .Bind<CurrentUser>()
+                .Bind<ICurrentUser>()
                 .To<CurrentUser>()
                 .InRequestScope();
 

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Infrastructure.Identity;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Net;
@@ -13,12 +15,15 @@
     public class PagesController : AdministrationController
     {
         private readonly IUrlGenerator urlGenerator;
-
-        public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator) 
-            : base(data)
+        private readonly ICurrentUser currentUser;
+        public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator, ICurrentUser currentUser)
         {
+            this.Data = data;
             this.urlGenerator = urlGenerator;
+            this.currentUser = currentUser;
         }
+
+        public IBlogSystemData Data { get; }
 
         // GET: Administration/Pages
         public ActionResult Index()
@@ -53,8 +58,8 @@
                     Title = pageInputModel.Title,
                     Content = pageInputModel.Content,
                     Permalink = this.urlGenerator.GenerateUrl(pageInputModel.Title),
-                    Author = this.UserProfile,
-                    AuthorId = this.UserProfile.Id,
+                    Author = this.currentUser.Get(),
+                    AuthorId = this.currentUser.Get().Id,
                 };
 
                 this.Data.Pages.Add(page);

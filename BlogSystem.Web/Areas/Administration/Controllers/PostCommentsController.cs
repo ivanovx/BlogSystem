@@ -14,10 +14,12 @@
 
     public class PostCommentsController : AdministrationController
     {
-        public PostCommentsController(IBlogSystemData data) 
-            : base(data)
+        public PostCommentsController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         // GET: Administration/PostComments
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)

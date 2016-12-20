@@ -8,10 +8,12 @@
 
     public class SidebarController : BaseController
     {
-        public SidebarController(IBlogSystemData data) 
-            : base(data)
+        public SidebarController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         [ChildActionOnly]
         public PartialViewResult Index()

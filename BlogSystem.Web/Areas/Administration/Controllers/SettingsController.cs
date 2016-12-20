@@ -7,9 +7,11 @@
     public class SettingsController : AdministrationController
     {
         public SettingsController(IBlogSystemData data)
-            : base(data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         public ActionResult Index()
         {

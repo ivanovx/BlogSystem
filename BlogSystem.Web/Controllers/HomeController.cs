@@ -10,10 +10,12 @@
 
     public class HomeController : BaseController
     {
-        public HomeController(IBlogSystemData data) 
-            : base(data)
+        public HomeController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
@@ -24,7 +26,7 @@
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
                 .To<BlogPostConciseViewModel>()
-                .Skip(perPage*(page - 1))
+                .Skip(perPage * (page - 1))
                 .Take(perPage);
           
             var model = new IndexPageViewModel

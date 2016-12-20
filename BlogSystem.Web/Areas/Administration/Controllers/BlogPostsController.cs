@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Infrastructure.Identity;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -13,10 +15,15 @@
 
     public class BlogPostsController : AdministrationController
     {
-        public BlogPostsController(IBlogSystemData data)
-            : base(data)
+
+        private readonly ICurrentUser currentUser;
+        public BlogPostsController(IBlogSystemData data, ICurrentUser currentUser)
         {
+            this.currentUser = currentUser;
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         // GET: Administration/BlogPosts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
@@ -79,8 +86,8 @@
                     {
                         Title = postInputModel.Title,
                         Content = postInputModel.Content,
-                        Author = this.UserProfile,
-                        AuthorId = this.UserProfile.Id,
+                        Author = this.currentUser.Get(),
+                        AuthorId = this.currentUser.Get().Id,
                     };
 
                     this.Data.Posts.Add(post);

@@ -8,10 +8,12 @@
 
     public class PagesController : BaseController
     {
-        public PagesController(IBlogSystemData data) 
-            : base(data)
+        public PagesController(IBlogSystemData data)
         {
+            this.Data = data;
         }
+
+        public IBlogSystemData Data { get; }
 
         [HttpGet]
         public ActionResult Page(string permalink)
