@@ -14,7 +14,7 @@
         {
             this.Data = data;
         }
-
+ 
         public IBlogSystemData Data { get; }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)

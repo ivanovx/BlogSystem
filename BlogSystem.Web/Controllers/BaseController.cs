@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using AutoMapper;
+using BlogSystem.Web.Infrastructure.Mapping;
+
+namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -22,11 +25,11 @@
             this.UserProfile = userProfile.Get();
         }*/
 
-      /*  protected IBlogSystemData Data { get; }
+        /*  protected IBlogSystemData Data { get; }
 
-        protected ApplicationUser UserProfile { get; private set; }*/
+          protected ApplicationUser UserProfile { get; private set; }*/
 
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
+        /*protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
@@ -39,6 +42,14 @@
             }
 
             return base.BeginExecute(requestContext, callback, state);
+        }*/
+
+        protected IMapper Mapper
+        {
+            get
+            {
+                return AutoMapperConfig.Configuration.CreateMapper();
+            }
         }
     }
 }
