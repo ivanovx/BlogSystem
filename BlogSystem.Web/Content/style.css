@@ -21,26 +21,26 @@
 ==================================== */
 
 body {
-	font-family:'Open Sans', Arial, sans-serif;
-	font-size:14px;
-	font-weight:300;
-	line-height:1.6em;
-	color:#656565;
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.6em;
+	color: #656565;
 }
 
 a:active {
-	outline:0;
+	outline: 0;
 }
 
 .clear {
-	clear:both;
+	clear: both;
 }
 
 h1,h2, h3, h4, h5, h6 {
-	font-family:'Open Sans', Arial, sans-serif;
-	font-weight:700;
-	line-height:1.1em;
-	color:#333;
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-weight: 700;
+	line-height: 1.1em;
+	color: #333;
 	margin-bottom: 20px;
 }
 
@@ -354,10 +354,11 @@ section.callaction {
 ==================================== */
 
 #content {
-	position:relative;
-	background:#fff;
-	padding:50px 0 40px 0;
+	position: relative;
+	background: #fff;
+	padding: 50px 0 40px 0;
 }
+    
 
 #content img {
 	max-width:100%;
@@ -1314,7 +1315,7 @@ aside{
 }
 
 .right-sidebar{
-	border-left:1px solid #f5f5f5;
+	/*border-left:1px solid #f5f5f5;*/
 	padding:0 0 0 30px;
 -webkit-box-shadow:inset 1px 0 0 0 rgba(0,0,0,.01);
 box-shadow:inset 1px 0 0 0 rgba(0,0,0,.01);

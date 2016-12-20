@@ -11,41 +11,44 @@
         
         <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
 
-        <link href="~/Content/style.css" rel="stylesheet" />
-        <link href="~/Content/default.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/Content/style.css" />
+        <link rel="stylesheet" href="~/Content/default.css" />
     </head>
     <body>
-    <div id="wrapper">
-        @Html.Partial("_Header")
-        
-        <section id="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        @RenderBody()
-                    </div>
-                    <div class="col-lg-4">
-                        <aside class="right-sidebar">
-                            @{
-                                Html.RenderAction("Index", "Sidebar");
-                            }
-                        </aside>
+        <div id="wrapper">
+            @Html.Partial("_Header")
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            @RenderBody()
+                        </div>
+                        <div class="col-lg-4">
+                            <aside class="right-sidebar">
+                                @{
+                                    Html.RenderAction("Index", "Sidebar");
+                                }
+                            </aside>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        @Html.Partial("_Footer")
-       
+            </section>
+
+            @Html.Partial("_Footer")
         </div>
-        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+        <a href="#" class="scrollup">
+            <span class="fa fa-angle-up active"></span>
+        </a>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", false)
-        
-        
+
+
         <script src="~/js/jquery.easing.1.3.js"></script>
-        <script src="~/js/animate.js"></script>
+        <!--<script src="~/js/animate.js"></script>-->
         <script src="~/js/custom.js"></script>
     </body>
 </html>

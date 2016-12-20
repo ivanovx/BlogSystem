@@ -6,8 +6,6 @@
     using System.Web.Routing;
     using Data.Models;
     using Data.UnitOfWork;
-    using AutoMapper;
-    using Infrastructure.Mapping;
     using Infrastructure.Identity;
     using Microsoft.AspNet.Identity;
 

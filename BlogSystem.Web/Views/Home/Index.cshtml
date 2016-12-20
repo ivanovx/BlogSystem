@@ -4,75 +4,6 @@
     ViewBag.Title = "Home Page";
 }
 
-<!--
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="pull-left">@ViewBag.Title</h2>
-    </div>
-</div>
-
-<hr />
-
-<div class="row">
-    @if (Model.Posts.Any())
-    {
-        foreach (var post in Model.Posts)
-        {
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="col-md-12">
-                            <h3>@Html.RouteLink(post.Title, "Post", new { id = post.Id })</h3>
-
-                            <hr/>
-
-                            <ul class="list-unstyled list-inline blog-post-tags">
-                                <li>
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    @post.CreatedOn
-                                </li>
-                                <li>
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    @post.Author
-                                </li>
-                                <li>
-                                    <a href="/Posts/@post.Id#comments">
-                                        <span class="glyphicon glyphicon-comment"></span>
-                                        @(post.CommentsCount) comments
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <hr/>
-
-                            <div class="col-md-12">
-                                @{
-                                    var content = Html.TruncateHtmlContent(post.Content, 1000);
-                                }
-
-                                @Html.Raw(content)
-                            </div>
-
-                            <div class="col-md-12">
-                                <a href="@Url.Action("Index", "Post", new { id = post.Id })" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="col-md-12">
-            <h2>No posts available.</h2>
-        </div>
-    }
-</div>
---->
 @if (Model.Posts.Any())
 {
     foreach (var post in Model.Posts)
@@ -87,7 +18,7 @@
             </div>
             <p>
                 @{
-                    var content = Html.TruncateHtmlContent(post.Content, 1000);
+                    var content = Html.TruncateHtmlContent(post.Content);
                 }
                 @Html.Raw(content)
             </p>
@@ -95,16 +26,20 @@
                 <ul class="meta-post">
                     <li>
                         <span class="icon-calendar"></span>
-                        <a href="#"> @post.CreatedOn</a>
+                        <a href="#">
+                            @Html.DisplayFor(item => post.CreatedOn)
+                        </a>
                     </li>
                     <li>
                         <i class="icon-user"></i>
-                        <a href="#">@post.Author</a>
+                        <a href="#">
+                            @Html.DisplayFor(item => post.Author)
+                        </a>
                     </li>
                     <li>
                         <i class="icon-comments"></i>
                         <a href="/Posts/@post.Id#comments">
-                            @(post.CommentsCount) comments
+                            @Html.DisplayFor(item => post.CommentsCount) comments
                         </a>
                     </li>
                 </ul>
@@ -117,7 +52,6 @@ else
 {
     <h2>No posts available.</h2>
 }
-
 
 @if (Model.PagesCount > 0)
 {

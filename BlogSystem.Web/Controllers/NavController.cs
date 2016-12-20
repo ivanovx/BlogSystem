@@ -16,10 +16,7 @@
         [ChildActionOnly]
         public PartialViewResult Menu()
         {
-            var menu = this.Data.Pages
-                .All()
-                .To<MenuItemViewModel>()
-                .ToList();
+            var menu = this.Data.Pages.All().To<MenuItemViewModel>().ToList();
 
             return this.PartialView(menu);
         }

@@ -350,29 +350,6 @@
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="img\avatar.png" />
-    <Content Include="img\bg_direction_nav.png" />
-    <Content Include="img\dummies\blog\65x65\thumb1.jpg" />
-    <Content Include="img\dummies\blog\65x65\thumb2.jpg" />
-    <Content Include="img\dummies\blog\65x65\thumb3.jpg" />
-    <Content Include="img\dummies\blog\img1.jpg" />
-    <Content Include="img\dummies\blog\img2.jpg" />
-    <Content Include="img\dummies\blog\img3.jpg" />
-    <Content Include="img\dummies\dummy-1.jpg" />
-    <Content Include="img\glyphicons-halflings-white.png" />
-    <Content Include="img\glyphicons-halflings.png" />
-    <Content Include="img\nivo-bullets.png" />
-    <Content Include="img\slides\1.jpg" />
-    <Content Include="img\slides\2.jpg" />
-    <Content Include="img\slides\3.jpg" />
-    <Content Include="img\works\1.jpg" />
-    <Content Include="img\works\2.jpg" />
-    <Content Include="img\works\3.jpg" />
-    <Content Include="img\works\4.jpg" />
-    <Content Include="img\works\5.jpg" />
-    <Content Include="img\works\6.jpg" />
-    <Content Include="img\works\7.jpg" />
-    <Content Include="img\works\8.jpg" />
     <Content Include="js\animate.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
@@ -627,7 +604,9 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

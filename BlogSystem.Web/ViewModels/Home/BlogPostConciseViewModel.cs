@@ -1,19 +1,21 @@
-﻿using System.Web.Mvc;
-
-namespace BlogSystem.Web.ViewModels.Home
+﻿namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
+    using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-
+    
     public class BlogPostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
+        [Required]
         public int Id { get; set; }
-
+        
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Content { get; set; }

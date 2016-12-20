@@ -13,15 +13,10 @@
         {
         }
 
-        // GET: Pages
         [HttpGet]
         public ActionResult Page(string permalink)
         {
-            var page = this.Data.Pages
-                .All()
-                .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
-                .To<PageViewModel>()
-                .FirstOrDefault();
+            var page = this.Data.Pages.All().Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim()).To<PageViewModel>().FirstOrDefault();
 
             return View(page);
         }

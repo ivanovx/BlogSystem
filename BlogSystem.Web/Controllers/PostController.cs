@@ -22,13 +22,9 @@
                 return this.HttpNotFound("Blog post not foud!");
             }
 
-            var viewModel = this.Data.Posts
-                .All()
-                .Where(p => p.Id == id)
-                .To<BlogPostViewModel>()
-                .FirstOrDefault();
+            var model = this.Data.Posts.All().Where(p => p.Id == id).To<BlogPostViewModel>().FirstOrDefault();
 
-            return this.View(viewModel);
+            return this.View(model);
         }
     }
 }

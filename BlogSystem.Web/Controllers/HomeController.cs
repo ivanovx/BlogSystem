@@ -10,7 +10,6 @@
 
     public class HomeController : BaseController
     {
-
         public HomeController(IBlogSystemData data) 
             : base(data)
         {
@@ -27,7 +26,6 @@
                 .To<BlogPostConciseViewModel>()
                 .Skip(perPage*(page - 1))
                 .Take(perPage);
-
           
             var model = new IndexPageViewModel
             {

@@ -16,11 +16,7 @@
         [ChildActionOnly]
         public PartialViewResult Index()
         {
-            var recentPosts = this.Data.Posts
-                .All()
-                .OrderByDescending(p => p.CreatedOn)
-                .To<RecentPostViewModel>()
-                .Take(5);
+            var recentPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).To<RecentPostViewModel>().Take(5);
 
             var model = new SidebarViewModel
             {
