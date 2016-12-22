@@ -21,14 +21,14 @@
 <div class="row">
     <div class="col-md-12">
         <ul class="list-unstyled list-inline blog-info">
-            <li>
-                <span class="glyphicon glyphicon-calendar"></span>
-                @Html.DisplayFor(model => model.CreatedOn)
-            </li>
-            <li>
-                <span class="glyphicon glyphicon-pencil"></span>
-                @Html.DisplayFor(model => model.Author)
-            </li>
+                <li>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.CreatedOn)
+                </li>
+                <li>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.Author)
+                </li>
         </ul>
         <hr/>
     </div>

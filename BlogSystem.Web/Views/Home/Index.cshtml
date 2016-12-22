@@ -25,25 +25,23 @@
             <div class="bottom-article">
                 <ul class="meta-post">
                     <li>
-                        <span class="icon-calendar"></span>
-                        <a href="#">
-                            @Html.DisplayFor(item => post.CreatedOn)
-                        </a>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        @Html.DisplayFor(item => post.CreatedOn)
                     </li>
                     <li>
-                        <i class="icon-user"></i>
-                        <a href="#">
-                            @Html.DisplayFor(item => post.Author)
-                        </a>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        @Html.DisplayFor(item => post.Author)
                     </li>
                     <li>
-                        <i class="icon-comments"></i>
+                        <i class="fa fa-comment" aria-hidden="true"></i>
                         <a href="/Posts/@post.Id#comments">
                             @Html.DisplayFor(item => post.CommentsCount) comments
                         </a>
                     </li>
                 </ul>
-                <a href="@Url.Action("Index", "Post", new { id = post.Id })" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
+                <a href="@Url.Action("Index", "Post", new {id = post.Id})" class="pull-right">
+                    Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
             </div>
         </article>
     }

@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2 class="pull-left blog-gray-info blog-word-wrap">@Model.Title</h2>
+        <h2>@Model.Title</h2>
     </div>
 </div>
 
@@ -15,14 +15,14 @@
 <div class="row">
     <div class="col-md-12">
         <ul class="list-unstyled list-inline blog-info">
-            <li>
-                <span class="glyphicon glyphicon-calendar"></span>
-                @Model.CreatedOn.ToString("MMMM dd, yyyy, HH:mm:ss tt")
-            </li>
-            <li>
-                <span class="glyphicon glyphicon-pencil"></span>
-                @Model.Author
-            </li>
+                <li>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.CreatedOn)
+                </li>
+                <li>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.Author)
+                </li>
         </ul>
         <hr/>
     </div>

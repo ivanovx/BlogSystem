@@ -21,11 +21,18 @@
         {
             int pagesCount = (int) Math.Ceiling(this.data.Posts.All().Count() / (decimal) perPage);
 
-            var posts = this.data.Posts.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn).To<BlogPostConciseViewModel>().Skip(perPage * (page - 1)).Take(perPage);
-          
+            var posts = this.data.Posts
+                .All()
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.CreatedOn)
+                .To<BlogPostConciseViewModel>()
+                .Skip(perPage*(page - 1))
+                .Take(perPage)
+                .ToList();
+
             var model = new IndexPageViewModel
             {
-                Posts = posts.ToList(),
+                Posts = posts,
                 CurrentPage = page,
                 PagesCount = pagesCount
             };

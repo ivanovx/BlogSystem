@@ -1,5 +1,3 @@
-using BlogSystem.Web.Infrastructure.Helpers.Html;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BlogSystem.Web.NinjectWebCommon), "Stop")]
 namespace BlogSystem.Web
@@ -94,7 +92,6 @@ namespace BlogSystem.Web
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
                 .InRequestScope();
 
-            // Fuck this
             kernel
                 .Bind<ICurrentUser>()
                 .To<CurrentUser>()

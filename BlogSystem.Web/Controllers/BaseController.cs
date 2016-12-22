@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -11,6 +8,8 @@ namespace BlogSystem.Web.Controllers
     using Data.UnitOfWork;
     using Infrastructure.Identity;
     using Microsoft.AspNet.Identity;
+    using AutoMapper;
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     public abstract class BaseController : Controller
     {
