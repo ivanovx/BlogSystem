@@ -81,16 +81,16 @@ namespace BlogSystem.Web
                 .InRequestScope()
                 .WithConstructorArgument("context", p => new ApplicationDbContext());
 
-           kernel
+          /* kernel
                 .Bind<IUserStore<ApplicationUser>>()
                 .To<UserStore<ApplicationUser>>()
                 .InRequestScope()
                 .WithConstructorArgument("context", kernel.Get<ApplicationDbContext>());
-
-            kernel
+*/
+            /*kernel
                 .Bind<IAuthenticationManager>()
                 .ToMethod<IAuthenticationManager>(context => HttpContext.Current.GetOwinContext().Authentication)
-                .InRequestScope();
+                .InRequestScope();*/
 
             kernel
                 .Bind<ICurrentUser>()

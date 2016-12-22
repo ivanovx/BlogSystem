@@ -31,9 +31,7 @@
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Post, BlogPostConciseViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
-
-            configuration.CreateMap<Post, BlogPostConciseViewModel>()
+                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName))
                 .ForMember(model => model.CommentsCount, config => config.MapFrom(post => post.Comments.Count));
         }
     }

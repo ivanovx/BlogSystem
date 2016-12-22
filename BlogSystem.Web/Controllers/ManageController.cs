@@ -17,6 +17,11 @@
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
 
+        public ManageController()
+        {
+            
+        }
+
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
