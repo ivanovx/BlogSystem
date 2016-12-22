@@ -8,7 +8,6 @@
     using Models;
     using Repositories;
 
-    // Todo
     public class BlogSystemData : IBlogSystemData
     {
         private readonly DbContext context;
@@ -22,7 +21,6 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        // Todo
         public IUserStore<ApplicationUser> UserStore
         {
             get
@@ -70,7 +68,6 @@
                 return this.GetRepository<Setting>();
             }
         }
-
 
         public int SaveChanges()
         {

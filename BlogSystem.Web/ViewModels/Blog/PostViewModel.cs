@@ -11,13 +11,10 @@
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
-        [Required]
         public int Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
-        [Required]
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Content { get; set; }

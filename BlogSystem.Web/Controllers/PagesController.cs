@@ -8,17 +8,22 @@
 
     public class PagesController : BaseController
     {
+        private readonly IBlogSystemData data;
+
         public PagesController(IBlogSystemData data)
         {
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         [HttpGet]
         public ActionResult Page(string permalink)
         {
-            var page = this.Data.Pages.All().Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim()).To<PageViewModel>().FirstOrDefault();
+            var page = this.data
+                .Pages
+                .All()
+                .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
+                .To<PageViewModel>()
+                .FirstOrDefault();
 
             return View(page);
         }

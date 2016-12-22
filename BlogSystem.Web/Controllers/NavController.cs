@@ -8,17 +8,21 @@
 
     public class NavController : BaseController
     {
+        private readonly IBlogSystemData data;
+
         public NavController(IBlogSystemData data)
         {
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         [ChildActionOnly]
         public PartialViewResult Menu()
         {
-            var menu = this.Data.Pages.All().To<MenuItemViewModel>().ToList();
+            var menu = this.data
+                .Pages
+                .All()
+                .To<MenuItemViewModel>()
+                .ToList();
 
             return this.PartialView(menu);
         }

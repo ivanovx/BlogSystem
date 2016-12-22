@@ -37,7 +37,7 @@ namespace BlogSystem.Data.Migrations
             context.Settings.Add(new Setting
             {
                 Key = "Logo URL",
-                Value = "/img/header-logo.png"
+                Value = "/images/logo.png"
             });
 
             context.Settings.Add(new Setting

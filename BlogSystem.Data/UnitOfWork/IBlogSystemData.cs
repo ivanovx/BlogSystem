@@ -5,13 +5,13 @@
 
     public interface IBlogSystemData
     {
-        IDbRepository<ApplicationUser> Users { get; }
-
         IDbRepository<Post> Posts { get; }
 
         IDbRepository<Comment> Comments { get; }
 
         IDbRepository<Page> Pages { get; }
+
+        IDbRepository<ApplicationUser> Users { get; }
 
         IDbRepository<Setting> Settings { get; }
 

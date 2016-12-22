@@ -1,25 +1,23 @@
-﻿using BlogSystem.Web.Infrastructure.Identity;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Net;
     using System.Web.Mvc;
     using Data.Models;
     using Data.UnitOfWork;
     using InputModels.Comments;
+    using Infrastructure.Identity;
 
     [Authorize]
     public class CommentsController : BaseController
     {
+        private readonly IBlogSystemData data;
         private readonly ICurrentUser currentUser;
 
         public CommentsController(IBlogSystemData data, ICurrentUser currentUser)
         {
-            this.Data = data;
+            this.data = data;
             this.currentUser = currentUser;
         }
-
-        private IBlogSystemData Data { get; }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,8 +33,8 @@ namespace BlogSystem.Web.Controllers
                     UserId = this.currentUser.Get().Id
                 };
 
-                this.Data.Comments.Add(comment);
-                this.Data.SaveChanges();
+                this.data.Comments.Add(comment);
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Details", "Posts", new
                 {
@@ -56,7 +54,7 @@ namespace BlogSystem.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var comment = this.Data.Comments.Find(id);
+            var comment = this.data.Comments.Find(id);
 
             if (comment == null)
             {
@@ -87,7 +85,7 @@ namespace BlogSystem.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var comment = this.Data.Comments.Find(commentInputModel.Id);
+                var comment = this.data.Comments.Find(commentInputModel.Id);
 
                 comment.Id = commentInputModel.Id;
                 comment.Content = commentInputModel.Content;
@@ -95,10 +93,10 @@ namespace BlogSystem.Web.Controllers
                 comment.PostId = commentInputModel.BlogPostId;
                 comment.UserId = commentInputModel.UserId;
 
-                this.Data.Comments.Update(comment);
-                this.Data.SaveChanges();
+                this.data.Comments.Update(comment);
+                this.data.SaveChanges();
 
-                return this.RedirectToAction("Index", "Post", new
+                return this.RedirectToAction("Details", "Posts", new
                 {
                     id = commentInputModel.BlogPostId
                 });
