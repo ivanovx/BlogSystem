@@ -25,8 +25,8 @@
                 .All()
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
-                .To<BlogPostConciseViewModel>()
-                .Skip(perPage*(page - 1))
+                .To<PostConciseViewModel>()
+                .Skip(perPage * (page - 1))
                 .Take(perPage)
                 .ToList();
 

@@ -27,12 +27,10 @@ namespace BlogSystem.Web.ViewModels.Comment
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CommentedOn { get; set; } // CreatedOn
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Comment, CommentViewModel>()
-                .ForMember(model => model.CommentedOn, config => config.MapFrom(comment => comment.CreatedOn));
-
-            configuration.CreateMap<Comment, CommentViewModel>()
+                .ForMember(model => model.CommentedOn, config => config.MapFrom(comment => comment.CreatedOn))
                 .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.UserName));
         }
     }

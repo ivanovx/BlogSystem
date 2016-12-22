@@ -24,7 +24,7 @@
 
         public DateTime? DeletedOn { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Comment, PostCommentViewModel>()
                 .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.Email));

@@ -1,17 +1,19 @@
-﻿namespace BlogSystem.Web.ViewModels.Home
+﻿namespace BlogSystem.Web.ViewModels.Blog
 {
     using System;
-    using System.Web.Mvc;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    
-    public class BlogPostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
+    using Comment;
+
+    public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         [Required]
         public int Id { get; set; }
-        
+
         [Required]
         public string Title { get; set; }
 
@@ -26,13 +28,13 @@
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
-        public int CommentsCount { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Post, BlogPostConciseViewModel>()
+            configuration.CreateMap<Post, PostViewModel>()
                 .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName))
-                .ForMember(model => model.CommentsCount, config => config.MapFrom(post => post.Comments.Count));
+                .ForMember(model => model.Comments, config => config.MapFrom(post => post.Comments));
         }
     }
 }

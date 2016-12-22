@@ -11,11 +11,12 @@ namespace BlogSystem.Web.Controllers
     [Authorize]
     public class CommentsController : BaseController
     {
-        private ICurrentUser currentUser;
+        private readonly ICurrentUser currentUser;
 
         public CommentsController(IBlogSystemData data, ICurrentUser currentUser)
         {
             this.Data = data;
+            this.currentUser = currentUser;
         }
 
         private IBlogSystemData Data { get; }
@@ -30,14 +31,14 @@ namespace BlogSystem.Web.Controllers
                 {
                     PostId = id,
                     Content = commentInputModel.Content,
-                    User = this.currentUser.Get(), 
+                    User = this.currentUser.Get(),
                     UserId = this.currentUser.Get().Id
                 };
 
                 this.Data.Comments.Add(comment);
                 this.Data.SaveChanges();
 
-                return this.RedirectToAction("Index", "Post", new
+                return this.RedirectToAction("Details", "Posts", new
                 {
                     id = id
                 });

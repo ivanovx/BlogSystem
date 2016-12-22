@@ -27,8 +27,8 @@
                url: "Posts/{id}",
                defaults: new
                {
-                   controller = "Post",
-                   action = "Index",
+                   controller = "Posts",
+                   action = "Details",
                    id = UrlParameter.Optional
                },
                namespaces: new[]

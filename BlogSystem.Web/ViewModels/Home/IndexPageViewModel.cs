@@ -4,7 +4,7 @@
 
     public class IndexPageViewModel
     {
-        public IEnumerable<BlogPostConciseViewModel> Posts { get; set; }
+        public IEnumerable<PostConciseViewModel> Posts { get; set; }
 
         public int PagesCount { get; set; }
 
