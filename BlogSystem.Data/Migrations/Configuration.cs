@@ -22,53 +22,8 @@ namespace BlogSystem.Data.Migrations
         {
             this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            this.SeedSettings(context);
             this.SeedRoles(context);
             this.SeedAdmin(context);
-        }
-
-        private void SeedSettings(ApplicationDbContext context)
-        {
-            if (context.Settings.Any())
-            {
-                return;
-            }
-
-            context.Settings.Add(new Setting
-            {
-                Name = "Logo URL",
-                Value = "/images/logo.png"
-            });
-
-            context.Settings.Add(new Setting
-            {
-                Name = "Author",
-                Value = "Author"
-            });
-
-            context.Settings.Add(new Setting
-            {
-                Name = "GitHub Profile",
-                Value = "GitHub Profile"
-            });
-
-            context.Settings.Add(new Setting
-            {
-                Name = "LinkedIn Profile",
-                Value = "LinkedIn Profile"
-            });
-
-            context.Settings.Add(new Setting
-            {
-                Name = "Twitter Profile",
-                Value = "Twitter Profile"
-            });
-
-            context.Settings.Add(new Setting
-            {
-                Name = "Facebook Profile",
-                Value = "Facebook Profile"
-            });
         }
 
         private void SeedAdmin(ApplicationDbContext context)
