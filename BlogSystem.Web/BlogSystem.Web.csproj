@@ -331,6 +331,7 @@
     <Content Include="Areas\Administration\Views\Pages\Delete.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Administration\Views\Settings\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\csyntax.net.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="images\logo.png" />
