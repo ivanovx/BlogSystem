@@ -21,13 +21,13 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IUserStore<ApplicationUser> UserStore
+        /*public IUserStore<ApplicationUser> UserStore
         {
             get
             {
                 return this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.context));
             }
-        }
+        }*/
 
         public IDbRepository<ApplicationUser> Users
         {
@@ -60,14 +60,6 @@
                 return this.GetRepository<Page>();
             }
         } 
-
-        public IDbRepository<Setting> Settings
-        {
-            get
-            {
-                return this.GetRepository<Setting>();
-            }
-        }
 
         public int SaveChanges()
         {

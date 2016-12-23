@@ -13,8 +13,6 @@
 
         IDbRepository<ApplicationUser> Users { get; }
 
-        IDbRepository<Setting> Settings { get; }
-
         int SaveChanges();
     }
 }
