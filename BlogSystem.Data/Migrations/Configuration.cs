@@ -36,37 +36,37 @@ namespace BlogSystem.Data.Migrations
 
             context.Settings.Add(new Setting
             {
-                Key = "Logo URL",
+                Name = "Logo URL",
                 Value = "/images/logo.png"
             });
 
             context.Settings.Add(new Setting
             {
-                Key = "Author",
+                Name = "Author",
                 Value = "Author"
             });
 
             context.Settings.Add(new Setting
             {
-                Key = "GitHub Profile",
+                Name = "GitHub Profile",
                 Value = "GitHub Profile"
             });
 
             context.Settings.Add(new Setting
             {
-                Key = "LinkedIn Profile",
+                Name = "LinkedIn Profile",
                 Value = "LinkedIn Profile"
             });
 
             context.Settings.Add(new Setting
             {
-                Key = "Twitter Profile",
+                Name = "Twitter Profile",
                 Value = "Twitter Profile"
             });
 
             context.Settings.Add(new Setting
             {
-                Key = "Facebook Profile",
+                Name = "Facebook Profile",
                 Value = "Facebook Profile"
             });
         }

@@ -29,7 +29,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }*/
 
-            var setting = this.data.Settings.All().FirstOrDefault(s => s.Key == key);
+            var setting = this.data.Settings.All().FirstOrDefault(s => s.Name == key);
 
             /*if (setting == null)
             {
