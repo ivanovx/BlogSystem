@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.ViewModels.Home
+﻿using BlogSystem.Web.Infrastructure;
+
+namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
     using System.Web.Mvc;
@@ -9,13 +11,10 @@
     
     public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
-        [Required]
         public int Id { get; set; }
-        
-        [Required]
+
         public string Title { get; set; }
 
-        [Required]
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Content { get; set; }

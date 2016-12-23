@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.ViewModels.Comment
+﻿namespace BlogSystem.Web.ViewModels.Comment
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;

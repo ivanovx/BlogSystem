@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Identity;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -12,35 +10,36 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using ViewModels.BlogPost;
     using InputModels.BlogPost;
     using Infrastructure.Mapping;
+    using Infrastructure.Identity;
 
     public class BlogPostsController : AdministrationController
     {
-
+        private readonly IBlogSystemData data;
         private readonly ICurrentUser currentUser;
+
         public BlogPostsController(IBlogSystemData data, ICurrentUser currentUser)
         {
             this.currentUser = currentUser;
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         // GET: Administration/BlogPosts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.Data.Posts.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.data.Posts.All().Count() / (decimal) perPage);
 
-            var posts = this.Data.Posts
+            var posts = this.data.Posts
                 .All()
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
                 .To<BlogPostViewModel>()
                 .Skip(perPage * (page - 1))
-                .Take(perPage);
+                .Take(perPage)
+                .ToList();
 
             var model = new IndexPostsPageViewModel
             {
-                Posts = posts.ToList(),
+                Posts = posts,
                 CurrentPage = page,
                 PagesCount = pagesCount,
             };
@@ -56,7 +55,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var post = this.Data.Posts.Find(id);
+            var post = this.data.Posts.Find(id);
 
             if (post == null)
             {
@@ -90,8 +89,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                         AuthorId = this.currentUser.Get().Id,
                     };
 
-                    this.Data.Posts.Add(post);
-                    this.Data.SaveChanges();
+                    this.data.Posts.Add(post);
+                    this.data.SaveChanges();
 
                     return this.RedirectToAction("Index");
                 }
@@ -109,7 +108,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var post = this.Data.Posts.Find(id);
+            var post = this.data.Posts.Find(id);
 
             if (post == null)
             {
@@ -135,7 +134,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var post = this.Data.Posts.Find(postInputModel.Id);
+                var post = this.data.Posts.Find(postInputModel.Id);
 
                 post.Id = postInputModel.Id;
                 post.Title = postInputModel.Title;
@@ -143,8 +142,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 post.AuthorId = postInputModel.AuthorId;
                 post.CreatedOn = postInputModel.CreatedOn;
 
-                this.Data.Posts.Update(post);
-                this.Data.SaveChanges();
+                this.data.Posts.Update(post);
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }
@@ -161,7 +160,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var post = this.Data.Posts.Find(id);
+            var post = this.data.Posts.Find(id);
 
             if (post == null)
             {
@@ -177,10 +176,10 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var post = this.Data.Posts.Find(id);
+            var post = this.data.Posts.Find(id);
 
-            this.Data.Posts.Remove(post);
-            this.Data.SaveChanges();
+            this.data.Posts.Remove(post);
+            this.data.SaveChanges();
 
             return this.RedirectToAction("Index");
         }

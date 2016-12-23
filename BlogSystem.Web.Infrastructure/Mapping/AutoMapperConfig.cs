@@ -6,17 +6,18 @@
     using System.Reflection;
     using AutoMapper;
 
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
         public static MapperConfiguration Configuration { get; private set; }
 
-        public void Execute(Assembly assembly)
+        public static void Execute(Assembly assembly)
         {
             Configuration = new MapperConfiguration(cfg => 
             {
                 var types = assembly.GetExportedTypes();
 
                 LoadStandardMappings(cfg, types);
+                LoadReverseMappings(cfg, types);
                 LoadCustomMappings(cfg, types);
             });
         }

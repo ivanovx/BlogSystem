@@ -3,8 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
-    public class EditCommentInputModel
+    public class EditCommentInputModel : IMapTo<Comment>
     {
         [Required]
         public int Id { get; set; }

@@ -10,7 +10,6 @@
     using Microsoft.Owin.Security;
     using Identity;
     using Data.Models;
-    using Data.UnitOfWork;
     using ViewModels.Account;
 
     [Authorize]

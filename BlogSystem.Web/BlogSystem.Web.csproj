@@ -287,36 +287,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\ViewModels\BlogPost\IndexPostsPageViewModel.cs" />
-    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\custom-fonts.css" />
     <Content Include="Content\default.css" />
-    <Content Include="Content\fancybox\blank.gif" />
-    <Content Include="Content\fancybox\fancybox_loading.gif" />
-    <Content Include="Content\fancybox\fancybox_overlay.png" />
-    <Content Include="Content\fancybox\fancybox_sprite.png" />
-    <Content Include="Content\fancybox\jquery.fancybox.css" />
-    <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Images\Social\facebook-logo.svg" />
-    <Content Include="Content\Images\Social\github-logo.svg" />
-    <Content Include="Content\Images\Social\google-plus-logo-button.svg" />
-    <Content Include="Content\Images\Social\linkedin-logo.svg" />
-    <Content Include="Content\Images\Social\twitter-logo-silhouette.svg" />
     <Content Include="Content\jcarousel.css" />
     <Content Include="Content\overwrite.css" />
-    <Content Include="Content\site.blog.css" />
-    <Content Include="Content\site.bootstrap.darkly.custom.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Styles\BlogSystem.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />

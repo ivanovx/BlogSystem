@@ -18,16 +18,9 @@
         public ActionResult Index()
         {
             int postsCount = this.Data.Posts.All().Count();
-
             int commentsCount = this.Data.Comments.All().Count();
-
-            int usersCount = this.Data.Users
-                .All()
-                .Count();
-
-            int pagesCount = this.Data.Pages
-                .All()
-                .Count();
+            int usersCount = this.Data.Users.All().Count();
+            int pagesCount = this.Data.Pages.All().Count();
 
             var model = new IndexAdminPageViewModel
             {

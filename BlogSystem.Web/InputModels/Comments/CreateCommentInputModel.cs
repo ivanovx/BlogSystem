@@ -2,8 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Data.Models;
+    using Infrastructure.Mapping;
 
-    public class CreateCommentInputModel
+    public class CreateCommentInputModel : IMapTo<Comment>
     {
         [Required]
         public int Id { get; set; }

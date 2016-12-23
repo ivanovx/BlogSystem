@@ -8,21 +8,27 @@
 
     public class SidebarController : BaseController
     {
+        private readonly IBlogSystemData data;
+
         public SidebarController(IBlogSystemData data)
         {
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         [ChildActionOnly]
         public PartialViewResult Index()
         {
-            var recentPosts = this.Data.Posts.All().OrderByDescending(p => p.CreatedOn).To<RecentPostViewModel>().Take(5);
+            var recentPosts = this.data
+                .Posts
+                .All()
+                .OrderByDescending(p => p.CreatedOn)
+                .To<RecentPostViewModel>()
+                .Take(5)
+                .ToList();
 
             var model = new SidebarViewModel
             {
-                RecentPosts = recentPosts.ToList()
+                RecentPosts = recentPosts
             };
 
             return this.PartialView(model);

@@ -10,9 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2>
-            @Html.DisplayFor(model => model.Title)
-        </h2>
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
     </div>
 </div>
 
@@ -20,22 +18,20 @@
 
 <div class="row">
     <div class="col-md-12">
-        <ul class="list-unstyled list-inline blog-info">
-                <li>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    @Html.DisplayFor(item => Model.CreatedOn)
-                </li>
-                <li>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    @Html.DisplayFor(item => Model.Author)
-                </li>
+        <ul>
+            <li>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                @Html.DisplayFor(item => Model.CreatedOn)
+            </li>
+            <li>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                @Html.DisplayFor(item => Model.Author)
+            </li>
         </ul>
         <hr/>
     </div>
     <div class="col-md-12">
-        <div class="blog-word-wrap">
-            @Html.Raw(Model.Content)
-        </div>
+        @Html.DisplayFor(item => Model.Content)
     </div>
 </div>
 
@@ -44,9 +40,6 @@
     {
         <hr/>
 
-        <a href="@Url.Action("Details", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-info">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>Details
-        </a>
         <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
             <span class="glyphicon glyphicon-edit"></span> Edit
         </a>

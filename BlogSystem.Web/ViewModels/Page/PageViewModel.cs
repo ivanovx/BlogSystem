@@ -14,7 +14,6 @@ namespace BlogSystem.Web.ViewModels.Page
 
         public string Title { get; set; }
 
-        [Required]
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Content { get; set; }
