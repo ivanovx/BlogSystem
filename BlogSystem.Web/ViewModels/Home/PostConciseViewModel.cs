@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure;
-
-namespace BlogSystem.Web.ViewModels.Home
+﻿namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
     using System.Web.Mvc;

@@ -6,24 +6,3 @@
 
 <h2>Settings</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Key)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value)
-        </th>
-    </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Key)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value)
-            </td>
-        </tr>
-    }
-</table>
