@@ -24,7 +24,7 @@
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Post, BlogPostViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.Email));
+                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
         }
     }
 }

@@ -22,88 +22,53 @@
                 Create New Post
             </a>
         </p>
-        <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
-            <tr>
-                <th class="col-md-2">
-                    Email
-                </th>
-                <th class="col-md-3">
-                    Title
-                </th>
-                <th class="col-md-1">
-                    IsDeleted
-                </th>
-                <th class="col-md-1">
-                    DeletedOn
-                </th>
-                <th class="col-md-2">
-                    CreatedOn
-                </th>
-                <th class="col-md-2">
-                    ModifiedOn
-                </th>
-                <th class="col-md-1">
-                    Actions
-                </th>
-            </tr>
-            @if (Model.Posts.Any())
-            {
-                foreach (var item in Model.Posts)
+        
+        @if (Model.Posts.Any())
+        {
+            <table class="table table-responsive table-hover table-striped">
+                <tr>
+                    <th class="col-md-2">Email</th>
+                    <th class="col-md-3">Title</th>
+                    <th class="col-md-1">IsDeleted</th>
+                    <th class="col-md-1">DeletedOn</th>
+                    <th class="col-md-2">CreatedOn</th>
+                    <th class="col-md-2">ModifiedOn</th>
+                    <th class="col-md-1">Actions</th>
+                </tr>
+
+                @foreach (var item in Model.Posts)
                 {
                     <tr>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Author)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsDeleted)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DeletedOn)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ModifiedOn)
-                        </td>
-
-
-
+                        <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IsDeleted)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DeletedOn)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ModifiedOn)</td>
                         <td>
                             <a href="@Url.Action("Details", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-info btn-sm center-block">
                                 <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                <span>Details</span>
+                                Details
                             </a>
                             <a href="@Url.Action("Edit", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-warning btn-sm center-block">
                                 <i class="glyphicon glyphicon-edit"></i>
-                                <span>Edit</span>
+                                Edit
                             </a>
                             <a href="@Url.Action("Delete", "BlogPosts", new {area = "Administration", id = item.Id})" class="btn btn-danger btn-sm center-block ">
                                 <i class="glyphicon glyphicon-trash"></i>
-                                <span>Delete</span>
+                                Delete
                             </a>
                         </td>
                     </tr>
                 }
-            }
-            else
-            {
-                <div class="col-md-12">
-                    <h2 class="blog-gray-info">No posts available.</h2>
-                </div>
-            }
-
-
-        </table>
+            </table>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2>No posts available.</h2>
+            </div>
+        }
     </div>
 </div>
 
@@ -143,6 +108,3 @@
     </div>
     <!--End Pagination-->
 }
-
-
-

@@ -17,10 +17,7 @@
                 </div>
             </div>
             <p>
-                @{
-                    var content = Html.TruncateHtmlContent(post.Content);
-                }
-                @Html.Raw(content)
+                @Html.Raw(post.Content)
             </p>
             <div class="bottom-article">
                 <ul class="meta-post">
