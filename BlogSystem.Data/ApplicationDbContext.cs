@@ -1,8 +1,8 @@
 namespace BlogSystem.Data
 {
     using System;
-    using System.Data.Entity;
     using System.Linq;
+    using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Contracts;
     using Models;

@@ -15,7 +15,7 @@
             this.data = data;
         }
 
-        public  ActionResult Details(int? id)
+        public ActionResult Post(int? id)
         {
             var post = this.data.Posts.Find(id);
 

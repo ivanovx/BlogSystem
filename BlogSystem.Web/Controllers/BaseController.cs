@@ -9,7 +9,7 @@
 
     public abstract class BaseController : Controller
     {
-        private string version;
+        private readonly string version;
 
         protected BaseController()
         {

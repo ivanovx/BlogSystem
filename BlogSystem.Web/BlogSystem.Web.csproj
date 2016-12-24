@@ -565,7 +565,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Shared\_LoginRegisterPartial.cshtml" />
