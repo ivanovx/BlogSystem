@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+            <h2>@ViewBag.Title</h2>
         </div>
     </div>
 </div>
@@ -18,8 +18,8 @@
     <div class="row">
         <p>
             <a href="@Url.Action("Create", "BlogPosts", new { area = "Administration" })" class="btn btn-success">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Create New Post</span>
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Create New Post
             </a>
         </p>
         <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
