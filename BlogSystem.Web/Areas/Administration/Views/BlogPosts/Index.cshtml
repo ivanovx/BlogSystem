@@ -1,21 +1,14 @@
 ﻿@model BlogSystem.Web.Areas.Administration.ViewModels.BlogPost.IndexPostsPageViewModel
 
 @{
-    ViewBag.Title = "Blog posts";
+    ViewBag.Title = "Posts";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h2>@ViewBag.Title</h2>
-        </div>
-    </div>
-</div>
-
-<hr/>
-
-<div class="container">
-    <div class="row">
+      
         <p>
             <a href="@Url.Action("Create", "BlogPosts", new { area = "Administration" })" class="btn btn-success">
                 <span class="fa fa-plus" aria-hidden="true"></span>

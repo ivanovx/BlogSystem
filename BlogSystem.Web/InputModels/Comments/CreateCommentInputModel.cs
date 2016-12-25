@@ -1,7 +1,7 @@
 ﻿namespace BlogSystem.Web.InputModels.Comments
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
     using Data.Models;
     using Infrastructure.Mapping;
 
@@ -17,6 +17,6 @@
         public string Content { get; set; }
 
         [Required]
-        public int BlogPostId { get; set; }
+        public int PostId { get; set; }
     }
 }

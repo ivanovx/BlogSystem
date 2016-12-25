@@ -16,9 +16,13 @@
                     </h3>
                 </div>
             </div>
-            <p>
-                @Html.Raw(post.Content)
-            </p>
+            
+            @{
+                var content = Html.TruncateHtmlContent(post.Content, 1000);
+            }
+
+            @*Html.Raw(content)*@
+
             <div class="bottom-article">
                 <ul class="meta-post">
                     <li>
@@ -36,7 +40,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="@Url.Action("Details", "Posts", new {id = post.Id})" class="pull-right">
+                <a href="@Url.Action("Post", "Posts", new { id = post.Id })" class="pull-right">
                     Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </div>

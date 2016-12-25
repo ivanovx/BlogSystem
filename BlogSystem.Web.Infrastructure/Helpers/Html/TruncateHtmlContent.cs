@@ -6,7 +6,7 @@
 
     public static class TruncateHtmlContentHelper
     {
-        public static string TruncateHtmlContent(this HtmlHelper helper, string text, int charCount = 1000)
+        public static string TruncateHtmlContent(this HtmlHelper helper, string text, int charCount)
         {
             bool inTag = false;
             int cntr = 0;

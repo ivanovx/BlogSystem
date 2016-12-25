@@ -27,8 +27,8 @@
             {
                 var comment = new Comment
                 {
-                    PostId = id,
                     Content = commentInputModel.Content,
+                    PostId = id,
                     User = this.currentUser.Get(),
                     UserId = this.currentUser.Get().Id
                 };
@@ -36,7 +36,7 @@
                 this.data.Comments.Add(comment);
                 this.data.SaveChanges();
 
-                return this.RedirectToAction("Details", "Posts", new
+                return this.RedirectToAction("Post", "Posts", new
                 {
                     id = id
                 });
@@ -96,7 +96,7 @@
                 this.data.Comments.Update(comment);
                 this.data.SaveChanges();
 
-                return this.RedirectToAction("Details", "Posts", new
+                return this.RedirectToAction("Post", "Posts", new
                 {
                     id = commentInputModel.BlogPostId
                 });

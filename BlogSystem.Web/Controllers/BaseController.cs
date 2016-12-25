@@ -9,13 +9,6 @@
 
     public abstract class BaseController : Controller
     {
-        private readonly string version;
-
-        protected BaseController()
-        {
-            this.version = Assembly.GetAssembly(typeof(Startup)).GetName().Version.ToString();
-        }
-
         protected IMapper Mapper
         {
             get
@@ -26,7 +19,7 @@
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
-            this.ViewBag.Version = this.version;
+            this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             return base.BeginExecute(requestContext, callback, state);
         }

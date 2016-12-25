@@ -1,32 +1,26 @@
 ﻿@model BlogSystem.Web.ViewModels.Page.PageViewModel
-    
+
 @{
     ViewBag.Title = Model.Title;
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h2>@Model.Title</h2>
-    </div>
-</div>
-
-<hr/>
-
-<div class="row">
-    <div class="col-md-12">
-        <ul>
-            <li>
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                @Html.DisplayFor(item => Model.CreatedOn)
-            </li>
-            <li>
-                <i class="fa fa-user" aria-hidden="true"></i>
-                @Html.DisplayFor(item => Model.Author)
-            </li>
-        </ul>
-        <hr />
+        <h2>@Html.DisplayFor(model => Model.Title)</h2>
+        <div class="bottom-article">
+            <ul class="meta-post">
+                <li>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.CreatedOn)
+                </li>
+                <li>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.Author)
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="col-md-12">
-        @Html.DisplayFor(item => Model.Content)
+        @Html.DisplayFor(model => Model.Content)
     </div>
 </div>

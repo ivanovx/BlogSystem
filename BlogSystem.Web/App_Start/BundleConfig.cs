@@ -16,11 +16,11 @@
             bundles
                 .Add(new StyleBundle("~/Content/css")
                 .Include(
-                    "~/Content/bootstrap.css", 
-                    "~/Content/site.css"
-                    //"~/Content/site.bootstrap.darkly.custom.css", 
-                   // "~/Content/site.blog.css"
-                    ));
+                    "~/Content/bootstrap.min.css",
+                    "~/Content/font-awesome.min.css",
+                    "~/Content/style.css",
+                    "~/Content/default.css"
+                ));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
@@ -35,7 +35,7 @@
 
             bundles
                 .Add(new ScriptBundle("~/bundles/bootstrap")
-                .Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js"));
+                .Include("~/Scripts/bootstrap.min.js"));
         }
     }
 }

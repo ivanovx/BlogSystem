@@ -6,126 +6,127 @@
 
 @{
     ViewBag.Title = Model.Title;
+    const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h2>@Html.DisplayFor(model => model.Title)</h2>
+        <h2>@Html.DisplayFor(model => Model.Title)</h2>
+        <div class="bottom-article">
+            <ul class="meta-post">
+                <li>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.CreatedOn)
+                </li>
+                <li>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.DisplayFor(item => Model.Author)
+                </li>
+                
+                @if (User.IsInRole(GlobalConstants.AdminRoleName))
+                {
+                    <li>
+                        <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })">
+                            <span class="glyphicon glyphicon-edit"></span> Edit
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Delete", "BlogPosts", new {area = "Administration", id = Model.Id})">
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
-
-<hr/>
 
 <div class="row">
     <div class="col-md-12">
-        <ul>
-            <li>
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                @Html.DisplayFor(item => Model.CreatedOn)
-            </li>
-            <li>
-                <i class="fa fa-user" aria-hidden="true"></i>
-                @Html.DisplayFor(item => Model.Author)
-            </li>
-        </ul>
-        <hr/>
+        @Html.DisplayFor(model => Model.Content)
     </div>
-    <div class="col-md-12">
-        @Html.DisplayFor(item => Model.Content)
-    </div>
-</div>
+    
+    <div class="col-md-12" id="comments">
+        <h3 class="text-center">Comments</h3>
+        <hr />
 
-<p>
-    @if (User.IsInRole(GlobalConstants.AdminRoleName))
-    {
-        <hr/>
-
-        <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-warning">
-            <span class="glyphicon glyphicon-edit"></span> Edit
-        </a>
-        <a href="@Url.Action("Delete", "BlogPosts", new { area = "Administration", id = Model.Id })" class="btn btn-danger">
-            <span class="glyphicon glyphicon-trash"></span> Delete
-        </a>
-    }
-</p>
-
-<hr/>
-
-<div class="col-md-12" id="comments">
-    <h3 class="text-center">Comments</h3>
-
-    <hr/>
-    @if (Model.Comments.Any())
-    {
-        foreach (var comment in Model.Comments)
+        @if (Model.Comments.Any())
         {
-            <div class="panel panel-default">
-                <div class="panel-body blog-word-wrap">
-                    <div class="media">
-                        <div class="media-heading">
-                            <ul class="list-unstyled list-inline">
-                                <li>
-                                    <span class="glyphicon glyphicon-user"></span> 
-                                    @comment.User
-                                </li>
-                                <li>
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    @comment.CreatedOn
-                                </li>
-                            </ul>
+            foreach (var comment in Model.Comments)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-heading">
+                                <div class="bottom-article">
+                                    <ul class="meta-post">
+                                        <li>
+                                            <span class="fa fa-calendar" aria-hidden="true"></span>
+                                            @Html.DisplayFor(item => comment.CreatedOn)
+                                        </li>
+                                        <li>
+                                            <span class="fa fa-user" aria-hidden="true"></span>
+                                            @Html.DisplayFor(item => comment.User)
+                                        </li>
 
-                            <hr/>
-                        </div>
-                        <div>
-                            @Html.Raw(comment.Content)
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (User.Identity.GetUserId() == comment.UserId)
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })">
+                                                        <span class="glyphicon glyphicon-edit"></span> Edit
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(item => comment.Content)
+                                </div>
+                            </div>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole(GlobalConstants.AdminRoleName))
+                                {
+                                    <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
+                                        <span class="glyphicon glyphicon-edit"></span> Edit as Admin
+                                    </a>
+
+                                    <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info">
+                                        <span class="glyphicon glyphicon-menu-hamburger"></span> Details
+                                    </a>
+
+                                    <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId})" class="btn btn-info">
+                                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                        <span>User Details</span>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-menu-hamburger"></span> Delete
+                                    </a>
+                                }
+                            }
                         </div>
                     </div>
-                    
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <hr/>
-
-                        if (User.Identity.GetUserId() == comment.UserId)
-                        {
-                            <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-default">
-                                <span class="glyphicon glyphicon-edit"></span> Edit
-                            </a>
-                        }
-
-                        if (User.IsInRole(GlobalConstants.AdminRoleName))
-                        {
-                            <a href="@Url.Action("Edit", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
-                                <span class="glyphicon glyphicon-edit"></span> Edit as Admin
-                            </a>
-
-                            <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span> Details
-                            </a>
-
-                            <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = comment.UserId})" class="btn btn-info">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                                <span>User Details</span>
-                            </a>
-
-                            <a href="@Url.Action("Delete", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span> Delete
-                            </a>
-                        }
-                    }
                 </div>
-            </div>
+            }
         }
-    }
-    else
-    {
-        <h4>No available comments</h4>
-    }
-</div>
-
-<div class="col-md-12">
-    @Html.Partial(string.Format(GlobalConstants.CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel
-    {
-        BlogPostId = Model.Id
-    })
-    <hr/>
+        else
+        {
+            <h4>No available comments</h4>
+        }
+        
+        <div class="col-md-12">
+            @Html.Partial(string.Format(GlobalConstants.CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel
+            {
+                PostId = Model.Id
+            })
+        </div>
+    </div>
 </div>

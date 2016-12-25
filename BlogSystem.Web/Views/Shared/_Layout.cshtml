@@ -8,11 +8,6 @@
         <title>@ViewBag.Title - Blog System</title>
 
         @Styles.Render("~/Content/css")
-        
-        <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
-
-        <link rel="stylesheet" href="~/Content/style.css" />
-        <link rel="stylesheet" href="~/Content/default.css" />
     </head>
     <body>
         <div id="wrapper">
@@ -46,9 +41,26 @@
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", false)
 
+        <script>
+            $(document).ready(function () {
+                $(".social-network li a, .options_box .color a").tooltip();
 
-        <!--<script src="~/js/jquery.easing.1.3.js"></script>-->
-        <!--<script src="~/js/animate.js"></script>-->
-        <script src="~/js/custom.js"></script>
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $(".scrollup").fadeIn();
+                    } else {
+                        $(".scrollup").fadeOut();
+                    }
+                });
+
+                $(".scrollup").click(function () {
+                    $("html, body").animate({
+                         scrollTop: 0
+                    }, 1000);
+
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>
