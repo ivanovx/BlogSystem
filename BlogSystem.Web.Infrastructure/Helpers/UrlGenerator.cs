@@ -2,7 +2,7 @@
 {
     using System.Text;
 
-    public class UrlGenerator: IUrlGenerator
+    public class UrlGenerator : IUrlGenerator
     {
         public string GenerateUrl(string uglyString)
         {

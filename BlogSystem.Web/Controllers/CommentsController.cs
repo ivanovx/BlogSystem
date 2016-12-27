@@ -1,4 +1,9 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using System.Linq;
+using BlogSystem.Web.Infrastructure;
+using BlogSystem.Web.Infrastructure.Mapping;
+using BlogSystem.Web.ViewModels.Comment;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Net;
     using System.Web.Mvc;
@@ -17,6 +22,20 @@
         {
             this.data = data;
             this.currentUser = currentUser;
+        }
+
+        [PassRouteValuesToViewData]
+        public PartialViewResult All(int id, int maxComments = 999, int startFrom = 0)
+        {
+            var comments = this.data.Comments
+                .All()
+                .Where(c => c.PostId == id && !c.IsDeleted)
+                .OrderByDescending(c => c.CreatedOn)
+                .Skip(startFrom)
+                .Take(maxComments)
+                .To<CommentViewModel>();
+
+            return this.PartialView(comments);
         }
 
         [HttpPost]

@@ -7,20 +7,19 @@
 
     public class HomeController : AdministrationController
     {
+        private readonly IBlogSystemData data;
         public HomeController(IBlogSystemData data)
         {
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         // GET: Administration/Home
         public ActionResult Index()
         {
-            int postsCount = this.Data.Posts.All().Count();
-            int commentsCount = this.Data.Comments.All().Count();
-            int usersCount = this.Data.Users.All().Count();
-            int pagesCount = this.Data.Pages.All().Count();
+            int postsCount = this.data.Posts.All().Count();
+            int commentsCount = this.data.Comments.All().Count();
+            int usersCount = this.data.Users.All().Count();
+            int pagesCount = this.data.Pages.All().Count();
 
             var model = new IndexAdminPageViewModel
             {

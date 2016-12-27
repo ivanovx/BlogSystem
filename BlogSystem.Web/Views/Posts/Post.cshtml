@@ -26,12 +26,12 @@
                 @if (User.IsInRole(GlobalConstants.AdminRoleName))
                 {
                     <li>
-                        <a href="@Url.Action("Edit", "BlogPosts", new { area = "Administration", id = Model.Id })">
+                        <a href="@Url.Action("Edit", "Posts", new { area = "Administration", id = Model.Id })">
                             <span class="glyphicon glyphicon-edit"></span> Edit
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Delete", "BlogPosts", new {area = "Administration", id = Model.Id})">
+                        <a href="@Url.Action("Delete", "Posts", new {area = "Administration", id = Model.Id})">
                             <span class="glyphicon glyphicon-trash"></span> Delete
                         </a>
                     </li>
@@ -41,6 +41,9 @@
     </div>
 </div>
 
+@Html.Partial(string.Format(CommentsPartialViewsFolder, "_Comments"), Model.Id)
+
+<!--
 <div class="row">
     <div class="col-md-12">
         @Html.DisplayFor(model => Model.Content)
@@ -71,7 +74,7 @@
 
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            if (User.Identity.GetUserId() == comment.UserId)
+                                            if (User.Identity.GetUserId() == comment.User)
                                             {
                                                 <li>
                                                     <a href="@Url.Action("Edit", "Comments", new { id = comment.Id })">
@@ -123,10 +126,12 @@
         }
         
         <div class="col-md-12">
-            @Html.Partial(string.Format(GlobalConstants.CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel
+            @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CreateCommentInputModel
             {
                 PostId = Model.Id
             })
         </div>
     </div>
 </div>
+    
+    -->

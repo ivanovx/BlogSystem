@@ -1,51 +1,59 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>@ViewBag.Title - Blog System</title>
+
     @Styles.Render("~/Content/css")
-    
-    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
 </head>
 <body>
-<div class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Administration - BlogSystem", "Index", "Home", new { area = "Administration" }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li> @Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                <li>
-                    <li>
-                        <a href="@Url.Action("Index", "Home", new { area = "Administration" })">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <span>Administration</span>
-                        </a>
-                    </li>
-                </li>
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div>
+    <div id="wrapper">
+        @Html.Partial("_Header")
+
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @Html.Partial("_Footer")
     </div>
-</div>
 
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - BlogSystem</p>
-    </footer>
-</div>
+    <a href="#" class="scrollup">
+        <span class="fa fa-angle-up active"></span>
+    </a>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", false)
+
+    <script>
+            $(document).ready(function () {
+                $(".social-network li a, .options_box .color a").tooltip();
+
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $(".scrollup").fadeIn();
+                    } else {
+                        $(".scrollup").fadeOut();
+                    }
+                });
+
+                $(".scrollup").click(function () {
+                    $("html, body").animate({
+                         scrollTop: 0
+                    }, 1000);
+
+                    return false;
+                });
+            });
+    </script>
 </body>
 </html>

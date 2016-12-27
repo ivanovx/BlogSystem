@@ -8,3 +8,7 @@ This project is made just to play with these frameworks :smiley: and I used for 
 ## Related Projects
 * Blog system by [Nikolay Kostov](https://github.com/NikolayIT/BlogSystem)
 * Blog System by [Vladislav Karamfilov](https://github.com/vladislav-karamfilov/Bloggable)
+
+## Only testing, but comming in production
+## Todo
+* use AJAX

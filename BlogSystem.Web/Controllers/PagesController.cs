@@ -15,11 +15,9 @@
             this.data = data;
         }
 
-        [HttpGet]
         public ActionResult Page(string permalink)
         {
-            var page = this.data
-                .Pages
+            var page = this.data.Pages
                 .All()
                 .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
                 .To<PageViewModel>()

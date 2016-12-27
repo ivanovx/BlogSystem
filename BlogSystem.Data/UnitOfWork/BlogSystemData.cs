@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Repositories;
 
@@ -20,14 +19,6 @@
             this.context = context;
             this.repositories = new Dictionary<Type, object>();
         }
-
-        /*public IUserStore<ApplicationUser> UserStore
-        {
-            get
-            {
-                return this.userStore ?? (this.userStore = new UserStore<ApplicationUser>(this.context));
-            }
-        }*/
 
         public IDbRepository<ApplicationUser> Users
         {

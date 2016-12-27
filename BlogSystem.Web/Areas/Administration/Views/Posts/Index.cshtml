@@ -1,0 +1,93 @@
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Post.IndexPostsPageViewModel
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title</h2>
+      
+            <a href="@Url.Action("Create", "Posts", new { area = "Administration" })" class="btn btn-success">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Create New Post
+            </a>
+        
+        @if (Model.Posts.Any())
+        {
+            <table class="table table-responsive">
+                <tr>
+                    <th class="col-md-2">Username</th>
+                    <th class="col-md-3">Title</th>
+                    <th class="col-md-2">CreatedOn</th>
+                    <th class="col-md-2">ModifiedOn</th>
+                    <th class="col-md-1">Actions</th>
+                </tr>
+
+                @foreach (var item in Model.Posts)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ModifiedOn)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Posts", new {area = "Administration", id = item.Id})" class="btn btn-warning btn-sm center-block">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Delete", "Posts", new {area = "Administration", id = item.Id})" class="btn btn-danger btn-sm center-block ">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2>No posts available.</h2>
+            </div>
+        }
+    </div>
+</div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li>
+                <a href="~/Administration/Posts/?page=@Model.PreviousPage">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="/Administration/Posts/?page=@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/Administration/Posts/?page=@i">@i</a>
+                    </li>
+                }
+            }
+
+            <li>
+                <a href="~/Administration/Posts/?page=@Model.NextPage">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}

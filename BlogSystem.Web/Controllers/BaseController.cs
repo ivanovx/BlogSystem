@@ -6,9 +6,12 @@
     using System.Web.Mvc;
     using AutoMapper;
     using Infrastructure.Mapping;
+    using Infrastructure.Services.Cache;
 
     public abstract class BaseController : Controller
     {
+        public ICacheService Cache { get; set; }
+
         protected IMapper Mapper
         {
             get

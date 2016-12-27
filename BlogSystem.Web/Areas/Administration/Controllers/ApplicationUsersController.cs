@@ -18,28 +18,29 @@
 
     public class ApplicationUsersController : AdministrationController
     {
+        private readonly IBlogSystemData data;
+
         public ApplicationUsersController(IBlogSystemData data)
         {
-            this.Data = data;
+            this.data = data;
         }
-
-        public IBlogSystemData Data { get; }
 
         // GET: Administration/ApplicationUsers
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.Data.Users.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.data.Users.All().Count() / (decimal) perPage);
 
-            var users = this.Data.Users
+            var users = this.data.Users
                 .All()
                 .OrderByDescending(u => u.CreatedOn)
                 .To<ApplicationUserViewModel>()
                 .Skip(perPage * (page - 1))
-                .Take(perPage);
+                .Take(perPage)
+                .ToList();
 
             var model = new IndexPageViewModel
             {
-                Users = users.ToList(),
+                Users = users,
                 CurrentPage = page,
                 PagesCount = pagesCount,
             };
@@ -55,7 +56,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = this.Data.Users.Find(id);
+            var user = this.data.Users.Find(id);
 
             if (user == null)
             {
@@ -74,7 +75,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ApplicationUser applicationUser = this.Data.Users.Find(id);
+            ApplicationUser applicationUser = this.data.Users.Find(id);
 
             if (applicationUser == null)
             {
@@ -83,7 +84,7 @@
 
             ApplicationUserEditModel model = new ApplicationUserEditModel
             {
-                Id = applicationUser.Id, 
+                Id = applicationUser.Id,
                 Email = applicationUser.Email, 
                 UserName = applicationUser.UserName, 
                 PasswordHash = applicationUser.PasswordHash, 
@@ -101,13 +102,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = this.Data.Users.Find(applicationUser.Id);
+                var user = this.data.Users.Find(applicationUser.Id);
 
-                var checkEmail = this.Data.Users
+                var checkEmail = this.data.Users
                     .All()
                     .Any(e => e.Email == applicationUser.Email);
 
-                var checkUsername = this.Data.Users
+                var checkUsername = this.data.Users
                     .All()
                     .Any(u => u.UserName == applicationUser.UserName);
 
@@ -135,8 +136,8 @@
                     user.SecurityStamp = Guid.NewGuid().ToString();
                 }
 
-                this.Data.Users.Update(user);
-                this.Data.SaveChanges();
+                this.data.Users.Update(user);
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }
@@ -177,7 +178,7 @@
                     return this.Content(string.Join("; ", userCreateResult.Errors));
                 }
 
-                this.Data.SaveChanges();
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }

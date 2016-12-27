@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Identity;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Net;
@@ -11,31 +9,33 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using ViewModels.Page;
     using Infrastructure.Mapping;
     using Infrastructure.Helpers;
+    using Infrastructure.Identity;
 
     public class PagesController : AdministrationController
     {
+        private readonly IBlogSystemData data;
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
+
         public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator, ICurrentUser currentUser)
         {
-            this.Data = data;
+            this.data = data;
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
         }
 
-        public IBlogSystemData Data { get; }
-
         // GET: Administration/Pages
         public ActionResult Index()
         {
-            var pages = this.Data.Pages
+            var pages = this.data.Pages
                 .All()
                 .OrderByDescending(p => p.CreatedOn)
-                .To<PageViewModel>();
+                .To<PageViewModel>()
+                .ToList();
 
             var model = new IndexPagesViewModel
             {
-                Pages = pages.ToList()
+                Pages = pages
             };
 
             return this.View(model);
@@ -59,11 +59,11 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                     Content = pageInputModel.Content,
                     Permalink = this.urlGenerator.GenerateUrl(pageInputModel.Title),
                     Author = this.currentUser.Get(),
-                    AuthorId = this.currentUser.Get().Id,
+                    AuthorId = this.currentUser.Get().Id
                 };
 
-                this.Data.Pages.Add(page);
-                this.Data.SaveChanges();
+                this.data.Pages.Add(page);
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }
@@ -79,7 +79,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var page = this.Data.Pages.Find(id);
+            var page = this.data.Pages.Find(id);
 
             if (page == null)
             {
@@ -104,7 +104,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var page = this.Data.Pages.Find(pageInputModel.Id);
+                var page = this.data.Pages.Find(pageInputModel.Id);
 
                 page.Id = pageInputModel.Id;
                 page.Title = pageInputModel.Title;
@@ -112,8 +112,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 page.AuthorId = pageInputModel.AuthorId;
                 page.CreatedOn = pageInputModel.CreatedOn;
 
-                this.Data.Pages.Update(page);
-                this.Data.SaveChanges();
+                this.data.Pages.Update(page);
+                this.data.SaveChanges();
 
                 return this.RedirectToAction("Index");
            }
@@ -129,7 +129,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var page = this.Data.Pages.Find(id);
+            var page = this.data.Pages.Find(id);
 
             if (page == null)
             {
@@ -144,10 +144,10 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var page = this.Data.Pages.Find(id);
+            var page = this.data.Pages.Find(id);
 
-            this.Data.Pages.Remove(page);
-            this.Data.SaveChanges();
+            this.data.Pages.Remove(page);
+            this.data.SaveChanges();
 
             return this.RedirectToAction("Index");
         }

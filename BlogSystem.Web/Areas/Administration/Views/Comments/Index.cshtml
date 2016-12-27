@@ -1,0 +1,119 @@
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Comment.IndexCommentsPageViewModel
+
+@{
+    ViewBag.Title = "All Comments";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
+            <tr>
+                <th class="col-md-3">
+                    Post Title
+                </th>
+                <th class="col-md-2">
+                    User
+                </th>
+                <th class="col-md-1">
+                    IsDeleted
+                </th>
+                <th class="col-md-1">
+                    DeletedOn
+                </th>
+                <th class="col-md-2">
+                    CreatedOn
+                </th>
+                <th class="col-md-2">
+                    ModifiedOn
+                </th>
+                <th class="col-md-1">
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Comments)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Post", "Posts", new { area = string.Empty, id = item.PostId })">
+                            @Html.DisplayFor(modelItem => item.Post.Title)
+                        </a>
+                    </td>
+                    <td>  
+                        @Html.DisplayFor(modelItem => item.User)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeletedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Comments", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <span>Edit</span>
+                        </a>
+                        <a href="@Url.Action("Delete", "Comments", new { area = "Administration", id = item.Id })" class="btn btn-danger btn-sm center-block ">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>   
+    </div>
+</div>
+
+@if (Model.PagesCount > 0)
+{
+    <!--Pagination-->
+    <div class="text-center">
+        <ul class="pagination">
+            <li>
+                <a href="~/Administration/Comments/?page=@Model.PreviousPage">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= Model.PagesCount; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="~/Administration/Comments?page=@i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="~/Administration/Comments/?page=@i">@i</a>
+                    </li>
+                }
+            }
+
+            <li>
+                <a href="~/Administration/PostComments?page=@Model.NextPage">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--End Pagination-->
+}

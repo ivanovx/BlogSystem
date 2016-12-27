@@ -97,12 +97,8 @@
                                         <div class="panel-body blog-word-wrap">
                                             <div class="col-md-12">
                                                 <h3>
-                                                    <a href="@Url.Action("Details", "Posts", new { area = string.Empty, id = comment.PostId })@($"#comment-{comment.Id}")">
+                                                    <a href="@Url.Action("Post", "Posts", new { area = string.Empty, id = comment.PostId })@($"#comment-{comment.Id}")">
                                                         @comment.Post.Title
-                                                    </a>
-                                                    <a href="@Url.Action("Details", "PostComments", new { area = "Administration", id = comment.Id })" class="btn btn-info btn-sm">
-                                                        <i class="glyphicon glyphicon-menu-hamburger"></i>
-                                                        <span>Details</span>
                                                     </a>
                                                 </h3>
                                                 <p>

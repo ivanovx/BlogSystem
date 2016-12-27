@@ -16,15 +16,17 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 6 * 10 * 60)]
         public PartialViewResult Menu()
-        {
-            var menu = this.data
-                .Pages
-                .All()
-                .To<MenuItemViewModel>()
-                .ToList();
+        { 
+            var model = this.Cache.Get("Menu", () =>
+                this.data.Pages
+                    .All()
+                    .To<MenuItemViewModel>()
+                    .ToList(),
+                600);
 
-            return this.PartialView(menu);
+            return this.PartialView(model);
         }
     }
 }

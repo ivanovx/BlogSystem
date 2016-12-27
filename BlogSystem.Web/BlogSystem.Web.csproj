@@ -76,8 +76,8 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>-->
-    <Reference Include="Autofac, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.0.0\lib\net451\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -227,6 +227,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\Identity\ApplicationUserManager.cs" />
     <Compile Include="App_Start\Identity\ApplicationSignInManager.cs" />
     <Compile Include="App_Start\Identity\EmailService.cs" />
@@ -239,10 +240,10 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
-    <Compile Include="Areas\Administration\Controllers\BlogPostsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
-    <Compile Include="Areas\Administration\Controllers\PostCommentsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserCreateModel.cs" />
     <Compile Include="Areas\Administration\InputModels\ApplicationUsers\ApplicationUserEditModel.cs" />
     <Compile Include="Areas\Administration\InputModels\BlogPost\BlogPostCreateInputModel.cs" />
@@ -252,12 +253,12 @@
     <Compile Include="Areas\Administration\InputModels\PostComment\EditPostCommentInputModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\IndexPageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\BlogPost\BlogPostViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Post\PostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Home\IndexAdminPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Page\IndexPagesViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Page\PageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\PostComments\IndexCommentsPageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\PostComments\PostCommentViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Comment\IndexCommentsPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Comment\PostCommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -301,7 +302,7 @@
     <Compile Include="ViewModels\Sidebar\RecentPostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Administration\ViewModels\BlogPost\IndexPostsPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Post\IndexPostsPageViewModel.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -318,20 +319,18 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Administration\Views\BlogPosts\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\BlogPosts\Delete.cshtml" />
-    <Content Include="Areas\Administration\Views\BlogPosts\Details.cshtml" />
-    <Content Include="Areas\Administration\Views\BlogPosts\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\BlogPosts\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Posts\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Posts\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\Posts\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Posts\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ApplicationUsers\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\PostComments\Delete.cshtml" />
-    <Content Include="Areas\Administration\Views\PostComments\Details.cshtml" />
-    <Content Include="Areas\Administration\Views\PostComments\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\PostComments\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -345,26 +344,10 @@
     <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Pages\Delete.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
-    <None Include="Properties\PublishProfiles\csyntax.net.pubxml" />
+    <Content Include="Areas\Administration\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Footer.cshtml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="images\logo.png" />
-    <Content Include="js\animate.js" />
-    <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\custom.js" />
-    <Content Include="js\flexslider\jquery.flexslider.js" />
-    <Content Include="js\flexslider\setting.js" />
-    <Content Include="js\google-code-prettify\prettify.css" />
-    <Content Include="js\google-code-prettify\prettify.js" />
-    <Content Include="js\jquery.easing.1.3.js" />
-    <Content Include="js\jquery.fancybox-media.js" />
-    <Content Include="js\jquery.fancybox.pack.js" />
-    <Content Include="js\jquery.flexslider.js" />
-    <Content Include="js\jquery.js" />
-    <Content Include="js\portfolio\jquery.quicksand.js" />
-    <Content Include="js\portfolio\setting.js" />
-    <Content Include="js\quicksand\jquery.quicksand.js" />
-    <Content Include="js\quicksand\setting.js" />
-    <Content Include="js\validate.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -596,6 +579,9 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Comments\All.cshtml" />
+    <Content Include="Views\Comments\_CommentDetail.cshtml" />
+    <Content Include="Views\Comments\_Comments.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

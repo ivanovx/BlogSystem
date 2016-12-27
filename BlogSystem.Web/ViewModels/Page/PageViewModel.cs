@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.ViewModels.Page
+﻿namespace BlogSystem.Web.ViewModels.Page
 {
     using System;
+    using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
