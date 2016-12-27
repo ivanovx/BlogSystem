@@ -1,12 +1,25 @@
 ﻿@model BlogSystem.Web.ViewModels.Comment.CommentViewModel
 
 <div class="media">
-    @*<a class="pull-left" href="#">
-            <img class="media-object" src="assets/img/sliders/elastislide/9.jpg" alt="">
-        </a>*@
     <div class="media-body">
-        <h4 class="media-heading">@Model.User <span class="pull-right">@Model.CreatedOn@* / <a href="#">Reply</a>*@</span></h4>
-        <p>@Model.Content</p>
+        <div class="bottom-article">
+            <ul class="meta-post">
+                <li>
+                    <span class="fa fa-calendar" aria-hidden="true"></span>
+                    @Html.DisplayFor(model => Model.CreatedOn)
+                </li>
+                <li>
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    @Html.DisplayFor(model => Model.User)
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.DisplayFor(model => Model.Content)
+            </div>
+        </div>
     </div>
 </div>
 
