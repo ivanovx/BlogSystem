@@ -59,7 +59,7 @@ else
             }
             else
             {
-                <a href="/?page=@i" class="inactive">@i</a>
+                @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i }, new { @class= "inactive" })
             }
         }
     </div>
