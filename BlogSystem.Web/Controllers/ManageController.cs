@@ -8,7 +8,6 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using Identity;
-    using Data.UnitOfWork;
     using ViewModels.Manage;
 
     [Authorize]
@@ -18,8 +17,7 @@
         private ApplicationUserManager userManager;
 
         public ManageController()
-        {
-            
+        { 
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

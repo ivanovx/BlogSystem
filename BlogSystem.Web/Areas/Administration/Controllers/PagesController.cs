@@ -59,7 +59,8 @@
                     Content = pageInputModel.Content,
                     Permalink = this.urlGenerator.GenerateUrl(pageInputModel.Title),
                     Author = this.currentUser.Get(),
-                    AuthorId = this.currentUser.Get().Id
+                    AuthorId = this.currentUser.Get().Id,
+                    VisibleInMenu = pageInputModel.VisibleInMenu
                 };
 
                 this.data.Pages.Add(page);
@@ -92,7 +93,8 @@
                 Title = page.Title,
                 Content = page.Content,
                 CreatedOn = page.CreatedOn,
-                AuthorId = page.AuthorId
+                AuthorId = page.AuthorId,
+                VisibleInMenu = page.VisibleInMenu
             };
 
             return this.View(model);
@@ -111,6 +113,7 @@
                 page.Content = pageInputModel.Content;
                 page.AuthorId = pageInputModel.AuthorId;
                 page.CreatedOn = pageInputModel.CreatedOn;
+                page.VisibleInMenu = pageInputModel.VisibleInMenu;
 
                 this.data.Pages.Update(page);
                 this.data.SaveChanges();

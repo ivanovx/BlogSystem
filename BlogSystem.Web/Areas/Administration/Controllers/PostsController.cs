@@ -68,7 +68,7 @@
                         Title = postInputModel.Title,
                         Content = postInputModel.Content,
                         Author = this.currentUser.Get(),
-                        AuthorId = this.currentUser.Get().Id,
+                        AuthorId = this.currentUser.Get().Id
                     };
 
                     this.data.Posts.Add(post);

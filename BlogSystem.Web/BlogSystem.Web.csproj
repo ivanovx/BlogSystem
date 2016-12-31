@@ -547,7 +547,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
-    <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Shared\_LoginRegisterPartial.cshtml" />
     <Content Include="Views\Pages\Page.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
@@ -566,7 +565,6 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Comments\All.cshtml" />
-    <Content Include="Views\Comments\_CommentDetail.cshtml" />
     <Content Include="Views\Comments\_Comments.cshtml" />
   </ItemGroup>
   <ItemGroup />

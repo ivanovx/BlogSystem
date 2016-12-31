@@ -27,11 +27,11 @@
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName))
-                .ForMember(model => model.Comments, config => config.MapFrom(post => post.Comments));
+            config.CreateMap<Post, PostViewModel>()
+                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
+                .ForMember(m => m.Comments, c => c.MapFrom(post => post.Comments));
         }
     }
 }

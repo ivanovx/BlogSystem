@@ -6,33 +6,30 @@
 
     public class HttpCacheService : ICacheService
     {
-        private static readonly object LockObject = new object();
+        private readonly object lockObject = new object();
 
-        public T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds)
+        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds)
         {
-            if (HttpRuntime.Cache[itemName] == null)
+            if (HttpRuntime.Cache[name] == null)
             {
-                lock (LockObject)
+                lock (lockObject)
                 {
-                    if (HttpRuntime.Cache[itemName] == null)
+                    if (HttpRuntime.Cache[name] == null)
                     {
                         var data = getDataFunc();
-                        HttpRuntime.Cache.Insert(
-                            itemName,
-                            data,
-                            null,
-                            DateTime.UtcNow.AddSeconds(durationInSeconds),
-                            Cache.NoSlidingExpiration);
+                        var time = DateTime.Now.AddSeconds(durationInSeconds);
+
+                        HttpRuntime.Cache.Insert(name, data, null, time, Cache.NoSlidingExpiration);
                     }
                 }
             }
 
-            return (T)HttpRuntime.Cache[itemName];
+            return (T) HttpRuntime.Cache[name];
         }
 
-        public void Remove(string itemName)
+        public void Remove(string name)
         {
-            HttpRuntime.Cache.Remove(itemName);
+            HttpRuntime.Cache.Remove(name);
         }
     }
 }

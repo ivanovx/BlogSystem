@@ -19,12 +19,13 @@
         [OutputCache(Duration = 6 * 10 * 60)]
         public PartialViewResult Menu()
         { 
-            var model = this.Cache.Get("Menu", () =>
+            var model = this.Cache.Get("Menu", () => 
                 this.data.Pages
-                    .All()
-                    .To<MenuItemViewModel>()
-                    .ToList(),
-                600);
+                .All()
+                .Where(p => p.VisibleInMenu)
+                .To<MenuItemViewModel>()
+                .ToList(), 
+            600);
 
             return this.PartialView(model);
         }

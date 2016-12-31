@@ -1,10 +1,8 @@
 ﻿namespace BlogSystem.Web.Controllers
-{
-    using System.Linq;
+{ 
     using System.Web.Mvc;
     using Data.UnitOfWork;
     using ViewModels.Blog;
-    using Infrastructure.Mapping;
 
     public class PostsController : BaseController
     {
@@ -15,20 +13,16 @@
             this.data = data;
         }
 
-        public ActionResult Post(int? id)
+        public ActionResult Post(int id)
         {
             var post = this.data.Posts.Find(id);
+            var model = this.Mapper.Map<PostViewModel>(post);
 
-            if (post == null)
-            {
-                return this.HttpNotFound("Blog post not foud!");
-            }
-
-            var model = this.data.Posts
+            /*var model = this.data.Posts
                 .All()
                 .Where(p => p.Id == id)
                 .To<PostViewModel>()
-                .FirstOrDefault();
+                .FirstOrDefault();*/
 
             return this.View(model);
         }

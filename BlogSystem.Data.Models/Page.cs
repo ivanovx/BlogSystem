@@ -1,8 +1,8 @@
 ﻿namespace BlogSystem.Data.Models
 {
-    using BlogSystem.Data.Contracts;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Contracts;
 
     public class Page : AuditInfo
     {
@@ -16,6 +16,8 @@
         public string Content { get; set; }
 
         public string Permalink { get; set; }
+
+        public bool VisibleInMenu { get; set; }
 
         public string AuthorId { get; set; }
 

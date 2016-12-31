@@ -8,14 +8,13 @@
     using Infrastructure.Mapping;
 
     public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
-    {
+    { 
         public int Id { get; set; }
 
         [AllowHtml]
         [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
         public string Content { get; set; }
-
-        public string UserId { get; set; }
 
         public string User { get; set; }
 

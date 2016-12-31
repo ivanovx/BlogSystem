@@ -1,8 +1,8 @@
 namespace BlogSystem.Data.Migrations
 {
     using System;
-    using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Data.Entity.Migrations;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Common;

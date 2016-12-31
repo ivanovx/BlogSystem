@@ -1,12 +1,11 @@
-﻿using BlogSystem.Web.ViewModels.Blog;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using Data.UnitOfWork;
     using Infrastructure.Mapping;
     using ViewModels.Sidebar;
+    using ViewModels.Blog;
 
     public class SidebarController : BaseController
     {
@@ -21,33 +20,19 @@ namespace BlogSystem.Web.Controllers
         [OutputCache(Duration = 10 * 60)]
         public PartialViewResult Index()
         {
-            /*var recentPosts = this.data
-                .Posts
-                .All()
-                .OrderByDescending(p => p.CreatedOn)
-                .To<PostViewModel>()
-                .Take(5)
-                .ToList();
-
             var model = new SidebarViewModel
             {
-                RecentPosts = recentPosts
-            };*/
-
-            //return this.PartialView(model);
-
-            var model = new SidebarViewModel
-            {
-                RecentPosts = this.Cache.Get(
-                    "RecentBlogPosts",
+                RecentPosts = this.Cache.Get("RecentBlogPosts",
                     () =>
                         this.data.Posts
                             .All()
+                            .Where(p => !p.IsDeleted)
                             .OrderByDescending(p => p.CreatedOn)
                             .To<PostViewModel>()
                             .Take(5)
                             .ToList(),
-                    600)
+                    600),
+                Pages = this.data.Pages.All().ToList()
             };
 
             return this.PartialView(model);

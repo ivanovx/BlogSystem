@@ -18,3 +18,17 @@
         }
     </ul>
 </div>
+
+<div class="widget">
+    <h5 class="widgetheading">Pages</h5>
+    <ul class="recent">
+        @foreach (var page in Model.Pages)
+        {
+            <li>
+                <h6>
+                    @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
+                </h6>
+            </li>
+        }
+    </ul>
+</div>

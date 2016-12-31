@@ -19,5 +19,8 @@
         public string AuthorId { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        [Required]
+        public bool VisibleInMenu { get; set; }
     }
 }

@@ -15,5 +15,8 @@
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Content { get; set; }
+
+        [Required]
+        public bool VisibleInMenu { get; set; }
     }
 }
