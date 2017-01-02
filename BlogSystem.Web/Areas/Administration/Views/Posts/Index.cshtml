@@ -18,17 +18,17 @@
         {
             <table class="table table-responsive">
                 <tr>
-                    <th>Username</th>
+                    <th>User</th>
                     <th>Title</th>
-                    <th>CreatedOn</th>
-                    <th>ModifiedOn</th>
+                    <th>Created On</th>
+                    <th>Modified On</th>
                     <th>Actions</th>
                 </tr>
 
                 @foreach (var item in Model.Posts)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.AuthorId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AuthorUserName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
                         <td>@Html.DisplayFor(modelItem => item.ModifiedOn)</td>

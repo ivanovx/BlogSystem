@@ -12,12 +12,10 @@
     public class HomeController : BaseController
     {
         private readonly IBlogSystemData data;
-        private IMapper mapper;
 
-        public HomeController(IBlogSystemData data, IMapper mapper)
+        public HomeController(IBlogSystemData data)
         {
             this.data = data;
-            this.mapper = mapper;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)

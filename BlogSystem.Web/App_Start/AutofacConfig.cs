@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using BlogSystem.Services.Mapping;
 
 namespace BlogSystem.Web
 {
@@ -91,10 +92,9 @@ namespace BlogSystem.Web
                 }
             })).AsSelf().SingleInstance();
 
-
             builder.Register(c => c.Resolve<MapperConfiguration>().CreateMapper(c.Resolve)).As<IMapper>().InstancePerLifetimeScope();
 
-          
+            builder.RegisterType<AutoMapperMappingService>().As<IMappingService>().InstancePerRequest();
         }
     }
 }

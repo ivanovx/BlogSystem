@@ -8,7 +8,7 @@
 
     public static class AutoMapperConfig
     {
-        public static MapperConfiguration Configuration { get; private set; }
+        public static IConfigurationProvider Configuration { get; private set; }
 
         public static void Execute(Assembly assembly)
         {

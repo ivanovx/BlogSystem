@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Services.Mapping;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Net;
@@ -30,9 +32,9 @@
             this.currentUser = currentUser;
         }*/
 
-        public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) : base(dataRepository)
+        public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) 
+            : base(dataRepository)
         {
-            this.dataRepository = dataRepository;
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
         }

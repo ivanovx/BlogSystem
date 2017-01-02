@@ -2,21 +2,15 @@
 {
     using System;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
-    using Common;
-    using Data.Models;
-    using Data.UnitOfWork;
     using ViewModels.Post;
-    using InputModels.BlogPost;
-    using Infrastructure.Mapping;
     using Infrastructure.Identity;
-
     using Data.Repositories;
+    using Common;
     using Base;
 
-    using EntityModel = BlogSystem.Data.Models.Post;
-    using ViewModel = BlogSystem.Web.Areas.Administration.ViewModels.Post.PostViewModel;
+    using EntityModel = Data.Models.Post;
+    using ViewModel = ViewModels.Post.PostViewModel;
 
     public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
@@ -59,6 +53,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
+            model.AuthorUserName = this.currentUser.Get().UserName;
             model.AuthorId = this.currentUser.Get().Id;
 
             var entity = this.CreateEntity(model);

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using BlogSystem.Data.Contracts;
 
 namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
 {
@@ -14,6 +13,7 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
     {
         public int Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         [Required]
@@ -24,12 +24,12 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
 
         public string AuthorId { get; set; }
 
-        //public string Author { get; set; }
+        public string AuthorUserName { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            /*config.CreateMap<Post, PostViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName));*/
+            config.CreateMap<Post, PostViewModel>()
+                .ForMember(m => m.AuthorUserName, c => c.MapFrom(p => p.Author.UserName));
         }
     }
 }
