@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<BlogSystem.Web.ViewModels.Nav.MenuItemViewModel>
 
-<ul>
-    @foreach (var page in Model)
-    {
-        <li>
-            @Html.ActionLink(page.Title, page.Permalink, "Pages")
-        </li>
-    }
-</ul>
+@foreach (var page in Model)
+{
+    <li>
+        @Html.ActionLink(page.Title, page.Permalink, "Pages")
+    </li>
+}

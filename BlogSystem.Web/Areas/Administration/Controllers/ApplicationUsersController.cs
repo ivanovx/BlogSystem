@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Areas.Administration.Controllers.Base;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -17,6 +15,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using Common;
     using InputModels.ApplicationUsers;
     using ViewModels.ApplicationUsers;
+    using Base;
 
     public class ApplicationUsersController : AdministrationController
     {

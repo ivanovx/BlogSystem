@@ -1,7 +1,4 @@
-﻿using System.Data.Entity;
-using System.Threading.Tasks;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -10,14 +7,17 @@ namespace BlogSystem.Web.Controllers
     using Data.UnitOfWork;
     using Infrastructure.Mapping;
     using ViewModels.Home;
+    using AutoMapper;
 
     public class HomeController : BaseController
     {
         private readonly IBlogSystemData data;
+        private IMapper mapper;
 
-        public HomeController(IBlogSystemData data)
+        public HomeController(IBlogSystemData data, IMapper mapper)
         {
             this.data = data;
+            this.mapper = mapper;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
