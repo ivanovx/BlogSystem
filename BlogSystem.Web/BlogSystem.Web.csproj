@@ -105,10 +105,6 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.2-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -217,14 +213,13 @@
     <Compile Include="App_Start\Identity\EmailService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Identity\SmsService.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
-    <Compile Include="Areas\Administration\Controllers\GenericAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\GenericAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\PostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
@@ -289,14 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\ViewModels\Post\IndexPostsPageViewModel.cs" />
-    <Content Include="Content\bootstrap-flex.css" />
-    <Content Include="Content\bootstrap-flex.min.css" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -326,27 +313,10 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="Areas\Administration\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Footer.cshtml" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap-flex.min.css.map" />
-    <Content Include="Content\bootstrap-flex.css.map" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
-    <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -571,9 +541,7 @@
     <Content Include="Views\Comments\All.cshtml" />
     <Content Include="Views\Comments\_Comments.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Controllers\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -595,6 +563,10 @@
     <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
       <Project>{17485a92-aa59-4324-b830-37d935148532}</Project>
       <Name>BlogSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Services\BlogSystem.Services.csproj">
+      <Project>{4A79FA21-814D-4105-A85F-AC41FD5CBC53}</Project>
+      <Name>BlogSystem.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Web.Infrastructure\BlogSystem.Web.Infrastructure.csproj">
       <Project>{a887605f-bf8c-4718-a3e1-4c495c629ff9}</Project>
