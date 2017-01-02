@@ -1,7 +1,4 @@
-﻿using BlogSystem.Data.Repositories;
-using BlogSystem.Web.Areas.Administration.Controllers.Base;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -14,6 +11,9 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using InputModels.BlogPost;
     using Infrastructure.Mapping;
     using Infrastructure.Identity;
+
+    using Data.Repositories;
+    using Base;
 
     using EntityModel = BlogSystem.Data.Models.Post;
     using ViewModel = BlogSystem.Web.Areas.Administration.ViewModels.Post.PostViewModel;

@@ -1,11 +1,10 @@
-﻿using BlogSystem.Web.Areas.Administration.Controllers.Base;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using Data.UnitOfWork;
     using ViewModels.Home;
+    using Base;
 
     public class HomeController : AdministrationController
     {
