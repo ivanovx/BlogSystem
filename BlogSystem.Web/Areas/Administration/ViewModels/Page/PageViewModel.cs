@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
+﻿using System.Web.Mvc;
+using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
+
+namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -6,28 +9,29 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
+    public class PageViewModel : AdministrationViewModel, IMapFrom<Page>, IMapTo<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
         [Required]
         public string Title { get; set; }
 
+        [Required]
+        [AllowHtml]
         [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
         public string Content { get; set; }
 
         public string Permalink { get; set; }
 
-        public string Author { get; set; }
+        public string AuthorId { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public bool VisibleInMenu { get; set; }
 
-        public DateTime? ModifiedOn { get; set; }
-
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Page, PageViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
+            /*config.CreateMap<Page, PageViewModel>()
+                .ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));*/
         }
     }
 }

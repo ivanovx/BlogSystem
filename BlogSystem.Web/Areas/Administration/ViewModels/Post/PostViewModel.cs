@@ -1,30 +1,35 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using BlogSystem.Data.Contracts;
+
+namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
 {
     using System;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
+    using Administration;
 
-    public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
+    public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
-        public string Author { get; set; }
+        [Required]
+        [AllowHtml]
+        [DataType(DataType.Html)]
+        [UIHint("tinymce_full")]
+        public string Content { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public string AuthorId { get; set; }
 
-        public DateTime? DeletedOn { get; set; }
+        //public string Author { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName));
+            /*config.CreateMap<Post, PostViewModel>()
+                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName));*/
         }
     }
 }

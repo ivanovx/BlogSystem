@@ -224,6 +224,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ApplicationUsersController.cs" />
+    <Compile Include="Areas\Administration\Controllers\GenericAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\PostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Areas\Administration\InputModels\Page\CreatePageInputModel.cs" />
     <Compile Include="Areas\Administration\InputModels\Page\EditPageInputModel.cs" />
     <Compile Include="Areas\Administration\InputModels\PostComment\EditPostCommentInputModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Administration\AdministrationViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\ApplicationUserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\ApplicationUsers\IndexPageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Post\PostViewModel.cs" />
@@ -298,7 +300,6 @@
     <Content Include="Content\default.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\jcarousel.css" />
     <Content Include="Content\overwrite.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -570,7 +571,9 @@
     <Content Include="Views\Comments\All.cshtml" />
     <Content Include="Views\Comments\_Comments.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Controllers\Base\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

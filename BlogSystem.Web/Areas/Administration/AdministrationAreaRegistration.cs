@@ -20,6 +20,7 @@
                 defaults: new
                 {
                     action = "Index",
+                    controller = "Home",
                     id = UrlParameter.Optional
                 },
                 namespaces: new[]

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web
+﻿using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -67,6 +69,10 @@
             builder
                 .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IService)))
                 .AsImplementedInterfaces();
+
+            builder.RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
+                .InstancePerRequest();
 
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

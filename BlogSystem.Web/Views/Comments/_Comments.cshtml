@@ -6,17 +6,14 @@
     const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
-@(Ajax.ActionLink("View Comments", "All", new { id = Model, controller = "Comments" },
-                        new AjaxOptions
-                        {
-                            HttpMethod = "GET",
-                            OnSuccess = "hideViewCommentsButton",
-                            InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "comments"
-                        }, new { @class = "btn btn-success" }))
-
-
-<section id="comments"></section>
+<section id="comments">
+    @{
+        Html.RenderAction("All", "Comments", new RouteValueDictionary
+        {
+            { "id", Model }
+        });
+    }
+</section>
 
 <hr />
 

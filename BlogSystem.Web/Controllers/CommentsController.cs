@@ -22,6 +22,7 @@
             this.currentUser = currentUser;
         }
 
+        [ChildActionOnly]
         public PartialViewResult All(int id)
         {
             var comments = this.data.Comments

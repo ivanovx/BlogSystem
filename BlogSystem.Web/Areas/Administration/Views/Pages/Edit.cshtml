@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Web.Areas.Administration.InputModels.Page.EditPageInputModel
+﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Page.PageViewModel
 
 @{
     ViewBag.Title = "Edit Page";
@@ -16,6 +16,7 @@
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.AuthorId)
             @Html.HiddenFor(model => model.CreatedOn)
+            @Html.HiddenFor(model => model.Permalink)
     
             <div class="form-group">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })

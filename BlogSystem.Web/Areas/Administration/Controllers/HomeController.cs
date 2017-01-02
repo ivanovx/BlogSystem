@@ -8,6 +8,7 @@
     public class HomeController : AdministrationController
     {
         private readonly IBlogSystemData data;
+
         public HomeController(IBlogSystemData data)
         {
             this.data = data;

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -12,30 +14,32 @@
     using Infrastructure.Mapping;
     using Infrastructure.Identity;
 
-    public class PostsController : AdministrationController
+    using EntityModel = BlogSystem.Data.Models.Post;
+    using ViewModel = BlogSystem.Web.Areas.Administration.ViewModels.Post.PostViewModel;
+
+    public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<EntityModel> dataRepository;
         private readonly ICurrentUser currentUser;
 
-        public PostsController(IBlogSystemData data, ICurrentUser currentUser)
+        public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) : base(dataRepository)
+        {
+            this.dataRepository = dataRepository;
+            this.currentUser = currentUser;
+        }
+
+        /*public PostsController(IBlogSystemData data, ICurrentUser currentUser)
         {
             this.data = data;
             this.currentUser = currentUser;
-        }
+        }*/
 
         // GET: Administration/Posts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.data.Posts.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var posts = this.data.Posts
-                .All()
-                .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.CreatedOn)
-                .To<PostViewModel>()
-                .Skip(perPage * (page - 1))
-                .Take(perPage)
-                .ToList();
+            var posts = this.GetAll().Skip(perPage * (page - 1)).Take(perPage).ToList();
 
             var model = new IndexPostsPageViewModel
             {
@@ -57,99 +61,59 @@
         // POST: Administration/Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BlogPostCreateInputModel postInputModel)
+        public ActionResult Create(ViewModel model)
         {
-            if (postInputModel != null)
+            model.AuthorId = this.currentUser.Get().Id;
+
+            var entity = this.CreateEntity(model);
+
+            if (entity != null)
             {
-                if (this.ModelState.IsValid)
-                {
-                    var post = new Post
-                    {
-                        Title = postInputModel.Title,
-                        Content = postInputModel.Content,
-                        Author = this.currentUser.Get(),
-                        AuthorId = this.currentUser.Get().Id
-                    };
-
-                    this.data.Posts.Add(post);
-                    this.data.SaveChanges();
-
-                    return this.RedirectToAction("Index");
-                }
+                return this.RedirectToAction("Index");
             }
 
-            return this.View(postInputModel);
+            return this.View(model);
         }
 
         // GET: Administration/Posts/Edit/5
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var entity = this.dataRepository.Find(id);
+
+            if (entity != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var model = this.Mapper.Map<ViewModel>(entity);
+                model.AuthorId = this.currentUser.Get().Id;
+
+                return this.View(model);
             }
 
-            var post = this.data.Posts.Find(id);
-
-            if (post == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            var model = new BlogPostEditInputModel
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                CreatedOn = post.CreatedOn,
-                AuthorId = post.AuthorId
-            };
-
-            return this.View(model);
+            return this.RedirectToAction("Index");
         }
 
         // POST: Administration/Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BlogPostEditInputModel postInputModel)
+        public ActionResult Edit(ViewModel model)
         {
-            if (this.ModelState.IsValid)
+            var entity = this.FindAndUpdateEntity(model.Id, model);
+
+            if (entity != null)
             {
-                var post = this.data.Posts.Find(postInputModel.Id);
-
-                post.Id = postInputModel.Id;
-                post.Title = postInputModel.Title;
-                post.Content = postInputModel.Content;
-                post.AuthorId = postInputModel.AuthorId;
-                post.CreatedOn = postInputModel.CreatedOn;
-
-                this.data.Posts.Update(post);
-                this.data.SaveChanges();
-
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(postInputModel);
+            return this.View(model);
         }
 
         // GET: Administration/Posts/Delete/5
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var model = this.dataRepository.Find(id);
 
-            var post = this.data.Posts.Find(id);
-
-            if (post == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            return this.View(post);
+            return this.View(model);
         }
 
         // POST: Administration/Posts/Delete/5
@@ -158,10 +122,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var post = this.data.Posts.Find(id);
-
-            this.data.Posts.Remove(post);
-            this.data.SaveChanges();
+            this.DestroyEntity(id);
 
             return this.RedirectToAction("Index");
         }
