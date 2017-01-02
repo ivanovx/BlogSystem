@@ -28,7 +28,7 @@
                 @foreach (var item in Model.Posts)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AuthorId)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
                         <td>@Html.DisplayFor(modelItem => item.ModifiedOn)</td>

@@ -1,10 +1,10 @@
-﻿namespace BlogSystem.Web.Infrastructure.Services.Cache
+﻿namespace BlogSystem.Services.Cache
 {
     using System;
     using System.Web;
     using System.Web.Caching;
 
-    public class HttpCacheService : ICacheService
+    public class CacheService : ICacheService
     {
         private readonly object lockObject = new object();
 

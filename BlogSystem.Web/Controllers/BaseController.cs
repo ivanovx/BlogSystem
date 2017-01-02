@@ -6,7 +6,7 @@
     using System.Web.Mvc;
     using AutoMapper;
     using Infrastructure.Mapping;
-    using Infrastructure.Services.Cache;
+    using Services.Cache;
 
     public abstract class BaseController : Controller
     {

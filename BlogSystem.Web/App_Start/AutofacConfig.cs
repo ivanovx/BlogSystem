@@ -1,6 +1,4 @@
-﻿using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -12,7 +10,8 @@ namespace BlogSystem.Web
     using Controllers;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
-    using Infrastructure.Services;
+    using Data.Repositories;
+    using Services;
 
     public static class AutofacConfig
     {

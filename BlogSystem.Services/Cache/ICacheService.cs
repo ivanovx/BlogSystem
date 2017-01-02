@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BlogSystem.Web.Infrastructure.Services.Cache
+﻿namespace BlogSystem.Services.Cache
 {
+    using System;
+
     public interface ICacheService : IService
     {
         T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds);
