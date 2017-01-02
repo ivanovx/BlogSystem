@@ -5,7 +5,7 @@ using BlogSystem.Data.Repositories;
 using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
 using BlogSystem.Web.Infrastructure.Mapping;
 
-namespace BlogSystem.Web.Areas.Administration.Controllers
+namespace BlogSystem.Web.Areas.Administration.Controllers.Base
 {
     public class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
         where TEntity : class, IAuditInfo
