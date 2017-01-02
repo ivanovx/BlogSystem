@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BlogSystem.Data.Contracts;
-using BlogSystem.Data.Repositories;
-using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
-using BlogSystem.Web.Infrastructure.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers.Base
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers.Base
 {
+    using System.Linq;
+    using Data.Contracts;
+    using Data.Repositories;
+    using ViewModels.Administration;
+    using Infrastructure.Mapping;
+
     public abstract class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
         where TEntity : class, IAuditInfo
         where TViewModel: AdministrationViewModel

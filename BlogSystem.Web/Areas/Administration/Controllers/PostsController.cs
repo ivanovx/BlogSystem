@@ -23,17 +23,12 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         private readonly IDbRepository<EntityModel> dataRepository;
         private readonly ICurrentUser currentUser;
 
-        public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) : base(dataRepository)
+        public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) 
+            : base(dataRepository)
         {
             this.dataRepository = dataRepository;
             this.currentUser = currentUser;
         }
-
-        /*public PostsController(IBlogSystemData data, ICurrentUser currentUser)
-        {
-            this.data = data;
-            this.currentUser = currentUser;
-        }*/
 
         // GET: Administration/Posts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
@@ -85,6 +80,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             if (entity != null)
             {
                 var model = this.Mapper.Map<ViewModel>(entity);
+
                 model.AuthorId = this.currentUser.Get().Id;
 
                 return this.View(model);
