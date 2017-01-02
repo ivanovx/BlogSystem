@@ -1,36 +1,21 @@
-﻿using BlogSystem.Services.Mapping;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.UnitOfWork;
-    using InputModels.Page;
     using ViewModels.Page;
-    using Infrastructure.Mapping;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
     using Data.Repositories;
     using Base;
 
-    using EntityModel = BlogSystem.Data.Models.Page;
-    using ViewModel = BlogSystem.Web.Areas.Administration.ViewModels.Page.PageViewModel;
+    using EntityModel = Data.Models.Page;
+    using ViewModel = ViewModels.Page.PageViewModel;
 
     public class PagesController : GenericAdministrationController<EntityModel, ViewModel>
     {
         private readonly IDbRepository<EntityModel> dataRepository;
-       // private readonly IBlogSystemData data;
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
-
-        /*public PagesController(IBlogSystemData data, IUrlGenerator urlGenerator, ICurrentUser currentUser)
-        {
-            this.data = data;
-            this.urlGenerator = urlGenerator;
-            this.currentUser = currentUser;
-        }*/
 
         public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) 
             : base(dataRepository)
@@ -62,26 +47,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
-            /*if (ModelState.IsValid)
-            {
-                var page = new Page
-                {
-                    Title = pageInputModel.Title,
-                    Content = pageInputModel.Content,
-                    Permalink = this.urlGenerator.GenerateUrl(pageInputModel.Title),
-                    Author = this.currentUser.Get(),
-                    AuthorId = this.currentUser.Get().Id,
-                    VisibleInMenu = pageInputModel.VisibleInMenu
-                };
-
-                this.data.Pages.Add(page);
-                this.data.SaveChanges();
-
-                return this.RedirectToAction("Index");
-            }
-
-            return this.View(pageInputModel);*/
-
             model.AuthorId = this.currentUser.Get().Id;
             model.Permalink = this.urlGenerator.GenerateUrl(model.Title);
 
@@ -103,6 +68,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             if (entity != null)
             {
                 var model = this.Mapper.Map<ViewModel>(entity);
+
                 model.AuthorId = this.currentUser.Get().Id;
                 model.Permalink = this.urlGenerator.GenerateUrl(entity.Title);
 

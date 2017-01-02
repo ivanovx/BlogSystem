@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
 {
-    using System;
+    using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;

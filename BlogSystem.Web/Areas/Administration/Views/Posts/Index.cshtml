@@ -4,16 +4,17 @@
     ViewBag.Title = "Posts";
 }
 
-<div class="container">
+
 <div class="row">
     <div class="col-md-12">
-        <h2>@ViewBag.Title</h2>
-      
-        <a href="@Url.Action("Create", "Posts", new { area = "Administration" })" class="btn btn-success">
-            <span class="fa fa-plus" aria-hidden="true"></span>
-            Create New Post
-        </a>
-        
+        <div class="page-header">
+            <h2>@ViewBag.Title</h2>
+            <a href="@Url.Action("Create", "Posts", new {area = "Administration"})" class="btn btn-success">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Create New Post
+            </a>
+        </div>
+
         @if (Model.Posts.Any())
         {
             <table class="table table-responsive">
@@ -25,22 +26,24 @@
                     <th>Actions</th>
                 </tr>
 
-                @foreach (var item in Model.Posts)
+                @foreach (var post in Model.Posts)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.AuthorUserName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ModifiedOn)</td>
+                        <td>@Html.DisplayFor(m => post.AuthorUserName)</td>
+                        <td>@Html.DisplayFor(m => post.Title)</td>
+                        <td>@Html.DisplayFor(m => post.CreatedOn)</td>
+                        <td>@Html.DisplayFor(m => post.ModifiedOn)</td>
                         <td>
-                            <a href="@Url.Action("Edit", "Posts", new {area = "Administration", id = item.Id})" class="btn btn-warning btn-sm center-block">
-                                <i class="glyphicon glyphicon-edit"></i>
-                                Edit
-                            </a>
-                            <a href="@Url.Action("Delete", "Posts", new {area = "Administration", id = item.Id})" class="btn btn-danger btn-sm center-block ">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                Delete
-                            </a>
+                            <div class="btn-group">
+                                <a href="@Url.Action("Edit", "Posts", new { area = "Administration", id = post.Id })" class="btn btn-warning">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                    Edit
+                                </a>
+                                <a href="@Url.Action("Delete", "Posts", new { area = "Administration", id = post.Id })" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    Delete
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -54,7 +57,6 @@
         }
     </div>
 </div>
-    </div>
 
 @if (Model.PagesCount > 0)
 {

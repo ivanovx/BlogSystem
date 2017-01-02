@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers.Base
+﻿using System;
+using System.Collections.Generic;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers.Base
 {
     using System.Linq;
     using Data.Contracts;
@@ -19,7 +22,10 @@
 
         protected virtual IQueryable<TViewModel> GetAll()
         {
-            IQueryable<TViewModel> entity = this.dataRepository.All().OrderByDescending(p => p.CreatedOn).To<TViewModel>();
+            IQueryable<TViewModel> entity = this.dataRepository
+                .All()
+                .OrderByDescending(p => p.CreatedOn)
+                .To<TViewModel>();
 
             return entity;
         }

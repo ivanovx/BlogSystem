@@ -29,7 +29,10 @@
         {
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var posts = this.GetAll().Skip(perPage * (page - 1)).Take(perPage).ToList();
+            var posts = this.GetAll()
+                .Skip(perPage * (page - 1))
+                .Take(perPage)
+                .ToList();
 
             var model = new IndexPostsPageViewModel
             {
@@ -53,7 +56,6 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
-            model.AuthorUserName = this.currentUser.Get().UserName;
             model.AuthorId = this.currentUser.Get().Id;
 
             var entity = this.CreateEntity(model);
