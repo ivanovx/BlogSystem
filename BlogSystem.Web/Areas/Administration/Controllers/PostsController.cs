@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Data.Repositories;
+using BlogSystem.Web.Areas.Administration.Controllers.Base;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
 {

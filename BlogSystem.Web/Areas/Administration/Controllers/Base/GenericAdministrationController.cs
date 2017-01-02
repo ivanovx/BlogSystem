@@ -7,7 +7,7 @@ using BlogSystem.Web.Infrastructure.Mapping;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers.Base
 {
-    public class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
+    public abstract class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
         where TEntity : class, IAuditInfo
         where TViewModel: AdministrationViewModel
     {

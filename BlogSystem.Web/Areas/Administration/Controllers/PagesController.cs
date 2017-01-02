@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Data.Repositories;
+using BlogSystem.Web.Areas.Administration.Controllers.Base;
 using BlogSystem.Web.Areas.Administration.ViewModels.Post;
 
 namespace BlogSystem.Web.Areas.Administration.Controllers
