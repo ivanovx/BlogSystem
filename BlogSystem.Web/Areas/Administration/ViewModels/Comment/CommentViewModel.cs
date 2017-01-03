@@ -1,15 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.Comment
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Comment
 {
-    using System;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+    using Administration;
 
-    public class PostCommentViewModel: AdministrationViewModel, IMapFrom<Comment>, IMapTo<Comment>, IHaveCustomMappings
+    public class CommentViewModel: AdministrationViewModel, IMapFrom<Comment>, IMapTo<Comment>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -29,13 +27,9 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.Comment
         [Required]
         public string UserId { get; set; }
 
-       /* public DateTime? ModifiedOn { get; set; }
-
-        public DateTime CreatedOn { get; set; }*/
-
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            config.CreateMap<Comment, PostCommentViewModel>()
+            config.CreateMap<Comment, CommentViewModel>()
                 .ForMember(m => m.UserName, c => c.MapFrom(comment => comment.User.UserName))
                 .ForMember(m => m.PostTitle, c => c.MapFrom(comment => comment.Post.Title));
         }

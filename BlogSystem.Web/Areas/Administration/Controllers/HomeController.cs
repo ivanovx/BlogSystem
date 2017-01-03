@@ -1,11 +1,9 @@
-﻿using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.UnitOfWork;
+    using Data.Models;
+    using Data.Repositories;
     using ViewModels.Home;
     using Base;
 

@@ -239,7 +239,7 @@
     <Compile Include="Areas\Administration\ViewModels\Page\IndexPagesViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Page\PageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Comment\IndexCommentsPageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Comment\PostCommentViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PostsController.cs" />

@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.Administration
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Administration
 {
     using System;
     using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
 
     public abstract class AdministrationViewModel
     {

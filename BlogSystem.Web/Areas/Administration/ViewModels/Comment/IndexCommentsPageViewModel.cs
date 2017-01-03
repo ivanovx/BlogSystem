@@ -4,7 +4,7 @@
 
     public class IndexCommentsPageViewModel
     {
-        public IEnumerable<PostCommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public int PagesCount { get; set; }
 
