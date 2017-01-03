@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers.Base
+﻿using BlogSystem.Web.Infrastructure.Attributes;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers.Base
 {
     using System.Web.Mvc;
     using Web.Controllers;

@@ -7,7 +7,6 @@
     using Data.UnitOfWork;
     using Infrastructure.Mapping;
     using ViewModels.Home;
-    using AutoMapper;
 
     public class HomeController : BaseController
     {
