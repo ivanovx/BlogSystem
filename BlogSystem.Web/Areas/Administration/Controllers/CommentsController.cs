@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -11,19 +13,22 @@
     using Base;
     using Infrastructure.Extensions;
 
-    public class CommentsController : AdministrationController
-    {
-        private readonly IBlogSystemData data;
+    using EntityModel = Data.Models.Comment;
+    using ViewModel = ViewModels.Comment.PostCommentViewModel;
 
-        public CommentsController(IBlogSystemData data)
+    public class CommentsController : GenericAdministrationController<EntityModel, ViewModel>
+    {
+        private readonly IDbRepository<EntityModel> dataRepository;
+
+        public CommentsController(IDbRepository<EntityModel> dataRepository) : base(dataRepository)
         {
-            this.data = data;
+            this.dataRepository = dataRepository;
         }
 
         // GET: Administration/Comments
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.data.Comments.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
             var comments = this.data.Comments
                 .All()

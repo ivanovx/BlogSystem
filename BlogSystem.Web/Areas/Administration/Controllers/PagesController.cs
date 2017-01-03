@@ -20,6 +20,7 @@
         public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) 
             : base(dataRepository)
         {
+            this.dataRepository = dataRepository;
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
         }

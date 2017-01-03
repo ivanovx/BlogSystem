@@ -4,8 +4,7 @@
     using Data.Contracts;
     using Data.Repositories;
     using ViewModels.Administration;
-    using Infrastructure.Mapping;
-    using BlogSystem.Web.Infrastructure.Extensions;
+    using Infrastructure.Extensions;
 
     public abstract class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
         where TEntity : class, IAuditInfo

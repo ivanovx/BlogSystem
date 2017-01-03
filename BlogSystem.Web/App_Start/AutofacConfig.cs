@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;

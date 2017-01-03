@@ -4,39 +4,22 @@
     ViewBag.Title = "All Comments";
 }
 
-<div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
-        </div>
-    </div>
-</div>
-
-<hr/>
-
-<div class="container">
-    <div class="row">
-        <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
+        <table class="table table-responsive table-hover">
             <tr>
-                <th class="col-md-3">
+                <th>
                     Post Title
                 </th>
-                <th class="col-md-2">
+                <th>
                     User
                 </th>
-                <th class="col-md-1">
-                    IsDeleted
-                </th>
-                <th class="col-md-1">
-                    DeletedOn
-                </th>
-                <th class="col-md-2">
+                <th>
                     CreatedOn
                 </th>
-                <th class="col-md-2">
+                <th>
                     ModifiedOn
                 </th>
-                <th class="col-md-1">
+                <th>
                     Actions
                 </th>
             </tr>
@@ -45,18 +28,10 @@
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("Post", "Posts", new { area = string.Empty, id = item.PostId })">
-                            @Html.DisplayFor(modelItem => item.Post.Title)
-                        </a>
+                        @Html.RouteLink(item.Post, "Post", new { Area = string.Empty, Id = item.PostId }, new {})
                     </td>
                     <td>  
                         @Html.DisplayFor(modelItem => item.User)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsDeleted)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DeletedOn)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreatedOn)
@@ -79,7 +54,7 @@
             }
         </table>   
     </div>
-</div>
+
 
 @if (Model.PagesCount > 0)
 {

@@ -20,6 +20,7 @@
         public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) 
             : base(dataRepository)
         {
+            this.dataRepository = dataRepository;
             this.currentUser = currentUser;
         }
 

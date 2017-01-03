@@ -7,13 +7,10 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="page-header">
-            <h2>@ViewBag.Title</h2>
-            <a href="@Url.Action("Create", "Posts", new {area = "Administration"})" class="btn btn-success">
-                <span class="fa fa-plus" aria-hidden="true"></span>
-                Create New Post
-            </a>
-        </div>
+        <a href="@Url.Action("Create", "Posts", new {area = "Administration"})" class="btn btn-success">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            Create New Post
+        </a>
 
         @if (Model.Posts.Any())
         {

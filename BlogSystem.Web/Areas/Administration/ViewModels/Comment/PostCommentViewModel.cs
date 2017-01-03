@@ -11,7 +11,7 @@
 
         public int PostId { get; set; }
         
-        public virtual Post Post { get; set; }
+        public string Post { get; set; }
 
         public string User { get; set; }
 
@@ -19,14 +19,11 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Comment, PostCommentViewModel>()
-                .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.Email));
+            config.CreateMap<Comment, PostCommentViewModel>()
+                .ForMember(m => m.User, c => c.MapFrom(comment => comment.User.UserName))
+                .ForMember(m => m.Post, c => c.MapFrom(comment => comment.Post.Title));
         }
     }
 }
