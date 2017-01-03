@@ -1,29 +1,30 @@
 ﻿namespace BlogSystem.Data.Repositories
 {
-    using System.Data.Entity;
     using System.Linq;
+    using System.Data.Entity;
 
     public class DbRepository<T> : IDbRepository<T> 
         where T : class
     {
         private readonly DbContext dbContext;
+        private readonly IDbSet<T> entityDbSet;
 
         public DbRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.EntitySet = dbContext.Set<T>();
+            this.entityDbSet = this.dbContext.Set<T>();
         }
 
-        private IDbSet<T> EntitySet { get; }
+        //private IDbSet<T> EntitySet { get; }
 
         public IQueryable<T> All()
         {
-            return this.EntitySet;
+            return this.entityDbSet;
         }
 
         public T Find(object id)
         {
-            return this.EntitySet.Find(id);
+            return this.entityDbSet.Find(id);
         }
 
         public T Add(T entity)
@@ -61,7 +62,7 @@
 
             if (entry.State == EntityState.Detached)
             {
-                this.EntitySet.Attach(entity);
+                this.entityDbSet.Attach(entity);
             }
 
             entry.State = state;
