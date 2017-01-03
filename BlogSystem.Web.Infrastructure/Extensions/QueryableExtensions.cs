@@ -1,9 +1,10 @@
-﻿namespace BlogSystem.Web.Infrastructure.Mapping
+﻿namespace BlogSystem.Web.Infrastructure.Extensions
 {
     using System;
     using System.Linq;
     using System.Linq.Expressions;
     using AutoMapper.QueryableExtensions;
+    using Mapping;
 
     public static class QueryableExtensions
     {

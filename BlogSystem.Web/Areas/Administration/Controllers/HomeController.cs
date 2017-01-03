@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -8,20 +11,26 @@
 
     public class HomeController : AdministrationController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Post> postsRepository;
+        private readonly IDbRepository<Comment> commentsRepository;
+        private readonly IDbRepository<Page> pagesRepository;
+        private readonly IDbRepository<ApplicationUser> usersRepository;
 
-        public HomeController(IBlogSystemData data)
+        public HomeController(IDbRepository<Post> postsRepository, IDbRepository<Comment> commentsRepository, IDbRepository<Page> pagesRepository, IDbRepository<ApplicationUser> usersRepository)
         {
-            this.data = data;
+            this.postsRepository = postsRepository;
+            this.commentsRepository = commentsRepository;
+            this.pagesRepository = pagesRepository;
+            this.usersRepository = usersRepository;
         }
 
         // GET: Administration/Home
         public ActionResult Index()
         {
-            int postsCount = this.data.Posts.All().Count();
-            int commentsCount = this.data.Comments.All().Count();
-            int usersCount = this.data.Users.All().Count();
-            int pagesCount = this.data.Pages.All().Count();
+            int postsCount = this.postsRepository.All().Count();
+            int commentsCount = this.commentsRepository.All().Count();
+            int usersCount = this.usersRepository.All().Count();
+            int pagesCount = this.pagesRepository.All().Count();
 
             var model = new IndexAdminPageViewModel
             {

@@ -48,8 +48,6 @@
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\ICacheService.cs" />
     <Compile Include="IService.cs" />
-    <Compile Include="Mapping\AutoMapperMappingService.cs" />
-    <Compile Include="Mapping\IMappingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

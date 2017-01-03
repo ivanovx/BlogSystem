@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Areas.Administration.Controllers.Base;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -11,6 +9,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     using InputModels.PostComment;
     using Infrastructure.Mapping;
     using ViewModels.Comment;
+    using BlogSystem.Web.Areas.Administration.Controllers.Base;
+    using BlogSystem.Web.Infrastructure.Extensions;
 
     public class CommentsController : AdministrationController
     {

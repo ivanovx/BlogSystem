@@ -36,8 +36,6 @@
             this.administrationLogs.SaveChanges();
              * */
 
-            this.ViewBag.IpAdreess = requestContext.HttpContext.Request.UserHostAddress;
-
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             return base.BeginExecute(requestContext, callback, state);

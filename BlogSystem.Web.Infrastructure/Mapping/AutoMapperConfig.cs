@@ -12,10 +12,10 @@
 
         public static void Execute(Assembly assembly)
         {
+            var types = assembly.GetExportedTypes();
+
             Configuration = new MapperConfiguration(cfg => 
             {
-                var types = assembly.GetExportedTypes();
-
                 LoadStandardMappings(cfg, types);
                 LoadReverseMappings(cfg, types);
                 LoadCustomMappings(cfg, types);

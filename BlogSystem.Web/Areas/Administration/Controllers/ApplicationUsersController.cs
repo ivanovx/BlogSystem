@@ -11,7 +11,7 @@
     using Identity;
     using Data.Models;
     using Data.UnitOfWork;
-    using Infrastructure.Mapping;
+    using Infrastructure.Extensions;
     using Common;
     using InputModels.ApplicationUsers;
     using ViewModels.ApplicationUsers;
