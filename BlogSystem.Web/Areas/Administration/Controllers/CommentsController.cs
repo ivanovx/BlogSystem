@@ -1,17 +1,12 @@
-﻿using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
     using Common;
-    using Data.UnitOfWork;
-    using InputModels.PostComment;
+    using Data.Repositories;
     using ViewModels.Comment;
     using Base;
-    using Infrastructure.Extensions;
 
     using EntityModel = Data.Models.Comment;
     using ViewModel = ViewModels.Comment.PostCommentViewModel;
@@ -20,7 +15,8 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     {
         private readonly IDbRepository<EntityModel> dataRepository;
 
-        public CommentsController(IDbRepository<EntityModel> dataRepository) : base(dataRepository)
+        public CommentsController(IDbRepository<EntityModel> dataRepository) 
+            : base(dataRepository)
         {
             this.dataRepository = dataRepository;
         }
