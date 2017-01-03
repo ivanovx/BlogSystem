@@ -28,10 +28,10 @@
             {
                 <tr>
                     <td>
-                        @Html.RouteLink(item.Post, "Post", new { Area = string.Empty, Id = item.PostId }, new {})
+                        @Html.RouteLink(item.PostTitle, "Post", new { Area = string.Empty, Id = item.PostId }, new {})
                     </td>
                     <td>  
-                        @Html.DisplayFor(modelItem => item.User)
+                        @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreatedOn)

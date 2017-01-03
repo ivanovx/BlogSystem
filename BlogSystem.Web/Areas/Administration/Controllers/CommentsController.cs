@@ -30,11 +30,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         {
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var comments = this.data.Comments
-                .All()
-                .Where(c => !c.IsDeleted)
-                .OrderByDescending(p => p.CreatedOn)
-                .To<PostCommentViewModel>()
+            var comments = this.GetAll()
                 .Skip(perPage*(page - 1))
                 .Take(perPage)
                 .ToList();
@@ -49,7 +45,53 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             return this.View(model);
         }
 
-        // GET: Administration/Comments/Edit/5
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            var entity = this.dataRepository.Find(id);
+
+            if (entity != null)
+            {
+                var model = this.Mapper.Map<ViewModel>(entity);
+
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ViewModel model)
+        {
+            var entity = this.FindAndUpdateEntity(model.Id, model);
+
+            if (entity != null)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            var model = this.dataRepository.Find(id);
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            this.DestroyEntity(id);
+
+            return this.RedirectToAction("Index");
+        }
+
+        /*// GET: Administration/Comments/Edit/5
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -132,6 +174,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             this.data.SaveChanges();
 
             return this.RedirectToAction("Index");
-        }
+        }*/
     }
 }
