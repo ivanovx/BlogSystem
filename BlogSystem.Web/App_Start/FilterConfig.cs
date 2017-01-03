@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Filters;
-
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Web.Mvc;
 

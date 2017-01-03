@@ -20,6 +20,8 @@ namespace BlogSystem.Data
 
         public IDbSet<Comment> Comments { get; set; }
 
+        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
