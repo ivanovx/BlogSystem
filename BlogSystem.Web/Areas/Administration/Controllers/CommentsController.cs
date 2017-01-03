@@ -7,10 +7,9 @@
     using Common;
     using Data.UnitOfWork;
     using InputModels.PostComment;
-    using Infrastructure.Mapping;
     using ViewModels.Comment;
-    using BlogSystem.Web.Areas.Administration.Controllers.Base;
-    using BlogSystem.Web.Infrastructure.Extensions;
+    using Base;
+    using Infrastructure.Extensions;
 
     public class CommentsController : AdministrationController
     {
