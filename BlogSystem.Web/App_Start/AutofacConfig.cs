@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using BlogSystem.Services.Mapping;
-
 namespace BlogSystem.Web
 {
     using System.Data.Entity;
