@@ -4,33 +4,25 @@
     ViewBag.Title = "All Comments";
 }
 
-    <div class="row">
+<div class="row">
+    @if (Model.Comments.Any())
+    {
         <table class="table table-responsive table-hover">
             <tr>
-                <th>
-                    Post Title
-                </th>
-                <th>
-                    User
-                </th>
-                <th>
-                    CreatedOn
-                </th>
-                <th>
-                    ModifiedOn
-                </th>
-                <th>
-                    Actions
-                </th>
+                <th>Post Title</th>
+                <th>User</th>
+                <th>Created On</th>
+                <th>Modified On</th>
+                <th>Actions</th>
             </tr>
 
             @foreach (var item in Model.Comments)
             {
                 <tr>
                     <td>
-                        @Html.RouteLink(item.PostTitle, "Post", new { Area = string.Empty, Id = item.PostId }, new {})
+                        @Html.RouteLink(item.PostTitle, "Post", new { Area = string.Empty, Id = item.PostId }, new { })
                     </td>
-                    <td>  
+                    <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
@@ -41,19 +33,28 @@
                         @Html.DisplayFor(modelItem => item.ModifiedOn)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit", "Comments", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            <span>Edit</span>
-                        </a>
-                        <a href="@Url.Action("Delete", "Comments", new { area = "Administration", id = item.Id })" class="btn btn-danger btn-sm center-block ">
-                            <i class="glyphicon glyphicon-trash"></i>
-                            <span>Delete</span>
-                        </a>
+                        <div class="btn-group">
+                            <a href="@Url.Action("Edit", "Comments", new {area = "Administration", id = item.Id})" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Delete", "Comments", new {area = "Administration", id = item.Id})" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                Delete
+                            </a>
+                        </div>
                     </td>
                 </tr>
             }
-        </table>   
-    </div>
+        </table>
+    }
+    else
+    {
+        <div class="col-md-12">
+            <h2>No comments available.</h2>
+        </div>
+    }
+</div>
 
 
 @if (Model.PagesCount > 0)

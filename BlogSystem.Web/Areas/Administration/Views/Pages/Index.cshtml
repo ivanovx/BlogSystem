@@ -1,54 +1,59 @@
 ﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Page.IndexPagesViewModel
 
 @{
-    ViewBag.Title = "List Pages";
+    ViewBag.Title = "All Pages";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Author
-        </th>
-        <th>
-           Title
-        </th>
-        <th>
-            Permalink
-        </th>
-        <th>
-           CreatedOn
-        </th>
-        <th>
-            ModifiedOn
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Create", "Pages", new { area = "Administration" })" class="btn btn-success">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            Create New Page
+        </a>
+        
+        @if (Model.Pages.Any())
+        {
+            <table class="table table-responsive table-hover">
+                <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Permalink</th>
+                    <th>Created On</th>
+                    <th>Modified On</th>
+                    <th>Actions</th>
+                </tr>
 
-@foreach (var item in Model.Pages) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.AuthorUserName)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Permalink)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedOn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+                @foreach (var item in Model.Pages)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AuthorUserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Permalink)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2>No pages available.</h2>
+            </div>
+        }
+    </div>
+</div>

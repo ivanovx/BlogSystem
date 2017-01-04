@@ -1,7 +1,7 @@
 ﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Post.IndexPostsPageViewModel
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "All Posts";
 }
 
 
@@ -14,7 +14,7 @@
 
         @if (Model.Posts.Any())
         {
-            <table class="table table-responsive">
+            <table class="table table-responsive table-hover">
                 <tr>
                     <th>User</th>
                     <th>Title</th>

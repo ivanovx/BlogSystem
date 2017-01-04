@@ -10,28 +10,28 @@
     using Microsoft.AspNet.Identity.Owin;
     using Identity;
     using Data.Models;
-    using Data.UnitOfWork;
+    using Data.Repositories;
     using Infrastructure.Extensions;
     using Common;
     using InputModels.ApplicationUsers;
     using ViewModels.ApplicationUsers;
     using Base;
 
-    public class ApplicationUsersController : AdministrationController
+    public class UsersController : AdministrationController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<ApplicationUser> dataRepository;
 
-        public ApplicationUsersController(IBlogSystemData data)
+        public UsersController(IDbRepository<ApplicationUser> dataRepository)
         {
-            this.data = data;
+            this.dataRepository = dataRepository;
         }
 
         // GET: Administration/ApplicationUsers
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.data.Users.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var users = this.data.Users
+            var users = this.dataRepository
                 .All()
                 .OrderByDescending(u => u.CreatedOn)
                 .To<ApplicationUserViewModel>()
@@ -57,7 +57,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = this.data.Users.Find(id);
+            var user = this.dataRepository.Find(id);
 
             if (user == null)
             {
@@ -76,7 +76,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ApplicationUser applicationUser = this.data.Users.Find(id);
+            ApplicationUser applicationUser = this.dataRepository.Find(id);
 
             if (applicationUser == null)
             {
@@ -103,15 +103,11 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = this.data.Users.Find(applicationUser.Id);
+                var user = this.dataRepository.Find(applicationUser.Id);
 
-                var checkEmail = this.data.Users
-                    .All()
-                    .Any(e => e.Email == applicationUser.Email);
+                var checkEmail = this.dataRepository.All().Any(e => e.Email == applicationUser.Email);
 
-                var checkUsername = this.data.Users
-                    .All()
-                    .Any(u => u.UserName == applicationUser.UserName);
+                var checkUsername = this.dataRepository.All().Any(u => u.UserName == applicationUser.UserName);
 
                 if (checkEmail && user.Email != applicationUser.Email)
                 {
@@ -137,8 +133,8 @@
                     user.SecurityStamp = Guid.NewGuid().ToString();
                 }
 
-                this.data.Users.Update(user);
-                this.data.SaveChanges();
+                this.dataRepository.Update(user);
+                this.dataRepository.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }
@@ -179,7 +175,7 @@
                     return this.Content(string.Join("; ", userCreateResult.Errors));
                 }
 
-                this.data.SaveChanges();
+                this.dataRepository.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }

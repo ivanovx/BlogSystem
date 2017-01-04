@@ -1,13 +1,11 @@
-﻿using System.Web.Mvc;
-using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
-
-namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 {
-    using System;
+    using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
+    using Administration;
 
     public class PageViewModel : AdministrationViewModel, IMapFrom<Page>, IMapTo<Page>, IHaveCustomMappings
     {
@@ -26,12 +24,14 @@ namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
 
         public string AuthorId { get; set; }
 
+        public string AuthorUserName { get; set; }
+
         public bool VisibleInMenu { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            /*config.CreateMap<Page, PageViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));*/
+            config.CreateMap<Page, PageViewModel>()
+                .ForMember(m => m.AuthorUserName, c => c.MapFrom(p => p.Author.UserName));
         }
     }
 }
