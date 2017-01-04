@@ -22,7 +22,7 @@
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
-            this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
             return base.BeginExecute(requestContext, callback, state);
         }
