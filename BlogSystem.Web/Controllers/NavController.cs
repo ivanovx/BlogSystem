@@ -1,11 +1,9 @@
-﻿using BlogSystem.Web.Infrastructure.Extensions;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using Data.UnitOfWork;
-    using Infrastructure.Mapping;
+    using Infrastructure.Extensions;
     using ViewModels.Nav;
 
     public class NavController : BaseController

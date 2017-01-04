@@ -18,12 +18,6 @@
             var post = this.data.Posts.Find(id);
             var model = this.Mapper.Map<PostViewModel>(post);
 
-            /*var model = this.data.Posts
-                .All()
-                .Where(p => p.Id == id)
-                .To<PostViewModel>()
-                .FirstOrDefault();*/
-
             return this.View(model);
         }
     }

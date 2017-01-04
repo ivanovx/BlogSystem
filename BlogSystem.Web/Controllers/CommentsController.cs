@@ -1,16 +1,12 @@
-﻿using BlogSystem.Web.Infrastructure.Extensions;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
     using Data.Models;
     using Data.UnitOfWork;
-    using InputModels.Comments;
-    using Infrastructure.Identity;
-    using Infrastructure.Mapping;
     using ViewModels.Comment;
+    using Infrastructure.Identity;
+    using Infrastructure.Extensions;
 
     [Authorize]
     public class CommentsController : BaseController
