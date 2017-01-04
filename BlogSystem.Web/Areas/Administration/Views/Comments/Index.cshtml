@@ -16,29 +16,29 @@
                 <th>Actions</th>
             </tr>
 
-            @foreach (var item in Model.Comments)
+            @foreach (var comment in Model.Comments)
             {
                 <tr>
                     <td>
-                        @Html.RouteLink(item.PostTitle, "Post", new { Area = string.Empty, Id = item.PostId }, new { })
+                        @Html.RouteLink(comment.PostTitle, "Post", new { Area = string.Empty, Id = comment.PostId })
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
+                        @Html.DisplayFor(mode => comment.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                        @Html.DisplayFor(model => comment.CreatedOn)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        @Html.DisplayFor(model => comment.ModifiedOn)
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a href="@Url.Action("Edit", "Comments", new {area = "Administration", id = item.Id})" class="btn btn-warning">
+                            <a href="@Url.Action("Edit", "Comments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Edit
                             </a>
-                            <a href="@Url.Action("Delete", "Comments", new {area = "Administration", id = item.Id})" class="btn btn-danger">
+                            <a href="@Url.Action("Delete", "Comments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
                                 <i class="glyphicon glyphicon-trash"></i>
                                 Delete
                             </a>
@@ -85,7 +85,7 @@
             }
 
             <li>
-                <a href="~/Administration/PostComments?page=@Model.NextPage">
+                <a href="~/Administration/Comments?page=@Model.NextPage">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>

@@ -4,13 +4,14 @@
     ViewBag.Title = "All Posts";
 }
 
-
 <div class="row">
     <div class="col-md-12">
-        <a href="@Url.Action("Create", "Posts", new {area = "Administration"})" class="btn btn-success">
-            <span class="fa fa-plus" aria-hidden="true"></span>
-            Create New Post
-        </a>
+        <p>
+            <a href="@Url.Action("Create", "Posts", new { area = "Administration" })" class="btn btn-success">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Create New Post
+            </a>
+        </p>
 
         @if (Model.Posts.Any())
         {
@@ -32,11 +33,11 @@
                         <td>@Html.DisplayFor(m => post.ModifiedOn)</td>
                         <td>
                             <div class="btn-group">
-                                <a href="@Url.Action("Edit", "Posts", new { area = "Administration", id = post.Id })" class="btn btn-warning">
+                                <a href="@Url.Action("Edit", "Posts", new {area = "Administration", id = post.Id})" class="btn btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
                                     Edit
                                 </a>
-                                <a href="@Url.Action("Delete", "Posts", new { area = "Administration", id = post.Id })" class="btn btn-danger">
+                                <a href="@Url.Action("Delete", "Posts", new {area = "Administration", id = post.Id})" class="btn btn-danger">
                                     <i class="glyphicon glyphicon-trash"></i>
                                     Delete
                                 </a>

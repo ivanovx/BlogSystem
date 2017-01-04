@@ -1,6 +1,5 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers
 {
-    using System;
     using System.Linq;
     using AutoMapper;
     using Microsoft.AspNet.Identity;
@@ -9,8 +8,9 @@
     using Data;
     using Data.Models;
     using Infrastructure.Mapping;
+    using Administration;
 
-    public class ApplicationUserViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
+    public class ApplicationUserViewModel : AdministrationViewModel, IMapFrom<ApplicationUser>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -18,20 +18,14 @@
 
         public string UserName { get; set; }
 
-        public string PasswordHash { get; set; }
-
         public bool IsAdmin { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             var context = new ApplicationDbContext();
             var rolerManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            string administratorRoleId = rolerManager.Roles
+            var administratorRoleId = rolerManager.Roles
                 .Where(r => r.Name == GlobalConstants.AdminRoleName)
                 .Select(r => r.Id)
                 .FirstOrDefault();

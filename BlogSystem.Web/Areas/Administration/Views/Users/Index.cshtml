@@ -1,97 +1,82 @@
 ﻿@model BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers.IndexPageViewModel
 
 @{
-    ViewBag.Title = "Application Users";
+    ViewBag.Title = "Аll Users";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left blog-page-header">@ViewBag.Title</h2>
-        </div>
-    </div>
-</div>
-
-<hr/>
-
-<div class="container">
-    <div class="row">
+<div class="row">
+    <div class="col-md-12">
         <p>
-            <a href="@Url.Action("Create", "ApplicationUsers", new { area = "Administration" })" class="btn btn-success">
+            <a href="@Url.Action("Create", "Users", new { area = "Administration" })" class="btn btn-success">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span>Create New User</span>
             </a>
         </p>
-        <table class="blog-table-word-wrap table table-responsive table-hover table-striped">
-            <tr>
-                <th class="col-md-2">
-                    Id
-                </th>
-                <th class="col-md-2">
-                    Email
-                </th>
-                <th class="col-md-2">
-                    UserName
-                </th>
-                <th class="col-md-2">
-                    Created On
-                </th>
-                <th class="col-md-2">
-                    Modified On
-                </th>
-                <th class="col-md-1">
-                    Role
-                </th>
-                <th class="col-md-1">
-                    Actions
-                </th>
-            </tr>
-
-            @foreach (var item in Model.Users)
-            {
+        
+        @if (Model.Users.Any())
+        {
+            <table class="table table-responsive table-hover">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
-                    </td>
-                    <td>
-                        @if (item.IsAdmin)
-                        {
-                            <span class="label label-primary">Admin</span>
-                        }
-                        else
-                        {
-                            <span class="label label-success">User</span>
-                        }
-
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Details", "ApplicationUsers", new { area = "Administration", id = item.Id })" class="btn btn-info btn-sm center-block">
-                            <i class="glyphicon glyphicon-menu-hamburger"></i>
-                            <span>Details</span>
-                        </a>
-                        <a href="@Url.Action("Edit", "ApplicationUsers", new { area = "Administration", id = item.Id })" class="btn btn-warning btn-sm center-block">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            <span>Edit</span>
-                        </a>
-                    </td>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>UserName</th>
+                    <th>Created On</th>
+                    <th>Modified On</th>
+                    <th>Role</th>
+                    <th>Actions</th>
                 </tr>
-            }
 
-        </table>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => user.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => user.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => user.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => user.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => user.ModifiedOn)
+                        </td>
+                        <td>
+                            @if (user.IsAdmin)
+                            {
+                                <span class="label label-primary">Admin</span>
+                            }
+                            else
+                            {
+                                <span class="label label-success">User</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Details", "Users", new {area = "Administration", id = user.Id})" class="btn btn-info btn-sm center-block">
+                                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                Details
+                            </a>
+                            <a href="@Url.Action("Edit", "Users", new {area = "Administration", id = user.Id})" class="btn btn-warning btn-sm center-block">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2>No users available.</h2>
+            </div>
+        }
     </div>
 </div>
+
 
 @if (Model.PagesCount > 0)
 {
@@ -99,7 +84,7 @@
     <div class="text-center">
         <ul class="pagination">
             <li>
-                <a href="~/Administration/ApplicationUsers/?page=@Model.PreviousPage">
+                <a href="~/Administration/Users/?page=@Model.PreviousPage">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </li>
@@ -109,19 +94,19 @@
                 if (i == Model.CurrentPage)
                 {
                     <li class="active">
-                        <a href="/Administration/ApplicationUsers/?page=@i">@i</a>
+                        <a href="/Administration/Users/?page=@i">@i</a>
                     </li>
                 }
                 else
                 {
                     <li>
-                        <a href="/Administration/ApplicationUsers/?page=@i">@i</a>
+                        <a href="/Administration/Users/?page=@i">@i</a>
                     </li>
                 }
             }
 
             <li>
-                <a href="~/Administration/ApplicationUsers/?page=@Model.NextPage">
+                <a href="~/Administration/Users/?page=@Model.NextPage">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>
