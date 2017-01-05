@@ -16,7 +16,7 @@ namespace BlogSystem.Web.Controllers
     public abstract class BaseController : Controller
     {
         public ICacheService Cache { get; set; }
-
+    
         public IDbRepository<Setting> Settings { get; set; }
 
         protected IMapper Mapper
@@ -27,17 +27,17 @@ namespace BlogSystem.Web.Controllers
             }
         }
 
+        private IDictionary<string, string> GetSettings()
+        {
+            return this.Settings.All().ToDictionary(s => s.Id, s => s.Value);
+        }
+
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             this.ViewBag.Settings = this.GetSettings();
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
             return base.BeginExecute(requestContext, callback, state);
-        }
-
-        protected IDictionary<string, string> GetSettings()
-        {
-            return this.Settings.All().ToDictionary(x => x.Id, x => x.Value);
         }
     }
 }
