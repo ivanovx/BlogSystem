@@ -21,11 +21,11 @@
         { 
             var model = this.Cache.Get("Menu", () => 
                 this.data.Pages
-                .All()
-                .Where(p => p.VisibleInMenu)
-                .To<MenuItemViewModel>()
-                .ToList(), 
-            600);
+                    .All()
+                    .Where(p => p.VisibleInMenu)
+                    .To<MenuItemViewModel>()
+                    .ToList(),
+                600);
 
             return this.PartialView(model);
         }

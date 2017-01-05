@@ -1,34 +1,35 @@
 ﻿@model BlogSystem.Web.ViewModels.Sidebar.SidebarViewModel
 
-<div class="widget">
-    <h5 class="widgetheading">Account</h5>
-    @Html.Partial("_LoginPartial")
-</div>
+@if (Model.RecentPosts.Any())
+{
+    <div class="widget">
+        <h5 class="widgetheading">Recent Posts</h5>
+        <ul class="recent">
+            @foreach (var post in Model.RecentPosts)
+            {
+                <li>
+                    <h6>
+                        @Html.RouteLink(post.Title, "Post", new { id = post.Id })
+                    </h6>
+                </li>
+            }
+        </ul>
+    </div>
+}
 
-<div class="widget">
-    <h5 class="widgetheading">Latest Posts</h5>
-    <ul class="recent">
-        @foreach (var post in Model.RecentPosts)
-        {
-            <li>
-                <h6>
-                    @Html.RouteLink(post.Title, "Post", new { id = post.Id })
-                </h6>
-            </li>
-        }
-    </ul>
-</div>
-
-<div class="widget">
-    <h5 class="widgetheading">Pages</h5>
-    <ul class="recent">
-        @foreach (var page in Model.Pages)
-        {
-            <li>
-                <h6>
-                    @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
-                </h6>
-            </li>
-        }
-    </ul>
-</div>
+@if (Model.Pages.Any())
+{
+    <div class="widget">
+        <h5 class="widgetheading">Pages</h5>
+        <ul class="recent">
+            @foreach (var page in Model.Pages)
+            {
+                <li>
+                    <h6>
+                        @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
+                    </h6>
+                </li>
+            }
+        </ul>
+    </div>
+}

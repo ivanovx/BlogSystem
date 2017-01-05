@@ -23,6 +23,11 @@
                         </div>
                         <div class="col-lg-4">
                             <aside class="right-sidebar">
+                                <div class="widget">
+                                    <h5 class="widgetheading">Account</h5>
+                                    @Html.Partial("_LoginPartial")
+                                </div>
+
                                 @{
                                     Html.RenderAction("Index", "Sidebar");
                                 }
@@ -45,7 +50,7 @@
 
         <script>
             $(document).ready(function () {
-                $(".social-network li a, .options_box .color a").tooltip();
+                $(".social-network li a").tooltip();
 
                 $(window).scroll(function () {
                     if ($(this).scrollTop() > 100) {
