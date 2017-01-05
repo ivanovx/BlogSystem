@@ -218,6 +218,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\Base\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\Controllers\Base\GenericAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\PostsController.cs" />
@@ -326,6 +327,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Settings\Update.cshtml" />
     <None Include="Properties\PublishProfiles\csyntax.net.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

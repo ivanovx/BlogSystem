@@ -22,8 +22,30 @@ namespace BlogSystem.Data.Migrations
         {
             this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
+            this.SeedSettings(context);
             this.SeedRoles(context);
             this.SeedAdmin(context);
+        }
+
+        private void SeedSettings(ApplicationDbContext context)
+        {
+            if (context.Settings.Any())
+            {
+                return;
+            }
+
+            context.Settings.AddOrUpdate(
+                    s => s.Id,
+                    new Setting { Id = "Name", Value = "Blog name" },
+                    new Setting { Id = "Description", Value = "Blog description" },
+                    new Setting { Id = "Keywords", Value = "Blog keywords" },
+                    new Setting { Id = "Author", Value = "Blog author" },
+                    new Setting { Id = "Facebook", Value = "Facebook"},
+                    new Setting { Id = "Twitter", Value = "Twitter" },
+                    new Setting { Id = "LinkedIn", Value = "LinkedIn" },
+                    new Setting { Id = "GitHub", Value = "GitHub" },
+                    new Setting { Id = "YouTube", Value = "YouTube" },
+                    new Setting { Id = "Email", Value = "Email"});
         }
 
         private void SeedAdmin(ApplicationDbContext context)

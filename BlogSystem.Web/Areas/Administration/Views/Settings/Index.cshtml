@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BlogSystem.Data.Models.Setting>
+
+@{
+    ViewBag.Title = "Settings";
+}
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var setting in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => setting.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => setting.Value)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Update", new { area = "Administration", id = setting.Id }, new { @class="btn btn-info" })
+            </td>
+        </tr>
+    }
+</table>
