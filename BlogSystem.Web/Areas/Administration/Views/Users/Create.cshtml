@@ -52,7 +52,7 @@
 
                     @if (Request.UrlReferrer == null)
                     {
-                        <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-danger">
+                        <a href="@Url.Action("Index", "Users", new { area = "Administration" })" class="btn btn-danger">
                             <span>Cancel</span>
                         </a>
                     }
@@ -70,7 +70,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a href="@Url.Action("Index", "ApplicationUsers", new { area = "Administration" })" class="btn btn-primary">
+            <a href="@Url.Action("Index", "Users", new { area = "Administration" })" class="btn btn-primary">
                 <i class="glyphicon glyphicon-align-justify"></i>
                 <span>Application Users</span>
             </a>
