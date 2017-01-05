@@ -6,8 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
+        <meta name="author" content="@ViewBag.Settings["Author"]" />
+        <meta name="keywords" content="@ViewBag.Settings["Keywords"]" />
+        <meta name="description" content="@ViewBag.Settings["Description"]" />
 
-        <title>@ViewBag.Title - Blog System</title>
+        <title>@ViewBag.Title - @ViewBag.Settings["Name"]</title>
 
         @Styles.Render("~/Content/css")
     </head>

@@ -16,23 +16,28 @@
                 <div class="col-lg-6">
                     <ul class="social-network">
                         <li>
-                            <a href="https://www.facebook.com/csyntaxbg" data-placement="top" title="Facebook">
+                            <a href="@ViewBag.Settings["Facebook"]" data-placement="top" title="Facebook" rel="me">
                                 <span class="fa fa-facebook"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/csyntax_bg" data-placement="top" title="Twitter">
+                            <a href="@ViewBag.Settings["Twitter"]" data-placement="top" title="Twitter" rel="me">
                                 <span class="fa fa-twitter"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/csyntax" data-placement="top" title="LinkedIn">
+                            <a href="@ViewBag.Settings["LinkedIn"]" data-placement="top" title="LinkedIn" rel="me">
                                 <span class="fa fa-linkedin"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/csyntax" data-placement="top" title="GitHub">
+                            <a href="@ViewBag.Settings["GitHub"]" data-placement="top" title="GitHub" rel="me">
                                 <span class="fa fa-github"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@ViewBag.Settings["YouTube"]" data-placement="top" title="YouTube" rel="me">
+                                <span class="fa fa-youtube"></span>
                             </a>
                         </li>
                     </ul>

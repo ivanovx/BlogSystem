@@ -1,36 +1,4 @@
-﻿@*
-    <div class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Administration - BlogSystem", "Index", "Home", new { area = "Administration" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li> @Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                    <li>
-                        <li>
-                            <a href="@Url.Action("Index", "Home", new { area = "Administration" })">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span>Administration</span>
-                            </a>
-                        </li>
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-
-*@
-
-@using BlogSystem.Common
-
-<!-- start header -->
+﻿<!-- start header -->
 <header>
     <div class="navbar navbar-default navbar-static-top">
         <div class="container">
@@ -49,6 +17,11 @@
                     <li>
                         <a href="@Url.Action("Index", "Home", new { area = string.Empty })">
                             Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Settings", new {area = "Administration"})">
+                            Settings
                         </a>
                     </li>
                 </ul>
