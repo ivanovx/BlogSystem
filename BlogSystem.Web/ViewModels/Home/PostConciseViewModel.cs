@@ -25,11 +25,11 @@
 
         public int CommentsCount { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Post, PostConciseViewModel>()
-                .ForMember(model => model.Author, config => config.MapFrom(post => post.Author.UserName))
-                .ForMember(model => model.CommentsCount, config => config.MapFrom(post => post.Comments.Count));
+            config.CreateMap<Post, PostConciseViewModel>()
+                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
+                .ForMember(m => m.CommentsCount, c => c.MapFrom(post => post.Comments.Count));
         }
     }
 }
