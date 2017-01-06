@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using Data.UnitOfWork;
@@ -6,16 +9,16 @@
 
     public class PostsController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Post> postsRepository;
 
-        public PostsController(IBlogSystemData data)
+        public PostsController(IDbRepository<Post> postsRepository)
         {
-            this.data = data;
+            this.postsRepository = postsRepository;
         }
 
         public ActionResult Post(int id)
         {
-            var post = this.data.Posts.Find(id);
+            var post = this.postsRepository.Find(id);
             var model = this.Mapper.Map<PostViewModel>(post);
 
             return this.View(model);

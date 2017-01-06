@@ -1,4 +1,6 @@
-﻿using BlogSystem.Web.Infrastructure.Extensions;
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+using BlogSystem.Web.Infrastructure.Extensions;
 
 namespace BlogSystem.Web.Controllers
 {
@@ -12,18 +14,18 @@ namespace BlogSystem.Web.Controllers
 
     public class HomeController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Post> postsRepository;
 
-        public HomeController(IBlogSystemData data)
+        public HomeController(IDbRepository<Post> postsRepository)
         {
-            this.data = data;
+            this.postsRepository = postsRepository;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.data.Posts.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.postsRepository.All().Count() / (decimal) perPage);
 
-            var posts = this.data.Posts
+            var posts = this.postsRepository
                 .All()
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)

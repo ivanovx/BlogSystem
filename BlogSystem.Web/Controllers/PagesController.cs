@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -8,16 +11,16 @@
 
     public class PagesController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Page> pagesRepository;
 
-        public PagesController(IBlogSystemData data)
+        public PagesController(IDbRepository<Page> pagesRepository)
         {
-            this.data = data;
+            this.pagesRepository = pagesRepository;
         }
 
         public ActionResult Page(string permalink)
         {
-            var page = this.data.Pages
+            var page = this.pagesRepository
                 .All()
                 .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
                 .To<PageViewModel>()

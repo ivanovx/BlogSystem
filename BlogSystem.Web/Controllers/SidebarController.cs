@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -9,11 +12,13 @@
 
     public class SidebarController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Post> postsRepository;
+        private readonly IDbRepository<Page> pagesRepository;
 
-        public SidebarController(IBlogSystemData data)
+        public SidebarController(IDbRepository<Post> postsRepository, IDbRepository<Page> pagesRepository)
         {
-            this.data = data;
+            this.postsRepository = postsRepository;
+            this.pagesRepository = pagesRepository;
         }
 
         [ChildActionOnly]
@@ -24,7 +29,7 @@
             {
                 RecentPosts = this.Cache.Get("RecentBlogPosts",
                     () =>
-                        this.data.Posts
+                        this.postsRepository
                             .All()
                             .Where(p => !p.IsDeleted)
                             .OrderByDescending(p => p.CreatedOn)
@@ -32,7 +37,7 @@
                             .Take(5)
                             .ToList(),
                     600),
-                Pages = this.data.Pages.All().ToList()
+                Pages = this.pagesRepository.All().ToList()
             };
 
             return this.PartialView(model);

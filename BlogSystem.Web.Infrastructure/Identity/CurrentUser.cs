@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Infrastructure.Identity
+﻿using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Infrastructure.Identity
 {
     using System.Web;
     using Microsoft.AspNet.Identity;
@@ -7,18 +9,19 @@
 
     public class CurrentUser : ICurrentUser
     {
-        private readonly IBlogSystemData data;
+        //private readonly IBlogSystemData data;
+        private readonly IDbRepository<ApplicationUser> usersRepository;
 
-        public CurrentUser(IBlogSystemData data)
+        public CurrentUser(IDbRepository<ApplicationUser> usersRepository)
         {
-            this.data = data;
+            this.usersRepository = usersRepository;
         }
 
         public ApplicationUser Get()
         {
             string userId = HttpContext.Current.User.Identity.GetUserId();
 
-            return this.data.Users.Find(userId);
+            return this.usersRepository.Find(userId);
         }
     }
 }

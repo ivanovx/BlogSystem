@@ -50,10 +50,10 @@
                 .As<DbContext>()
                 .InstancePerRequest();
 
-            builder
+           /* builder
                 .RegisterType<BlogSystemData>()
                 .As<IBlogSystemData>()
-                .InstancePerRequest();
+                .InstancePerRequest();*/
 
             builder
                 .RegisterType<CurrentUser>()

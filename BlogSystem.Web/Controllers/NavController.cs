@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Data.Models;
+using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -8,11 +11,11 @@
 
     public class NavController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Page> pagesRepository;
 
-        public NavController(IBlogSystemData data)
+        public NavController(IDbRepository<Page> pagesRepository)
         {
-            this.data = data;
+            this.pagesRepository = pagesRepository;
         }
 
         [ChildActionOnly]
@@ -20,7 +23,7 @@
         public PartialViewResult Menu()
         { 
             var model = this.Cache.Get("Menu", () => 
-                this.data.Pages
+                this.pagesRepository
                     .All()
                     .Where(p => p.VisibleInMenu)
                     .To<MenuItemViewModel>()
