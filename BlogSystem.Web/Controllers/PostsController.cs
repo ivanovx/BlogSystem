@@ -5,7 +5,7 @@ namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using Data.UnitOfWork;
-    using ViewModels.Blog;
+    using ViewModels.Post;
 
     public class PostsController : BaseController
     {

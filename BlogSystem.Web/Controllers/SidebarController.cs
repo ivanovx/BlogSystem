@@ -7,7 +7,8 @@ namespace BlogSystem.Web.Controllers
     using System.Web.Mvc;
     using Data.UnitOfWork;
     using ViewModels.Sidebar;
-    using ViewModels.Blog;
+    using ViewModels.Post;
+    using ViewModels.Page;
     using Infrastructure.Extensions;
 
     public class SidebarController : BaseController
@@ -37,7 +38,7 @@ namespace BlogSystem.Web.Controllers
                             .Take(5)
                             .ToList(),
                     600),
-                Pages = this.pagesRepository.All().ToList()
+                Pages = this.pagesRepository.All().To<PageViewModel>().ToList()
             };
 
             return this.PartialView(model);
