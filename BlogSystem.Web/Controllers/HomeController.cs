@@ -8,7 +8,6 @@ namespace BlogSystem.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Common;
-    using Data.UnitOfWork;
     using Infrastructure.Mapping;
     using ViewModels.Home;
 

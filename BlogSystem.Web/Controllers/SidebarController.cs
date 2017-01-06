@@ -5,7 +5,6 @@ namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.UnitOfWork;
     using ViewModels.Sidebar;
     using ViewModels.Post;
     using ViewModels.Page;

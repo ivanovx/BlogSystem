@@ -62,8 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DbRepository.cs" />
     <Compile Include="Repositories\IDbRepository.cs" />
-    <Compile Include="UnitOfWork\BlogSystemData.cs" />
-    <Compile Include="UnitOfWork\IBlogSystemData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

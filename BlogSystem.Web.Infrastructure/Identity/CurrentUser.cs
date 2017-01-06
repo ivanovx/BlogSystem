@@ -5,7 +5,6 @@ namespace BlogSystem.Web.Infrastructure.Identity
     using System.Web;
     using Microsoft.AspNet.Identity;
     using Data.Models;
-    using Data.UnitOfWork;
 
     public class CurrentUser : ICurrentUser
     {
