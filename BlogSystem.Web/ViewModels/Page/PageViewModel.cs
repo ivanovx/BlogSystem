@@ -21,6 +21,8 @@
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
+        public string Permalink { get; set; }
+
         public string Author { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)

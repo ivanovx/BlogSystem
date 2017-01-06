@@ -1,4 +1,4 @@
-﻿using BlogSystem.Web.ViewModels.Blog;
+﻿using BlogSystem.Web.ViewModels.Post;
 using BlogSystem.Web.ViewModels.Page;
 
 namespace BlogSystem.Web.ViewModels.Sidebar
