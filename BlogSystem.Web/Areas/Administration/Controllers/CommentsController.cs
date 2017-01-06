@@ -27,7 +27,7 @@
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
             var comments = this.GetAll()
-                .Skip(perPage*(page - 1))
+                .Skip(perPage * (page - 1))
                 .Take(perPage)
                 .ToList();
 

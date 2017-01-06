@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using BlogSystem.Data.Models;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Web.Mvc;
     using Base;
+    using System.Linq;
+    using Data.Models;
     using Data.Repositories;
 
     public class SettingsController : AdministrationController

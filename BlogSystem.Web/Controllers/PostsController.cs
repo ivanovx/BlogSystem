@@ -1,9 +1,8 @@
-﻿using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
+    using Data.Models;
+    using Data.Repositories;
     using ViewModels.Post;
 
     public class PostsController : BaseController

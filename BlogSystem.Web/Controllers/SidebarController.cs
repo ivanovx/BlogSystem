@@ -1,10 +1,9 @@
-﻿using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Data.Models;
+    using Data.Repositories;
     using ViewModels.Sidebar;
     using ViewModels.Post;
     using ViewModels.Page;

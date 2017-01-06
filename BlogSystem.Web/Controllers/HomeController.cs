@@ -1,14 +1,12 @@
-﻿using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-using BlogSystem.Web.Infrastructure.Extensions;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
     using System.Web.Mvc;
     using Common;
-    using Infrastructure.Mapping;
+    using Data.Models;
+    using Data.Repositories;
+    using Infrastructure.Extensions;
     using ViewModels.Home;
 
     public class HomeController : BaseController
