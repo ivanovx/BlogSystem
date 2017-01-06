@@ -1,8 +1,6 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
     using System.Reflection;
     using System.Web.Routing;
     using System.Web.Mvc;
