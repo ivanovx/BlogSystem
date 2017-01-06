@@ -253,7 +253,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="InputModels\Comments\EditCommentInputModel.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
@@ -263,7 +262,6 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Post\PostViewModel.cs" />
-    <Compile Include="InputModels\Comments\CreateCommentInputModel.cs" />
     <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
     <Compile Include="ViewModels\Home\PostConciseViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexPageViewModel.cs" />
@@ -281,7 +279,6 @@
     <Compile Include="ViewModels\Nav\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\Page\PageViewModel.cs" />
     <Compile Include="ViewModels\Sidebar\SidebarViewModel.cs" />
-    <Compile Include="ViewModels\Sidebar\RecentPostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\ViewModels\Post\IndexPostsPageViewModel.cs" />

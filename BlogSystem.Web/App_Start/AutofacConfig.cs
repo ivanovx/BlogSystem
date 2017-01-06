@@ -6,7 +6,6 @@
     using Autofac;
     using Autofac.Integration.Mvc;
     using Data;
-    using Data.UnitOfWork;
     using Controllers;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
@@ -50,10 +49,9 @@
                 .As<DbContext>()
                 .InstancePerRequest();
 
-           /* builder
-                .RegisterType<BlogSystemData>()
-                .As<IBlogSystemData>()
-                .InstancePerRequest();*/
+            builder.RegisterGeneric(typeof(DbRepository<>))
+               .As(typeof(IDbRepository<>))
+               .InstancePerRequest();
 
             builder
                 .RegisterType<CurrentUser>()
@@ -68,10 +66,6 @@
             builder
                 .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IService)))
                 .AsImplementedInterfaces();
-
-            builder.RegisterGeneric(typeof(DbRepository<>))
-                .As(typeof(IDbRepository<>))
-                .InstancePerRequest();
 
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
