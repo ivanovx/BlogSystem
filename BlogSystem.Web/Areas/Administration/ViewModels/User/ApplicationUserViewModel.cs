@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.ApplicationUsers
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.User
 {
     using System.Linq;
     using AutoMapper;
