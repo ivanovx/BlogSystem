@@ -12,13 +12,10 @@
     using ViewModel = ViewModels.Comment.CommentViewModel;
 
     public class CommentsController : GenericAdministrationController<EntityModel, ViewModel>
-    {
-        private readonly IDbRepository<EntityModel> dataRepository;
-
+    { 
         public CommentsController(IDbRepository<EntityModel> dataRepository) 
             : base(dataRepository)
         {
-            this.dataRepository = dataRepository;
         }
 
         // GET: Administration/Comments
@@ -26,10 +23,7 @@
         {
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var comments = this.GetAll()
-                .Skip(perPage * (page - 1))
-                .Take(perPage)
-                .ToList();
+            var comments = this.GetAll().Skip(perPage * (page - 1)).Take(perPage).ToList();
 
             var model = new IndexCommentsPageViewModel
             {

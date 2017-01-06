@@ -50,9 +50,7 @@
                             </li>
                             <li>
                                 <strong>User: </strong>
-                                <a href="@Url.Action("Details", "Users", new { area = "Administration", id = Model.UserId })">
-                                    @Html.DisplayFor(model => model.User.UserName)
-                                </a>
+                                @Html.DisplayFor(model => model.User.UserName)
                             </li>
                             <li>
                                 <strong>Created On: </strong>

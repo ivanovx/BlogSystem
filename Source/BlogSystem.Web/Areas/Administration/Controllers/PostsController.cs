@@ -1,55 +1,60 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Page;
-    using Infrastructure.Helpers;
+    using ViewModels.Post;
     using Infrastructure.Identity;
     using Data.Repositories;
+    using Common;
     using Base;
 
-    using EntityModel = Data.Models.Page;
-    using ViewModel = ViewModels.Page.PageViewModel;
+    using EntityModel = Data.Models.Post;
+    using ViewModel = ViewModels.Post.PostViewModel;
 
-    public class PagesController : GenericAdministrationController<EntityModel, ViewModel>
+    public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
-        private readonly IDbRepository<EntityModel> dataRepository;
-        private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
 
-        public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) 
+        public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) 
             : base(dataRepository)
         {
-            this.dataRepository = dataRepository;
-            this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
         }
 
-        // GET: Administration/Pages
-        public ActionResult Index()
+        // GET: Administration/Posts
+        public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            var pages = this.GetAll().ToList();
+            int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var model = new IndexPagesViewModel
+            var posts = this.GetAll()
+                .Skip(perPage * (page - 1))
+                .Take(perPage)
+                .ToList();
+
+            var model = new IndexPostsPageViewModel
             {
-                Pages = pages
+                Posts = posts,
+                CurrentPage = page,
+                PagesCount = pagesCount
             };
 
             return this.View(model);
         }
 
+        // GET: Administration/Posts/Create
         [HttpGet]
         public ActionResult Create()
         {
             return this.View();
         }
 
+        // POST: Administration/Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
             model.AuthorId = this.currentUser.Get().Id;
-            model.Permalink = this.urlGenerator.GenerateUrl(model.Title);
 
             var entity = this.CreateEntity(model);
 
@@ -61,6 +66,7 @@
             return this.View(model);
         }
 
+        // GET: Administration/Posts/Edit/5
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -71,7 +77,6 @@
                 var model = this.Mapper.Map<ViewModel>(entity);
 
                 model.AuthorId = this.currentUser.Get().Id;
-                model.Permalink = this.urlGenerator.GenerateUrl(entity.Title);
 
                 return this.View(model);
             }
@@ -79,6 +84,7 @@
             return this.RedirectToAction("Index");
         }
 
+        // POST: Administration/Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModel model)
@@ -93,14 +99,16 @@
             return this.View(model);
         }
 
+        // GET: Administration/Posts/Delete/5
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            var page = this.dataRepository.Find(id);
+            var model = this.dataRepository.Find(id);
 
-            return this.View(page);
+            return this.View(model);
         }
 
+        // POST: Administration/Posts/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
