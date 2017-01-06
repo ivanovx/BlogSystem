@@ -35,6 +35,7 @@
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             this.ViewBag.Settings = new SettingsManager(this.GetSettings);
+            this.ViewBag.IpAdress = requestContext.HttpContext.Request.UserHostAddress;
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
             return base.BeginExecute(requestContext, callback, state);

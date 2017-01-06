@@ -34,12 +34,13 @@ namespace BlogSystem.Data.Migrations
                 return;
             }
 
-            context.Settings.Add(new Setting { Key = "Keywords", Value = "Keywords" });
-            context.Settings.Add(new Setting { Key = "Description", Value = "Description" });
-            context.Settings.Add(new Setting { Key = "Author", Value = "Author" });
+            context.Settings.Add(new Setting { Key = "Title", Value = "Blog Title" });
+            context.Settings.Add(new Setting { Key = "Description", Value = "Blog Description" });
+            context.Settings.Add(new Setting { Key = "Keywords", Value = "Blog Keywords" });
+            context.Settings.Add(new Setting { Key = "Author", Value = "Vlog Author" });
             context.Settings.Add(new Setting { Key = "GitHub", Value = "GitHub Profile" });
-            context.Settings.Add(new Setting { Key = "LinkedIn", Value = "Linked In Profile" });
-            context.Settings.Add(new Setting { Key = "Email", Value = "Contact Email" });
+            context.Settings.Add(new Setting { Key = "LinkedIn", Value = "LinkedIn Profile" });
+            context.Settings.Add(new Setting { Key = "Email", Value = "Author Email" });
             context.Settings.Add(new Setting { Key = "Facebook", Value = "Facebook Profile" });
             context.Settings.Add(new Setting { Key = "Twitter", Value = "Twitter Profile" });
         }
