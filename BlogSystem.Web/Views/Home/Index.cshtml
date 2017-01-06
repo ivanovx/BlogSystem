@@ -21,16 +21,16 @@
                 <ul class="meta-post">
                     <li>
                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                        @Html.DisplayFor(item => post.CreatedOn)
+                        @Html.DisplayFor(model => post.CreatedOn)
                     </li>
                     <li>
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        @Html.DisplayFor(item => post.Author)
+                        @Html.DisplayFor(model => post.Author)
                     </li>
                     <li>
                         <i class="fa fa-comment" aria-hidden="true"></i>
                         <a href="/Posts/@post.Id#comments">
-                            @Html.DisplayFor(item => post.CommentsCount) comments
+                            @Html.DisplayFor(model => post.CommentsCount) comments
                         </a>
                     </li>
                 </ul>

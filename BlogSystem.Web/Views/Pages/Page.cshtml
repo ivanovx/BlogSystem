@@ -4,23 +4,21 @@
     ViewBag.Title = Model.Title;
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h2>@Html.DisplayFor(model => Model.Title)</h2>
-        <div class="bottom-article">
-            <ul class="meta-post">
-                <li>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    @Html.DisplayFor(item => Model.CreatedOn)
-                </li>
-                <li>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    @Html.DisplayFor(item => Model.Author)
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-12">
-        @Html.DisplayFor(model => Model.Content)
-    </div>
+<h2>@Html.DisplayFor(model => Model.Title)</h2>
+
+<div class="bottom-article">
+    <ul class="meta-post">
+        <li>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            @Html.DisplayFor(model => Model.CreatedOn)
+        </li>
+        <li>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            @Html.DisplayFor(model => Model.Author)
+        </li>
+    </ul>
+</div>
+
+<div class="col-md-12">
+    @Html.DisplayFor(model => Model.Content)
 </div>
