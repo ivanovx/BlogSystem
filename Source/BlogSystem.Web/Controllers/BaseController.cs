@@ -9,14 +9,10 @@
     using AutoMapper;
     using Infrastructure.Mapping;
     using Services.Cache;
-    using Data.Models;
-    using Data.Repositories;
 
     public abstract class BaseController : Controller
     {
         public ICacheService Cache { get; set; }
-    
-        public IDbRepository<Setting> Settings { get; set; }
 
         protected IMapper Mapper
         {
@@ -26,14 +22,8 @@
             }
         }
 
-        private IDictionary<string, string> GetSettings()
-        {
-            return this.Settings.All().ToDictionary(s => s.Id, s => s.Value);
-        }
-
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
-            this.ViewBag.Settings = this.GetSettings();
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
             return base.BeginExecute(requestContext, callback, state);

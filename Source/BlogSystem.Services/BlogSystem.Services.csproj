@@ -53,6 +53,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Data.Models\BlogSystem.Data.Models.csproj">
+      <Project>{47628F0E-BE6A-434F-AD43-E641032C5A2A}</Project>
+      <Name>BlogSystem.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
+      <Project>{17485A92-AA59-4324-B830-37D935148532}</Project>
+      <Name>BlogSystem.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

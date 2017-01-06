@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using BlogSystem.Web.Infrastructure.Extensions
+
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -6,11 +8,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
-        <meta name="author" content="@ViewBag.Settings["Author"]" />
-        <meta name="keywords" content="@ViewBag.Settings["Keywords"]" />
-        <meta name="description" content="@ViewBag.Settings["Description"]" />
+        <meta name="author" content="Ivan Ivanov" />
+        <meta name="description" content="Ivan Ivanov - Official Website & Blog" />
 
-        <title>@ViewBag.Title - @ViewBag.Settings["Name"]</title>
+        <title>@ViewBag.Title - Official Website & Blog</title>
 
         @Styles.Render("~/Content/css")
     </head>

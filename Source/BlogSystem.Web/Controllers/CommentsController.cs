@@ -21,6 +21,7 @@
         }
 
         [ChildActionOnly]
+        [AllowAnonymous]
         public PartialViewResult All(int id)
         {
             var comments = this.commentsRepository
