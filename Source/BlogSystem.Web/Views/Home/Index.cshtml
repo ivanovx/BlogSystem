@@ -12,7 +12,7 @@
             <div class="post-slider">
                 <div class="post-heading">
                     <h3>
-                        @Html.RouteLink(post.Title, "Post", new { id = post.Id })
+                        <a href="@post.Url">@post.Title</a>
                     </h3>
                 </div>
             </div>

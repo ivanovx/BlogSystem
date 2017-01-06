@@ -6,9 +6,22 @@
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    
+    using Infrastructure.Helpers;
+
     public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
+        private readonly IUrlGenerator urlGenerator;
+
+        public PostConciseViewModel()
+            : this(new UrlGenerator())
+        {
+        }
+
+        public PostConciseViewModel(IUrlGenerator urlGenerator)
+        {
+            this.urlGenerator = urlGenerator;
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -24,6 +37,14 @@
         public DateTime CreatedOn { get; set; }
 
         public int CommentsCount { get; set; }
+
+        public string Url
+        {
+            get
+            {
+                return this.urlGenerator.GeneratePostUrl(this.Id, this.Title, this.CreatedOn);
+            }
+        }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {

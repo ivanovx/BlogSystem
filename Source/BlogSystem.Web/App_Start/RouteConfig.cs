@@ -24,7 +24,7 @@
 
             routes.MapRoute(
                name: "Post",
-               url: "Posts/{id}",
+               url: "Posts/{year}/{month}/{title}/{id}",
                defaults: new
                {
                    controller = "Posts",
