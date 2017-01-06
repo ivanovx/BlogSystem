@@ -10,7 +10,7 @@
         where TEntity : class, IAuditInfo
         where TViewModel: AdministrationViewModel
     {
-        private readonly IDbRepository<TEntity> dataRepository;
+        protected readonly IDbRepository<TEntity> dataRepository;
 
         protected GenericAdministrationController(IDbRepository<TEntity> dataRepository)
         {

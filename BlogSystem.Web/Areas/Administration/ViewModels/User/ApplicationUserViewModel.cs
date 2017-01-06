@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.User
+﻿using System.Collections.Generic;
+
+namespace BlogSystem.Web.Areas.Administration.ViewModels.User
 {
     using System.Linq;
     using AutoMapper;
@@ -10,7 +12,7 @@
     using Infrastructure.Mapping;
     using Administration;
 
-    public class ApplicationUserViewModel : AdministrationViewModel, IMapFrom<ApplicationUser>, IHaveCustomMappings
+    public class ApplicationUserViewModel : AdministrationViewModel, IMapFrom<ApplicationUser>, IMapTo<ApplicationUser>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -18,7 +20,13 @@
 
         public string UserName { get; set; }
 
+        public string Password { get; set; }
+
         public bool IsAdmin { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
+
+        public int CommentsCount { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
@@ -31,7 +39,8 @@
                 .FirstOrDefault();
 
             configuration.CreateMap<ApplicationUser, ApplicationUserViewModel>()
-                .ForMember(model => model.IsAdmin, config => config.MapFrom(e => e.Roles.Any(user => user.RoleId == administratorRoleId)));
+                .ForMember(model => model.IsAdmin, config => config.MapFrom(e => e.Roles.Any(user => user.RoleId == administratorRoleId)))
+                .ForMember(m => m.CommentsCount, c => c.MapFrom(user => user.Comments.Count));
         }
     }
 }
