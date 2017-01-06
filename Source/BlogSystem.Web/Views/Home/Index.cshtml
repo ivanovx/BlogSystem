@@ -29,12 +29,12 @@
                     </li>
                     <li>
                         <i class="fa fa-comment" aria-hidden="true"></i>
-                        <a href="/Posts/@post.Id#comments">
+                        <a href="@post.Url#comments">
                             @Html.DisplayFor(model => post.CommentsCount) comments
                         </a>
                     </li>
                 </ul>
-                <a href="@Url.Action("Post", "Posts", new { id = post.Id })" class="pull-right">
+                <a href="@post.Url" class="pull-right">
                     Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </div>
