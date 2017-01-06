@@ -16,16 +16,16 @@
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
-        public string User { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
+        public string User { get; set; }
+
+        public void CreateMappings(IMapperConfigurationExpression config)
         {
-            configuration.CreateMap<Comment, CommentViewModel>()
-                .ForMember(model => model.User, config => config.MapFrom(comment => comment.User.UserName));
+            config.CreateMap<Comment, CommentViewModel>()
+                .ForMember(m => m.User, c => c.MapFrom(comment => comment.User.UserName));
         }
     }
 }
