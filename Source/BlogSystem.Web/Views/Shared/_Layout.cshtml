@@ -6,10 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
-        <meta name="author" content="Ivan Ivanov" />
-        <meta name="description" content="Ivan Ivanov - Official Website & Blog" />
+        <meta name="author" content="@ViewBag.Settings.Get["Author"]" />
+        <meta name="description" content="@ViewBag.Settings.Get["Description"]" />
+        <meta name="keywords" content="@ViewBag.Settings.Get["Keywords"]" />
 
-        <title>@ViewBag.Title - Official Website & Blog</title>
+
+        <title>@ViewBag.Title - @ViewBag.Settings.Get["Title"]</title>
 
         @Styles.Render("~/Content/css")
     </head>

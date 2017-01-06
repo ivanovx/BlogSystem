@@ -37,7 +37,7 @@ namespace BlogSystem.Data.Migrations
             context.Settings.Add(new Setting { Key = "Title", Value = "Blog Title" });
             context.Settings.Add(new Setting { Key = "Description", Value = "Blog Description" });
             context.Settings.Add(new Setting { Key = "Keywords", Value = "Blog Keywords" });
-            context.Settings.Add(new Setting { Key = "Author", Value = "Vlog Author" });
+            context.Settings.Add(new Setting { Key = "Author", Value = "Blog Author" });
             context.Settings.Add(new Setting { Key = "GitHub", Value = "GitHub Profile" });
             context.Settings.Add(new Setting { Key = "LinkedIn", Value = "LinkedIn Profile" });
             context.Settings.Add(new Setting { Key = "Email", Value = "Author Email" });
