@@ -6,12 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
-        <meta name="author" content="@ViewBag.Settings.Get["Author"]" />
-        <meta name="description" content="@ViewBag.Settings.Get["Description"]" />
-        <meta name="keywords" content="@ViewBag.Settings.Get["Keywords"]" />
+        <meta name="author" content="@ViewBag.Settings["Author"]" />
+        <meta name="description" content="@ViewBag.Settings["Description"]" />
+        <meta name="keywords" content="@ViewBag.Settings["Keywords"]" />
 
-
-        <title>@ViewBag.Title - @ViewBag.Settings.Get["Title"]</title>
+        <title>@ViewBag.Title - @ViewBag.Settings["Title"]</title>
 
         @Styles.Render("~/Content/css")
     </head>

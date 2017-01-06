@@ -12,12 +12,11 @@
             this.settings = new Lazy<IDictionary<string, string>>(initializer);
         }
 
-        // Replace with abstraction over IDictionary (SettingsManager indexer for example)
-        public IDictionary<string, string> Get
+        public string this[string key]
         {
             get
             {
-                return this.settings.Value;
+                return this.settings.Value[key];
             }
         }
     }

@@ -5,7 +5,7 @@
                 <div class="col-lg-6">
                     <div class="copyright">
                         <p>
-                            &copy; 2012 - @DateTime.Now.Year <strong>@ViewBag.Settings.Get["Author"]</strong>.
+                            &copy; 2012 - @DateTime.Now.Year <strong>@ViewBag.Settings["Author"]</strong>.
                             All right reserved.
                         </p>
                         <p>
@@ -19,22 +19,22 @@
                 <div class="col-lg-6">
                     <ul class="social-network">
                         <li>
-                            <a href="@ViewBag.Settings.Get["Facebook"]" data-placement="top" title="Facebook" rel="me">
+                            <a href="@ViewBag.Settings["Facebook"]" data-placement="top" title="Facebook" rel="me">
                                 <span class="fa fa-facebook"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="@ViewBag.Settings.Get["Twitter"]" data-placement="top" title="Twitter" rel="me">
+                            <a href="@ViewBag.Settings["Twitter"]" data-placement="top" title="Twitter" rel="me">
                                 <span class="fa fa-twitter"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="@ViewBag.Settings.Get["LinkedIn"]" data-placement="top" title="LinkedIn" rel="me">
+                            <a href="@ViewBag.Settings["LinkedIn"]" data-placement="top" title="LinkedIn" rel="me">
                                 <span class="fa fa-linkedin"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="@ViewBag.Settings.Get["GitHub"]" data-placement="top" title="GitHub" rel="me">
+                            <a href="@ViewBag.Settings["GitHub"]" data-placement="top" title="GitHub" rel="me">
                                 <span class="fa fa-github"></span>
                             </a>
                         </li>
