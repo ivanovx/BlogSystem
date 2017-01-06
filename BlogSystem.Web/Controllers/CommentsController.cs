@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Data.Repositories;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -11,19 +13,19 @@
     [Authorize]
     public class CommentsController : BaseController
     {
-        private readonly IBlogSystemData data;
+        private readonly IDbRepository<Comment> commentsRepository;
         private readonly ICurrentUser currentUser;
 
-        public CommentsController(IBlogSystemData data, ICurrentUser currentUser)
+        public CommentsController(IDbRepository<Comment> commentsRepository, ICurrentUser currentUser)
         {
-            this.data = data;
+            this.commentsRepository = commentsRepository;
             this.currentUser = currentUser;
         }
 
         [ChildActionOnly]
         public PartialViewResult All(int id)
         {
-            var comments = this.data.Comments
+            var comments = this.commentsRepository
                 .All()
                 .Where(c => c.PostId == id && !c.IsDeleted)
                 .OrderByDescending(c => c.CreatedOn)
@@ -46,8 +48,8 @@
                     UserId = this.currentUser.Get().Id
                 };
 
-                this.data.Comments.Add(comment);
-                this.data.SaveChanges();
+                this.commentsRepository.Add(comment);
+                this.commentsRepository.SaveChanges();
 
                 return this.RedirectToAction("Post", "Posts", new
                 {

@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
+    using System.Linq;
+    using System.Collections.Generic;
     using System.Reflection;
     using System.Web.Routing;
     using System.Web.Mvc;
     using AutoMapper;
     using Infrastructure.Mapping;
     using Services.Cache;
-    using System.Linq;
+    using Data.Models;
+    using Data.Repositories;
 
     public abstract class BaseController : Controller
     {
