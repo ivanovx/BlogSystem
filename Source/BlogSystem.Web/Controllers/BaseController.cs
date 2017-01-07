@@ -27,14 +27,14 @@
             }
         }
 
-        private IDictionary<string, string> GetSettings()
-        {
-            return this.Settings.All().ToDictionary(s => s.Key, s => s.Value);
-        }
-
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
-            this.ViewBag.Settings = new SettingsManager(this.GetSettings);
+            Func<IDictionary<string, string>> getSettings = delegate()
+            {
+                return this.Settings.All().ToDictionary(s => s.Key, s => s.Value);
+            };
+
+            this.ViewBag.Settings = new SettingsManager(getSettings);
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
             return base.BeginExecute(requestContext, callback, state);
