@@ -23,7 +23,7 @@
         {
             get
             {
-                return AutoMapperConfig.Configuration.CreateMapper();
+                return AutoMapperConfig.MapperConfiguration.CreateMapper();
             }
         }
 

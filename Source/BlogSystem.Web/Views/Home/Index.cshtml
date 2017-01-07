@@ -12,7 +12,7 @@
             <div class="post-slider">
                 <div class="post-heading">
                     <h3>
-                        <a href="@post.Url">@post.Title</a>
+                        @Html.RouteLink(post.Title, "Post", new {id = post.Id})
                     </h3>
                 </div>
             </div>
@@ -29,12 +29,12 @@
                     </li>
                     <li>
                         <i class="fa fa-comment" aria-hidden="true"></i>
-                        <a href="@post.Url#comments">
+                        <a href="@Url.RouteUrl("Post", new { id = post.Id })#comments">
                             @Html.DisplayFor(model => post.CommentsCount) comments
                         </a>
                     </li>
                 </ul>
-                <a href="@post.Url" class="pull-right">
+                <a href="@Url.RouteUrl("Post", new { id = post.Id })" class="pull-right">
                     Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </div>

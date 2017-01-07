@@ -35,13 +35,13 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, CommentViewModel commentInputModel)
+        public ActionResult Create(int id, CommentViewModel model)
         {
             if (this.ModelState.IsValid)
             {
                 var comment = new Comment
                 {
-                    Content = commentInputModel.Content,
+                    Content = model.Content,
                     PostId = id,
                     User = this.currentUser.Get(),
                     UserId = this.currentUser.Get().Id
