@@ -1,6 +1,4 @@
-﻿using BlogSystem.Services.Mapping;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -14,12 +12,10 @@ namespace BlogSystem.Web.Controllers
     public class HomeController : BaseController
     {
         private readonly IDbRepository<Post> postsRepository;
-        private readonly IMappingService mappingService;
 
-        public HomeController(IDbRepository<Post> postsRepository, IMappingService mappingService)
+        public HomeController(IDbRepository<Post> postsRepository)
         {
             this.postsRepository = postsRepository;
-            this.mappingService = mappingService;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
