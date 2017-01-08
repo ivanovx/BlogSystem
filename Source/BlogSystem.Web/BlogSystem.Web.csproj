@@ -551,6 +551,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Nav\AdminMenu.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
