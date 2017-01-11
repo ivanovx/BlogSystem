@@ -10,3 +10,4 @@ This project is made just to play with these frameworks :smiley: and I used for 
 * Spotify Badge
 * Google analitics
 * Web Site counter
+* test - integrate OWIN and Autofac
