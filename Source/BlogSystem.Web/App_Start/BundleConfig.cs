@@ -16,8 +16,8 @@
             bundles
                 .Add(new StyleBundle("~/Content/css")
                 .Include(
-                    "~/Content/bootstrap.min.css",
-                    "~/Content/font-awesome.min.css",
+                    "~/Content/bootstrap.css",
+                    "~/Content/font-awesome.css",
                     "~/Content/style.css",
                     "~/Content/default.css"
                 ));
@@ -27,7 +27,7 @@
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.unobtrusive-ajax.min.js"));
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles
                 .Add(new ScriptBundle("~/bundles/jqueryval")
@@ -35,7 +35,7 @@
 
             bundles
                 .Add(new ScriptBundle("~/bundles/bootstrap")
-                .Include("~/Scripts/bootstrap.min.js"));
+                .Include("~/Scripts/bootstrap.js"));
         }
     }
 }
