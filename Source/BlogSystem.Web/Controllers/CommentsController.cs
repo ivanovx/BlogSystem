@@ -20,7 +20,7 @@
             this.currentUser = currentUser;
         }
 
-        [ChildActionOnly]
+        //[ChildActionOnly]
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {

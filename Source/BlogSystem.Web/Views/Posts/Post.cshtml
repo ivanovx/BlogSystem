@@ -1,9 +1,12 @@
 ﻿@model BlogSystem.Web.ViewModels.Post.PostViewModel
 
 @using BlogSystem.Common
+@using System.Web.Mvc.Expressions
+@using BlogSystem.Web.Controllers
 
 @{
     ViewBag.Title = Model.Title;
+
     const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
@@ -42,7 +45,6 @@
     @Html.DisplayFor(model => Model.Content)
 </div>
 
-<br />
 <hr />
 
 @Html.Partial(string.Format(CommentsPartialViewsFolder, "_Comments"), Model.Id)
