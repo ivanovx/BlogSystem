@@ -4,6 +4,7 @@
     using Data.Models;
     using Data.Repositories;
     using ViewModels.Post;
+    using Infrastructure;
 
     public class PostsController : BaseController
     {
@@ -14,6 +15,7 @@
             this.postsRepository = postsRepository;
         }
 
+        [PassRouteValuesToViewData]
         public ActionResult Post(int id)
         {
             var post = this.postsRepository.Find(id);

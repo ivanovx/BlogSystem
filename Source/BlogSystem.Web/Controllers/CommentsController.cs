@@ -56,7 +56,7 @@
                 });
             }
 
-            return this.Content("Content is required");
+            return this.Json("Content is required");
         }
     }
 }
