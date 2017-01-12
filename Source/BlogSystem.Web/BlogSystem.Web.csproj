@@ -228,11 +228,11 @@
     <Compile Include="Areas\Administration\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Administration\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Administration\AdministrationViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Post\PostViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Page\IndexPagesViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Page\PageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Comment\IndexCommentsPageViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Comment\CommentViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Pages\IndexPagesViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Pages\PageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Comments\IndexCommentsPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -273,7 +273,7 @@
     <Compile Include="ViewModels\Sidebar\SidebarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Administration\ViewModels\Post\IndexPostsPageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Posts\IndexPostsPageViewModel.cs" />
     <Content Include="Content\blog.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -312,7 +312,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="images\logo.png" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />

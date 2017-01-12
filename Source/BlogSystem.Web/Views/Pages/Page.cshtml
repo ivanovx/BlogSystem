@@ -4,6 +4,7 @@
     ViewBag.Title = Model.Title;
 }
 
+@*
 <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
 <div class="bottom-article">
@@ -24,3 +25,26 @@
 <div class="col-md-12">
     @Html.DisplayFor(model => Model.Content)
 </div>
+    
+*@
+
+<article class="post-container">
+    <header class="post-header">
+        <h2 class="post-title">
+            @Html.RouteLink(Model.Title, "Page", new { id = Model.Id })
+        </h2>
+        <ul class="post-meta">
+            <li>
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                @Html.DisplayFor(model => Model.CreatedOn)
+            </li>
+            <li>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                @Html.DisplayFor(model => Model.Author)
+            </li>
+        </ul>
+    </header>
+    <div class="post-content">
+        @Html.DisplayFor(model => Model.Content)
+    </div>
+</article>

@@ -235,3 +235,10 @@ a:focus {
 #site-footer .social-network li a:focus > i {
     opacity: 0.8;
 }
+
+.pagination > .active,
+.pagination > .active > a {
+    background: rgb(93, 67, 132);
+    color: white;
+    border: none;
+}
