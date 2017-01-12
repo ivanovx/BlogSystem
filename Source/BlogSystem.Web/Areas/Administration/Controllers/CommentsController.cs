@@ -5,11 +5,11 @@
     using System.Web.Mvc;
     using Common;
     using Data.Repositories;
-    using ViewModels.Comment;
+    using ViewModels.Comments;
     using Base;
 
     using EntityModel = Data.Models.Comment;
-    using ViewModel = ViewModels.Comment.CommentViewModel;
+    using ViewModel = ViewModels.Comments.CommentViewModel;
 
     public class CommentsController : GenericAdministrationController<EntityModel, ViewModel>
     { 
@@ -18,7 +18,6 @@
         {
         }
 
-        // GET: Administration/Comments
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
