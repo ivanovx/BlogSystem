@@ -4,17 +4,19 @@
 
 @if (User.IsInRole(GlobalConstants.AdminRoleName))
 {
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <span class="glyphicon glyphicon-user"></span>
-        Administration <span class="caret"></span>
-    </a>
-
-    <ul class="dropdown-menu">
-        @foreach (var item in Model)
-        {
-            <li>
-                <a href="@Url.Action("Index", item, new {area = "Administration"})">@item</a>
-            </li>
-        }
-    </ul>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Administration 
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("Index", item, new { area = "Administration" })">@item</a>
+                </li>
+            }
+        </ul>
+    </li>
 }

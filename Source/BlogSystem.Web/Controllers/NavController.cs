@@ -18,7 +18,6 @@
         }
 
         [ChildActionOnly]
-        //[OutputCache(Duration = 6 * 10 * 60)]
         public PartialViewResult Menu()
         { 
             var model = this.Cache.Get("Menu", () => 
@@ -35,11 +34,10 @@
         [ChildActionOnly]
         public PartialViewResult AdminMenu()
         {
-            var controllerNames = ReflectionHelper
-                .GetSubClasses<AdministrationController>()
-                .Select(c => c.Name.Replace("Controller", string.Empty));
-
-            var controllers = controllerNames;
+            var controllers =
+                ReflectionHelper
+                    .GetSubClasses<AdministrationController>()
+                    .Select(c => c.Name.Replace("Controller", string.Empty));
 
             return this.PartialView(controllers);
         }
