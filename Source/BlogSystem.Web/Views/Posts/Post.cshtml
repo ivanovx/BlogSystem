@@ -8,6 +8,7 @@
     const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
+@*
 <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
 <div class="bottom-article">
@@ -45,4 +46,30 @@
 
 <hr />
 
-@Html.Partial(string.Format(CommentsPartialViewsFolder, "_Comments"), Model.Id)
+
+
+*@
+
+<article class="post-container">
+    <header class="post-header">
+        <h2 class="post-title">
+            @Html.RouteLink(Model.Title, "Post", new { id = Model.Id })
+        </h2>
+        <ul class="post-meta">
+            <li>
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                @Html.DisplayFor(model => Model.CreatedOn)
+            </li>
+            <li>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                @Html.DisplayFor(model => Model.Author)
+            </li>
+        </ul>
+    </header>
+    <div class="post-content">
+        @Html.DisplayFor(model => Model.Content)
+    </div>
+    <div class="post-comments">
+        @Html.Partial(string.Format(CommentsPartialViewsFolder, "_Comments"), Model.Id)
+    </div>
+</article>
