@@ -1,4 +1,5 @@
 ﻿@using BlogSystem.Web.Infrastructure.Helpers.Html
+
 @model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
@@ -45,27 +46,10 @@
     }
 }
 
-
 @if (Model.PagesCount > 0)
 {
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <!--<li>
-                <a href="#" aria-label="Previous">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-            </li>-->
-            <!--<li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>-->
-            <!--<li>
-                <a href="#" aria-label="Next">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </li>-->
-            
             @for (int i = 1; i <= Model.PagesCount; i++)
             {
                 if (i == Model.CurrentPage)
@@ -84,68 +68,3 @@
         </ul>
     </nav>
 }
-
-
-            @*
-                @if (Model.Posts.Any())
-                {
-                    foreach (var post in Model.Posts)
-                    {
-                        <article>
-                            <div class="post-slider">
-                                <div class="post-heading">
-                                    <h3>
-                                        @Html.RouteLink(post.Title, "Post", new {id = post.Id})
-                                    </h3>
-                                </div>
-                            </div>
-
-                            <div class="bottom-article">
-                                <ul class="meta-post">
-                                    <li>
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        @Html.DisplayFor(model => post.CreatedOn)
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        @Html.DisplayFor(model => post.Author)
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-comment" aria-hidden="true"></i>
-                                        <a href="@Url.RouteUrl("Post", new { id = post.Id })#comments">
-                                            @Html.DisplayFor(model => post.CommentsCount) comments
-                                        </a>
-                                    </li>
-                                </ul>
-                                <a href="@Url.RouteUrl("Post", new { id = post.Id })" class="pull-right">
-                                    Continue reading <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </article>
-                    }
-                }
-                else
-                {
-                    <h2>No posts available.</h2>
-                }
-
-                @if (Model.PagesCount > 0)
-                {
-                    <div id="pagination">
-                        <span class="all">Page @Model.CurrentPage of @Model.PagesCount</span>
-
-                        @for (int i = 1; i <= Model.PagesCount; i++)
-                        {
-                            if (i == Model.CurrentPage)
-                            {
-                                <span class="current">@i</span>
-                            }
-                            else
-                            {
-                                @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i }, new { @class= "inactive" })
-                            }
-                        }
-                    </div>
-                }
-
-            *@

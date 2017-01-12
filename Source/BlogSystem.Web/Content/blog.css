@@ -246,3 +246,7 @@ a:focus {
 .post-read-more {
     margin-top: 1.5em;
 }
+
+.hidden-cotainer {
+    display: none;
+}
