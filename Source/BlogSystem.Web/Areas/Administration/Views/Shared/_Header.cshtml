@@ -1,27 +1,20 @@
-﻿<!-- start header -->
-<header>
-    <div class="navbar navbar-default navbar-static-top">
+﻿<header id="site-header">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
-                <a href="@Url.Action("Index", "Home", new { area = "Administration" })" class="navbar-brand">
-                    Administration
+                <a href="@Url.Action("Index", "Home", new { area = string.Empty })" class="navbar-brand" title="Home">
+                    @ViewBag.Settings["Title"]
                 </a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="@Url.Action("Index", "Home", new { area = string.Empty })">
-                            Home
-                        </a>
-                    </li>
+                    <!-- Todo Admin menu here-->
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
 </header>
-<!-- end header -->

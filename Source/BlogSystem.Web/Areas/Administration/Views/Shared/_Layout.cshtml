@@ -5,26 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <title>@ViewBag.Title - Blog System</title>
+        <title>@ViewBag.Title - @ViewBag.Settings["Title"]</title>
 
         @Styles.Render("~/Content/css")
     </head>
     <body>
-        <div id="wrapper">
-            @Html.Partial("_Header")
+        @Html.Partial("_Header")
 
-            <section id="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @RenderBody()
-                        </div>
-                    </div>
+        <section id="wrap" class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    @RenderBody()
                 </div>
-            </section>
-
-            @*Html.Partial("_Footer")*@
-        </div>
+            </div>  
+        </section>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
