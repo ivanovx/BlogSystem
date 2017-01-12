@@ -20,62 +20,74 @@
         <![endif]-->
     </head>
     <body>
-        <div id="wrapper">
-            @Html.Partial("_Header")
+        @Html.Partial("_Header")
+        
+        <section id="wrap" class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    @RenderBody()
+                </div>
+                <div class="col-md-4 col-lg-4">
+                </div>
+            </div>
+        </section>
+            @*
+                <div id="wrapper">
+                <section id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                @RenderBody()
+                            </div>
+                            <div class="col-lg-4">
+                                <aside class="right-sidebar">
+                                    <div class="widget">
+                                        <h5 class="widgetheading">Account</h5>
+                                       
+                                    </div>
 
-            <section id="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            @RenderBody()
-                        </div>
-                        <div class="col-lg-4">
-                            <aside class="right-sidebar">
-                                <div class="widget">
-                                    <h5 class="widgetheading">Account</h5>
-                                    @Html.Partial("_LoginPartial")
-                                </div>
-
-                                @{
-                                    Html.RenderAction("Index", "Sidebar");
-                                }
-                            </aside>
+                                    @{
+                                        Html.RenderAction("Index", "Sidebar");
+                                    }
+                                </aside>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            @Html.Partial("_Footer")
-        </div>
+                @Html.Partial("_Footer")
+            </div>
 
-        <a href="#" class="scrollup">
-            <span class="fa fa-angle-up active"></span>
-        </a>
+            <a href="#" class="scrollup">
+                <span class="fa fa-angle-up active"></span>
+            </a>*@
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", false)
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", false)
 
-        <script>
-            $(document).ready(function () {
-                $(".social-network li a").tooltip();
+            @*
+                <script>
+                $(document).ready(function() {
+                    $(".social-network li a").tooltip();
 
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 100) {
-                        $(".scrollup").fadeIn();
-                    } else {
-                        $(".scrollup").fadeOut();
-                    }
+                    $(window).scroll(function() {
+                        if ($(this).scrollTop() > 100) {
+                            $(".scrollup").fadeIn();
+                        } else {
+                            $(".scrollup").fadeOut();
+                        }
+                    });
+
+                    $(".scrollup").click(function() {
+                        $("html, body").animate({
+                                scrollTop: 0
+                            },
+                            1000);
+
+                        return false;
+                    });
                 });
-
-                $(".scrollup").click(function () {
-                    $("html, body").animate({
-                         scrollTop: 0
-                    }, 1000);
-
-                    return false;
-                });
-            });
-        </script>
-    </body>
+            </script>*@
+</body>
 </html>
