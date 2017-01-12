@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Page
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Pages
 {
     using System.Collections.Generic;
 

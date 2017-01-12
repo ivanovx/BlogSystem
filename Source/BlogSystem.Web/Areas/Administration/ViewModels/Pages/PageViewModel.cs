@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Post
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Pages
 {
     using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@
     using Infrastructure.Mapping;
     using Administration;
 
-    public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
+    public class PageViewModel : AdministrationViewModel, IMapFrom<Page>, IMapTo<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -20,13 +20,17 @@
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
+        public string Permalink { get; set; }
+
         public string AuthorId { get; set; }
 
         public string AuthorUserName { get; set; }
 
+        public bool VisibleInMenu { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            config.CreateMap<Post, PostViewModel>()
+            config.CreateMap<Page, PageViewModel>()
                 .ForMember(m => m.AuthorUserName, c => c.MapFrom(p => p.Author.UserName));
         }
     }

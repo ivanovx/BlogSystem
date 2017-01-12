@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Comment
+﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Comments
 {
     using AutoMapper;
     using Data.Models;
