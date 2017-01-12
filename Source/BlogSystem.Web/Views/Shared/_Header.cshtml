@@ -20,6 +20,9 @@
                         Html.RenderAction("Menu", "Nav");
                     }
                 </ul>
+
+                @Html.Partial("_LoginPartial")
+                
                 <ul class="nav navbar-nav navbar-right">
                     @{
                         Html.RenderAction("AdminMenu", "Nav");
