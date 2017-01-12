@@ -21,7 +21,7 @@
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration = 10 * 60)]
+        //[OutputCache(Duration = 10 * 60)]
         public PartialViewResult Index()
         {
             var model = new SidebarViewModel
