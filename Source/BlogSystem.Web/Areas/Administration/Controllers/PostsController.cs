@@ -3,14 +3,14 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Post;
+    using ViewModels.Posts;
     using Infrastructure.Identity;
     using Data.Repositories;
     using Common;
     using Base;
 
     using EntityModel = Data.Models.Post;
-    using ViewModel = ViewModels.Post.PostViewModel;
+    using ViewModel = ViewModels.Posts.PostViewModel;
 
     public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
@@ -22,15 +22,11 @@
             this.currentUser = currentUser;
         }
 
-        // GET: Administration/Posts
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
 
-            var posts = this.GetAll()
-                .Skip(perPage * (page - 1))
-                .Take(perPage)
-                .ToList();
+            var posts = this.GetAll().Skip(perPage * (page - 1)).Take(perPage).ToList();
 
             var model = new IndexPostsPageViewModel
             {
@@ -42,14 +38,12 @@
             return this.View(model);
         }
 
-        // GET: Administration/Posts/Create
         [HttpGet]
         public ActionResult Create()
         {
             return this.View();
         }
 
-        // POST: Administration/Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
@@ -66,7 +60,6 @@
             return this.View(model);
         }
 
-        // GET: Administration/Posts/Edit/5
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -84,7 +77,6 @@
             return this.RedirectToAction("Index");
         }
 
-        // POST: Administration/Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModel model)
@@ -99,7 +91,6 @@
             return this.View(model);
         }
 
-        // GET: Administration/Posts/Delete/5
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -108,7 +99,6 @@
             return this.View(model);
         }
 
-        // POST: Administration/Posts/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

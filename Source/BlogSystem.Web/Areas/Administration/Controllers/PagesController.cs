@@ -2,14 +2,14 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Page;
+    using ViewModels.Pages;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
     using Data.Repositories;
     using Base;
 
     using EntityModel = Data.Models.Page;
-    using ViewModel = ViewModels.Page.PageViewModel;
+    using ViewModel = ViewModels.Pages.PageViewModel;
 
     public class PagesController : GenericAdministrationController<EntityModel, ViewModel>
     {
@@ -23,7 +23,6 @@
             this.currentUser = currentUser;
         }
 
-        // GET: Administration/Pages
         public ActionResult Index()
         {
             var pages = this.GetAll().ToList();
