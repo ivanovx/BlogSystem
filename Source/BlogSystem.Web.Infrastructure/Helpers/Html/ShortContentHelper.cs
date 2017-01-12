@@ -10,7 +10,7 @@
             var parser = new HtmlParser();
             var document = parser.Parse(text);
 
-            return document.QuerySelector("p").InnerHtml;
+            return document.QuerySelector("p").InnerHtml + "...";
         }
     }
 }

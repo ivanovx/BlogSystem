@@ -1,4 +1,5 @@
-﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
+﻿@using BlogSystem.Web.Infrastructure.Helpers.Html
+@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -29,11 +30,17 @@
                         </a>
                     </li>
                 </ul>
-                
-                <!--<a href="@Url.RouteUrl("Post", new {id = post.Id})" class="btn btn-default" title="@post.Title">
+            </header>    
+            
+            <div class="post-content">
+                @Html.Raw(Html.Truncate(post.Content))
+            </div>
+            
+            <div class="post-read-more">
+                <a href="@Url.RouteUrl("Post", new {id = post.Id})" class="btn btn-default" title="@post.Title">
                     Read more!
-                </a>-->
-            </header>
+                </a>
+            </div>
         </article>
     }
 }

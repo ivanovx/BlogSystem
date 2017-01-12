@@ -242,3 +242,7 @@ a:focus {
     color: white;
     border: none;
 }
+
+.post-read-more {
+    margin-top: 1.5em;
+}
