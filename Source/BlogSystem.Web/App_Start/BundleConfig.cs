@@ -18,8 +18,7 @@
                 .Include(
                     "~/Content/bootstrap.css",
                     "~/Content/font-awesome.css",
-                    "~/Content/style.css",
-                    "~/Content/default.css"
+                    "~/Content/blog.css"
                 ));
         }
 

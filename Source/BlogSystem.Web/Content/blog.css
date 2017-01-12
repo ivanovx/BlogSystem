@@ -1,0 +1,237 @@
+body {
+    padding-top: 70px;
+    background: rgb(238, 238, 238);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    color: rgb(93, 67, 132);
+}
+
+a {
+    color: rgb(93, 67, 132);
+}
+
+a:hover,
+a:focus {
+    color: rgb(93, 67, 132);
+    text-decoration: underline;
+}
+
+.navbar {
+    padding: 0.7em;
+    background: white;
+    color: rgb(93, 67, 132);
+    opacity: 0.9;
+}
+
+.navbar .navbar-header .navbar-brand {
+    color: rgb(93, 67, 132);
+}
+
+.navbar .navbar-header .navbar-brand:hover,
+.navbar .navbar-header .navbar-brand:focus {
+    text-decoration: underline;
+}
+
+.navbar .nav li a:hover,
+.navbar .nav li a:focus {
+    color: rgb(93, 67, 132);
+}
+
+.navbar .navbar-nav > .open > a, 
+.navbar .navbar-nav > .open > a:focus, 
+.navbar .navbar-nav > .open > a:hover {
+    color: rgb(93, 67, 132);
+    background: white;
+}
+
+#wrap {
+    margin-top: 50px;
+}
+
+#wrap .post-container {
+    margin-bottom: 40px;
+    padding: 30px 40px;
+    position: relative;
+    overflow: hidden;
+    background: white;
+}
+
+#wrap .widget {
+    margin-bottom: 30px;
+    padding: 20px 26px 20px;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.widget:before, 
+.post-container:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 40;
+    border-width: 0 16px 16px 0;
+    border-style: solid;
+    border-color: rgb(255,255,255) rgb(238,238,238) rgb(255,255,255) rgb(255,255,255);
+    background: rgb(101,142,21);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+    display: block;
+    width: 0;
+}
+
+.post-title a {
+    color: rgb(93, 67, 132);
+}
+
+.post-meta {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+
+.post-meta li, 
+.post-meta li a {
+    color: #bbb;
+}
+
+.post-meta li {
+    margin-right: 12px;
+    display: inline-block;
+}
+
+.post-content {
+    margin-top: 30px;
+    line-height: 24px;
+}
+
+.btn-default, .btn-default:hover, 
+.btn-default:focus, .btn-default:active, 
+.btn-default.active {
+    color: #bbb;
+    text-transform: uppercase;
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, 
+.btn-default.active, .open .dropdown-toggle.btn-default {
+    border-color: #ddd;
+}
+
+.widgettitle {
+    margin-top: 0;
+    margin-bottom: 16px;
+    position: relative;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+}
+
+.widgettitle span {
+    position: relative;
+    bottom: -1px;
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(93, 67, 132);
+}
+
+.widget ul {
+    padding-left: 15px;
+}
+
+.widget ul li {
+    list-style: square;
+}
+
+.post-comments {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f4f4f4;
+}
+
+.post-comments h3 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.post-comments ul {
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 13px;
+}
+
+.post-comments .comments-list {
+    padding: 0;
+}
+
+.post-comments .comments-list .comment {
+    margin: 20px 0 30px;
+    position: relative;
+    list-style: none;
+}
+
+ .post-comments .comments-list .comment .comment-meta {
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 13px;
+}
+
+.post-comments .comments-list .comment-author {
+    font-size: 14px;
+    color: rgb(93, 67, 132);
+}
+
+.pagination > li > a, 
+.pagination > li > span {
+     margin: 0 5px;
+    background: white;
+    color: rgb(93, 67, 132);
+    border-radius: 50% !important;
+}
+
+#site-footer {
+    padding: 20px 0;
+    background: #fff;
+    font-size: 12px;
+}
+
+#site-footer .social-network {
+    list-style: none;
+    box-sizing: border-box;
+    /*margin: 1em auto 2em;*/
+    /*max-width: 720px;*/
+    overflow: hidden;
+    /*padding: 1em 0 .8em;*/
+    text-align: center;
+    /*width: 95%;*/
+}
+
+#site-footer .social-network li {
+    line-height: 1.1;
+    display: inline-block;
+    font-size: .9em;
+    font-weight: 500;
+    padding: .7em;
+    text-decoration: none;
+}
+
+#site-footer .social-network li a > i {
+    font-size: 3em;
+}
+
+#site-footer .social-network li a:hover > i,
+#site-footer .social-network li a:focus > i {
+    opacity: 0.8;
+}
