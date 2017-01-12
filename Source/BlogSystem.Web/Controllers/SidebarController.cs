@@ -21,12 +21,11 @@
         }
 
         [ChildActionOnly]
-        //[OutputCache(Duration = 10 * 60)]
         public PartialViewResult Index()
         {
             var model = new SidebarViewModel
             {
-                RecentPosts = this.Cache.Get("RecentBlogPosts",
+                RecentPosts = this.Cache.Get("RecentPosts",
                     () =>
                         this.postsRepository
                             .All()
@@ -36,7 +35,7 @@
                             .Take(5)
                             .ToList(),
                     600),
-                Pages = this.pagesRepository.All().To<PageViewModel>().ToList()
+                Pages = this.Cache.Get("AllPages", () => this.pagesRepository.All().To<PageViewModel>().ToList(), 600)
             };
 
             return this.PartialView(model);
