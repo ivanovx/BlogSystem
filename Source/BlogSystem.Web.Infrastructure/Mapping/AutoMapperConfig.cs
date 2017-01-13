@@ -14,37 +14,33 @@
         {
             var types = assembly.GetExportedTypes();
 
-            MapperConfiguration = new MapperConfiguration(configuration =>
+            MapperConfiguration = new MapperConfiguration(config =>
             {
-                RegisterStandardFromMappings(configuration, types);
-
-                RegisterStandardToMappings(configuration, types);
-
-                RegisterCustomMaps(configuration, types);
+                RegisterStandardFromMappings(config, types);
+                RegisterStandardToMappings(config, types);
+                RegisterCustomMaps(config, types);
             });
-
-            //MapperConfiguration.AssertConfigurationIsValid();
         }
 
-        private static void RegisterStandardFromMappings(IProfileExpression configuration, IEnumerable<Type> types)
+        private static void RegisterStandardFromMappings(IProfileExpression config, IEnumerable<Type> types)
         {
             var maps = GetFromMaps(types);
 
-            CreateMappings(configuration, maps);
+            CreateMappings(config, maps);
         }
 
-        private static void RegisterStandardToMappings(IProfileExpression configuration, IEnumerable<Type> types)
+        private static void RegisterStandardToMappings(IProfileExpression config, IEnumerable<Type> types)
         {
             var maps = GetToMaps(types);
 
-            CreateMappings(configuration, maps);
+            CreateMappings(config, maps);
         }
 
-        private static void RegisterCustomMaps(IMapperConfigurationExpression configuration, IEnumerable<Type> types)
+        private static void RegisterCustomMaps(IMapperConfigurationExpression config, IEnumerable<Type> types)
         {
             var maps = GetCustomMappings(types);
 
-            CreateMappings(configuration, maps);
+            CreateMappings(config, maps);
         }
 
         private static IEnumerable<IHaveCustomMappings> GetCustomMappings(IEnumerable<Type> types)
@@ -61,13 +57,10 @@
         {
             var fromMaps = from t in types
                            from i in t.GetInterfaces()
-                           where i.IsGenericType &&
-                                 i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                                 !t.IsAbstract &&
-                                 !t.IsInterface
+                           where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) && !t.IsAbstract && !t.IsInterface
                            select new TypeMap
                            {
-                               Source = i.GetGenericArguments()[0],
+                               Source = i.GetGenericArguments().First(),
                                Destination = t
                            };
 
@@ -78,34 +71,29 @@
         {
             var toMaps = from t in types
                          from i in t.GetInterfaces()
-                         where i.IsGenericType &&
-                               i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
-                               !t.IsAbstract &&
-                               !t.IsInterface
+                         where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) && !t.IsAbstract && !t.IsInterface
                          select new TypeMap
                          {
                              Source = t,
-                             Destination = i.GetGenericArguments()[0]
+                             Destination = i.GetGenericArguments().First()
                          };
 
             return toMaps;
         }
 
-        private static void CreateMappings(IProfileExpression configuration, IEnumerable<TypeMap> maps)
+        private static void CreateMappings(IProfileExpression config, IEnumerable<TypeMap> maps)
         {
             foreach (var map in maps)
             {
-                configuration.CreateMap(map.Source, map.Destination);
+                config.CreateMap(map.Source, map.Destination);
             }
         }
 
-        private static void CreateMappings(
-            IMapperConfigurationExpression configuration,
-            IEnumerable<IHaveCustomMappings> maps)
+        private static void CreateMappings(IMapperConfigurationExpression config, IEnumerable<IHaveCustomMappings> maps)
         {
             foreach (var map in maps)
             {
-                map.CreateMappings(configuration);
+                map.CreateMappings(config);
             }
         }
     }
