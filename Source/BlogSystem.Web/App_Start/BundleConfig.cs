@@ -9,6 +9,8 @@
         {
             RegisterScripts(bundles);
             RegisterStyles(bundles);
+
+            BundleTable.EnableOptimizations = true;
         }
 
         private static void RegisterStyles(BundleCollection bundles)
