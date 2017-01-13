@@ -4,10 +4,10 @@
     ViewBag.Title = "All Posts";
 }
 
-<div class="row">
-    <div class="col-md-12">
+<section class="post-container">
+    <div class="post-content">
         <p>
-            <a href="@Url.Action("Create", "Posts", new { area = "Administration" })" class="btn btn-success">
+            <a href="@Url.Action("Create", "Posts", new {area = "Administration"})" class="btn btn-success">
                 <span class="fa fa-plus" aria-hidden="true"></span>
                 Create New Post
             </a>
@@ -15,7 +15,8 @@
 
         @if (Model.Posts.Any())
         {
-            <table class="table table-responsive table-hover">
+            <table class="table table-condensed table-hover">
+                <thead>
                 <tr>
                     <th>User</th>
                     <th>Title</th>
@@ -23,7 +24,8 @@
                     <th>Modified On</th>
                     <th>Actions</th>
                 </tr>
-
+                </thead>
+                <tbody>
                 @foreach (var post in Model.Posts)
                 {
                     <tr>
@@ -45,25 +47,23 @@
                         </td>
                     </tr>
                 }
+                </tbody>
             </table>
         }
         else
         {
-            <div class="col-md-12">
-                <h2>No posts available.</h2>
-            </div>
+            <h2>No posts available.</h2>
         }
     </div>
-</div>
+</section>
 
 @if (Model.PagesCount > 0)
 {
-    <!--Pagination-->
-    <div class="text-center">
+    <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>
-                <a href="~/Administration/Posts/?page=@Model.PreviousPage">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+                <a href="@Url.Action("Index", new { area = "Administration", page = Model.PreviousPage })">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </a>
             </li>
 
@@ -72,23 +72,22 @@
                 if (i == Model.CurrentPage)
                 {
                     <li class="active">
-                        <a href="/Administration/Posts/?page=@i">@i</a>
+                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i })
                     </li>
                 }
                 else
                 {
                     <li>
-                        <a href="/Administration/Posts/?page=@i">@i</a>
+                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i })
                     </li>
                 }
             }
-
+            
             <li>
-                <a href="~/Administration/Posts/?page=@Model.NextPage">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
+                <a href="@Url.Action("Index", new { area = "Administration", page = Model.NextPage })">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
-    </div>
-    <!--End Pagination-->
+    </nav>
 }
