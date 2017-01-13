@@ -1,31 +1,39 @@
 ﻿@model BlogSystem.Web.Areas.Administration.ViewModels.Comments.CommentViewModel
 
 @{
-    ViewBag.Title = "Edit comment";
+    ViewBag.Title = "Edit Comment";
 }
 
-<div class="container">
-    @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+<section class="post-container">
+    <div class="post-content">
+        <h2>@ViewBag.Title</h2>
 
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.PostId)
-            @Html.HiddenFor(model => model.UserId)
-            @Html.HiddenFor(model => model.CreatedOn)
+        @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.EditorFor(model => model.Content)
-                @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.PostId)
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.CreatedOn)
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Content)
+                    @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Save</button>
+
+                    @Html.ActionLink("Cancel", "Index", "Comments", new { area = "Administration" }, new { @class = "btn btn-danger" })
+                </div>
             </div>
+        }
+    </div>
+</section>
 
-            <div class="form-group">
-                <button type="submit"  class="btn btn-success">Save</button>
-                
-                @Html.ActionLink("Cancel", "Index", "Comments", new { area = "Administration" }, new { @class="btn btn-danger" })
-            </div>
-        </div>
-    }
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
