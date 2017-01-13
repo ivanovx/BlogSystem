@@ -26,9 +26,9 @@
 
         private static void RegisterScripts(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+            bundles
+                .Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery-{version}.js", "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles
                 .Add(new ScriptBundle("~/bundles/jqueryval")
@@ -37,6 +37,10 @@
             bundles
                 .Add(new ScriptBundle("~/bundles/bootstrap")
                 .Include("~/Scripts/bootstrap.js"));
+
+            bundles
+                .Add(new ScriptBundle("~/bundles/notify")
+                .Include("~/Scripts/notify.js"));
         }
     }
 }

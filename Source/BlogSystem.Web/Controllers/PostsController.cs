@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.Infrastructure;
+
+namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using Data.Models;
@@ -14,6 +16,7 @@
             this.postsRepository = postsRepository;
         }
 
+        [PassRouteValuesToViewData]
         public ActionResult Post(int id)
         {
             var post = this.postsRepository.Find(id);

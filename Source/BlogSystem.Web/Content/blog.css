@@ -250,3 +250,7 @@ a:focus {
 .hidden-cotainer {
     display: none;
 }
+
+#new-comment {
+    border-top: 1px solid #eee;
+}

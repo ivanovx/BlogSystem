@@ -1,54 +1,13 @@
 ﻿@model BlogSystem.Web.ViewModels.Post.PostViewModel
 
 @using BlogSystem.Common
+@using BlogSystem.Web.ViewModels.Comment
 
 @{
     ViewBag.Title = Model.Title;
 
     const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
-
-@*
-<h2>@Html.DisplayFor(model => Model.Title)</h2>
-
-<div class="bottom-article">
-    <ul class="meta-post">
-        <li>
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-            @Html.DisplayFor(item => Model.CreatedOn)
-        </li>
-        <li>
-            <i class="fa fa-user" aria-hidden="true"></i>
-            @Html.DisplayFor(item => Model.Author)
-        </li>
-
-        @if (User.IsInRole(GlobalConstants.AdminRoleName))
-        {
-            <li>
-                <a href="@Url.Action("Edit", "Posts", new { area = "Administration", id = Model.Id })">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Delete", "Posts", new { area = "Administration", id = Model.Id })">
-                    <span class="glyphicon glyphicon-trash"></span> Delete
-                </a>
-            </li>
-        }
-    </ul>
-</div>
-
-<br />
-
-<div class="col-md-12">
-    @Html.DisplayFor(model => Model.Content)
-</div>
-
-<hr />
-
-
-
-*@
 
 <article class="post-container">
     <header class="post-header">
@@ -70,6 +29,60 @@
         @Html.DisplayFor(model => Model.Content)
     </div>
     <div class="post-comments">
-        @Html.Partial(string.Format(CommentsPartialViewsFolder, "_Comments"), Model.Id)
+        @(Ajax.ActionLink("View Comments", "All", new {id = Model.Id, controller = "Comments"},
+                   new AjaxOptions
+                   {
+                       HttpMethod = "GET",
+                       OnSuccess = "BlogSystem.onGetCommentsSuccess",
+                       InsertionMode = InsertionMode.Replace,
+                       UpdateTargetId = "comments"
+                   },
+                   new
+                   {
+                       id = "show-comments-btn",
+                       @class = "btn btn-default"
+                   }))
+
+
+        <section id="comments"></section>
+
+        <section id="new-comment" class="hidden">
+            @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
+        </section>
     </div>
 </article>
+
+<script>
+    var BlogSystem = BlogSystem || {};
+
+    BlogSystem.onGetCommentsSuccess = function () {
+        $("#show-comments-btn").hide();
+        $("#new-comment").removeClass("hidden");
+
+        console.log("Success get posts comment");
+    };
+
+    BlogSystem.onAddCommentSuccess = function () {
+        $.notify("Comment successfully created!", "success");
+
+        $("#new-comment").hide();
+
+        console.log("Comment successfully created!");
+    };
+
+    BlogSystem.onCreateCommentFailure = function (data) {
+        $.notify("An error has occurred. Please try again later...", "error");
+
+        console.log(data);
+    }
+
+    /*function showCommentRequiredError(data) {
+        $.notify("An error has occurred. Please try again later...", "error");
+
+        console.log(data);
+    }*/
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/notify")
+}

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.Infrastructure;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -20,8 +22,8 @@
             this.currentUser = currentUser;
         }
 
-        //[ChildActionOnly]
         [AllowAnonymous]
+        [PassRouteValuesToViewData]
         public PartialViewResult All(int id)
         {
             var comments = this.commentsRepository
@@ -50,10 +52,12 @@
                 this.commentsRepository.Add(comment);
                 this.commentsRepository.SaveChanges();
 
-                return this.RedirectToAction("Post", "Posts", new
+                /*return this.RedirectToAction("Post", "Posts", new
                 {
                     id = id
-                });
+                });*/
+
+                return this.RedirectToAction("All", new { id });
             }
 
             return this.Json("Content is required");
