@@ -1,45 +1,23 @@
 ﻿@model BlogSystem.Data.Models.Post
 
 @{
-    ViewBag.Title = "Delete blog post";
+    ViewBag.Title = "Delete Post";
 }
+<section class="post-container">
+    <div class="post-content">
+        <h2>@ViewBag.Title</h2>
+        <h3 class="text-danger">Are you sure you want to delete this post?</h3>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="blog-gray-info pull-left blog-page-header">
-                @ViewBag.Title
-            </h2>
-        </div>
-    </div>
-</div>
-
-<hr/>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="blog-post-title text-danger">
-                Are you sure you want to delete this post?
-            </h3>
-        </div>
-    </div>
-</div>
-
-<hr/>
-
-<div class="row">
-    <div class="col-md-12">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading blog-panel-heading">
+                <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading">
                     <div class="panel-title">
                         <i class="glyphicon glyphicon-collapse-down"></i>
                         Author Details
                     </div>
                 </div>
                 <div id="authorDetails" class="panel-collapse collapse in">
-                    <div class="panel-body blog-word-wrap">
+                    <div class="panel-body">
                         <ul class="list-unstyled">
                             <li>
                                 <strong>Author Id: </strong>
@@ -59,21 +37,16 @@
             </div>
         </div>
 
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div data-toggle="collapse" data-target="#postDetails" class="panel-heading blog-panel-heading">
+                <div data-toggle="collapse" data-target="#postDetails" class="panel-heading">
                     <div class="panel-title">
                         <i class="glyphicon glyphicon-collapse-down"></i>
                         Post Details
                     </div>
                 </div>
                 <div id="postDetails" class="panel-collapse collapse in">
-                    <div class="panel-body blog-word-wrap">
+                    <div class="panel-body">
                         <ul class="list-unstyled">
                             <li>
                                 <strong>Post Id: </strong>
@@ -91,31 +64,19 @@
                                 <strong>Modified On: </strong>
                                 @Html.DisplayFor(model => model.ModifiedOn)
                             </li>
-                            <li>
-                                <strong>Is Deleted: </strong>
-                                @Html.DisplayFor(model => model.IsDeleted)
-                            </li>
-                            <li>
-                                <strong>Deleted On: </strong>
-                                @Html.DisplayFor(model => model.DeletedOn)
-                            </li>
                         </ul>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel-group">
-                                    <div class="panel panel-default">
-                                        <div data-toggle="collapse" data-target="#postContent" class="panel-heading blog-panel-heading">
-                                            <div class="panel-title">
-                                                <i class="glyphicon glyphicon-collapse-down"></i>
-                                                <strong>Content</strong>
-                                            </div>
-                                        </div>
-                                        <div id="postContent" class="panel-collapse collapse">
-                                            <div class="panel-body blog-word-wrap">
-                                                @Html.DisplayFor(model => model.Content)
-                                            </div>
-                                        </div>
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div data-toggle="collapse" data-target="#postContent" class="panel-heading">
+                                    <div class="panel-title">
+                                        <i class="glyphicon glyphicon-collapse-down"></i>
+                                        <strong>Content</strong>
+                                    </div>
+                                </div>
+                                <div id="postContent" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @Html.DisplayFor(model => model.Content)
                                     </div>
                                 </div>
                             </div>
@@ -124,44 +85,16 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Delete", "Posts", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-danger"/>
+            <button type="submit" class="btn btn-danger">Delete</button>
 
-                @if (Request.UrlReferrer == null)
-                {
-                    <a href="@Url.Action("Index", "Posts", new { area = "Administration" })" class="btn btn-default">
-                        <span>Cancel</span>
-                    </a>
-                }
-                else
-                {
-                    <a href="@Request.UrlReferrer" class="btn btn-default">
-                        <span>Cancel</span>
-                    </a>
-                }
-            </div>
+            <a href="@Url.Action("Index", "Posts", new { area = "Administration" })" class="btn btn-default">
+                Cancel
+            </a>
         }
-
     </div>
-</div>
-
-<br/>
-
-<div class="row">
-    <div class="col-md-12">
-        <a href="@Url.Action("Index", "Posts", new { area = "Administration" })" class="btn btn-primary">
-            <i class="glyphicon glyphicon-align-justify"></i>
-            <span>Blog Posts</span>
-        </a>
-    </div>
-</div>
-
+</section>
