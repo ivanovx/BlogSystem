@@ -4,8 +4,10 @@
     ViewBag.Title = "All Pages";
 }
 
-<div class="row">
-    <div class="col-md-12">
+<section class="post-container">
+    <div class="post-content">
+        <h2>@ViewBag.Title</h2>
+
         <p>
             <a href="@Url.Action("Create", "Pages", new { area = "Administration" })" class="btn btn-success">
                 <span class="fa fa-plus" aria-hidden="true"></span>
@@ -15,51 +17,52 @@
 
         @if (Model.Pages.Any())
         {
-            <table class="table table-responsive table-hover">
-                <tr>
-                    <th>Author</th>
-                    <th>Title</th>
-                    <th>Created On</th>
-                    <th>Modified On</th>
-                    <th>Actions</th>
-                </tr>
-
-                @foreach (var item in Model.Pages)
-                {
+            <table class="table table-condensed table-hover">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AuthorUserName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ModifiedOn)
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="@Url.Action("Edit", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-warning">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                    Edit
-                                </a>
-                                <a href="@Url.Action("Delete", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-danger">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                    Delete
-                                </a>
-                            </div>
-                        </td>
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Created On</th>
+                        <th>Modified On</th>
+                        <th>Actions</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Pages)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorUserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifiedOn)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="@Url.Action("Edit", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-warning">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                        Edit
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-danger">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         }
         else
         {
-            <div class="col-md-12">
-                <h2>No pages available.</h2>
-            </div>
+            <h2>No pages available.</h2>
         }
     </div>
-</div>
+</section>
