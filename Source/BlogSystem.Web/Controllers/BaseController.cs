@@ -7,11 +7,11 @@
     using System.Web.Routing;
     using System.Web.Mvc;
     using AutoMapper;
-    using Infrastructure.Mapping;
-    using Services.Cache;
     using Data.Models;
     using Data.Repositories;
     using Infrastructure;
+    using Infrastructure.Mapping;
+    using Infrastructure.Cache;
 
     public abstract class BaseController : Controller
     {

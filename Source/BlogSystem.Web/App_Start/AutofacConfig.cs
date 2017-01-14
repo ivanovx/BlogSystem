@@ -6,11 +6,11 @@
     using Autofac;
     using Autofac.Integration.Mvc;
     using Data;
+    using Data.Repositories;
     using Controllers;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
-    using Data.Repositories;
-    using Services;
+    using Infrastructure.Cache;
 
     public static class AutofacConfig
     {
@@ -49,7 +49,8 @@
                 .As<DbContext>()
                 .InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(DbRepository<>))
+            builder
+               .RegisterGeneric(typeof(DbRepository<>))
                .As(typeof(IDbRepository<>))
                .InstancePerRequest();
 
@@ -64,8 +65,9 @@
                 .InstancePerRequest();
 
             builder
-                .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IService)))
-                .AsImplementedInterfaces();
+               .RegisterType<CacheService>()
+               .As<ICacheService>()
+               .InstancePerRequest();
 
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

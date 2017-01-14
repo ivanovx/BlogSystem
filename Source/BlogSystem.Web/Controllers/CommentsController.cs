@@ -52,11 +52,6 @@ namespace BlogSystem.Web.Controllers
                 this.commentsRepository.Add(comment);
                 this.commentsRepository.SaveChanges();
 
-                /*return this.RedirectToAction("Post", "Posts", new
-                {
-                    id = id
-                });*/
-
                 return this.RedirectToAction("All", new { id });
             }
 
