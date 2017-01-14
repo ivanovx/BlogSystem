@@ -13,7 +13,7 @@
         <article class="post-container">
             <header class="post-header">
                 <h2 class="post-title">
-                    @Html.RouteLink(post.Title, "Post", new { id = post.Id })
+                    @Html.RouteLink(post.Title, "Post", new {id = post.Id})
                 </h2>
                 <ul class="post-meta">
                     <li>
@@ -31,12 +31,12 @@
                         </a>
                     </li>
                 </ul>
-            </header>    
-            
+            </header>
+
             <div class="post-content">
                 @Html.Raw(Html.Truncate(post.Content))
             </div>
-            
+
             <div class="post-read-more">
                 <a href="@Url.RouteUrl("Post", new {id = post.Id})" class="btn btn-default" title="@post.Title">
                     Read more!
@@ -44,6 +44,14 @@
             </div>
         </article>
     }
+}
+else
+{
+    <article class="post-container">
+        <header class="post-header">
+            <h2 class="post-title">Sorry, nothing here.</h2>
+        </header>
+    </article>
 }
 
 @if (Model.PagesCount > 0)

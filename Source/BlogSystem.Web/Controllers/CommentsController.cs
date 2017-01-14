@@ -1,12 +1,11 @@
-﻿using BlogSystem.Web.Infrastructure;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using Data.Models;
     using ViewModels.Comment;
     using Data.Repositories;
+    using Infrastructure;
     using Infrastructure.Identity;
     using Infrastructure.Extensions;
 

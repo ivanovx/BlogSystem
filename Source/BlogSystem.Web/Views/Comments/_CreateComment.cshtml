@@ -1,53 +1,15 @@
 ﻿@model BlogSystem.Web.ViewModels.Comment.CommentViewModel
 
+<h3>Leave a Comment</h3>
 
-    <h3>Leave a Comment</h3>
+@if (User.Identity.IsAuthenticated)
+{
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        @*using (Html.BeginForm("Create", "Comments", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-
-            @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-
-            <div class="form-group">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control " } })
-                @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
-            </div>
-
-            
-        }*@
-
-    using (Ajax.BeginForm("Create", "Comments", new { id = ViewData["id"].ToString() }, new AjaxOptions
-    {
-        HttpMethod = "Post",
-        InsertionMode = InsertionMode.InsertBefore,
-        UpdateTargetId = "comments",
-        OnSuccess = "BlogSystem.onAddCommentSuccess",
-        OnFailure = "BlogSystem.onCreateCommentFailure"
-    }))
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control " } })
-            @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Add Comment</button>
-        </div>
-        }
-    }
-    else
-    {
-        <p>Only registered users can comment.</p>
-    }
+}
+else
+{
+    <p>Only registered users can comment.</p>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
