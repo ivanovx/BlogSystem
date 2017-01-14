@@ -29,22 +29,19 @@
         @Html.DisplayFor(model => Model.Content)
     </div>
     <div class="post-comments">
-        @(Ajax.ActionLink("View Comments", "All", new {id = Model.Id, controller = "Comments"},
-                   new AjaxOptions
-                   {
-                       HttpMethod = "GET",
-                       OnSuccess = "BlogSystem.onGetCommentsSuccess",
-                       InsertionMode = InsertionMode.Replace,
-                       UpdateTargetId = "comments"
-                   },
-                   new
-                   {
-                       id = "show-comments-btn",
-                       @class = "btn btn-default"
-                   }))
+        <div>
+            @(Ajax.ActionLink("View Comments", "All", new { id = Model.Id, controller = "Comments" },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    OnSuccess = "BlogSystem.onGetCommentsSuccess",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "comments"
+                }, new { id = "show-comments-btn", @class = "btn btn-default" }))
+        </div>
 
-
-        <section id="comments"></section>
+        <section id="comments">
+        </section>
 
         <section id="new-comment" class="hidden">
             @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
