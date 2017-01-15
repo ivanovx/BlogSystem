@@ -6,8 +6,8 @@
     {
         public string GenerateUrl(string uglyString)
         {
-            StringBuilder resultString = new StringBuilder(uglyString.Length);
-            bool isLastCharacterDash = false;
+            var resultString = new StringBuilder(uglyString.Length);
+            var isLastCharacterDash = false;
 
             uglyString = uglyString.Replace("C#", "CSharp");
             uglyString = uglyString.Replace("F#", "FSharp");
