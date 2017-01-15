@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Infrastructure.Extensions
+﻿namespace BlogSystem.Web.Infrastructure.Helpers
 {
     using System;
     using System.Collections.Generic;
