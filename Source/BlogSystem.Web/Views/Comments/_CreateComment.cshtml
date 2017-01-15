@@ -4,7 +4,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    using (Ajax.BeginForm("Create", "Comments", new { id = ViewData["id"].ToString() }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "comments", OnFailure = "BlogSystem.onCreateCommentFailure" }))
+    using (Ajax.BeginForm("Create", "Comments", new { id = ViewData["id"].ToString() }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "comments", OnFailure = "BlogSystem.onCreateCommentFailure", OnSuccess = "BlogSystem.onAddCommentSuccess" }))
     {
         @Html.AntiForgeryToken()
 
