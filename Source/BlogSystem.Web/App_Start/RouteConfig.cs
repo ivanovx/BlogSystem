@@ -10,6 +10,20 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "Post",
+               url: "Posts/{year}/{month}/{title}/{id}",
+               defaults: new
+               {
+                   controller = "Posts",
+                   action = "Post",
+                   id = UrlParameter.Optional
+               },
+               namespaces: new[]
+               {
+                   "BlogSystem.Web.Controllers"
+               });
+
+            routes.MapRoute(
                 name: "Page",
                 url: "Pages/{permalink}",
                 defaults: new
@@ -21,20 +35,6 @@
                 {
                     "BlogSystem.Web.Controllers"
                 });
-
-            routes.MapRoute(
-               name: "Post",
-               url: "Posts/{id}",
-               defaults: new
-               {
-                   controller = "Posts",
-                   action = "Post",
-                   id = UrlParameter.Optional
-               },
-               namespaces: new[]
-               {
-                   "BlogSystem.Web.Controllers"
-               });
 
             routes.MapRoute(
                 name: "Default",
