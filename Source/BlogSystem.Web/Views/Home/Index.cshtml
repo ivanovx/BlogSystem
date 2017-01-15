@@ -13,7 +13,9 @@
         <article class="post-container">
             <header class="post-header">
                 <h2 class="post-title">
-                    @Html.RouteLink(post.Title, "Post", new {id = post.Id})
+                    <a href="@post.Url" title="@post.Title">
+                        @Html.DisplayFor(model => post.Title)
+                    </a>
                 </h2>
                 <ul class="post-meta">
                     <li>
@@ -25,7 +27,7 @@
                         @Html.DisplayFor(model => post.Author)
                     </li>
                     <li>
-                        <a href="@Url.RouteUrl("Post", new {id = post.Id})#comments">
+                        <a href="@post.Url#comments">
                             <i class="fa fa-comments" aria-hidden="true"></i>
                             @Html.DisplayFor(model => post.CommentsCount) comments
                         </a>
@@ -38,7 +40,7 @@
             </div>
 
             <div class="post-read-more">
-                <a href="@Url.RouteUrl("Post", new {id = post.Id})" class="btn btn-default" title="@post.Title">
+                <a href="@post.Url" class="btn btn-default" title="@post.Title">
                     Read more!
                 </a>
             </div>

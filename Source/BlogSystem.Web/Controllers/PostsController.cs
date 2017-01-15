@@ -1,11 +1,10 @@
-﻿using BlogSystem.Web.Infrastructure;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using Data.Models;
     using Data.Repositories;
     using ViewModels.Post;
+    using Infrastructure;
 
     public class PostsController : BaseController
     {
@@ -17,7 +16,7 @@ namespace BlogSystem.Web.Controllers
         }
 
         [PassRouteValuesToViewData]
-        public ActionResult Post(int id)
+        public ActionResult Post(int year, int month, string urlTitle, int id)
         {
             var post = this.postsRepository.Find(id);
             var model = this.Mapper.Map<PostViewModel>(post);

@@ -1,9 +1,15 @@
 ﻿namespace BlogSystem.Web.Infrastructure.Helpers
 {
+    using System;
     using System.Text;
 
     public class UrlGenerator : IUrlGenerator
     {
+        public string ToUrl(int id, string title, DateTime createdOn)
+        {
+            return $"/Posts/{createdOn.Year:0000}/{createdOn.Month:00}/{this.GenerateUrl(title)}/{id}";
+        }
+
         public string GenerateUrl(string uglyString)
         {
             var resultString = new StringBuilder(uglyString.Length);

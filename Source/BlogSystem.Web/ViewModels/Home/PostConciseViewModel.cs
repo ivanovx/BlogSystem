@@ -10,21 +10,38 @@
 
     public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
+        private readonly IUrlGenerator urlGenerator;
+
+        public PostConciseViewModel() : this(new UrlGenerator())
+        {
+        }
+
+        private PostConciseViewModel(IUrlGenerator urlGenerator)
+        {
+            this.urlGenerator = urlGenerator;
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }
 
         [AllowHtml]
-        [DataType(DataType.Html)]
         public string Content { get; set; }
 
-        public string Author { get; set; }
-
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
+        public string Author { get; set; }
+
         public int CommentsCount { get; set; }
+
+        public string Url
+        {
+            get
+            {
+                return this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
+            }
+        }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
