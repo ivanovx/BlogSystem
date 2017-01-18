@@ -1,24 +1,31 @@
 ﻿@model IEnumerable<BlogSystem.Web.ViewModels.Comment.CommentViewModel>
 
-<h3>Comments</h3>
+@if (Model.Any())
+{
+    <h3>Comments</h3>
 
-<ul class="comments-list">
-    @foreach (var comment in Model)
-    {
-        <li class="comment">
-            <div class="comment-meta">
-                <div class="comment-author">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    @Html.DisplayFor(model => comment.User)
+    <ul class="comments-list">
+        @foreach (var comment in Model)
+        {
+            <li class="comment">
+                <div class="comment-meta">
+                    <div class="comment-author">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        @Html.DisplayFor(model => comment.User)
+                    </div>
+                    <div class="comment-date">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        @Html.DisplayFor(model => comment.CreatedOn)
+                    </div>
                 </div>
-                <div class="comment-date">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    @Html.DisplayFor(model => comment.CreatedOn)
+                <div class="comment-body">
+                    @Html.DisplayFor(model => comment.Content)
                 </div>
-            </div>
-            <div class="comment-body">
-                @Html.DisplayFor(model => comment.Content)
-            </div>
-        </li>
-    }
-</ul>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h3>Sorry, nothing here...</h3>
+}

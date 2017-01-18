@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\ICacheService.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
     <Compile Include="Helpers\IUrlGenerator.cs" />
