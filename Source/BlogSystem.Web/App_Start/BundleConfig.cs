@@ -9,8 +9,6 @@
         {
             RegisterScripts(bundles);
             RegisterStyles(bundles);
-
-            BundleTable.EnableOptimizations = true;
         }
 
         private static void RegisterStyles(BundleCollection bundles)
@@ -28,7 +26,11 @@
         {
             bundles
                 .Add(new ScriptBundle("~/bundles/jquery")
-                .Include("~/Scripts/jquery-{version}.js", "~/Scripts/jquery.unobtrusive-ajax.js"));
+                .Include(
+                    "~/Scripts/jquery-{version}.js", 
+                    "~/Scripts/jquery.unobtrusive-ajax.js",
+                    "~/Scripts/blog.js"
+                ));
 
             bundles
                 .Add(new ScriptBundle("~/bundles/jqueryval")
