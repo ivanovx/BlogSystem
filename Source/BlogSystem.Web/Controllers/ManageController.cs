@@ -70,7 +70,6 @@
                                                                            : string.Empty;
 
             var userId = this.User.Identity.GetUserId();
-
             var model = new IndexViewModel {
                 HasPassword = this.HasPassword(), 
                 PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId), 

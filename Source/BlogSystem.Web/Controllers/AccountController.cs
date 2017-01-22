@@ -35,7 +35,7 @@
                 return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
-            private set
+            set
             {
                 this.signInManager = value;
             }
@@ -48,7 +48,7 @@
                 return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
-            private set
+            set
             {
                 this.userManager = value;
             }
@@ -163,7 +163,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (this.userManager.FindByEmail(model.Email) != null)
+            /*if (this.userManager.FindByEmail(model.Email) != null)
             {
                 this.ModelState.AddModelError("Email", "Email is already registered");
             }
@@ -171,14 +171,14 @@
             if (this.userManager.FindByName(model.UserName) != null)
             {
                 this.ModelState.AddModelError("UserName", "Username is already registered");
-            }
+            }*/
 
             if (this.ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.UserName, 
-                    Email = model.Email, 
+                    Email = model.Email,
+                    UserName = model.UserName,
                     CreatedOn = DateTime.Now
                 };
 
