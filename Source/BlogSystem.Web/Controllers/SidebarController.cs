@@ -35,7 +35,13 @@
                             .Take(5)
                             .ToList(),
                     600),
-                Pages = this.Cache.Get("AllPages", () => this.pagesRepository.All().To<PageViewModel>().ToList(), 600)
+                Pages = this.Cache.Get("AllPages", 
+                    () => 
+                        this.pagesRepository
+                        .All()
+                        .To<PageViewModel>()
+                        .ToList(), 
+                    600)
             };
 
             return this.PartialView(model);

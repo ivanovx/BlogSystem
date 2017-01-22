@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.ViewModels.Post
+﻿using BlogSystem.Web.Infrastructure.Helpers;
+
+namespace BlogSystem.Web.ViewModels.Post
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +13,18 @@
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
+        private readonly IUrlGenerator urlGenerator;
+
+        public PostViewModel() : this(new UrlGenerator())
+        {
+
+        }
+
+        private PostViewModel(IUrlGenerator urlGenerator)
+        {
+            this.urlGenerator = urlGenerator;
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -26,6 +40,14 @@
         public DateTime CreatedOn { get; set; }
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
+
+        public string Url
+        {
+            get
+            {
+                return this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
+            }
+        }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {

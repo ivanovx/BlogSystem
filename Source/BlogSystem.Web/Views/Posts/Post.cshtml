@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = Model.Title;
 
-    const string CommentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
+    const string commentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
 }
 
 <article class="post-container">
@@ -28,49 +28,22 @@
         @Html.DisplayFor(model => Model.Content)
     </div>
     <div class="post-comments">
-        <div>
-            @(Ajax.ActionLink("View Comments", "All", new { id = Model.Id, controller = "Comments" },
-                new AjaxOptions
-                {
-                    HttpMethod = "GET",
-                    OnSuccess = "BlogSystem.onGetCommentsSuccess",
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "comments"
-                }, new { id = "show-comments-btn", @class = "btn btn-default" }))
-        </div>
+        @(Ajax.ActionLink("View Comments", "All", new { id = Model.Id, controller = "Comments" },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                OnSuccess = "BlogSystem.onGetCommentsSuccess",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "comments"
+            }, new { id = "show-comments-btn", @class = "btn btn-default" }))
 
         <section id="comments"></section>
 
         <section id="new-comment" class="hidden">
-            @Html.Partial(string.Format(CommentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
+            @Html.Partial(string.Format(commentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
         </section>
     </div>
 </article>
-
-<script>
-    var BlogSystem = BlogSystem || {};
-
-    BlogSystem.onGetCommentsSuccess = function () {
-        $("#show-comments-btn").hide();
-        $("#new-comment").removeClass("hidden");
-
-        console.log("Success get posts comment");
-    };
-
-    BlogSystem.onAddCommentSuccess = function () {
-        $.notify("Comment successfully created!", "success");
-
-        $("#new-comment").hide();
-
-        console.log("Comment successfully created!");
-    };
-
-    BlogSystem.onCreateCommentFailure = function (data) {
-        $.notify("An error has occurred. Please try again later...", "error");
-
-        console.log(data);
-    }
-</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/notify")

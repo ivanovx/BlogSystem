@@ -3,12 +3,14 @@
 @if (Model.RecentPosts.Any())
 {
     <div class="widget">
-        <h3 class="widgettitle">Recent Posts</h3>
+        <h3 class="widgettitle">
+            <span>Recent Posts</span>
+        </h3>
         <ul>
             @foreach (var post in Model.RecentPosts)
             {
                 <li>
-                    @Html.RouteLink(post.Title, "Post", new { id = post.Id })
+                    <a href="@post.Url">@post.Title</a>
                 </li>
             }
         </ul>
@@ -18,7 +20,9 @@
 @if (Model.Pages.Any())
 {
     <div class="widget">
-        <h3 class="widgettitle">Pages</h3>
+        <h3 class="widgettitle">
+            <span>Pages</span>
+        </h3>
         <ul>
             @foreach (var page in Model.Pages)
             {
