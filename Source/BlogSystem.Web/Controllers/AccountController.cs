@@ -59,6 +59,7 @@
         public ActionResult Login(string returnUrl)
         {
             this.ViewBag.ReturnUrl = returnUrl;
+
             return this.View();
         }
 
@@ -75,8 +76,8 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result =
-                await this.SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+            var result = await this.SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+
             switch (result)
             {
                 case SignInStatus.Success:

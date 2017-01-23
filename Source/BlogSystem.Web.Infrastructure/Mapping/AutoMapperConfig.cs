@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using AutoMapper;
 
-    public class AutoMapperConfig
+    public static class AutoMapperConfig
     {
         public static IConfigurationProvider MapperConfiguration { get; private set; }
 

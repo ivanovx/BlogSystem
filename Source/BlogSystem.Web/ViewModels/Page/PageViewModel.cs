@@ -17,7 +17,6 @@
         [DataType(DataType.Html)]
         public string Content { get; set; }
 
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
