@@ -7,23 +7,22 @@
         where T : class
     {
         private readonly DbContext dbContext;
+        private readonly IDbSet<T> entitySet;
 
         public DbRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.EntitySet = this.dbContext.Set<T>();
+            this.entitySet = this.dbContext.Set<T>();
         }
-
-        private IDbSet<T> EntitySet { get; }
 
         public IQueryable<T> All()
         {
-            return this.EntitySet;
+            return this.entitySet;
         }
 
         public T Find(object id)
         {
-            return this.EntitySet.Find(id);
+            return this.entitySet.Find(id);
         }
 
         public T Add(T entity)
@@ -61,7 +60,7 @@
 
             if (entry.State == EntityState.Detached)
             {
-                this.EntitySet.Attach(entity);
+                this.entitySet.Attach(entity);
             }
 
             entry.State = state;
