@@ -9,7 +9,8 @@
     {
         public static ICollection<Type> GetSubClasses<T>()
         {
-            return Assembly.GetCallingAssembly()
+            return Assembly
+                .GetCallingAssembly()
                 .GetTypes()
                 .Where(type => type.IsSubclassOf(typeof(T)) && !type.IsAbstract)
                 .ToList();
