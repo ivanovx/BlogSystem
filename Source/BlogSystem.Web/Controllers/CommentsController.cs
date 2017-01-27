@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Data.Models;
-    using ViewModels.Comment;
+    using ViewModels.Comments;
     using Data.Repositories;
     using Infrastructure;
     using Infrastructure.Identity;

@@ -5,8 +5,8 @@
 
     public class MenuItemViewModel: IMapFrom<Page>
     {
-        public string Title { get; set; }
+        public string Title { get; }
 
-        public string Permalink { get; set; }
+        public string Permalink { get; }
     }
 }

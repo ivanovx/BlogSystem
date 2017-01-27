@@ -17,14 +17,14 @@
     </div>
 }
 
-@if (Model.Pages.Any())
+@if (Model.AllPages.Any())
 {
     <div class="widget">
         <h3 class="widgettitle">
             <span>Pages</span>
         </h3>
         <ul>
-            @foreach (var page in Model.Pages)
+            @foreach (var page in Model.AllPages)
             {
                 <li>
                     @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })

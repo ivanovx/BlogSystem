@@ -1,6 +1,6 @@
-﻿@model BlogSystem.Web.ViewModels.Post.PostViewModel
+﻿@model BlogSystem.Web.ViewModels.Posts.PostViewModel
 
-@using BlogSystem.Web.ViewModels.Comment
+@using BlogSystem.Web.ViewModels.Comments
 
 @{
     ViewBag.Title = Model.Title;
@@ -28,14 +28,22 @@
         @Html.DisplayFor(model => Model.Content)
     </div>
     <div class="post-comments">
-        @(Ajax.ActionLink("View Comments", "All", new { id = Model.Id, controller = "Comments" },
+        @(Ajax.ActionLink("View Comments", "All", new
+    {
+        id = Model.Id,
+        controller = "Comments",
+    },
             new AjaxOptions
             {
                 HttpMethod = "GET",
                 OnSuccess = "BlogSystem.onGetCommentsSuccess",
                 InsertionMode = InsertionMode.Replace,
                 UpdateTargetId = "comments"
-            }, new { id = "show-comments-btn", @class = "btn btn-default" }))
+            }, new
+            {
+                id = "show-comments-btn",
+                @class = "btn btn-default"
+            }))
 
         <section id="comments"></section>
 

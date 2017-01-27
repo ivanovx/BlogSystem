@@ -1,4 +1,4 @@
-﻿@model BlogSystem.Web.ViewModels.Comment.CommentViewModel
+﻿@model BlogSystem.Web.ViewModels.Comments.CommentViewModel
 
 <h3>Leave a Comment</h3>
 
@@ -7,7 +7,8 @@
     using (Ajax.BeginForm("Create", "Comments", new
     {
         id = ViewData["id"].ToString()
-    }, new AjaxOptions
+    }, 
+    new AjaxOptions
     {
         HttpMethod = "Post",
         InsertionMode = InsertionMode.Replace,

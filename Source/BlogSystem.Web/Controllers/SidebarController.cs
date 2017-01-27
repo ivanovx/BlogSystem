@@ -5,8 +5,8 @@
     using Data.Models;
     using Data.Repositories;
     using ViewModels.Sidebar;
-    using ViewModels.Post;
-    using ViewModels.Page;
+    using ViewModels.Posts;
+    using ViewModels.Pages;
     using Infrastructure.Extensions;
 
     public class SidebarController : BaseController
@@ -35,7 +35,7 @@
                             .Take(5)
                             .ToList(),
                     600),
-                Pages = this.Cache.Get("AllPages", 
+                AllPages = this.Cache.Get("AllPages", 
                     () => 
                         this.pagesRepository
                         .All()

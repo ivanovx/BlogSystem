@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Helpers;
-
-namespace BlogSystem.Web.ViewModels.Post
+﻿namespace BlogSystem.Web.ViewModels.Posts
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +7,8 @@ namespace BlogSystem.Web.ViewModels.Post
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    using Comment;
+    using Infrastructure.Helpers;
+    using Comments;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
@@ -17,7 +16,6 @@ namespace BlogSystem.Web.ViewModels.Post
 
         public PostViewModel() : this(new UrlGenerator())
         {
-
         }
 
         private PostViewModel(IUrlGenerator urlGenerator)

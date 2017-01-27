@@ -253,8 +253,8 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\Post\PostViewModel.cs" />
-    <Compile Include="ViewModels\Comment\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\Home\PostConciseViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexPageViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
@@ -269,7 +269,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Nav\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\Page\PageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\PageViewModel.cs" />
     <Compile Include="ViewModels\Sidebar\SidebarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

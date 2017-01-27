@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using Data.Models;
     using Data.Repositories;
-    using ViewModels.Page;
+    using ViewModels.Pages;
     using Infrastructure.Extensions;
 
     public class PagesController : BaseController

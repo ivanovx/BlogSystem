@@ -1,14 +1,13 @@
-﻿using BlogSystem.Web.ViewModels.Post;
-using BlogSystem.Web.ViewModels.Page;
-
-namespace BlogSystem.Web.ViewModels.Sidebar
+﻿namespace BlogSystem.Web.ViewModels.Sidebar
 {
     using System.Collections.Generic;
+    using Posts;
+    using Pages;
 
     public class SidebarViewModel
     {
         public IEnumerable<PostViewModel> RecentPosts { get; set; }
 
-        public IEnumerable<PageViewModel> Pages { get; set; }
+        public IEnumerable<PageViewModel> AllPages { get; set; }
     }
 }

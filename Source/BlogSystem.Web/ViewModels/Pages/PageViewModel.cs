@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Page
+﻿namespace BlogSystem.Web.ViewModels.Pages
 {
     using System;
     using System.Web.Mvc;

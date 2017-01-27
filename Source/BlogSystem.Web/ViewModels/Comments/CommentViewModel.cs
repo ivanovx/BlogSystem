@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Comment
+﻿namespace BlogSystem.Web.ViewModels.Comments
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -12,11 +12,9 @@
         public int Id { get; set; }
 
         [AllowHtml]
-        [DataType(DataType.Html)]
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 

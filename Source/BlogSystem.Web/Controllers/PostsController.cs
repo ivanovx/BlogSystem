@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using Data.Models;
     using Data.Repositories;
-    using ViewModels.Post;
+    using ViewModels.Posts;
     using Infrastructure;
 
     public class PostsController : BaseController
