@@ -5,10 +5,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="Ivan Ivanov">
-  		<meta name="description" content="Personal site of Ivan Ivanov">
-		
+  	<meta name="description" content="Personal site of Ivan Ivanov">
+
 		<title>Bootstrap Blog Template</title>
-		
+
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/blog.css" />
@@ -36,7 +36,7 @@
 							<li>
 								<a href="#">Home</a>
 							</li>
-							
+
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
@@ -88,10 +88,10 @@
 						</header>
 						<div class="post-content">
 							<p>
-								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs 
-								могат да станат тромави.Това не се получава от сложна програмна логика, 
-								но с всички middleware и services и опции за конфигуриране, 
-								методите стават дълги и разхвърляни.Аз правя нещо подобно, 
+								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs
+								могат да станат тромави.Това не се получава от сложна програмна логика,
+								но с всички middleware и services и опции за конфигуриране,
+								методите стават дълги и разхвърляни.Аз правя нещо подобно,
 								извиквам всеки service метод по-отделно.
 							</p>
 						</div>
@@ -125,9 +125,9 @@
 								</li>
 							</ul>
 						</div>
-						
+
 						<a class="btn btn-default" href="#">Read more!</a>
-					</article>		
+					</article>
 
 					<article class="post-container">
 						<header class="post-header">
@@ -155,16 +155,16 @@
 						</header>
 						<div class="post-content">
 							<p>
-								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs 
-								могат да станат тромави.Това не се получава от сложна програмна логика, 
-								но с всички middleware и services и опции за конфигуриране, 
-								методите стават дълги и разхвърляни.Аз правя нещо подобно, 
+								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs
+								могат да станат тромави.Това не се получава от сложна програмна логика,
+								но с всички middleware и services и опции за конфигуриране,
+								методите стават дълги и разхвърляни.Аз правя нещо подобно,
 								извиквам всеки service метод по-отделно.
 							</p>
 						</div>
 
 						<a class="btn btn-default" href="#">Read more!</a>
-					</article>	
+					</article>
 
 					<article class="post-container">
 						<header class="post-header">
@@ -192,10 +192,10 @@
 						</header>
 						<div class="post-content">
 							<p>
-								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs 
-								могат да станат тромави.Това не се получава от сложна програмна логика, 
-								но с всички middleware и services и опции за конфигуриране, 
-								методите стават дълги и разхвърляни.Аз правя нещо подобно, 
+								В някои приложения на конфигуриране и ConfigureServices методите на Startup.cs
+								могат да станат тромави.Това не се получава от сложна програмна логика,
+								но с всички middleware и services и опции за конфигуриране,
+								методите стават дълги и разхвърляни.Аз правя нещо подобно,
 								извиквам всеки service метод по-отделно.
 							</p>
 						</div>
@@ -258,11 +258,11 @@
 					</div>
 
 					<div class="widget">
-						<iframe 
-							src="https://embed.spotify.com/?uri=spotify%3Auser%3A11184122126%3Aplaylist%3A4PVXpMtbqsumofoOEOL7Pj" 
-							width="300" 
-							height="500" 
-							frameborder="0" 
+						<iframe
+							src="https://embed.spotify.com/?uri=spotify%3Auser%3A11184122126%3Aplaylist%3A4PVXpMtbqsumofoOEOL7Pj"
+							width="300"
+							height="500"
+							frameborder="0"
 							allowtransparency="true"></iframe>
 					</div>
 				</div>
@@ -314,8 +314,18 @@
 
 			</div>
 		</div>
-		
+
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+
+		<script>
+			$(window).scroll(function() {
+  if ($(document).scrollTop() > 50) {
+    $('nav').addClass('shrink');
+  } else {
+    $('nav').removeClass('shrink');
+  }
+});
+		</script>
 	</body>
 </html>

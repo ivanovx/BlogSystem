@@ -25,6 +25,12 @@ a:focus {
     background: white;
     color: rgb(93, 67, 132);
     opacity: 0.9;
+    -webkit-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+}
+
+nav.navbar.shrink {
+  padding: 0;
 }
 
 .navbar .navbar-header .navbar-brand {
