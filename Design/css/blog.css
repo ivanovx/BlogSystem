@@ -241,3 +241,9 @@ nav.navbar.shrink {
 #site-footer .social-network li a:focus > i {
     opacity: 0.8;
 }
+
+/* New Footer */
+#site-footer .info-footer {
+    background: rgb(28, 28, 28);
+    color: whitesmoke;
+}
