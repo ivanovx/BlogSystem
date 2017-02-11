@@ -29,6 +29,7 @@
                 .Include(
                     "~/Scripts/jquery-{version}.js", 
                     "~/Scripts/jquery.unobtrusive-ajax.js",
+                    "~/Scripts/jquery.nicescroll.js",
                     "~/Scripts/blog.js"
                 ));
 

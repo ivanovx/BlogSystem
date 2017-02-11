@@ -3,10 +3,15 @@ body {
     background: rgb(238, 238, 238);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
     font-weight: 400;
     font-style: normal;
-    line-height: 24px;
+    line-height: 25px;
     color: rgb(93, 67, 132);
 }
 
@@ -21,10 +26,17 @@ a:focus {
 }
 
 .navbar {
-    padding: 0.7em;
+    padding: 1em;
     background: white;
     color: rgb(93, 67, 132);
-    opacity: 0.9;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.navbar-shrink {
+    padding: 0;
 }
 
 .navbar .navbar-header .navbar-brand {

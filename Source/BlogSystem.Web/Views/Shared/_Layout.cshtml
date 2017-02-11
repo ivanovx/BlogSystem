@@ -1,14 +1,19 @@
 ﻿<!doctype html>
-<html>
+<html lang="en-US">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 days" />
-        @*<meta name="author" content="@ViewBag.Settings["Author"]" />
-        <meta name="description" content="@ViewBag.Settings["Description"]" />
-        <meta name="keywords" content="@ViewBag.Settings["Keywords"]" />*@
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="robots" content="index, follow">
+        <meta name="revisit-after" content="1 days">
+        <meta name="author" content="@ViewBag.Settings["Author"]">
+        <meta name="keywords" content="@ViewBag.Settings["Keywords"]">
+        <meta name="description" content="@ViewBag.Settings["Description"]">
+        
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="@ViewBag.Settings["Title"]">
+        <meta property="og:description" content="@ViewBag.Settings["Description"]">
+        <meta property="og:site_name" content="@ViewBag.Settings["Title"]">
 
         <title>@ViewBag.Title - @ViewBag.Settings["Title"]</title>
 
@@ -36,13 +41,10 @@
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-KXNVKNT');</script>
 		<!-- End Google Tag Manager -->
-        
-        <meta name="description" content="Ivan Ivanov's personal Web site. Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия." />
     </head>
     <body>
 		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNVKNT"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNVKNT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
         
 		@Html.Partial("_Header")
