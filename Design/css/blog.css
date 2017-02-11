@@ -21,16 +21,18 @@ a:focus {
 }
 
 .navbar {
-    padding: 0.7em;
+    padding: 1em;
     background: white;
     color: rgb(93, 67, 132);
     opacity: 0.9;
-    -webkit-transition: all 0.4s ease;
-   transition: all 0.4s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
-nav.navbar.shrink {
-  padding: 0;
+.navbar-shrink {
+    padding: 0;
 }
 
 .navbar .navbar-header .navbar-brand {
@@ -47,8 +49,8 @@ nav.navbar.shrink {
     color: rgb(93, 67, 132);
 }
 
-.navbar .navbar-nav > .open > a, 
-.navbar .navbar-nav > .open > a:focus, 
+.navbar .navbar-nav > .open > a,
+.navbar .navbar-nav > .open > a:focus,
 .navbar .navbar-nav > .open > a:hover {
     color: rgb(93, 67, 132);
     background: white;
@@ -74,7 +76,7 @@ nav.navbar.shrink {
     overflow: hidden;
 }
 
-.widget:before, 
+.widget:before,
 .post-container:before {
     content: "";
     position: absolute;
@@ -104,7 +106,7 @@ nav.navbar.shrink {
     font-size: 12px;
 }
 
-.post-meta li, 
+.post-meta li,
 .post-meta li a {
     color: #bbb;
 }
@@ -119,8 +121,8 @@ nav.navbar.shrink {
     line-height: 24px;
 }
 
-.btn-default, .btn-default:hover, 
-.btn-default:focus, .btn-default:active, 
+.btn-default, .btn-default:hover,
+.btn-default:focus, .btn-default:active,
 .btn-default.active {
     color: #bbb;
     text-transform: uppercase;
@@ -128,7 +130,7 @@ nav.navbar.shrink {
     background: #fff;
 }
 
-.btn-default:hover, .btn-default:focus, .btn-default:active, 
+.btn-default:hover, .btn-default:focus, .btn-default:active,
 .btn-default.active, .open .dropdown-toggle.btn-default {
     border-color: #ddd;
 }
@@ -199,7 +201,7 @@ nav.navbar.shrink {
     color: rgb(93, 67, 132);
 }
 
-.pagination > li > a, 
+.pagination > li > a,
 .pagination > li > span {
      margin: 0 5px;
     background: white;
