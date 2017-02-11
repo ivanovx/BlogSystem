@@ -3,10 +3,15 @@ body {
     background: rgb(238, 238, 238);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 400;
     font-style: normal;
-    line-height: 24px;
+    line-height: 25px;
     color: rgb(93, 67, 132);
 }
 
@@ -20,7 +25,7 @@ a:focus {
     text-decoration: underline;
 }
 
-.navbar {
+[role="banner"] .navbar {
     padding: 1em;
     background: white;
     color: rgb(93, 67, 132);
@@ -31,27 +36,27 @@ a:focus {
     transition: all 0.5s ease;
 }
 
-.navbar-shrink {
+[role="banner"] .navbar.navbar-shrink {
     padding: 0;
 }
 
-.navbar .navbar-header .navbar-brand {
+[role="banner"] .navbar .navbar-header .navbar-brand {
     color: rgb(93, 67, 132);
 }
 
-.navbar .navbar-header .navbar-brand:hover,
-.navbar .navbar-header .navbar-brand:focus {
+[role="banner"] .navbar .navbar-header .navbar-brand:hover,
+[role="banner"] .navbar .navbar-header .navbar-brand:focus {
     text-decoration: underline;
 }
 
-.navbar .nav li a:hover,
-.navbar .nav li a:focus {
+[role="banner"] .navbar .nav > li a:hover,
+[role="banner"] .navbar .nav > li a:focus {
     color: rgb(93, 67, 132);
 }
 
-.navbar .navbar-nav > .open > a,
-.navbar .navbar-nav > .open > a:focus,
-.navbar .navbar-nav > .open > a:hover {
+[role="banner"] .navbar .navbar-nav > .open > a,
+[role="banner"] .navbar .navbar-nav > .open > a:focus,
+[role="banner"] .navbar .navbar-nav > .open > a:hover {
     color: rgb(93, 67, 132);
     background: white;
 }
