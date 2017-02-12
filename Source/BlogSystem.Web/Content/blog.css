@@ -217,17 +217,14 @@ a:focus {
     padding: 20px 0;
     background: #fff;
     font-size: 12px;
+    border-top: 1px solid #e7e7e7;
 }
 
 #site-footer .social-network {
     list-style: none;
     box-sizing: border-box;
-    /*margin: 1em auto 2em;*/
-    /*max-width: 720px;*/
     overflow: hidden;
-    /*padding: 1em 0 .8em;*/
     text-align: center;
-    /*width: 95%;*/
 }
 
 #site-footer .social-network li {
@@ -241,6 +238,9 @@ a:focus {
 
 #site-footer .social-network li a > i {
     font-size: 3em;
+    transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
 }
 
 #site-footer .social-network li a:hover > i,
