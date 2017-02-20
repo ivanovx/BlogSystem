@@ -8,19 +8,16 @@
     {
         private readonly object lockObject = new object();
 
-        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds)
+        public T Get<T> (string name, Func<T> getDataFunc, int durationInSeconds)
         {
-            if (HttpRuntime.Cache[name] == null)
+            lock (lockObject)
             {
-                lock (lockObject)
+                if (HttpRuntime.Cache[name] == null)
                 {
-                    if (HttpRuntime.Cache[name] == null)
-                    {
-                        var data = getDataFunc();
-                        var time = DateTime.Now.AddSeconds(durationInSeconds);
+                    var data = getDataFunc();
+                    var time = DateTime.Now.AddSeconds(durationInSeconds);
 
-                        HttpRuntime.Cache.Insert(name, data, null, time, Cache.NoSlidingExpiration);
-                    }
+                    HttpRuntime.Cache.Insert(name, data, null, time, Cache.NoSlidingExpiration);
                 }
             }
 

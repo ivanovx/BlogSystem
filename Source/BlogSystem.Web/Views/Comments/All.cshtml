@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="comment-body">
-                    @Html.DisplayFor(model => comment.Content)
+                    @Html.Raw(comment.Content)
                 </div>
             </li>
         }

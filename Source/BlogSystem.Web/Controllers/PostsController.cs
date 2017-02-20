@@ -15,11 +15,12 @@
             this.postsRepository = postsRepository;
         }
 
-        [PassRouteValuesToViewData]
         public ActionResult Post(int year, int month, string urlTitle, int id)
         {
             var post = this.postsRepository.Find(id);
             var model = this.Mapper.Map<PostViewModel>(post);
+
+            this.ViewData["id"] = id;
 
             return this.View(model);
         }
