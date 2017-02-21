@@ -8,16 +8,19 @@
     using ViewModels.Posts;
     using ViewModels.Pages;
     using Infrastructure.Extensions;
+    using Infrastructure.Cache;
 
     public class SidebarController : BaseController
     {
         private readonly IDbRepository<Post> postsRepository;
         private readonly IDbRepository<Page> pagesRepository;
+        private readonly ICacheService cacheService;
 
-        public SidebarController(IDbRepository<Post> postsRepository, IDbRepository<Page> pagesRepository)
+        public SidebarController(IDbRepository<Post> postsRepository, IDbRepository<Page> pagesRepository, ICacheService cacheService)
         {
             this.postsRepository = postsRepository;
             this.pagesRepository = pagesRepository;
+            this.cacheService = cacheService;
         }
 
         [ChildActionOnly]
@@ -25,7 +28,7 @@
         {
             var model = new SidebarViewModel
             {
-                RecentPosts = this.Cache.Get("RecentPosts",
+                RecentPosts = this.cacheService.Get("RecentPosts",
                     () =>
                         this.postsRepository
                             .All()
@@ -35,7 +38,7 @@
                             .Take(5)
                             .ToList(),
                     600),
-                AllPages = this.Cache.Get("AllPages", 
+                AllPages = this.cacheService.Get("AllPages", 
                     () => 
                         this.pagesRepository
                         .All()

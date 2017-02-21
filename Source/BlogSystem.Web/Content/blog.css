@@ -9,7 +9,8 @@ h3,
 h4, 
 h5, 
 h6 {
-    font-weight: 400;
+    font-weight: 700;
+    text-transform: uppercase;
     font-style: normal;
     line-height: 25px;
     color: rgb(93, 67, 132);
@@ -50,6 +51,12 @@ a:focus {
     text-decoration: underline;
 }
 
+.navbar .nav li a {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: normal;
+}
+
 .navbar .nav li a:hover,
 .navbar .nav li a:focus {
     color: rgb(93, 67, 132);
@@ -80,6 +87,11 @@ a:focus {
     background: white;
     position: relative;
     overflow: hidden;
+}
+
+#wrap .widget ul li {
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .widget:before, 

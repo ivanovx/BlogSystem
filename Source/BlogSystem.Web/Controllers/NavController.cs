@@ -8,20 +8,23 @@
     using Infrastructure.Extensions;
     using Infrastructure.Helpers;
     using Areas.Administration.Controllers.Base;
+    using Infrastructure.Cache;
 
     public class NavController : BaseController
     {
         private readonly IDbRepository<Page> pagesRepository;
+        private readonly ICacheService cacheService;
 
-        public NavController(IDbRepository<Page> pagesRepository)
+        public NavController(IDbRepository<Page> pagesRepository, ICacheService cacheService)
         {
             this.pagesRepository = pagesRepository;
+            this.cacheService = cacheService;
         }
 
         [ChildActionOnly]
         public PartialViewResult Menu()
         { 
-            var model = this.Cache.Get("Menu", () => 
+            var model = this.cacheService.Get("Menu", () =>
                 this.pagesRepository
                     .All()
                     .Where(p => p.VisibleInMenu)

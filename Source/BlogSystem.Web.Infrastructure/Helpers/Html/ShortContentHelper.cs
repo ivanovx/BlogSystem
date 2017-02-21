@@ -9,8 +9,16 @@
         {
             var parser = new HtmlParser();
             var document = parser.Parse(text);
+            var p = document.QuerySelector("p");
 
-            return document.QuerySelector("p").InnerHtml + "...";
+            if (p != null)
+            {
+                return $"{p.InnerHtml}...";
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }
