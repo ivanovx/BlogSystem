@@ -15,8 +15,6 @@
 
     public abstract class BaseController : Controller
     {
-        public ICacheService Cache { get; set; }
-
         public IDbRepository<Setting> Settings { get; set; }
 
         protected IMapper Mapper
@@ -36,8 +34,7 @@
 
             this.ViewBag.Settings = new SettingsManager(getSettings);
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
-
-            this.ViewBag.ipAddress = requestContext.HttpContext.Request.UserHostAddress;
+            this.ViewBag.IpAddress = requestContext.HttpContext.Request.UserHostAddress;
 
             return base.BeginExecute(requestContext, callback, state);
         }
