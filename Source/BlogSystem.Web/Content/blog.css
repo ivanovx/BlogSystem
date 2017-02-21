@@ -26,7 +26,8 @@ a:focus {
 }
 
 .navbar {
-    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     background: white;
     color: rgb(93, 67, 132);
     -webkit-transition: all 0.5s ease;
@@ -40,6 +41,7 @@ a:focus {
 }
 
 .navbar .navbar-header .navbar-brand {
+    padding: 0;
     color: rgb(93, 67, 132);
 }
 

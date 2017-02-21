@@ -37,6 +37,8 @@
             this.ViewBag.Settings = new SettingsManager(getSettings);
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
 
+            this.ViewBag.ipAddress = requestContext.HttpContext.Request.UserHostAddress;
+
             return base.BeginExecute(requestContext, callback, state);
         }
     }

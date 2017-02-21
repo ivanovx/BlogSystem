@@ -1,55 +1,11 @@
-﻿@*<footer>
-    <div id="sub-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="copyright">
-                        <p>
-                            &copy; 2012 - @DateTime.Now.Year <strong>@ViewBag.Settings["Author"]</strong>.
-                            All right reserved.
-                        </p>
-                        <p>
-                            <a href="https://github.com/csyntax/BlogSystem" target="_blank">
-                                <i class="fa fa-github"></i>
-                                Open Source Project <i class="fa fa-smile-o"></i>
-                            </a> version. @ViewBag.Version
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="social-network">
-                        <li>
-                            <a href="@ViewBag.Settings["Facebook"]" data-placement="top" title="Facebook" rel="me">
-                                <span class="fa fa-facebook"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@ViewBag.Settings["Twitter"]" data-placement="top" title="Twitter" rel="me">
-                                <span class="fa fa-twitter"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@ViewBag.Settings["LinkedIn"]" data-placement="top" title="LinkedIn" rel="me">
-                                <span class="fa fa-linkedin"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@ViewBag.Settings["GitHub"]" data-placement="top" title="GitHub" rel="me">
-                                <span class="fa fa-github"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>*@
-
-<div id="site-footer">
+﻿<div id="site-footer">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="copyright">
+                    <p>
+                        Your IP Adress: @ViewBag.ipAddress
+                    </p>
                     <p>
                         &copy; 2012 - 2017 <strong>@ViewBag.Settings["Author"]</strong>.
                         All right reserved.
