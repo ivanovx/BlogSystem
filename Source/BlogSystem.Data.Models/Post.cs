@@ -9,12 +9,10 @@
     public class Post : AuditInfo, IDeletableEntity
     {
         private ICollection<Comment> comments;
-        private ICollection<Tag> tags;
 
         public Post()
         {
             this.comments = new HashSet<Comment>();
-            this.tags = new HashSet<Tag>();
         }
 
         [Key]
@@ -47,18 +45,6 @@
             set
             {
                 this.comments = value;
-            }
-        }
-
-        public virtual ICollection<Tag> SubmissionTypes
-        {
-            get
-            {
-                return this.tags;
-            }
-            set
-            {
-                this.tags = value;
             }
         }
     }
