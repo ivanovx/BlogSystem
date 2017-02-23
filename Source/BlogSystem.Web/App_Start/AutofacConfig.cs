@@ -1,4 +1,10 @@
-﻿namespace BlogSystem.Web
+﻿using System.Collections.Generic;
+using AutoMapper;
+using BlogSystem.Web.Infrastructure;
+using BlogSystem.Web.Infrastructure.Mapping;
+using BlogSystem.Web.Infrastructure.Mapping.Service;
+
+namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -10,7 +16,7 @@
     using Controllers;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
-    using Infrastructure.Cache;
+    using Infrastructure.Caching;
 
     public static class AutofacConfig
     {
@@ -74,6 +80,10 @@
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AssignableTo<BaseController>()
                 .PropertiesAutowired();
+
+            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().InstancePerLifetimeScope().PropertiesAutowired().PreserveExistingDefaults();
+
+            builder.RegisterType<MappingService>().As<IMappingService>();
         }
     }
 }

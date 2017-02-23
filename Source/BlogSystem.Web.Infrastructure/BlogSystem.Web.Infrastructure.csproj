@@ -103,6 +103,8 @@
     <Compile Include="Helpers\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
+    <Compile Include="Mapping\Service\IMappingService.cs" />
+    <Compile Include="Mapping\Service\MappingService.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />

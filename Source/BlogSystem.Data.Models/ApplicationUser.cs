@@ -16,7 +16,7 @@
         private ICollection<Post> posts;
         private ICollection<Page> pages;
 
-        public ApplicationUser() 
+        public ApplicationUser()
             : base()
         {
             this.posts = new HashSet<Post>();

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.Infrastructure.Mapping.Service;
+
+namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using Data.Models;
@@ -9,18 +11,20 @@
     public class PostsController : BaseController
     {
         private readonly IDbRepository<Post> postsRepository;
+        private readonly IMappingService mappingService;
 
-        public PostsController(IDbRepository<Post> postsRepository)
+        public PostsController(IDbRepository<Post> postsRepository, IMappingService mappingService)
         {
             this.postsRepository = postsRepository;
+            this.mappingService = mappingService;
         }
 
         public ActionResult Post(int year, int month, string urlTitle, int id)
         {
-            var post = this.postsRepository.Find(id);
-            var model = this.Mapper.Map<PostViewModel>(post);
-
             this.ViewData["id"] = id;
+
+            var post = this.postsRepository.Find(id);
+            var model = this.mappingService.Map<PostViewModel>(post);
 
             return this.View(model);
         }

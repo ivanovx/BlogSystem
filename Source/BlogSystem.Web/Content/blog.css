@@ -178,8 +178,9 @@ a:focus {
     border-bottom: 1px solid rgb(93, 67, 132);
 }
 
+
 .widget ul {
-    padding-left: 15px;
+    padding-left: 0;
 }
 
 .widget ul li {
