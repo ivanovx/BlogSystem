@@ -90,6 +90,7 @@ a:focus {
 }
 
 #wrap .widget ul li {
+    list-style: none;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -112,9 +113,14 @@ a:focus {
     width: 0;
 }
 
-.post-title a {
-    color: rgb(93, 67, 132);
+#wrap .widget ul li .fa {
+    width: 20px;
+    height: 20px;
+    padding-top: 5px;
+    font-size: 20px;
+    text-align: center;
 }
+
 
 .post-meta {
     margin: 0;

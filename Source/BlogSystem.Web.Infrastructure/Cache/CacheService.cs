@@ -14,10 +14,9 @@
             {
                 if (HttpRuntime.Cache[name] == null)
                 {
-                    var data = getDataFunc();
                     var time = DateTime.Now.AddSeconds(durationInSeconds);
 
-                    HttpRuntime.Cache.Insert(name, data, null, time, Cache.NoSlidingExpiration);
+                    HttpRuntime.Cache.Insert(name, getDataFunc(), null, time, Cache.NoSlidingExpiration);
                 }
             }
 

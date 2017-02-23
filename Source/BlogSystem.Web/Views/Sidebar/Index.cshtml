@@ -10,6 +10,7 @@
             @foreach (var post in Model.RecentPosts)
             {
                 <li>
+                    <i class="fa fa-file" aria-hidden="true"></i>
                     <a href="@post.Url">@post.Title</a>
                 </li>
             }
@@ -27,7 +28,8 @@
             @foreach (var page in Model.AllPages)
             {
                 <li>
-                    @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                    @Html.RouteLink(page.Title, "Page", new {permalink = page.Permalink})
                 </li>
             }
         </ul>

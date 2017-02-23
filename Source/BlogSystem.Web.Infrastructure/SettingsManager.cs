@@ -12,12 +12,6 @@
             this.settings = new Lazy<IDictionary<string, string>>(initializer);
         }
 
-        public string this[string key]
-        {
-            get
-            {
-                return this.settings.Value[key];
-            }
-        }
+        public string this[string key] => this.settings.Value[key];
     }
 }
