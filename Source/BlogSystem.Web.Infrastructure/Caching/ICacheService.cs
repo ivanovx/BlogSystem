@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Infrastructure.Cache
+﻿namespace BlogSystem.Web.Infrastructure.Caching
 {
     using System;
 

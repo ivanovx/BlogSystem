@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Web.Infrastructure.Helpers;
+
+namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -11,19 +13,12 @@
     using Data.Repositories;
     using Infrastructure;
     using Infrastructure.Mapping;
-    using Infrastructure.Cache;
 
     public abstract class BaseController : Controller
     {
         public IDbRepository<Setting> Settings { get; set; }
 
-        protected IMapper Mapper
-        {
-            get
-            {
-                return AutoMapperConfig.MapperConfiguration.CreateMapper();
-            }
-        }
+        protected IMapper Mapper => AutoMapperConfig.MapperConfiguration.CreateMapper();
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
@@ -34,7 +29,7 @@
 
             this.ViewBag.Settings = new SettingsManager(getSettings);
             this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
-            this.ViewBag.IpAddress = requestContext.HttpContext.Request.UserHostAddress;
+            this.ViewBag.IpAddress = RequestHelpers.GetClientIpAddress(requestContext);
 
             return base.BeginExecute(requestContext, callback, state);
         }

@@ -8,7 +8,7 @@
     using Infrastructure.Extensions;
     using Infrastructure.Helpers;
     using Areas.Administration.Controllers.Base;
-    using Infrastructure.Cache;
+    using Infrastructure.Caching;
 
     public class NavController : BaseController
     {
@@ -24,13 +24,7 @@
         [ChildActionOnly]
         public PartialViewResult Menu()
         { 
-            var model = this.cacheService.Get("Menu", () =>
-                this.pagesRepository
-                    .All()
-                    .Where(p => p.VisibleInMenu)
-                    .To<MenuItemViewModel>()
-                    .ToList(),
-                600);
+            var model = this.cacheService.Get("Menu", () => this.pagesRepository.All().Where(p => p.VisibleInMenu).To<MenuItemViewModel>().ToList(), 600);
 
             return this.PartialView(model);
         }

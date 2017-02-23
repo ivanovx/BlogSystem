@@ -8,7 +8,7 @@
     using ViewModels.Posts;
     using ViewModels.Pages;
     using Infrastructure.Extensions;
-    using Infrastructure.Cache;
+    using Infrastructure.Caching;
 
     public class SidebarController : BaseController
     {
