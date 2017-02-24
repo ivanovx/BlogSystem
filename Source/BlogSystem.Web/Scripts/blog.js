@@ -1,5 +1,9 @@
 ﻿var BlogSystem = BlogSystem || {};
 
+$(window).load(function() {
+    $("#loading").fadeOut("slow");
+});
+
 BlogSystem.onGetCommentsSuccess = function () {
     $("#show-comments-btn").hide();
     $("#new-comment").removeClass("hidden");
