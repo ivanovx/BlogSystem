@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Autofac.Core;
 using AutoMapper;
 using BlogSystem.Web.Infrastructure;
 using BlogSystem.Web.Infrastructure.Mapping;
@@ -19,7 +20,7 @@ namespace BlogSystem.Web
     using Infrastructure.Caching;
 
     public static class AutofacConfig
-    {
+    { 
         public static void RegisterAutofac()
         {
             var builder = new ContainerBuilder();
@@ -46,6 +47,7 @@ namespace BlogSystem.Web
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
 
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
@@ -57,9 +59,9 @@ namespace BlogSystem.Web
                 .InstancePerRequest();
 
             builder
-               .RegisterGeneric(typeof(DbRepository<>))
-               .As(typeof(IDbRepository<>))
-               .InstancePerRequest();
+                .RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
+                .InstancePerRequest();
 
             builder
                 .RegisterType<CurrentUser>()
@@ -72,16 +74,20 @@ namespace BlogSystem.Web
                 .InstancePerRequest();
 
             builder
-               .RegisterType<CacheService>()
-               .As<ICacheService>()
-               .InstancePerRequest();
+                .RegisterType<CacheService>()
+                .As<ICacheService>()
+                .InstancePerRequest();
 
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AssignableTo<BaseController>()
                 .PropertiesAutowired();
 
-            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().InstancePerLifetimeScope().PropertiesAutowired().PreserveExistingDefaults();
+            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())
+                .As<IMapper>()
+                .InstancePerLifetimeScope()
+                .PropertiesAutowired()
+                .PreserveExistingDefaults();
 
             builder.RegisterType<MappingService>().As<IMappingService>();
         }

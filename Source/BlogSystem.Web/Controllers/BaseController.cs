@@ -18,13 +18,20 @@ namespace BlogSystem.Web.Controllers
     {
         public IDbRepository<Setting> Settings { get; set; }
 
+        private readonly IDbRepository<Setting> settings;
+
+        public BaseController()
+        {
+            this.settings = DependencyResolver.Current.GetService<IDbRepository<Setting>>();
+        }
+
         protected IMapper Mapper => AutoMapperConfig.MapperConfiguration.CreateMapper();
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             Func<IDictionary<string, string>> getSettings = delegate()
             {
-                return this.Settings.All().ToDictionary(s => s.Key, s => s.Value);
+                return this.settings.All().ToDictionary(s => s.Key, s => s.Value);
             };
 
             this.ViewBag.Settings = new SettingsManager(getSettings);
