@@ -27,18 +27,12 @@ namespace BlogSystem.Web.Controllers
         {
             var pagesCount = (int) Math.Ceiling(this.postsRepository.All().Count() / (decimal) perPage);
 
-            var posts = this.postsRepository
-                .All()
-                .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.CreatedOn)
-                .To<PostConciseViewModel>()
-                .Skip(perPage * (page - 1))
-                .Take(perPage)
-                .ToList();
+            var posts = this.postsRepository.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn);
+            var postsModel = this.mappingService.MapCollection<PostConciseViewModel>(posts).Skip(perPage * (page - 1)).Take(perPage).ToList();
 
             var model = new IndexPageViewModel
             {
-                Posts = posts,
+                Posts = postsModel,
                 CurrentPage = page,
                 PagesCount = pagesCount
             };
