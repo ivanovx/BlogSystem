@@ -26,6 +26,14 @@ a:focus {
     text-decoration: underline;
 }
 
+
+[role="banner"] {
+  background: transparent url("../images/hero-bg-large.jpg") no-repeat center top;
+  background-size: cover;
+  padding-top: 32%;
+  position: relative;
+}
+
 .navbar {
     padding-top: 1em;
     padding-bottom: 1em;
