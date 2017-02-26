@@ -135,8 +135,8 @@ a:focus {
     text-transform: uppercase;
 }
 
-.widget:before, 
-.post-container:before {
+#wrap .widget:before, 
+#wrap .post-container:before {
     content: "";
     position: absolute;
     top: 0;
@@ -161,7 +161,9 @@ a:focus {
     text-align: center;
 }
 
-
+/*
+    Todo
+*/
 .post-meta {
     margin: 0;
     margin-top: 10px;
@@ -183,48 +185,6 @@ a:focus {
 .post-content {
     margin-top: 30px;
     line-height: 24px;
-}
-
-.btn-default, .btn-default:hover, 
-.btn-default:focus, .btn-default:active, 
-.btn-default.active {
-    color: #bbb;
-    text-transform: uppercase;
-    border: 1px solid #eee;
-    background: #fff;
-}
-
-.btn-default:hover, .btn-default:focus, .btn-default:active, 
-.btn-default.active, .open .dropdown-toggle.btn-default {
-    border-color: #ddd;
-}
-
-.widgettitle {
-    margin-top: 0;
-    margin-bottom: 16px;
-    position: relative;
-    font-size: 13px;
-    color: #666;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 1px solid #eee;
-}
-
-.widgettitle span {
-    position: relative;
-    bottom: -1px;
-    display: inline-block;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgb(93, 67, 132);
-}
-
-
-.widget ul {
-    padding-left: 0;
-}
-
-.widget ul li {
-    list-style: square;
 }
 
 .post-comments {
@@ -255,7 +215,7 @@ a:focus {
     list-style: none;
 }
 
- .post-comments .comments-list .comment .comment-meta {
+.post-comments .comments-list .comment .comment-meta {
     margin-bottom: 5px;
     color: #888;
     font-size: 13px;
@@ -265,6 +225,67 @@ a:focus {
     font-size: 14px;
     color: rgb(93, 67, 132);
 }
+
+.post-read-more {
+    margin-top: 1.5em;
+}
+
+#new-comment {
+    border-top: 1px solid #eee;
+}
+
+
+/*
+    End todo
+*/
+.widgettitle {
+    margin-top: 0;
+    margin-bottom: 16px;
+    position: relative;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+}
+
+.widgettitle span {
+    position: relative;
+    bottom: -1px;
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(93, 67, 132);
+}
+
+.widget ul {
+    padding-left: 0;
+}
+
+.widget ul li {
+    list-style: square;
+}
+
+/*
+    Todo
+*/
+.btn-default, .btn-default:hover, 
+.btn-default:focus, .btn-default:active, 
+.btn-default.active {
+    color: #bbb;
+    text-transform: uppercase;
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, 
+.btn-default.active, .open .dropdown-toggle.btn-default {
+    border-color: #ddd;
+}
+
+/*
+    End Todo
+    Common
+*/
 
 .pagination > li > a, 
 .pagination > li > span {
@@ -314,16 +335,4 @@ a:focus {
     background: rgb(93, 67, 132);
     color: white;
     border: none;
-}
-
-.post-read-more {
-    margin-top: 1.5em;
-}
-
-.hidden-cotainer {
-    display: none;
-}
-
-#new-comment {
-    border-top: 1px solid #eee;
 }

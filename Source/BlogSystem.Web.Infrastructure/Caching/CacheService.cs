@@ -22,10 +22,5 @@
 
             return (T) HttpRuntime.Cache[name];
         }
-
-        public void Remove(string name)
-        {
-            HttpRuntime.Cache.Remove(name);
-        }
     }
 }

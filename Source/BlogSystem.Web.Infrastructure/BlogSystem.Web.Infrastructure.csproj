@@ -99,7 +99,6 @@
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
     <Compile Include="Helpers\IUrlGenerator.cs" />
-    <Compile Include="Helpers\RequestHelpers.cs" />
     <Compile Include="Helpers\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
