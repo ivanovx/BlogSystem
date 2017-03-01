@@ -6,6 +6,7 @@
     using Common;
     using Data.Repositories;
     using ViewModels.Comments;
+    using BlogSystem.Services.Web.Mapping;
     using Base;
 
     using EntityModel = Data.Models.Comment;
@@ -13,8 +14,8 @@
 
     public class CommentsController : GenericAdministrationController<EntityModel, ViewModel>
     { 
-        public CommentsController(IDbRepository<EntityModel> dataRepository) 
-            : base(dataRepository)
+        public CommentsController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService) 
+            : base(dataRepository, mappingService)
         {
         }
 
@@ -41,7 +42,7 @@
 
             if (entity != null)
             {
-                var model = this.Mapper.Map<ViewModel>(entity);
+                var model = this.mappingService.Map<ViewModel>(entity);
 
                 return this.View(model);
             }

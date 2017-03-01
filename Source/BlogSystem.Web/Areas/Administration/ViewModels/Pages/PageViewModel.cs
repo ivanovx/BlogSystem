@@ -16,7 +16,6 @@
 
         [Required]
         [AllowHtml]
-        [DataType(DataType.Html)]
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
@@ -26,6 +25,7 @@
 
         public string AuthorUserName { get; set; }
 
+        [Display(Name = "Show in navigation")]
         public bool VisibleInMenu { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)

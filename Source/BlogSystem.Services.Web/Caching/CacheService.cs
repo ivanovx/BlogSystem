@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Infrastructure.Caching
+﻿namespace BlogSystem.Services.Web.Caching
 {
     using System;
     using System.Web;
@@ -8,7 +8,7 @@
     {
         private readonly object lockObject = new object();
 
-        public T Get<T> (string name, Func<T> getDataFunc, int durationInSeconds)
+        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds)
         {
             lock (lockObject)
             {

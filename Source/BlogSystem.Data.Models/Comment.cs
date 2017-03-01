@@ -12,6 +12,7 @@
 
         [Required]
         [DataType(DataType.Html)]
+        [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
         [Required]

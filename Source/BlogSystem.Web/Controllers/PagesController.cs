@@ -6,25 +6,26 @@
     using Data.Repositories;
     using ViewModels.Pages;
     using Infrastructure.Extensions;
+    using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Services.Data.Contracts;
 
     public class PagesController : BaseController
     {
-        private readonly IDbRepository<Page> pagesRepository;
+        private readonly IPagesDataService pagesData;
+        private readonly IMappingService mappingService;
 
-        public PagesController(IDbRepository<Page> pagesRepository)
+        public PagesController(IPagesDataService pagesData, IMappingService mappingService)
         {
-            this.pagesRepository = pagesRepository;
+            this.pagesData = pagesData;
+            this.mappingService = mappingService;
         }
 
         public ActionResult Page(string permalink)
         {
-            var page = this.pagesRepository
-                .All()
-                .Where(x => x.Permalink.ToLower().Trim() == permalink.ToLower().Trim())
-                .To<PageViewModel>()
-                .FirstOrDefault();
+            var page = this.pagesData.GetPage(permalink);
+            var model = this.mappingService.Map<PageViewModel>(page);
 
-            return View(page);
+            return View(model);
         }
     }
 }

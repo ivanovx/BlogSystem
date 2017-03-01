@@ -7,18 +7,16 @@
     {
         public static string Truncate(this HtmlHelper helper, string text)
         {
-            var parser = new HtmlParser();
-            var document = parser.Parse(text);
+            var htmlParser = new HtmlParser();
+            var document = htmlParser.Parse(text);
             var p = document.QuerySelector("p");
 
-            if (p != null)
-            {
-                return $"{p.InnerHtml}...";
-            }
-            else
+            if (p == null)
             {
                 return string.Empty;
             }
+
+            return $"{p.InnerHtml}...";
         }
     }
 }

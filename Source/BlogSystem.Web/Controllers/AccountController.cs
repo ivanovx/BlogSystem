@@ -34,7 +34,6 @@
             {
                 return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-
             set
             {
                 this.signInManager = value;
@@ -47,7 +46,6 @@
             {
                 return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-
             set
             {
                 this.userManager = value;

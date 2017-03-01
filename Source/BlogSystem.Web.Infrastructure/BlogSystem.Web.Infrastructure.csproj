@@ -66,8 +66,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -94,16 +94,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caching\CacheService.cs" />
-    <Compile Include="Caching\ICacheService.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
     <Compile Include="Helpers\IUrlGenerator.cs" />
     <Compile Include="Helpers\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
-    <Compile Include="Mapping\Service\IMappingService.cs" />
-    <Compile Include="Mapping\Service\MappingService.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />

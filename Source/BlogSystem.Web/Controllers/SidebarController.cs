@@ -2,49 +2,41 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.Repositories;
     using ViewModels.Sidebar;
     using ViewModels.Posts;
     using ViewModels.Pages;
-    using Infrastructure.Extensions;
-    using Infrastructure.Caching;
+    using BlogSystem.Services.Web.Caching;
+    using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Common;
+    using BlogSystem.Services.Data.Contracts;
+
 
     public class SidebarController : BaseController
     {
-        private readonly IDbRepository<Post> postsRepository;
-        private readonly IDbRepository<Page> pagesRepository;
+        private readonly IPostsDataService postsData;
+        private readonly IPagesDataService pagesData;
         private readonly ICacheService cacheService;
+        private readonly IMappingService mappingService;
 
-        public SidebarController(IDbRepository<Post> postsRepository, IDbRepository<Page> pagesRepository, ICacheService cacheService)
+        public SidebarController(IPostsDataService postsData, IPagesDataService pagesData, 
+            ICacheService cacheService, IMappingService mappingService)
         {
-            this.postsRepository = postsRepository;
-            this.pagesRepository = pagesRepository;
+            this.postsData = postsData;
+            this.pagesData = pagesData;
             this.cacheService = cacheService;
+            this.mappingService = mappingService;
         }
 
         [ChildActionOnly]
         public PartialViewResult Index()
         {
+            var posts = this.postsData.GetAll().Take(GlobalConstants.DefaultPageSize);
+            var pages = this.pagesData.GetAll();
+
             var model = new SidebarViewModel
             {
-                RecentPosts = this.cacheService.Get("RecentPosts",
-                    () =>
-                        this.postsRepository
-                            .All()
-                            .Where(p => !p.IsDeleted)
-                            .OrderByDescending(p => p.CreatedOn)
-                            .To<PostViewModel>()
-                            .Take(5)
-                            .ToList(),
-                    600),
-                AllPages = this.cacheService.Get("AllPages", 
-                    () => 
-                        this.pagesRepository
-                        .All()
-                        .To<PageViewModel>()
-                        .ToList(), 
-                    600)
+                RecentPosts = this.cacheService.Get("RecentPosts", () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
+                AllPages = this.cacheService.Get("AllPages", () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
             };
 
             return this.PartialView(model);

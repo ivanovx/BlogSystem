@@ -1,13 +1,13 @@
-﻿using System.Linq;
-
-namespace BlogSystem.Web.Infrastructure.Mapping.Service
+﻿namespace BlogSystem.Services.Web.Mapping
 {
+    using System.Linq;
+
     public interface IMappingService
     {
         TDestination Map<TDestination>(object source);
 
         void Map<TSource, TDestination>(TSource source, TDestination destination);
 
-        IQueryable<TDestination> MapCollection<TDestination>(IQueryable source, object parameters = null);
+        IQueryable<TDestination> Map<TDestination>(IQueryable source, object parameters = null);
     }
 }

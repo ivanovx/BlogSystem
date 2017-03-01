@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Mapping.Service;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -8,31 +6,30 @@ namespace BlogSystem.Web.Controllers
     using Common;
     using Data.Models;
     using Data.Repositories;
-    using Infrastructure.Extensions;
     using ViewModels.Home;
-    using Infrastructure;
+    using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Services.Data.Contracts;
 
     public class HomeController : BaseController
     {
-        private readonly IDbRepository<Post> postsRepository;
+        private readonly IPostsDataService postsData;
         private readonly IMappingService mappingService;
 
-        public HomeController(IDbRepository<Post> postsRepository, IMappingService mappingService)
+        public HomeController(IPostsDataService postsData, IMappingService mappingService)
         {
-            this.postsRepository = postsRepository;
+            this.postsData = postsData;
             this.mappingService = mappingService;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            var pagesCount = (int) Math.Ceiling(this.postsRepository.All().Count() / (decimal) perPage);
-
-            var posts = this.postsRepository.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn);
-            var postsModel = this.mappingService.MapCollection<PostConciseViewModel>(posts).Skip(perPage * (page - 1)).Take(perPage).ToList();
+            var pagesCount = (int) Math.Ceiling(this.postsData.GetAll().Count() / (decimal) perPage);
+            var posts = this.postsData.GetPagePosts(page, perPage);
+            var postsPage = this.mappingService.Map<PostConciseViewModel>(posts).ToList();
 
             var model = new IndexPageViewModel
             {
-                Posts = postsModel,
+                Posts = postsPage,
                 CurrentPage = page,
                 PagesCount = pagesCount
             };

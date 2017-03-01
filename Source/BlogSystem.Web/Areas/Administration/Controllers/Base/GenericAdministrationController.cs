@@ -4,25 +4,25 @@
     using Data.Contracts;
     using Data.Repositories;
     using ViewModels.Administration;
-    using Infrastructure.Extensions;
+    using BlogSystem.Services.Web.Mapping;
 
     public abstract class GenericAdministrationController<TEntity, TViewModel> :  AdministrationController
         where TEntity : class, IAuditInfo
         where TViewModel: AdministrationViewModel
     {
         protected readonly IDbRepository<TEntity> dataRepository;
+        protected readonly IMappingService mappingService;
 
-        protected GenericAdministrationController(IDbRepository<TEntity> dataRepository)
+        protected GenericAdministrationController(IDbRepository<TEntity> dataRepository, IMappingService mappingService)
         {
             this.dataRepository = dataRepository;
+            this.mappingService = mappingService;
         }
 
         protected virtual IQueryable<TViewModel> GetAll()
         {
-            IQueryable<TViewModel> entity = this.dataRepository
-                .All()
-                .OrderByDescending(p => p.CreatedOn)
-                .To<TViewModel>();
+            var data = this.dataRepository.All().OrderByDescending(p => p.CreatedOn);
+            var entity = this.mappingService.Map<TViewModel>(data);
 
             return entity;
         }
@@ -33,7 +33,7 @@
 
             if (model != null && this.ModelState.IsValid)
             {
-                entity = this.Mapper.Map<TEntity>(model);
+                entity = this.mappingService.Map<TEntity>(model);
 
                 this.dataRepository.Add(entity);
                 this.dataRepository.SaveChanges();
@@ -54,7 +54,7 @@
 
                 if (entity != null)
                 {
-                    this.Mapper.Map(model, entity);
+                    this.mappingService.Map(model, entity);
 
                     this.dataRepository.Update(entity);
 

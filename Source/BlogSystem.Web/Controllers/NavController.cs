@@ -2,29 +2,33 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.Repositories;
     using ViewModels.Nav;
-    using Infrastructure.Extensions;
     using Infrastructure.Helpers;
     using Areas.Administration.Controllers.Base;
-    using Infrastructure.Caching;
+    using BlogSystem.Services.Data.Contracts;
+    using BlogSystem.Services.Web.Caching;
+    using BlogSystem.Services.Web.Mapping;
 
     public class NavController : BaseController
     {
-        private readonly IDbRepository<Page> pagesRepository;
+        private readonly IPagesDataService pagesData;
         private readonly ICacheService cacheService;
+        private readonly IMappingService mappingService;
 
-        public NavController(IDbRepository<Page> pagesRepository, ICacheService cacheService)
+        public NavController(IPagesDataService pagesData, ICacheService cacheService, IMappingService mappingService)
         {
-            this.pagesRepository = pagesRepository;
+            this.pagesData = pagesData;
             this.cacheService = cacheService;
+            this.mappingService = mappingService;
         }
 
         [ChildActionOnly]
         public PartialViewResult Menu()
-        { 
-            var model = this.cacheService.Get("Menu", () => this.pagesRepository.All().Where(p => p.VisibleInMenu).To<MenuItemViewModel>().ToList(), 600);
+        {
+            var pages = this.pagesData.GetAll().Where(p => p.VisibleInMenu);
+
+            var model = this.cacheService.Get("Menu", () => 
+                this.mappingService.Map<MenuItemViewModel>(pages).ToList(), 600);
 
             return this.PartialView(model);
         }

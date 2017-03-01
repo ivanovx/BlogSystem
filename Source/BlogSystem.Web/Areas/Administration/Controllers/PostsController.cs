@@ -6,6 +6,7 @@
     using ViewModels.Posts;
     using Infrastructure.Identity;
     using Data.Repositories;
+    using BlogSystem.Services.Web.Mapping;
     using Common;
     using Base;
 
@@ -16,8 +17,8 @@
     {
         private readonly ICurrentUser currentUser;
 
-        public PostsController(IDbRepository<EntityModel> dataRepository, ICurrentUser currentUser) 
-            : base(dataRepository)
+        public PostsController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService, ICurrentUser currentUser) 
+            : base(dataRepository, mappingService)
         {
             this.currentUser = currentUser;
         }
@@ -67,7 +68,7 @@
 
             if (entity != null)
             {
-                var model = this.Mapper.Map<ViewModel>(entity);
+                var model = this.mappingService.Map<ViewModel>(entity);
 
                 model.AuthorId = this.currentUser.Get().Id;
 

@@ -7,6 +7,7 @@
     using Infrastructure.Identity;
     using Data.Repositories;
     using Base;
+    using BlogSystem.Services.Web.Mapping;
 
     using EntityModel = Data.Models.Page;
     using ViewModel = ViewModels.Pages.PageViewModel;
@@ -16,8 +17,8 @@
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
 
-        public PagesController(IDbRepository<EntityModel> dataRepository, IUrlGenerator urlGenerator, ICurrentUser currentUser) 
-            : base(dataRepository)
+        public PagesController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService,IUrlGenerator urlGenerator, ICurrentUser currentUser) 
+            : base(dataRepository, mappingService)
         {
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
@@ -65,7 +66,7 @@
 
             if (entity != null)
             {
-                var model = this.Mapper.Map<ViewModel>(entity);
+                var model = this.mappingService.Map<ViewModel>(entity);
 
                 model.AuthorId = this.currentUser.Get().Id;
                 model.Permalink = this.urlGenerator.GenerateUrl(entity.Title);

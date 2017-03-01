@@ -1,0 +1,31 @@
+﻿namespace BlogSystem.Services.Web.Mapping
+{
+    using System.Linq;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+
+    public class MappingService : IMappingService
+    {
+        private readonly IMapper mapper;
+
+        public MappingService(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
+        public TDestination Map<TDestination>(object source)
+        {
+            return this.mapper.Map<TDestination>(source);
+        }
+
+        public void Map<TSource, TDestination>(TSource source, TDestination destination)
+        {
+            this.mapper.Map(source, destination);
+        }
+
+        public IQueryable<TDestination> Map<TDestination>(IQueryable source, object parameters = null)
+        {
+            return source.ProjectTo<TDestination>(this.mapper.ConfigurationProvider, parameters);
+        }
+    }
+}

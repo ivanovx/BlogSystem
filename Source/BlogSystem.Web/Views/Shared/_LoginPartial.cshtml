@@ -1,31 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@*
-<ul class="nav navbar-nav navbar-right">
-    @if (Request.IsAuthenticated)
-    {
-        <li>
-            @Html.ActionLink($"Hello {User.Identity.GetUserName()}!", "Index", "Manage", new { area = string.Empty }, new { title = "Manage" })
-        </li>
-        <li>
-            @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            }
-        </li>
-    }
-    else
-    {
-        <li>
-            @Html.ActionLink("Register", "Register", "Account", new { area = string.Empty }, new { id = "registerLink" })
-        </li>
-        <li>
-            @Html.ActionLink("Log in", "Login", "Account", new { area = string.Empty }, new { id = "loginLink" })
-        </li>
-    }
-</ul>*@
-
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -33,17 +7,23 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink($"Hello {User.Identity.GetUserName()}!", "Index", "Manage", new { area = string.Empty }, new { title = "Manage" })
+            <li class="nav-item">
+                @Html.ActionLink($"Hello {User.Identity.GetUserName()}!", "Index", "Manage", new { area = string.Empty }, new { @class = "nav-link", title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+            </li>
         </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { id = "loginLink" })</li>
+        <li class="nav-item">
+            @Html.ActionLink("Register", "Register", "Account", new { area = string.Empty }, new { @class = "nav-link", id = "registerLink"})
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Log in", "Login", "Account", new { area = string.Empty }, new { @class = "nav-link", id = "loginLink" })
+        </li>
     </ul>
 }

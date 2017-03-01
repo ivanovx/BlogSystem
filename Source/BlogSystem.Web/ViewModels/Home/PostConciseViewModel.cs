@@ -12,7 +12,8 @@
     {
         private readonly IUrlGenerator urlGenerator;
 
-        public PostConciseViewModel() : this(new UrlGenerator())
+        public PostConciseViewModel() 
+            : this(new UrlGenerator())
         {
         }
 
@@ -35,13 +36,7 @@
 
         public int CommentsCount { get; set; }
 
-        public string Url
-        {
-            get
-            {
-                return this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
-            }
-        }
+        public string Url => this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {

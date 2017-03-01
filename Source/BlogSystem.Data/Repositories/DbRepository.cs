@@ -17,7 +17,7 @@
 
         public IQueryable<T> All()
         {
-            return this.entitySet;
+            return this.entitySet.AsQueryable();
         }
 
         public T Find(object id)

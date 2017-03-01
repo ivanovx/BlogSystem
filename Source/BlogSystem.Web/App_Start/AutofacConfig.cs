@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using Autofac.Core;
-using AutoMapper;
-using BlogSystem.Web.Infrastructure;
-using BlogSystem.Web.Infrastructure.Mapping;
-using BlogSystem.Web.Infrastructure.Mapping.Service;
+﻿using BlogSystem.Services;
 
 namespace BlogSystem.Web
 {
@@ -12,12 +7,17 @@ namespace BlogSystem.Web
     using System.Web.Mvc;
     using Autofac;
     using Autofac.Integration.Mvc;
+    using AutoMapper;
     using Data;
     using Data.Repositories;
     using Controllers;
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
-    using Infrastructure.Caching;
+    using Infrastructure.Mapping;
+    using Services.Data;
+    using Services.Data.Contracts;
+    using Services.Web.Caching;
+    using Services.Web.Mapping;
 
     public static class AutofacConfig
     { 
@@ -47,49 +47,32 @@ namespace BlogSystem.Web
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
 
-
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder
-                .RegisterType<ApplicationDbContext>()
-                .As<DbContext>()
-                .InstancePerRequest();
+            builder.RegisterType<ApplicationDbContext>().As<DbContext>().InstancePerRequest();
 
-            builder
-                .RegisterGeneric(typeof(DbRepository<>))
-                .As(typeof(IDbRepository<>))
-                .InstancePerRequest();
+            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
-            builder
-                .RegisterType<CurrentUser>()
-                .As<ICurrentUser>()
-                .InstancePerRequest();
+            builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerRequest();
 
-            builder
-                .RegisterType<UrlGenerator>()
-                .As<IUrlGenerator>()
-                .InstancePerRequest();
+            builder.RegisterType<UrlGenerator>().As<IUrlGenerator>().InstancePerRequest();
 
-            builder
-                .RegisterType<CacheService>()
-                .As<ICacheService>()
-                .InstancePerRequest();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AssignableTo<BaseController>().PropertiesAutowired();
 
-            builder
-                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<BaseController>()
-                .PropertiesAutowired();
-
-            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())
-                .As<IMapper>()
-                .InstancePerLifetimeScope()
-                .PropertiesAutowired()
-                .PreserveExistingDefaults();
+            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
             builder.RegisterType<MappingService>().As<IMappingService>();
+
+            builder.RegisterType<CacheService>().As<ICacheService>();
+
+            builder.RegisterType<PostsDataService>().As<IPostsDataService>();
+
+            builder.RegisterType<PagesDataService>().As<IPagesDataService>();
+
+            builder.RegisterType<CommentsDataService>().As<ICommentsDataService>();
         }
     }
 }

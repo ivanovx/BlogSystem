@@ -84,10 +84,6 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.0\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Owin.4.0.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -271,14 +267,15 @@
   <ItemGroup>
     <Compile Include="Areas\Administration\ViewModels\Posts\IndexPostsPageViewModel.cs" />
     <Content Include="Content\blog.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
@@ -299,18 +296,17 @@
     <Content Include="Areas\Administration\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Update.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\csyntax.net.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="images\fluid-loader.gif" />
-    <Content Include="images\hero-bg-large.jpg" />
+    <Content Include="images\header.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\loading.gif" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\blog.js" />
@@ -567,6 +563,14 @@
     <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
       <Project>{17485a92-aa59-4324-b830-37d935148532}</Project>
       <Name>BlogSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Services.Data\BlogSystem.Services.Data.csproj">
+      <Project>{3ABCEC4B-5A4A-4699-A6F7-98A22C61B133}</Project>
+      <Name>BlogSystem.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Services.Web\BlogSystem.Services.Web.csproj">
+      <Project>{F68F0757-E9AB-4B8E-8864-67F457E88C8A}</Project>
+      <Name>BlogSystem.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Web.Infrastructure\BlogSystem.Web.Infrastructure.csproj">
       <Project>{a887605f-bf8c-4718-a3e1-4c495c629ff9}</Project>

@@ -8,29 +8,30 @@
     using Infrastructure;
     using Infrastructure.Identity;
     using Infrastructure.Extensions;
+    using BlogSystem.Services.Data.Contracts;
+    using BlogSystem.Services.Web.Mapping;
 
     [Authorize]
     public class CommentsController : BaseController
     {
-        private readonly IDbRepository<Comment> commentsRepository;
+        private readonly ICommentsDataService commentsData;
         private readonly ICurrentUser currentUser;
+        private readonly IMappingService mappingService;
 
-        public CommentsController(IDbRepository<Comment> commentsRepository, ICurrentUser currentUser)
+        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, IMappingService mappingService)
         {
-            this.commentsRepository = commentsRepository;
+            this.commentsData = commentsData;
             this.currentUser = currentUser;
+            this.mappingService = mappingService;
         }
 
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {
-            var comments = this.commentsRepository
-                .All()
-                .Where(c => c.PostId == id && !c.IsDeleted)
-                .OrderByDescending(c => c.CreatedOn)
-                .To<CommentViewModel>();
+            var comments = this.commentsData.GetAllByPost(id);
+            var model = this.mappingService.Map<CommentViewModel>(comments).ToList();
 
-            return this.PartialView(comments);
+            return this.PartialView(model);
         }
 
         [HttpPost]
@@ -39,16 +40,9 @@
         {
             if (this.ModelState.IsValid)
             {
-                var comment = new Comment
-                {
-                    Content = model.Content,
-                    PostId = id,
-                    User = this.currentUser.Get(),
-                    UserId = this.currentUser.Get().Id
-                };
+                var userId = this.currentUser.Get().Id;
 
-                this.commentsRepository.Add(comment);
-                this.commentsRepository.SaveChanges();
+                this.commentsData.AddCommentToPost(id, model.Content, userId);
 
                 return this.RedirectToAction("All", new { id });
             }

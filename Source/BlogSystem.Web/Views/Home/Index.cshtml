@@ -64,14 +64,14 @@ else
             {
                 if (i == Model.CurrentPage)
                 {
-                    <li class="active">
-                        @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i })
+                    <li class="page-item active">
+                        @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i }, new { @class= "page-link" })
                     </li>
                 }
                 else
                 {
-                    <li>
-                        @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i })
+                    <li class="page-item">
+                        @Html.ActionLink($"{i}", "Index", new { area = string.Empty, page = i }, new { @class= "page-link" })
                     </li>
                 }
             }

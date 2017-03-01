@@ -1,49 +1,50 @@
 ﻿@model BlogSystem.Web.ViewModels.Sidebar.SidebarViewModel
 
-@if (Model.RecentPosts.Any())
-{
+<aside>
+    @if (Model.RecentPosts.Any())
+    {
+        <div class="widget">
+            <h3 class="widgettitle">
+                <span>Recent Posts</span>
+            </h3>
+            <ul>
+                @foreach (var post in Model.RecentPosts)
+                {
+                    <li>
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                        <a href="@post.Url">@post.Title</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (Model.AllPages.Any())
+    {
+        <div class="widget">
+            <h3>
+                <span>Pages</span>
+            </h3>
+            <ul>
+                @foreach (var page in Model.AllPages)
+                {
+                    <li>
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                        @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
     <div class="widget">
         <h3 class="widgettitle">
-            <span>Recent Posts</span>
+            <span>Me on Spotify</span>
         </h3>
-        <ul>
-            @foreach (var post in Model.RecentPosts)
-            {
-                <li>
-                    <i class="fa fa-file" aria-hidden="true"></i>
-                    <a href="@post.Url">@post.Title</a>
-                </li>
-            }
-        </ul>
+        <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A11184122126%3Aplaylist%3A4PVXpMtbqsumofoOEOL7Pj"
+                width="300"
+                height="500"
+                frameborder="0"
+                allowtransparency="true"></iframe>
     </div>
-}
-
-@if (Model.AllPages.Any())
-{
-    <div class="widget">
-        <h3 class="widgettitle">
-            <span>Pages</span>
-        </h3>
-        <ul>
-            @foreach (var page in Model.AllPages)
-            {
-                <li>
-                    <i class="fa fa-file" aria-hidden="true"></i>
-                    @Html.RouteLink(page.Title, "Page", new {permalink = page.Permalink})
-                </li>
-            }
-        </ul>
-    </div>
-}
-
-<div class="widget">
-    <h3 class="widgettitle">
-        <span>Me on Spotify</span>
-    </h3>
-    <iframe 
-        src="https://embed.spotify.com/?uri=spotify%3Auser%3A11184122126%3Aplaylist%3A4PVXpMtbqsumofoOEOL7Pj"
-        width="300"
-        height="500"
-        frameborder="0"
-        allowtransparency="true"></iframe>
-</div>
+</aside>

@@ -21,7 +21,7 @@
             uglyString = uglyString.Replace("ASP.NET", "AspNet");
             uglyString = uglyString.Replace(".NET", "DotNet");
 
-            foreach (char character in uglyString)
+            foreach (var character in uglyString)
             {
                 if (char.IsLetterOrDigit(character))
                 {

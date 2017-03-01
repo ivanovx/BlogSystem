@@ -2,21 +2,22 @@
 
 @using BlogSystem.Common
 
-@if (User.IsInRole(GlobalConstants.AdminRoleName))
-{
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            Administration 
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-        </a>
-        <ul class="dropdown-menu">
-            @foreach (var item in Model)
-            {
-                <li>
-                    <a href="@Url.Action("Index", item, new { area = "Administration" })">@item</a>
-                </li>
-            }
-        </ul>
-    </li>
-}
+<ul class="navbar-nav navbar-right">
+    @if (User.IsInRole(GlobalConstants.AdminRoleName))
+    {
+        <li class="nav-item">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Administration
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach (var item in Model)
+                    {
+                        @Html.ActionLink(item, "Index", item, new { area = "Administration" }, new { @class = "dropdown-item" })
+                    }
+                </div>
+            </div>
+        </li>
+    }
+</ul>
