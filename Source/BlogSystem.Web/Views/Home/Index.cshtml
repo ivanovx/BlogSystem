@@ -1,6 +1,6 @@
-﻿@using BlogSystem.Web.Infrastructure.Helpers.Html
+﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
-@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
+@using BlogSystem.Web.Infrastructure.Helpers.Html
 
 @{
     ViewBag.Title = "Home Page";
@@ -27,10 +27,8 @@
                         @Html.DisplayFor(model => post.Author)
                     </li>
                     <li>
-                        <a href="@post.Url#comments">
-                            <i class="fa fa-comments" aria-hidden="true"></i>
-                            @Html.DisplayFor(model => post.CommentsCount) comments
-                        </a>
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        @Html.DisplayFor(model => post.CommentsCount) comments
                     </li>
                 </ul>
             </header>
@@ -40,9 +38,7 @@
             </div>
 
             <div class="post-read-more">
-                <a href="@post.Url" class="btn btn-default" title="@post.Title">
-                    Read more!
-                </a>
+                <a href="@post.Url" class="btn btn-default" title="@post.Title">Read more!</a>
             </div>
         </article>
     }

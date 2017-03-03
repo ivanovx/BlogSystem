@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BlogSystem.Web.ViewModels.Nav.MenuItemViewModel>
+﻿@using BlogSystem.Common
+
+@model IEnumerable<BlogSystem.Web.ViewModels.Nav.MenuItemViewModel>
 
 @*<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -41,7 +43,7 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item home">
                 @Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, new { @class="nav-link" })
             </li>
             
@@ -52,8 +54,15 @@
                 </li>
             }
         </ul>
-       
-        @{ Html.RenderAction("AdminMenu", "Nav"); }
+        
+        <ul class="navbar-nav navbar-right">
+            @if (User.IsInRole(GlobalConstants.AdminRoleName))
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Administration", "Index", "Home", new { area = "Administration" }, new { @class = "nav-link" })
+                </li>
+            }
+        </ul>
         
         @Html.Partial("_LoginPartial")
     </div>

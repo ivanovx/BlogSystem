@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F52DF657-EA1B-43C7-9E91-B315D95E516C}</ProjectGuid>
+    <ProjectGuid>{63A98574-D802-4737-8B16-1AAF84F6DA38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlogSystem.Services</RootNamespace>
-    <AssemblyName>BlogSystem.Services</AssemblyName>
+    <RootNamespace>BlogSystem.Services.Administration</RootNamespace>
+    <AssemblyName>BlogSystem.Services.Administration</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,12 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IService.cs" />
+    <Compile Include="AdministrationService.cs" />
+    <Compile Include="IAdministrationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Web\" />
+    <ProjectReference Include="..\BlogSystem.Data.Contracts\BlogSystem.Data.Contracts.csproj">
+      <Project>{482B4C3E-0155-4FFD-B42F-A024FD5E3E0A}</Project>
+      <Name>BlogSystem.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Data.Models\BlogSystem.Data.Models.csproj">
+      <Project>{47628F0E-BE6A-434F-AD43-E641032C5A2A}</Project>
+      <Name>BlogSystem.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
+      <Project>{17485A92-AA59-4324-B830-37D935148532}</Project>
+      <Name>BlogSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlogSystem.Services.Web\BlogSystem.Services.Web.csproj">
+      <Project>{F68F0757-E9AB-4B8E-8864-67F457E88C8A}</Project>
+      <Name>BlogSystem.Services.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

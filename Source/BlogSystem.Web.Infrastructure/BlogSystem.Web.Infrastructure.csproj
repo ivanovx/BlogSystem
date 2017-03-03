@@ -94,7 +94,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
     <Compile Include="Helpers\IUrlGenerator.cs" />
     <Compile Include="Helpers\UrlGenerator.cs" />
@@ -106,7 +105,6 @@
     <Compile Include="Mapping\IMapTo.cs" />
     <Compile Include="Mapping\TypeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\QueryableExtensions.cs" />
     <Compile Include="SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +112,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Common\BlogSystem.Common.csproj">
+      <Project>{427EF7D0-4DE3-4656-B4E9-35C191B504CE}</Project>
+      <Name>BlogSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Data.Contracts\BlogSystem.Data.Contracts.csproj">
       <Project>{482b4c3e-0155-4ffd-b42f-a024fd5e3e0a}</Project>
       <Name>BlogSystem.Data.Contracts</Name>

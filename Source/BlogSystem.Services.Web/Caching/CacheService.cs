@@ -8,7 +8,7 @@
     {
         private readonly object lockObject = new object();
 
-        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds)
+        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds) where T : class
         {
             lock (lockObject)
             {
@@ -20,7 +20,7 @@
                 }
             }
 
-            return (T) HttpRuntime.Cache[name];
+            return HttpRuntime.Cache.Get(name) as T;
         }
     }
 }

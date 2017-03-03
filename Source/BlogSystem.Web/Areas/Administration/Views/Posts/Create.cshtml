@@ -25,6 +25,10 @@
                 </div>
 
                 <div class="form-group">
+                      @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.Categories, "Key", "Value"), "-- Select Status --")
+                </div>
+                
+                <div class="form-group">
                     @Html.LabelFor(model => model.Content, new { @class = "col-md-2" })
 
                     <div class="col-md-10">

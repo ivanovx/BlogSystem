@@ -45,6 +45,10 @@ h6 {
     color: rgb(93, 67, 132);
 }
 
+article header > h2 {
+    line-height: 25px;
+}
+
 a {
     color: rgb(93, 67, 132);
 }
@@ -67,7 +71,7 @@ ul {
     z-index: 100;
     width: 100%;
     height: 100%;
-    background: whitesmoke url("../images/loading.gif");
+    background: white url("../images/loading.gif");
     background-repeat: no-repeat;
     background-position: 50% 40%;
 }
@@ -410,5 +414,51 @@ ul {
 }
 
 .administration {
-    
+    background: none;
+}
+
+.administration h1,
+.administration h2,
+.administration h3,
+.administration h4,
+.administration h5,
+.administration h6 {
+    text-transform: none;
+}
+
+.administration .navbar {
+    box-shadow: none;
+}
+
+.administration .sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid #eee;
+}
+
+.administration .sidebar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.administration .sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.administration .sidebar .nav-item {
+  width: 100%;
+}
+
+.administration .sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.administration .sidebar .nav-link {
+  border-radius: 0;
 }

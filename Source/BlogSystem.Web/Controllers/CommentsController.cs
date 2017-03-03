@@ -2,12 +2,8 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
     using ViewModels.Comments;
-    using Data.Repositories;
-    using Infrastructure;
     using Infrastructure.Identity;
-    using Infrastructure.Extensions;
     using BlogSystem.Services.Data.Contracts;
     using BlogSystem.Services.Web.Mapping;
 

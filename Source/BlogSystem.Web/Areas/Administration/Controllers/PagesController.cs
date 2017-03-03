@@ -17,7 +17,7 @@
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
 
-        public PagesController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService,IUrlGenerator urlGenerator, ICurrentUser currentUser) 
+        public PagesController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService, IUrlGenerator urlGenerator, ICurrentUser currentUser)
             : base(dataRepository, mappingService)
         {
             this.urlGenerator = urlGenerator;

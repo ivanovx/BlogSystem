@@ -10,13 +10,17 @@
         @Styles.Render("~/Content/css")
     </head>
     <body class="administration">
-        <section class="container" role="main">
+        @Html.Partial("_Header")
+        
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                @{ Html.RenderAction("AdminMenu", "Home");}
+
+                <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                     @RenderBody()
-                </div>
-            </div>  
-        </section>
+                </main>
+            </div>
+        </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

@@ -4,8 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Common;
-    using Data.Models;
-    using Data.Repositories;
     using ViewModels.Home;
     using BlogSystem.Services.Web.Mapping;
     using BlogSystem.Services.Data.Contracts;

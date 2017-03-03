@@ -3,7 +3,7 @@
     using System.Linq;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
-    using BlogSystem.Services.Data.Contracts;
+    using Contracts;
 
     public class PagesDataService : IPagesDataService
     {

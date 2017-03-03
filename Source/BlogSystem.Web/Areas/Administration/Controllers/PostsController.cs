@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Data.Models;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;

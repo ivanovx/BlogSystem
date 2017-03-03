@@ -1,6 +1,4 @@
-﻿using BlogSystem.Services;
-
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -64,15 +62,15 @@ namespace BlogSystem.Web
 
             builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
-            builder.RegisterType<MappingService>().As<IMappingService>();
+            builder.RegisterType<MappingService>().As<IMappingService>().InstancePerRequest();
 
-            builder.RegisterType<CacheService>().As<ICacheService>();
+            builder.RegisterType<CacheService>().As<ICacheService>().InstancePerRequest();
 
-            builder.RegisterType<PostsDataService>().As<IPostsDataService>();
+            builder.RegisterType<PostsDataService>().As<IPostsDataService>().InstancePerRequest();
 
-            builder.RegisterType<PagesDataService>().As<IPagesDataService>();
+            builder.RegisterType<PagesDataService>().As<IPagesDataService>().InstancePerRequest();
 
-            builder.RegisterType<CommentsDataService>().As<ICommentsDataService>();
+            builder.RegisterType<CommentsDataService>().As<ICommentsDataService>().InstancePerRequest();
         }
     }
 }
