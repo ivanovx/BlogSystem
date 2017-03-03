@@ -26,6 +26,8 @@
     </header>
     <div class="post-content">
         @Html.DisplayFor(model => Model.Content)
+        
+        <h6>@Model.Category</h6>
     </div>
     <div class="post-comments">
         @(Ajax.ActionLink("View Comments", "All", new

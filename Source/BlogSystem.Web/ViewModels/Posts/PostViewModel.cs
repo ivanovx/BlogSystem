@@ -1,14 +1,12 @@
 ﻿namespace BlogSystem.Web.ViewModels.Posts
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
     using Infrastructure.Helpers;
-    using Comments;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
@@ -34,19 +32,19 @@
 
         public string Author { get; set; }
 
+        public string Category { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
-
-        //public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public string Url => this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
         
         public void CreateMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Post, PostViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName));
-            //.ForMember(m => m.Comments, c => c.MapFrom(post => post.Comments));
+                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
+                .ForMember(m => m.Category, c => c.MapFrom(post => post.Category.Name));
         }
     }
 }

@@ -14,11 +14,13 @@ namespace BlogSystem.Data
         {
         }
 
-        public IDbSet<Page> Pages { get; set; }
-
         public IDbSet<Post> Posts { get; set; }
 
+        public IDbSet<Category> Categories { get; set; }
+
         public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<Page> Pages { get; set; }
 
         public IDbSet<Setting> Settings { get; set; }
 

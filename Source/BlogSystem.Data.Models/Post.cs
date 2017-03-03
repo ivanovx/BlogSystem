@@ -37,6 +37,11 @@
 
         public DateTime? DeletedOn { get; set; }
 
+        public int? CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
+
         public virtual ICollection<Comment> Comments
         {
             get { return this.comments; }

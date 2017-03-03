@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Data.Models;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -15,11 +17,13 @@
 
     public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
+        private readonly IDbRepository<Category> categoryRepository;
         private readonly ICurrentUser currentUser;
 
-        public PostsController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService, ICurrentUser currentUser) 
+        public PostsController(IDbRepository<EntityModel> dataRepository, IDbRepository<Category> categoryRepository, IMappingService mappingService, ICurrentUser currentUser) 
             : base(dataRepository, mappingService)
         {
+            this.categoryRepository = categoryRepository;
             this.currentUser = currentUser;
         }
 
@@ -42,6 +46,8 @@
         [HttpGet]
         public ActionResult Create()
         {
+            this.ViewBag.Categories = this.categoryRepository.All().OrderBy(c => c.Name).ToDictionary(c => c.Id, c => c.Name);
+
             return this.View();
         }
 
