@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BlogSystem.Data.Models;
+﻿using BlogSystem.Data.Models;
 using BlogSystem.Web.Infrastructure.Mapping;
 
 namespace BlogSystem.Web.Areas.Administration.ViewModels

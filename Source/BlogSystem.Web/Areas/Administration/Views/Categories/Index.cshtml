@@ -1,27 +1,28 @@
-﻿@model IEnumerable<BlogSystem.Data.Models.Category>
+﻿@model IEnumerable<BlogSystem.Web.Areas.Administration.ViewModels.CategoryViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Categories";
 }
 
-<h2>Index</h2>
+<header>
+    <h2 class="float-left">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-    </tr>
+    <a href="@Url.Action("Create", "Categories", new { area = "Administration" })" class="btn btn-success float-right">
+        <span class="fa fa-plus" aria-hidden="true"></span>
+        Create New Category
+    </a>
+</header>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-    </tr>
+@if (Model.Any())
+{
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            @foreach (var category in Model)
+            {
+                <li class="list-group-item">
+                    @Html.DisplayFor(model => category.Name)
+                </li>
+            }
+        </ul>
+    </div>
 }
-
-</table>

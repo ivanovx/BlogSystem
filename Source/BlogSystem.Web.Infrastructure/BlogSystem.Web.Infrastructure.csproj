@@ -95,8 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
-    <Compile Include="Helpers\IUrlGenerator.cs" />
-    <Compile Include="Helpers\UrlGenerator.cs" />
+    <Compile Include="Helpers\Url\IUrlGenerator.cs" />
+    <Compile Include="Helpers\Url\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />

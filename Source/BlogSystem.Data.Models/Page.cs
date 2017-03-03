@@ -8,13 +8,6 @@
 
     public class Page : AuditInfo, IDeletableEntity
     {
-        private ICollection<Tag> tags;
-
-        public Page()
-        {
-            this.tags = new HashSet<Tag>();
-        }
-
         [Key]
         public int Id { get; set; }
         
@@ -38,11 +31,5 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
-
-        public virtual ICollection<Tag> SubmissionTypes
-        {
-            get { return this.tags; }
-            set { this.tags = value; }
-        }
     }
 }

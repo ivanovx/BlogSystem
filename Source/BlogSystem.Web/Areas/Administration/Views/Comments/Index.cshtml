@@ -4,64 +4,73 @@
     ViewBag.Title = "All Comments";
 }
 
-        @if (Model.Comments.Any())
-        {
-            <table class="table table-condensed table-hover">
-                <thead>
-                    <tr>
-                        <th>Post Title</th>
-                        <th>User</th>
-                        <th>Created On</th>
-                        <th>Modified On</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var comment in Model.Comments)
-                    {
-                        <tr>
-                            <td>
-                                @Html.RouteLink(comment.PostTitle, "Post", new { Area = string.Empty, Id = comment.PostId })
-                            </td>
-                            <td>
-                                @Html.DisplayFor(mode => comment.UserName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => comment.CreatedOn)
-                            </td>
+<header>
+    <h2 class="float-left">@ViewBag.Title</h2>
+</header>
 
-                            <td>
-                                @Html.DisplayFor(model => comment.ModifiedOn)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="@Url.Action("Edit", "Comments", new { area = "Administration", id = comment.Id })" class="btn btn-warning">
-                                        <i class="glyphicon glyphicon-edit"></i>
-                                        Edit
-                                    </a>
-                                    <a href="@Url.Action("Delete", "Comments", new { area = "Administration", id = comment.Id })" class="btn btn-danger">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                        Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <h2>No comments available.</h2>
-        }
+@if (Model.Comments.Any())
+{
+    <table class="table table-inverse">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Post Title</th>
+                <th>User</th>
+                <th>Created On</th>
+                <th>Modified On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model.Comments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => comment.Id)
+                    </td>
+                    <td>
+                        @Html.RouteLink(comment.PostTitle, "Post", new { Area = string.Empty, Id = comment.PostId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => comment.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => comment.CreatedOn)
+                    </td>
 
- @if (Model.PagesCount > 0)
- {
+                    <td>
+                        @Html.DisplayFor(model => comment.ModifiedOn)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="@Url.Action("Edit", "Comments", new {area = "Administration", id = comment.Id})" class="btn btn-warning">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Delete", "Comments", new {area = "Administration", id = comment.Id})" class="btn btn-danger">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>No comments available.</h2>
+}
+
+@if (Model.PagesCount > 0)
+{
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li>
-                <a href="@Url.Action("Index", new { area = "Administration", page = Model.PreviousPage })">
+            <li class="page-item">
+                <a href="@Url.Action("Index", new {area = "Administration", page = Model.PreviousPage})" class="page-link" aria-label="Previous">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
                 </a>
             </li>
 
@@ -69,23 +78,25 @@
             {
                 if (i == Model.CurrentPage)
                 {
-                    <li class="active">
-                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i })
+                    <li class="page-item active">
+                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i }, new { @class = "page-link" })
                     </li>
                 }
                 else
                 {
                     <li>
-                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i })
+                        @Html.ActionLink($"{i}", "Index", new { area = "Administration", page = i }, new { @class = "page-link" })
                     </li>
                 }
             }
 
-            <li>
-                <a href="@Url.Action("Index", new { area = "Administration", page = Model.NextPage })">
+            <li class="page-item">
+                <a href="@Url.Action("Index", new {area = "Administration", page = Model.NextPage})" class="page-link" aria-label="Next">
                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
                 </a>
             </li>
         </ul>
+
     </nav>
- }
+}

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BlogSystem.Data.Models;
 using BlogSystem.Data.Repositories;
+using BlogSystem.Services.Web.Mapping;
 using BlogSystem.Web.Areas.Administration.Controllers.Base;
 using BlogSystem.Web.Areas.Administration.ViewModels;
 
@@ -13,18 +14,21 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
     public class CategoriesController : AdministrationController
     {
         private readonly IDbRepository<Category> categoryRepository;
+        private readonly IMappingService mappingService;
 
-        public CategoriesController(IDbRepository<Category> categoryRepository)
+        public CategoriesController(IDbRepository<Category> categoryRepository, IMappingService mappingService)
         {
             this.categoryRepository = categoryRepository;
+            this.mappingService = mappingService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var categories = this.categoryRepository.All().ToList();
+            var categories = this.categoryRepository.All();
+            var model = this.mappingService.Map<CategoryViewModel>(categories).ToList();
 
-            return this.View(categories);
+            return this.View(model);
         }
 
         [HttpGet]
