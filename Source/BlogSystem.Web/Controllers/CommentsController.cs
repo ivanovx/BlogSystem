@@ -1,10 +1,11 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Comments;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using ViewModels.Comments;
     using Infrastructure.Identity;
-    using BlogSystem.Services.Data.Contracts;
     using BlogSystem.Services.Web.Mapping;
 
     [Authorize]

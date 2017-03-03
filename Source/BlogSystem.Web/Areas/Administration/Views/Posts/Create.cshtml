@@ -4,8 +4,7 @@
     ViewBag.Title = "Create Post";
 }
 
-<section class="post-container">
-    <div class="post-content">
+
         <h2>@ViewBag.Title</h2>
         
         @using (Html.BeginForm("Create", "Posts", FormMethod.Post))
@@ -45,8 +44,6 @@
                 </div>
             </div>
         }
-    </div>
-</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

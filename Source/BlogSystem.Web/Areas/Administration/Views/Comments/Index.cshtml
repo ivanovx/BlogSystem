@@ -4,8 +4,6 @@
     ViewBag.Title = "All Comments";
 }
 
-<section class="post-container">
-    <div class="post-content">
         @if (Model.Comments.Any())
         {
             <table class="table table-condensed table-hover">
@@ -56,8 +54,6 @@
         {
             <h2>No comments available.</h2>
         }
-    </div>
-</section>
 
  @if (Model.PagesCount > 0)
  {

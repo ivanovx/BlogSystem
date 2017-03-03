@@ -1,4 +1,7 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Pages;
+using BlogSystem.Services.Data.Posts;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -8,7 +11,6 @@
     using BlogSystem.Services.Web.Caching;
     using BlogSystem.Services.Web.Mapping;
     using BlogSystem.Common;
-    using BlogSystem.Services.Data.Contracts;
 
 
     public class SidebarController : BaseController

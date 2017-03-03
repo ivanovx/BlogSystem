@@ -1,9 +1,10 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Pages;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
     using ViewModels.Nav;
-    using BlogSystem.Services.Data.Contracts;
     using BlogSystem.Services.Web.Caching;
     using BlogSystem.Services.Web.Mapping;
 

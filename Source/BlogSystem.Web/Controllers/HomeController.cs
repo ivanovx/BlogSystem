@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Posts;
+
+namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -6,7 +8,6 @@
     using Common;
     using ViewModels.Home;
     using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Services.Data.Contracts;
 
     public class HomeController : BaseController
     {

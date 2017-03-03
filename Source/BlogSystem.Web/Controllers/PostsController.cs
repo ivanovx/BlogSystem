@@ -1,8 +1,9 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Posts;
+
+namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using ViewModels.Posts;
-    using BlogSystem.Services.Data.Contracts;
     using BlogSystem.Services.Web.Mapping;
 
     public class PostsController : BaseController

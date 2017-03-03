@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Reflection;

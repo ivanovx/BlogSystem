@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Services.Data.Contracts
+﻿namespace BlogSystem.Services.Data.Posts
 {
     using System.Linq;
     using BlogSystem.Data.Models;

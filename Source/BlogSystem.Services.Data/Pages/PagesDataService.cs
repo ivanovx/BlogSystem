@@ -1,9 +1,8 @@
-﻿namespace BlogSystem.Services.Data
+﻿namespace BlogSystem.Services.Data.Pages
 {
     using System.Linq;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
-    using Contracts;
 
     public class PagesDataService : IPagesDataService
     {

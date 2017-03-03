@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web
+﻿using BlogSystem.Services.Data;
+
+namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -12,8 +14,6 @@
     using Infrastructure.Helpers;
     using Infrastructure.Identity;
     using Infrastructure.Mapping;
-    using Services.Data;
-    using Services.Data.Contracts;
     using Services.Web.Caching;
     using Services.Web.Mapping;
 
@@ -66,11 +66,7 @@
 
             builder.RegisterType<CacheService>().As<ICacheService>().InstancePerRequest();
 
-            builder.RegisterType<PostsDataService>().As<IPostsDataService>().InstancePerRequest();
-
-            builder.RegisterType<PagesDataService>().As<IPagesDataService>().InstancePerRequest();
-
-            builder.RegisterType<CommentsDataService>().As<ICommentsDataService>().InstancePerRequest();
+            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService))).AsImplementedInterfaces();
         }
     }
 }

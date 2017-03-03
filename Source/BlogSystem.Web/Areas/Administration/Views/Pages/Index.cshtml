@@ -4,65 +4,66 @@
     ViewBag.Title = "All Pages";
 }
 
-<section class="post-container">
-    <div class="post-content">
-        <h2>@ViewBag.Title</h2>
 
-        <p>
-            <a href="@Url.Action("Create", "Pages", new { area = "Administration" })" class="btn btn-success">
-                <span class="fa fa-plus" aria-hidden="true"></span>
-                Create New Page
-            </a>
-        </p>
+<header>
+    <h2 class="float-left">@ViewBag.Title</h2>
 
-        @if (Model.Pages.Any())
-        {
-            <table class="table table-condensed table-hover">
-                <thead>
-                    <tr>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Created On</th>
-                        <th>Modified On</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Pages)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AuthorUserName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedOn)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ModifiedOn)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="@Url.Action("Edit", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-warning">
-                                        <i class="glyphicon glyphicon-edit"></i>
-                                        Edit
-                                    </a>
-                                    <a href="@Url.Action("Delete", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-danger">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                        Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <h2>No pages available.</h2>
-        }
-    </div>
-</section>
+    <a href="@Url.Action("Create", "Pages", new { area = "Administration" })" class="btn btn-success float-right">
+        <span class="fa fa-plus" aria-hidden="true"></span>
+        Create New Page
+    </a>
+</header>
+
+@if (Model.Pages.Any())
+{
+    <table class="table table-inverse">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Created On</th>
+                <th>Modified On</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Pages)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorUserName)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="@Url.Action("Edit", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-warning">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                Edit
+                            </a>
+                            <a href="@Url.Action("Delete", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-danger">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>No pages available.</h2>
+}

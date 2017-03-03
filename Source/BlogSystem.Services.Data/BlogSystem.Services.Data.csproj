@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommentsDataService.cs" />
-    <Compile Include="Contracts\ICommentsDataService.cs" />
-    <Compile Include="Contracts\IPagesDataService.cs" />
-    <Compile Include="Contracts\IPostsDataService.cs" />
-    <Compile Include="PagesDataService.cs" />
-    <Compile Include="PostsDataService.cs" />
+    <Compile Include="Comments\CommentsDataService.cs" />
+    <Compile Include="Comments\ICommentsDataService.cs" />
+    <Compile Include="IDataService.cs" />
+    <Compile Include="Pages\IPagesDataService.cs" />
+    <Compile Include="Posts\IPostsDataService.cs" />
+    <Compile Include="Pages\PagesDataService.cs" />
+    <Compile Include="Posts\PostsDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

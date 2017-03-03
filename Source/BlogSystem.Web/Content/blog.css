@@ -424,10 +424,19 @@ ul {
 .administration h5,
 .administration h6 {
     text-transform: none;
+    color: rgb(41, 43, 44);
 }
 
 .administration .navbar {
     box-shadow: none;
+}
+
+.administration header {
+    margin-bottom: 5em;
+}
+
+.administration .btn {
+    text-transform: uppercase;
 }
 
 .administration .sidebar {

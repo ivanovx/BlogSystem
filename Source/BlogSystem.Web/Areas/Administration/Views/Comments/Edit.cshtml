@@ -4,8 +4,6 @@
     ViewBag.Title = "Edit Comment";
 }
 
-<section class="post-container">
-    <div class="post-content">
         <h2>@ViewBag.Title</h2>
 
         @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
@@ -31,8 +29,6 @@
                 </div>
             </div>
         }
-    </div>
-</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

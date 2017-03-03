@@ -1,9 +1,10 @@
-﻿namespace BlogSystem.Web.Controllers
+﻿using BlogSystem.Services.Data.Pages;
+
+namespace BlogSystem.Web.Controllers
 {
     using System.Web.Mvc;
     using ViewModels.Pages;
     using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Services.Data.Contracts;
 
     public class PagesController : BaseController
     {
