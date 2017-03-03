@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Infrastructure.Helpers
+﻿namespace BlogSystem.Web.Infrastructure.Helpers.Url
 {
     using System;
 

@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.ViewModels.Posts
+﻿using BlogSystem.Web.Infrastructure.Helpers.Url;
+
+namespace BlogSystem.Web.ViewModels.Posts
 {
     using System;
     using System.ComponentModel.DataAnnotations;

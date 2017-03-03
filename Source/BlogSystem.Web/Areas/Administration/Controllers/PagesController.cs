@@ -1,4 +1,6 @@
-﻿namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿using BlogSystem.Web.Infrastructure.Helpers.Url;
+
+namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
