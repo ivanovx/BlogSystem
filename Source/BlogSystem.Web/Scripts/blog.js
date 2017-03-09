@@ -1,8 +1,11 @@
 ﻿var BlogSystem = BlogSystem || {};
 
+/*
 $(window).load(function() {
     $("#loading").fadeOut("slow");
 });
+*/
+$("#loading").hide();
 
 BlogSystem.onGetCommentsSuccess = function () {
     $("#show-comments-btn").hide();
