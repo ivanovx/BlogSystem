@@ -1,10 +1,9 @@
-﻿using BlogSystem.Services.Data.Pages;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Web.Mvc;
     using ViewModels.Pages;
     using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Services.Data.Pages;
 
     public class PagesController : BaseController
     {
@@ -17,9 +16,16 @@ namespace BlogSystem.Web.Controllers
             this.mappingService = mappingService;
         }
 
+        [HttpGet]
         public ActionResult Page(string permalink)
         {
             var page = this.pagesData.GetPage(permalink);
+
+            if (page == null)
+            {
+                return this.HttpNotFound();
+            }
+
             var model = this.mappingService.Map<PageViewModel>(page);
 
             return View(model);

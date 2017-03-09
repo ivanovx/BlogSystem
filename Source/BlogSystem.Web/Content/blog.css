@@ -20,10 +20,6 @@ body {
     background: rgb(178, 25, 197);
 }
 
-.hidden {
-    display: none;
-}
-
 a:hover,
 a:focus {
     -webkit-transition: all 0.5s ease;
@@ -417,6 +413,10 @@ ul {
     background: none;
 }
 
+.administration header {
+    margin-bottom: 5em;
+}
+
 .administration h1,
 .administration h2,
 .administration h3,
@@ -429,10 +429,6 @@ ul {
 
 .administration .navbar {
     box-shadow: none;
-}
-
-.administration header {
-    margin-bottom: 5em;
 }
 
 .administration .btn {

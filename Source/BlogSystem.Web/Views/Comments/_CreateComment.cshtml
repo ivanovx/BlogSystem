@@ -4,18 +4,15 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    using (Ajax.BeginForm("Create", "Comments", new
-    {
-        id = ViewData["id"]
-    }, 
-    new AjaxOptions
-    {
-        HttpMethod = "Post",
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "comments",
-        OnFailure = "BlogSystem.onCreateCommentFailure",
-        OnSuccess = "BlogSystem.onAddCommentSuccess"
-    }))
+    using (Ajax.BeginForm("Create", "Comments", 
+        new { id = ViewData["id"] }, 
+        new AjaxOptions {
+            HttpMethod = "Post",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comments",
+            OnFailure = "BlogSystem.onCreateCommentFailure",
+            OnSuccess = "BlogSystem.onAddCommentSuccess"
+        }))
     {
         @Html.AntiForgeryToken()
 
@@ -27,7 +24,7 @@
             @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
         </div>
 
-        <button type="submit" class="btn btn-default">Add Comment</button>
+        <button type="submit" class="btn btn-success">Add Comment</button>
     }
 }
 else

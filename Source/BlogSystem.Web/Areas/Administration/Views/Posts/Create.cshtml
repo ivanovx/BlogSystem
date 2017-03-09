@@ -4,50 +4,37 @@
     ViewBag.Title = "Create Post";
 }
 
+<h2>@ViewBag.Title</h2>
+<hr />
+            
+@using (Html.BeginForm("Create", "Posts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-        <h2>@ViewBag.Title</h2>
-        
-        @using (Html.BeginForm("Create", "Posts", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Title, new { @class = "col-md-2" })
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, string.Empty, new { @class = "text-danger" })
+        </div>
 
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Title, string.Empty, new { @class = "text-danger" })
-                    </div>
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CategoryId, new { @class = "col-md-2" })
-                    
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.Categories, "Key", "Value"), "Select Category", new { @class= "custom-select" })
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Content, new { @class = "col-md-2" })
+            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
+        </div>
 
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-success">Create</button>
-                        @Html.ActionLink("Cancel", "Index", new { area = "Administration" }, new { @class = "btn btn-danger" })
-                    </div>
-                </div>
-            </div>
-        }
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Create</button>
+            
+            @Html.ActionLink("Cancel", "Index", new { area = "Administration" }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

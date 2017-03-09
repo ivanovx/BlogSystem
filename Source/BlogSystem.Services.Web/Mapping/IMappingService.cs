@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    public interface IMappingService
+    public interface IMappingService : IWebService
     {
         TDestination Map<TDestination>(object source);
 

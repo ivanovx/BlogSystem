@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BlogSystem.Web")]
-[assembly: AssemblyCopyright("Copyright © 2016 Ivan Ivanov")]
+[assembly: AssemblyCopyright("Copyright © 2016 - 2017 Ivan Ivanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

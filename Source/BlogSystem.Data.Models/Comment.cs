@@ -18,6 +18,7 @@
         [Required]
         public int PostId { get; set; }
 
+        [ForeignKey("PostId")]
         public virtual Post Post { get; set; }
 
         [Required]

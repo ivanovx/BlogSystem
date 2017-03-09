@@ -10,7 +10,7 @@
     {
         public static IConfigurationProvider MapperConfiguration { get; private set; }
 
-        public static void RegisterMappings(Assembly assembly)
+        public static void Execute(Assembly assembly)
         {
             var types = assembly.GetExportedTypes();
 

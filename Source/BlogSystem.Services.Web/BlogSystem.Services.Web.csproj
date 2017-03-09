@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Caching\CacheService.cs" />
     <Compile Include="Caching\ICacheService.cs" />
+    <Compile Include="IWebService.cs" />
     <Compile Include="Mapping\IMappingService.cs" />
     <Compile Include="Mapping\MappingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

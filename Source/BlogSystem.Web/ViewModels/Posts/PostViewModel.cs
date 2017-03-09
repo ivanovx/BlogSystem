@@ -45,8 +45,7 @@ namespace BlogSystem.Web.ViewModels.Posts
         public void CreateMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Post, PostViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
-                .ForMember(m => m.Category, c => c.MapFrom(post => post.Category.Name));
+                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName));
         }
     }
 }

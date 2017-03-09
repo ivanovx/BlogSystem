@@ -37,24 +37,6 @@
         </div>
     }
     
-    @if (Model.Categories.Any())
-    {
-        <div class="widget">
-            <h3>
-                <span>Categories</span>
-            </h3>
-            <ul>
-                @foreach (var item in Model.Categories)
-                {
-                    <li>
-                        <i class="fa fa-file" aria-hidden="true"></i>
-                        <h4>@item.Name => @item.PostsCont</h4>
-                    </li>
-                }
-            </ul>
-        </div>
-    }
-
     <div class="widget">
         <h3>
             <span>Me on Spotify</span>

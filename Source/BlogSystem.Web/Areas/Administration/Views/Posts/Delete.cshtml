@@ -4,10 +4,10 @@
     ViewBag.Title = "Delete Post";
 }
 
-<section class="post-container">
-    <div class="post-content">
-        <h2>@ViewBag.Title</h2>
-        <h3 class="text-danger">Are you sure you want to delete this post?</h3>
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<h3 class="text-danger">Are you sure you want to delete this post?</h3>
 
         <div class="panel-group">
             <div class="panel panel-primary">
@@ -87,15 +87,11 @@
             </div>
         </div>
 
-        @using (Html.BeginForm("Delete", "Posts", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+@using (Html.BeginForm("Delete", "Posts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-            <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
 
-            <a href="@Url.Action("Index", "Posts", new { area = "Administration" })" class="btn btn-default">
-                Cancel
-            </a>
-        }
-    </div>
-</section>
+    @Html.ActionLink("Cancel", "Index", "Posts", new { area = "Administration" }, new { @class = "btn btn-default" })
+}

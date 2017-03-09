@@ -1,9 +1,8 @@
-﻿using BlogSystem.Services.Data.Posts;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 { 
     using System.Web.Mvc;
     using ViewModels.Posts;
+    using BlogSystem.Services.Data.Posts;
     using BlogSystem.Services.Web.Mapping;
 
     public class PostsController : BaseController
@@ -17,11 +16,18 @@ namespace BlogSystem.Web.Controllers
             this.mappingService = mappingService;
         }
 
+        [HttpGet]
         public ActionResult Post(int year, int month, string urlTitle, int id)
         {
             this.ViewData["id"] = id;
 
             var post = this.postsData.GetPost(id);
+
+            if(post == null)
+            {
+                return this.HttpNotFound();
+            }
+
             var model = this.mappingService.Map<PostViewModel>(post);
 
             return this.View(model);

@@ -1,6 +1,4 @@
-﻿using BlogSystem.Services.Data.Posts;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -8,6 +6,7 @@ namespace BlogSystem.Web.Controllers
     using Common;
     using ViewModels.Home;
     using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Services.Data.Posts;
 
     public class HomeController : BaseController
     {
@@ -20,6 +19,7 @@ namespace BlogSystem.Web.Controllers
             this.mappingService = mappingService;
         }
 
+        [HttpGet]
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             var pagesCount = (int) Math.Ceiling(this.postsData.GetAll().Count() / (decimal) perPage);

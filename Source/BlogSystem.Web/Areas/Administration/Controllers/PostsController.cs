@@ -1,6 +1,4 @@
-﻿using BlogSystem.Data.Models;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
     using System.Linq;
@@ -17,13 +15,11 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
     public class PostsController : GenericAdministrationController<EntityModel, ViewModel>
     {
-        private readonly IDbRepository<Category> categoryRepository;
         private readonly ICurrentUser currentUser;
 
-        public PostsController(IDbRepository<EntityModel> dataRepository, IDbRepository<Category> categoryRepository, IMappingService mappingService, ICurrentUser currentUser) 
+        public PostsController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService, ICurrentUser currentUser) 
             : base(dataRepository, mappingService)
         {
-            this.categoryRepository = categoryRepository;
             this.currentUser = currentUser;
         }
 
@@ -46,8 +42,6 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            this.ViewBag.Categories = this.categoryRepository.All().OrderBy(c => c.Name).ToDictionary(c => c.Id, c => c.Name);
-
             return this.View();
         }
 
@@ -55,7 +49,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
-            model.AuthorId = this.currentUser.Get().Id;
+            model.AuthorId = this.currentUser.GetUser.Id;
 
             var entity = this.CreateEntity(model);
 
@@ -76,7 +70,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             {
                 var model = this.mappingService.Map<ViewModel>(entity);
 
-                model.AuthorId = this.currentUser.Get().Id;
+                model.AuthorId = this.currentUser.GetUser.Id;
 
                 return this.View(model);
             }

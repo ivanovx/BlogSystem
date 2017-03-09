@@ -7,18 +7,21 @@
 
     public class CurrentUser : ICurrentUser
     {
-        private readonly IDbRepository<ApplicationUser> usersRepository;
+        private readonly IDbRepository<ApplicationUser> users;
 
-        public CurrentUser(IDbRepository<ApplicationUser> usersRepository)
+        public CurrentUser(IDbRepository<ApplicationUser> users)
         {
-            this.usersRepository = usersRepository;
+            this.users = users;
         }
 
-        public ApplicationUser Get()
+        public ApplicationUser GetUser
         {
-            var userId = HttpContext.Current.User.Identity.GetUserId();
+            get
+            {
+                var userId = HttpContext.Current.User.Identity.GetUserId();
 
-            return this.usersRepository.Find(userId);
+                return this.users.Find(userId);
+            }
         }
     }
 }

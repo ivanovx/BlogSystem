@@ -1,7 +1,4 @@
-﻿using BlogSystem.Services.Data;
-using BlogSystem.Web.Infrastructure.Helpers.Url;
-
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
     using System.Reflection;
@@ -12,11 +9,12 @@ namespace BlogSystem.Web
     using Data;
     using Data.Repositories;
     using Controllers;
-    using Infrastructure.Helpers;
+    using Infrastructure;
+    using Infrastructure.Helpers.Url;
     using Infrastructure.Identity;
     using Infrastructure.Mapping;
-    using Services.Web.Caching;
-    using Services.Web.Mapping;
+    using Services.Data;
+    using Services.Web;    
 
     public static class AutofacConfig
     { 
@@ -57,17 +55,17 @@ namespace BlogSystem.Web
 
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerRequest();
 
+            builder.RegisterType<SettingsManager>().As<ISettingsManager>().InstancePerRequest();
+
             builder.RegisterType<UrlGenerator>().As<IUrlGenerator>().InstancePerRequest();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AssignableTo<BaseController>().PropertiesAutowired();
 
             builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
-            builder.RegisterType<MappingService>().As<IMappingService>().InstancePerRequest();
+            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService))).AsImplementedInterfaces().InstancePerRequest();
 
-            builder.RegisterType<CacheService>().As<ICacheService>().InstancePerRequest();
-
-            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService))).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IWebService))).AsImplementedInterfaces().InstancePerRequest();
         }
     }
 }

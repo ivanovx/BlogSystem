@@ -1,19 +1,15 @@
-﻿using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-using BlogSystem.Services.Data.Pages;
-using BlogSystem.Services.Data.Posts;
-
-namespace BlogSystem.Web.Controllers
+﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
-    using System.Web.Mvc;
+    using System.Web.Mvc;    
+    using Common;
     using ViewModels.Sidebar;
     using ViewModels.Posts;
     using ViewModels.Pages;
-    using BlogSystem.Services.Web.Caching;
-    using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Common;
-    using ViewModels;
+    using Services.Data.Pages;
+    using Services.Data.Posts;
+    using Services.Web.Caching;
+    using Services.Web.Mapping;
 
     public class SidebarController : BaseController
     {
@@ -22,16 +18,13 @@ namespace BlogSystem.Web.Controllers
         private readonly ICacheService cacheService;
         private readonly IMappingService mappingService;
 
-        private readonly IDbRepository<Category> categoriesRepository;
-
         public SidebarController(IPostsDataService postsData, IPagesDataService pagesData, 
-            ICacheService cacheService, IMappingService mappingService, IDbRepository<Category> categoriesRepository)
+            ICacheService cacheService, IMappingService mappingService)
         {
             this.postsData = postsData;
             this.pagesData = pagesData;
             this.cacheService = cacheService;
             this.mappingService = mappingService;
-            this.categoriesRepository = categoriesRepository;
         }
 
         [ChildActionOnly]
@@ -40,15 +33,11 @@ namespace BlogSystem.Web.Controllers
             var posts = this.postsData.GetAll().Take(GlobalConstants.DefaultPageSize);
             var pages = this.pagesData.GetAll();
 
-            var categories = this.categoriesRepository.All();
-
             var model = new SidebarViewModel
             {
                 RecentPosts = this.cacheService.Get("RecentPosts", () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
                 AllPages = this.cacheService.Get("AllPages", () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
             };
-
-            model.Categories = this.mappingService.Map<CategoryViewModel>(categories).ToList();
 
             return this.PartialView(model);
         }

@@ -48,7 +48,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModel model)
         {
-            model.AuthorId = this.currentUser.Get().Id;
+            model.AuthorId = this.currentUser.GetUser.Id;
             model.Permalink = this.urlGenerator.GenerateUrl(model.Title);
 
             var entity = this.CreateEntity(model);
@@ -70,7 +70,7 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             {
                 var model = this.mappingService.Map<ViewModel>(entity);
 
-                model.AuthorId = this.currentUser.Get().Id;
+                model.AuthorId = this.currentUser.GetUser.Id;
                 model.Permalink = this.urlGenerator.GenerateUrl(entity.Title);
 
                 return this.View(model);

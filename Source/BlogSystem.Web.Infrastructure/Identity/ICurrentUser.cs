@@ -4,6 +4,6 @@
 
     public interface ICurrentUser
     {
-        ApplicationUser Get();
+        ApplicationUser GetUser { get; }
     }
 }
