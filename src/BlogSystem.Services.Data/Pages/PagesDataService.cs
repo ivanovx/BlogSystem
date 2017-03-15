@@ -15,12 +15,29 @@
 
         public IQueryable<Page> GetAll()
         {
-            return this.pages.All().Where(p => !p.IsDeleted);
+            var pages = this.pages
+                .All()
+                .Where(p => !p.IsDeleted);
+
+            return pages;
+        }
+
+        public IQueryable<Page> GetAllForMenu()
+        {
+            var pages = this.pages
+                .All()
+                .Where(p => !p.IsDeleted && p.VisibleInMenu);
+
+            return pages;
         }
 
         public Page GetPage(string permalink)
         {
-            return this.GetAll().FirstOrDefault(p => p.Permalink.ToLower().Trim() == permalink.ToLower().Trim());
+            var page = this.pages
+                .All()
+                .FirstOrDefault(p => !p.IsDeleted && p.Permalink.ToLower().Trim() == permalink.ToLower().Trim());
+
+            return page;
         }
     }
 }

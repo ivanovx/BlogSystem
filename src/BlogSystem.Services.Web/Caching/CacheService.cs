@@ -8,7 +8,7 @@
     {
         private readonly object lockObject = new object();
 
-        public T Get<T>(string name, Func<T> getDataFunc, int durationInSeconds) where T : class
+        public T Get<T> (string name, Func<T> getDataFunc, int durationInSeconds) where T : class
         {
             lock (lockObject)
             {

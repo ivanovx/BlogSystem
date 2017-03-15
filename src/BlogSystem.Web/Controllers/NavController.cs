@@ -3,9 +3,9 @@
     using System.Linq;
     using System.Web.Mvc;
     using ViewModels.Nav;
-    using BlogSystem.Services.Data.Pages;
-    using BlogSystem.Services.Web.Caching;
-    using BlogSystem.Services.Web.Mapping;
+    using Services.Data.Pages;
+    using Services.Web.Caching;
+    using Services.Web.Mapping;
 
     public class NavController : BaseController
     {
@@ -23,7 +23,7 @@
         [ChildActionOnly]
         public PartialViewResult Menu()
         {
-            var pages = this.pagesData.GetAll().Where(p => p.VisibleInMenu);
+            var pages = this.pagesData.GetAllForMenu();
             var model = this.cacheService.Get("Menu", () => this.mappingService.Map<MenuItemViewModel>(pages).ToList(), 600);
 
             return this.PartialView(model);

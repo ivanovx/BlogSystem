@@ -7,7 +7,7 @@
     using Infrastructure.Mapping;
     using Administration;
 
-    public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
+    public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -16,21 +16,17 @@
 
         [Required]
         [AllowHtml]
-        [DataType(DataType.Html)]
         [UIHint("tinymce_full")]
         public string Content { get; set; }
 
         public string AuthorId { get; set; }
 
-        public string AuthorUserName { get; set; }
-
-        [Display(Name="Category")]
-        public int? CategoryId { get; set; }
+        public string Author { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Post, PostViewModel>()
-                .ForMember(m => m.AuthorUserName, c => c.MapFrom(p => p.Author.UserName));
+                .ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));
         }
     }
 }

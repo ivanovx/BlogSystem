@@ -2,8 +2,8 @@
 { 
     using System.Web.Mvc;
     using ViewModels.Posts;
-    using BlogSystem.Services.Data.Posts;
-    using BlogSystem.Services.Web.Mapping;
+    using Services.Data.Posts;
+    using Services.Web.Mapping;
 
     public class PostsController : BaseController
     {

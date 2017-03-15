@@ -1,27 +1,20 @@
-﻿using BlogSystem.Web.Infrastructure.Helpers.Url;
-
-namespace BlogSystem.Web.ViewModels.Posts
+﻿namespace BlogSystem.Web.ViewModels.Posts
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    using Infrastructure.Helpers;
+    using Infrastructure.Helpers.Url;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IUrlGenerator urlGenerator;
 
-        public PostViewModel() 
-            : this(new UrlGenerator())
+        public PostViewModel()
         {
-        }
-
-        private PostViewModel(IUrlGenerator urlGenerator)
-        {
-            this.urlGenerator = urlGenerator;
+            this.urlGenerator = DependencyResolver.Current.GetService<IUrlGenerator>();
         }
 
         public int Id { get; set; }
@@ -29,14 +22,10 @@ namespace BlogSystem.Web.ViewModels.Posts
         public string Title { get; set; }
 
         [AllowHtml]
-        [DataType(DataType.Html)]
         public string Content { get; set; }
 
         public string Author { get; set; }
 
-        public string Category { get; set; }
-
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 

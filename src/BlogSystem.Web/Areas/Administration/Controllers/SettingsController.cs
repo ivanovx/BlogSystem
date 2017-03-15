@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Base;
     using Data.Models;
     using Data.Repositories;
 
@@ -15,6 +14,7 @@
             this.settingsRepository = settingsRepository;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var settings = this.settingsRepository.All().ToList();
@@ -25,6 +25,11 @@
         [HttpGet]
         public ActionResult Update(string id)
         {
+            if (id == null)
+            {
+                return this.HttpNotFound();
+            }
+
             var setting = this.settingsRepository.Find(id);
 
             return this.View(setting);
@@ -32,9 +37,9 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(Setting setting)
+        public ActionResult Update([Bind(Include = "Key,Value")] Setting setting)
         {
-            if (ModelState.IsValid)
+            if (setting != null && ModelState.IsValid)
             {
                 this.settingsRepository.Update(setting);
                 this.settingsRepository.SaveChanges();

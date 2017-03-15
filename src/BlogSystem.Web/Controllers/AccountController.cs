@@ -131,9 +131,9 @@
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
             var result = await this.SignInManager.TwoFactorSignInAsync(
-                model.Provider, 
-                model.Code, 
-                model.RememberMe, 
+                model.Provider,
+                model.Code,
+                model.RememberMe,
                 model.RememberBrowser);
 
             switch (result)

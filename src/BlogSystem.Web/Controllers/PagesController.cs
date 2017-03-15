@@ -4,6 +4,7 @@
     using ViewModels.Pages;
     using BlogSystem.Services.Web.Mapping;
     using BlogSystem.Services.Data.Pages;
+    using System;
 
     public class PagesController : BaseController
     {
@@ -28,7 +29,7 @@
 
             var model = this.mappingService.Map<PageViewModel>(page);
 
-            return View(model);
+            return this.View(model);
         }
     }
 }

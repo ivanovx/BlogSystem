@@ -9,83 +9,83 @@
 
 <h3 class="text-danger">Are you sure you want to delete this post?</h3>
 
-        <div class="panel-group">
-            <div class="panel panel-primary">
-                <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading">
-                    <div class="panel-title">
-                        <i class="glyphicon glyphicon-collapse-down"></i>
-                        Author Details
-                    </div>
-                </div>
-                <div id="authorDetails" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul class="list-unstyled">
-                            <li>
-                                <strong>Author Id: </strong>
-                                @Html.DisplayFor(model => model.AuthorId)
-                            </li>
-                            <li>
-                                <strong>Email: </strong>
-                                @Html.DisplayFor(model => model.Author.Email)
-                            </li>
-                            <li>
-                                <strong>Username: </strong>
-                                @Html.DisplayFor(model => model.Author.UserName)
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading">
+            <div class="panel-title">
+                <i class="glyphicon glyphicon-collapse-down"></i>
+                Author Details
             </div>
         </div>
+        <div id="authorDetails" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Author Id: </strong>
+                        @Html.DisplayFor(model => model.AuthorId)
+                    </li>
+                    <li>
+                        <strong>Email: </strong>
+                        @Html.DisplayFor(model => model.Author.Email)
+                    </li>
+                    <li>
+                        <strong>Username: </strong>
+                        @Html.DisplayFor(model => model.Author.UserName)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <div class="panel-group">
-            <div class="panel panel-primary">
-                <div data-toggle="collapse" data-target="#postDetails" class="panel-heading">
-                    <div class="panel-title">
-                        <i class="glyphicon glyphicon-collapse-down"></i>
-                        Post Details
-                    </div>
-                </div>
-                <div id="postDetails" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul class="list-unstyled">
-                            <li>
-                                <strong>Post Id: </strong>
-                                @Html.DisplayFor(model => model.Id)
-                            </li>
-                            <li>
-                                <strong>Title: </strong>
-                                @Html.DisplayFor(model => model.Title)
-                            </li>
-                            <li>
-                                <strong>Created On: </strong>
-                                @Html.DisplayFor(model => model.CreatedOn)
-                            </li>
-                            <li>
-                                <strong>Modified On: </strong>
-                                @Html.DisplayFor(model => model.ModifiedOn)
-                            </li>
-                        </ul>
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div data-toggle="collapse" data-target="#postDetails" class="panel-heading">
+            <div class="panel-title">
+                <i class="glyphicon glyphicon-collapse-down"></i>
+                Post Details
+            </div>
+        </div>
+        <div id="postDetails" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul class="list-unstyled">
+                    <li>
+                        <strong>Post Id: </strong>
+                        @Html.DisplayFor(model => model.Id)
+                    </li>
+                    <li>
+                        <strong>Title: </strong>
+                        @Html.DisplayFor(model => model.Title)
+                    </li>
+                    <li>
+                        <strong>Created On: </strong>
+                        @Html.DisplayFor(model => model.CreatedOn)
+                    </li>
+                    <li>
+                        <strong>Modified On: </strong>
+                        @Html.DisplayFor(model => model.ModifiedOn)
+                    </li>
+                </ul>
 
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div data-toggle="collapse" data-target="#postContent" class="panel-heading">
-                                    <div class="panel-title">
-                                        <i class="glyphicon glyphicon-collapse-down"></i>
-                                        <strong>Content</strong>
-                                    </div>
-                                </div>
-                                <div id="postContent" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        @Html.DisplayFor(model => model.Content)
-                                    </div>
-                                </div>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div data-toggle="collapse" data-target="#postContent" class="panel-heading">
+                            <div class="panel-title">
+                                <i class="glyphicon glyphicon-collapse-down"></i>
+                                <strong>Content</strong>
+                            </div>
+                        </div>
+                        <div id="postContent" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @Html.DisplayFor(model => model.Content)
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 @using (Html.BeginForm("Delete", "Posts", FormMethod.Post))
 {

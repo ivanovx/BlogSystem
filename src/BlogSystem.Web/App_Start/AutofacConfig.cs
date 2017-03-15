@@ -14,7 +14,7 @@
     using Infrastructure.Identity;
     using Infrastructure.Mapping;
     using Services.Data;
-    using Services.Web;    
+    using Services.Web;
 
     public static class AutofacConfig
     { 
@@ -49,23 +49,55 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationDbContext>().As<DbContext>().InstancePerRequest();
+            builder
+                .RegisterType<ApplicationDbContext>()
+                .As<DbContext>()
+                .InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
+            builder
+                .RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
+                .InstancePerRequest();
 
-            builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerRequest();
+            builder
+                .RegisterType<CurrentUser>()
+                .As<ICurrentUser>()
+                .InstancePerRequest();
 
-            builder.RegisterType<SettingsManager>().As<ISettingsManager>().InstancePerRequest();
+            builder
+                .RegisterType<SettingsManager>()
+                .As<ISettingsManager>()
+                .InstancePerRequest();
 
-            builder.RegisterType<UrlGenerator>().As<IUrlGenerator>().InstancePerRequest();
+            builder
+                .RegisterType<UrlGenerator>()
+                .As<IUrlGenerator>()
+                .InstancePerRequest();
 
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AssignableTo<BaseController>().PropertiesAutowired();
+            builder
+                .RegisterType<HtmlSanitizerAdapter>()
+                .As<ISanitizer>()
+                .InstancePerRequest();
 
-            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
+            builder
+                .Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())
+                .As<IMapper>()
+                .SingleInstance();
 
-            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService))).AsImplementedInterfaces().InstancePerRequest();
+            builder
+                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<BaseController>()
+                .PropertiesAutowired();
 
-            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IWebService))).AsImplementedInterfaces().InstancePerRequest();
+            builder
+                .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService)))
+                .AsImplementedInterfaces()
+                .InstancePerRequest();
+
+            builder
+                .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IWebService)))
+                .AsImplementedInterfaces()
+                .InstancePerRequest();
         }
     }
 }

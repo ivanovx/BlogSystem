@@ -1,7 +1,5 @@
 ﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
-@using BlogSystem.Web.Infrastructure.Helpers.Html
-
 @{
     ViewBag.Title = "Home Page";
 }
@@ -20,7 +18,7 @@
                 <ul class="post-meta">
                     <li>
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        @Html.DisplayFor(model => post.CreatedOn)
+                        @Html.Timeago(post.CreatedOn)
                     </li>
                     <li>
                         <i class="fa fa-user" aria-hidden="true"></i>
@@ -34,7 +32,7 @@
             </header>
 
             <div class="post-content">
-                @Html.Raw(Html.Truncate(post.Content))
+                @Html.Truncate(post.Content)
             </div>
 
             <div class="post-read-more">

@@ -1,39 +1,10 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Comments
 {
     using System.Collections.Generic;
+    using ViewModels.Administration;
 
-    public class IndexCommentsPageViewModel
+    public class IndexCommentsPageViewModel : PaginationViewModel
     {
         public IEnumerable<CommentViewModel> Comments { get; set; }
-
-        public int PagesCount { get; set; }
-
-        public int CurrentPage { get; set; }
-
-        public int NextPage
-        {
-            get
-            {
-                if (this.CurrentPage >= this.PagesCount)
-                {
-                    return 1;
-                }
-
-                return this.CurrentPage + 1;
-            }
-        }
-
-        public int PreviousPage
-        {
-            get
-            {
-                if (this.CurrentPage <= 1)
-                {
-                    return this.PagesCount;
-                }
-
-                return this.CurrentPage - 1;
-            }
-        }
     }
 }

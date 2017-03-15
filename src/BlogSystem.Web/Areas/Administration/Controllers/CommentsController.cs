@@ -7,23 +7,34 @@
     using Data.Repositories;
     using ViewModels.Comments;
     using BlogSystem.Services.Web.Mapping;
-    using Base;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Web.Infrastructure;
 
-    using EntityModel = Data.Models.Comment;
-    using ViewModel = ViewModels.Comments.CommentViewModel;
+    public class CommentsController : AdministrationController
+    {
+        private readonly IDbRepository<Comment> commentsData;
+        private readonly IMappingService mappingService;
+        private readonly ISanitizer sanitizer;
 
-    public class CommentsController : GenericAdministrationController<EntityModel, ViewModel>
-    { 
-        public CommentsController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService) 
-            : base(dataRepository, mappingService)
+        public CommentsController(IDbRepository<Comment> commentsData, IMappingService mappingService, ISanitizer sanitizer) 
         {
+            this.commentsData = commentsData;
+            this.mappingService = mappingService;
+            this.sanitizer = sanitizer;
         }
 
+        [HttpGet]
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            int pagesCount = (int) Math.Ceiling(this.dataRepository.All().Count() / (decimal) perPage);
+            int pagesCount = (int) Math.Ceiling(this.commentsData.All().Count() / (decimal) perPage);
 
-            var comments = this.GetAll().Skip(perPage * (page - 1)).Take(perPage).ToList();
+            var commentsPage = this.commentsData
+                .All()
+                .OrderByDescending(p => p.CreatedOn)
+                .Skip(perPage * (page - 1))
+                .Take(perPage);
+
+            var comments = this.mappingService.Map<CommentViewModel>(commentsPage).ToList();
 
             var model = new IndexCommentsPageViewModel
             {
@@ -38,25 +49,30 @@
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            var entity = this.dataRepository.Find(id);
-
-            if (entity != null)
+            if (id == null)
             {
-                var model = this.mappingService.Map<ViewModel>(entity);
-
-                return this.View(model);
+                return this.HttpNotFound();
             }
 
-            return this.RedirectToAction("Index");
+            var comment = this.commentsData.Find(id);
+            var model = this.mappingService.Map<CommentViewModel>(comment);
+
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(ViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CommentViewModel model)
         {
-            var entity = this.FindAndUpdateEntity(model.Id, model);
-
-            if (entity != null)
+            if (model != null && this.ModelState.IsValid)
             {
+                var comment = this.commentsData.Find(model.Id);
+
+                comment.Content = this.sanitizer.Sanitize(model.Content);
+
+                this.commentsData.Update(comment);
+                this.commentsData.SaveChanges();
+
                 return this.RedirectToAction("Index");
             }
 
@@ -66,9 +82,14 @@
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            var model = this.dataRepository.Find(id);
+            if (id == null)
+            {
+                return this.HttpNotFound();
+            }
 
-            return this.View(model);
+            var comment = this.commentsData.Find(id);
+
+            return this.View(comment);
         }
 
         [HttpPost]
@@ -76,7 +97,11 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            this.DestroyEntity(id);
+            if (this.ModelState.IsValid)
+            {
+                this.commentsData.Remove(id);
+                this.commentsData.SaveChanges();
+            }
 
             return this.RedirectToAction("Index");
         }

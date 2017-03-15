@@ -57,7 +57,8 @@
         {
             var fromMaps = from t in types
                            from i in t.GetInterfaces()
-                           where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) && !t.IsAbstract && !t.IsInterface
+                           where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) 
+                           && !t.IsAbstract && !t.IsInterface
                            select new TypeMap
                            {
                                Source = i.GetGenericArguments().First(),
@@ -71,7 +72,8 @@
         {
             var toMaps = from t in types
                          from i in t.GetInterfaces()
-                         where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) && !t.IsAbstract && !t.IsInterface
+                         where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) 
+                         && !t.IsAbstract && !t.IsInterface
                          select new TypeMap
                          {
                              Source = t,

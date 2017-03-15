@@ -7,7 +7,7 @@
     using Infrastructure.Mapping;
     using Administration;
 
-    public class PageViewModel : AdministrationViewModel, IMapFrom<Page>, IMapTo<Page>, IHaveCustomMappings
+    public class PageViewModel : AdministrationViewModel, IMapFrom<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -23,15 +23,15 @@
 
         public string AuthorId { get; set; }
 
-        public string AuthorUserName { get; set; }
+        public string Author { get; set; }
 
-        [Display(Name = "Show in navigation")]
+        [Display(Name = "Show in menu")]
         public bool VisibleInMenu { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Page, PageViewModel>()
-                .ForMember(m => m.AuthorUserName, c => c.MapFrom(p => p.Author.UserName));
+                .ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));
         }
     }
 }

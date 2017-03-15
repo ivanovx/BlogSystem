@@ -1,15 +1,10 @@
 ﻿var BlogSystem = BlogSystem || {};
 
-/*
-$(window).load(function() {
-    $("#loading").fadeOut("slow");
-});
-*/
-$("#loading").hide();
+$("#new-comment").hide();
 
 BlogSystem.onGetCommentsSuccess = function () {
     $("#show-comments-btn").hide();
-    $("#new-comment").removeClass("hidden");
+    $("#new-comment").show();
 
     console.log("Success get posts comment");
 };
@@ -28,23 +23,8 @@ BlogSystem.onCreateCommentFailure = function(data) {
     console.log(data);
 };
 
-/*
-$(window).scroll(function () {
-    if ($(document).scrollTop() > 50) {
-        $(".navbar").addClass("navbar-shrink");
-    } else {
-        $(".navbar").removeClass("navbar-shrink");
-    }
-});
-*/
-/*
-$(document).ready(function() {
-    $("html").niceScroll({
-        cursorcolor: "rgb(49, 50, 51)",
-        cursorwidth: "10px",
-        cursorborderradius: "5px",
-        scrollspeed: 60,
-        mousescrollstep: 40
+$(document).ready(function () {
+    $("pre").each(function (i, block) {
+        hljs.highlightBlock(block);
     });
 });
-*/

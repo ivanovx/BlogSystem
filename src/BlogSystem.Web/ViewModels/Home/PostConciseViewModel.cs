@@ -1,6 +1,4 @@
-﻿using BlogSystem.Web.Infrastructure.Helpers.Url;
-
-namespace BlogSystem.Web.ViewModels.Home
+﻿namespace BlogSystem.Web.ViewModels.Home
 {
     using System;
     using System.Web.Mvc;
@@ -8,20 +6,15 @@ namespace BlogSystem.Web.ViewModels.Home
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    using Infrastructure.Helpers;
+    using Infrastructure.Helpers.Url;
 
     public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IUrlGenerator urlGenerator;
 
-        public PostConciseViewModel() 
-            : this(new UrlGenerator())
+        public PostConciseViewModel()
         {
-        }
-
-        private PostConciseViewModel(IUrlGenerator urlGenerator)
-        {
-            this.urlGenerator = urlGenerator;
+            this.urlGenerator = DependencyResolver.Current.GetService<IUrlGenerator>();
         }
 
         public int Id { get; set; }

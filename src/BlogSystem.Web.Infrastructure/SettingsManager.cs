@@ -9,7 +9,7 @@
     public class SettingsManager : ISettingsManager
     {
         private readonly IDbRepository<Setting> settingsRepository;
-        private Lazy<IDictionary<string, string>> settings;
+        private readonly Lazy<IDictionary<string, string>> settings;
 
         public SettingsManager(IDbRepository<Setting> settingsRepository)
         {

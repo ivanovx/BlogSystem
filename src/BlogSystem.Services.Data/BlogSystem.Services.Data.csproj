@@ -51,6 +51,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\BlogSystem.Common\BlogSystem.Common.csproj">
+      <Project>{427EF7D0-4DE3-4656-B4E9-35C191B504CE}</Project>
+      <Name>BlogSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Data.Contracts\BlogSystem.Data.Contracts.csproj">
       <Project>{482b4c3e-0155-4ffd-b42f-a024fd5e3e0a}</Project>
       <Name>BlogSystem.Data.Contracts</Name>

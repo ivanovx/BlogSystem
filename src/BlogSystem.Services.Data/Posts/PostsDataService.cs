@@ -3,6 +3,7 @@
     using System.Linq;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
+    using Common;
 
     public class PostsDataService : IPostsDataService
     {
@@ -15,7 +16,19 @@
 
         public IQueryable<Post> GetAll()
         {
-            return this.posts.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn);
+            var posts = this.posts
+                .All()
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.CreatedOn);
+
+            return posts;
+        }
+
+        public IQueryable<Post> GetLatest()
+        {
+            var posts = this.GetAll().Take(GlobalConstants.DefaultPageSize);
+
+            return posts;
         }
 
         public IQueryable<Post> GetPagePosts(int page, int perPage)
@@ -25,7 +38,7 @@
 
         public Post GetPost(int id)
         {
-            return this.GetAll().FirstOrDefault(p => p.Id == id);
+            return this.posts.All().FirstOrDefault(p => !p.IsDeleted && p.Id == id);
         }
     }
 }

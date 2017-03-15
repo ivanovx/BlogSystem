@@ -15,7 +15,10 @@
 
         public IQueryable<Comment> GetAllByPost(int id)
         {
-            return this.comments.All().Where(c => !c.IsDeleted && c.PostId == id).OrderByDescending(c => c.CreatedOn);
+            return this.comments
+                .All()
+                .Where(c => !c.IsDeleted && c.PostId == id)
+                .OrderByDescending(c => c.CreatedOn);
         }
 
         public Comment AddCommentToPost(int postId, string content, string userId)
@@ -24,7 +27,7 @@
             {
                 PostId = postId,
                 Content = content,
-                UserId = userId
+                AuthorId = userId
             };
 
             this.comments.Add(comment);

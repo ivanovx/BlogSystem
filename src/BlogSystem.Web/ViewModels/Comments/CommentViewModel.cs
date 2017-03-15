@@ -23,7 +23,7 @@
         public void CreateMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Comment, CommentViewModel>()
-                .ForMember(m => m.User, c => c.MapFrom(comment => comment.User.UserName));
+                .ForMember(m => m.User, c => c.MapFrom(comment => comment.Author.UserName));
         }
     }
 }

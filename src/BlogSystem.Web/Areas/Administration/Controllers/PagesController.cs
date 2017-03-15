@@ -1,41 +1,45 @@
-﻿using BlogSystem.Web.Infrastructure.Helpers.Url;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Pages;
-    using Infrastructure.Helpers;
-    using Infrastructure.Identity;
+    using Data.Models;
     using Data.Repositories;
-    using Base;
-    using BlogSystem.Services.Web.Mapping;
-
-    using EntityModel = Data.Models.Page;
-    using ViewModel = ViewModels.Pages.PageViewModel;
-
-    public class PagesController : GenericAdministrationController<EntityModel, ViewModel>
+    using ViewModels.Pages;
+    using Infrastructure;
+    using Infrastructure.Identity;
+    using Infrastructure.Helpers.Url;
+    using Services.Web.Mapping;
+    
+    public class PagesController : AdministrationController
     {
+        private readonly IDbRepository<Page> pagesData;
+        private readonly IMappingService mappingService;
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
+        private readonly ISanitizer sanitizer;
 
-        public PagesController(IDbRepository<EntityModel> dataRepository, IMappingService mappingService, IUrlGenerator urlGenerator, ICurrentUser currentUser)
-            : base(dataRepository, mappingService)
+        public PagesController(IDbRepository<Page> pagesData, IMappingService mappingService, 
+            IUrlGenerator urlGenerator, ICurrentUser currentUser, ISanitizer sanitizer)
         {
+            this.pagesData = pagesData;
+            this.mappingService = mappingService;
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
+            this.sanitizer = sanitizer;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            var pages = this.GetAll().ToList();
+            var pages = this.pagesData.All().OrderByDescending(p => p.CreatedOn);
+            var model = this.mappingService.Map<PageViewModel>(pages).ToList();
 
-            var model = new IndexPagesViewModel
+            var viewModel = new IndexPagesViewModel
             {
-                Pages = pages
+                Pages = model
             };
 
-            return this.View(model);
+            return this.View(viewModel);
         }
 
         [HttpGet]
@@ -46,15 +50,22 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ViewModel model)
+        public ActionResult Create(PageViewModel model)
         {
-            model.AuthorId = this.currentUser.GetUser.Id;
-            model.Permalink = this.urlGenerator.GenerateUrl(model.Title);
-
-            var entity = this.CreateEntity(model);
-
-            if (entity != null)
+            if(model != null && this.ModelState.IsValid)
             {
+                var page = new Page
+                {
+                    Title = model.Title,
+                    Content =  this.sanitizer.Sanitize(model.Content),
+                    VisibleInMenu = model.VisibleInMenu,
+                    AuthorId = this.currentUser.GetUser.Id,
+                    Permalink = this.urlGenerator.GenerateUrl(model.Title)
+                };
+
+                this.pagesData.Add(page);
+                this.pagesData.SaveChanges();
+
                 return this.RedirectToAction("Index");
             }
 
@@ -64,29 +75,33 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            var entity = this.dataRepository.Find(id);
-
-            if (entity != null)
+            if (id == null)
             {
-                var model = this.mappingService.Map<ViewModel>(entity);
-
-                model.AuthorId = this.currentUser.GetUser.Id;
-                model.Permalink = this.urlGenerator.GenerateUrl(entity.Title);
-
-                return this.View(model);
+                return this.HttpNotFound();
             }
 
-            return this.RedirectToAction("Index");
+            var page = this.pagesData.Find(id);
+            var model = this.mappingService.Map<PageViewModel>(page);
+
+            return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ViewModel model)
+        public ActionResult Edit(PageViewModel model)
         {
-            var entity = this.FindAndUpdateEntity(model.Id, model);
-
-            if (entity != null)
+            if (model != null && this.ModelState.IsValid)
             {
+                var page = this.pagesData.Find(model.Id);
+
+                page.Title = model.Title;
+                page.Content = this.sanitizer.Sanitize(model.Content);
+                page.VisibleInMenu = model.VisibleInMenu;
+                page.Permalink = this.urlGenerator.GenerateUrl(model.Title);
+
+                this.pagesData.Update(page);
+                this.pagesData.SaveChanges();
+
                 return this.RedirectToAction("Index");
             }
 
@@ -96,7 +111,12 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            var page = this.dataRepository.Find(id);
+            if (id == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var page = this.pagesData.Find(id);
 
             return this.View(page);
         }
@@ -106,7 +126,11 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            this.DestroyEntity(id);
+            if (this.ModelState.IsValid)
+            {
+                this.pagesData.Remove(id);
+                this.pagesData.SaveChanges();
+            }
 
             return this.RedirectToAction("Index");
         }

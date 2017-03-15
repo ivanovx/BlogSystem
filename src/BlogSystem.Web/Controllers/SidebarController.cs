@@ -1,8 +1,7 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
-    using System.Web.Mvc;    
-    using Common;
+    using System.Web.Mvc;
     using ViewModels.Sidebar;
     using ViewModels.Posts;
     using ViewModels.Pages;
@@ -30,7 +29,7 @@
         [ChildActionOnly]
         public PartialViewResult Index()
         {
-            var posts = this.postsData.GetAll().Take(GlobalConstants.DefaultPageSize);
+            var posts = this.postsData.GetLatest();
             var pages = this.pagesData.GetAll();
 
             var model = new SidebarViewModel

@@ -1,12 +1,9 @@
 ﻿namespace BlogSystem.Data.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts;
 
-    public class Page : AuditInfo, IDeletableEntity
+    public class Page : ContentHolder
     {
         [Key]
         public int Id { get; set; }
@@ -27,9 +24,5 @@
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
     }
 }

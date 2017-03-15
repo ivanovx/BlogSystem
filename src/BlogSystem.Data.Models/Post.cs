@@ -1,12 +1,10 @@
 ﻿namespace BlogSystem.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts;
 
-    public class Post : AuditInfo, IDeletableEntity
+    public class Post : ContentHolder
     {
         private ICollection<Comment> comments;
 
@@ -30,10 +28,6 @@
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
 
         public virtual ICollection<Comment> Comments
         {

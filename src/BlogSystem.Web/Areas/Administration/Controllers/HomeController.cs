@@ -3,7 +3,6 @@
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
-    using BlogSystem.Web.Areas.Administration.Controllers.Base;
 
     public class HomeController : AdministrationController
     {

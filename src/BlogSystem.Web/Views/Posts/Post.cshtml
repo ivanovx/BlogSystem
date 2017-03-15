@@ -25,16 +25,14 @@
         </ul>
     </header>
     <div class="post-content">
-        @Html.DisplayFor(model => Model.Content)
-        
-        <h6>@Model.Category</h6>
+        @Html.Raw(Model.Content)
     </div>
     <div class="post-comments">
-        @(Ajax.ActionLink("View Comments", "All", new
-    {
-        id = Model.Id,
-        controller = "Comments",
-    },
+        @Ajax.ActionLink("View Comments", "All", new
+            {
+                id = Model.Id,
+                controller = "Comments",
+            },
             new AjaxOptions
             {
                 HttpMethod = "GET",
@@ -45,11 +43,11 @@
             {
                 id = "show-comments-btn",
                 @class = "btn btn-default"
-            }))
+            })
 
         <section id="comments"></section>
 
-        <section id="new-comment" class="hidden">
+        <section id="new-comment">
             @Html.Partial(string.Format(commentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
         </section>
     </div>

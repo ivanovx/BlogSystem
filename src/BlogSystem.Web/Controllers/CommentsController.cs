@@ -4,8 +4,9 @@
     using System.Web.Mvc;
     using ViewModels.Comments;
     using Infrastructure.Identity;
-    using BlogSystem.Services.Data.Comments;
-    using BlogSystem.Services.Web.Mapping;
+    using Services.Data.Comments;
+    using Services.Web.Mapping;
+    using Web.Infrastructure;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -13,12 +14,15 @@
         private readonly ICommentsDataService commentsData;
         private readonly ICurrentUser currentUser;
         private readonly IMappingService mappingService;
+        private readonly ISanitizer sanitizer;
 
-        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, IMappingService mappingService)
+        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, 
+            IMappingService mappingService, ISanitizer sanitizer)
         {
             this.commentsData = commentsData;
             this.currentUser = currentUser;
             this.mappingService = mappingService;
+            this.sanitizer = sanitizer;
         }
 
         [HttpGet]
@@ -38,8 +42,9 @@
             if (this.ModelState.IsValid)
             {
                 var userId = this.currentUser.GetUser.Id;
+                var content = this.sanitizer.Sanitize(model.Content);
 
-                this.commentsData.AddCommentToPost(id, model.Content, userId);
+                this.commentsData.AddCommentToPost(id, content, userId);
 
                 return this.RedirectToAction("All", new { id });
             }
