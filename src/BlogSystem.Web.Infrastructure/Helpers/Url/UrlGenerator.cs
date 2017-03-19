@@ -5,7 +5,8 @@
 
     public class UrlGenerator : IUrlGenerator
     {
-        public string ToUrl(int id, string title, DateTime createdOn) => $"/Posts/{createdOn.Year:0000}/{createdOn.Month:00}/{this.GenerateUrl(title)}/{id}";
+        public string ToUrl(int id, string title, DateTime createdOn) 
+            => $"/Posts/{createdOn.Year:0000}/{createdOn.Month:00}/{this.GenerateUrl(title)}/{id}";
 
         public string GenerateUrl(string uglyString)
         {

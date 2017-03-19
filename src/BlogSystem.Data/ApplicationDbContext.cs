@@ -22,10 +22,7 @@ namespace BlogSystem.Data
 
         public IDbSet<Setting> Settings { get; set; }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
+        public static ApplicationDbContext Create() => new ApplicationDbContext();
 
         public override int SaveChanges()
         {

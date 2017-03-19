@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Collections.Generic;   
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.Repositories;
+    using Data.Models;
+    using Data.Repositories;
 
     public class SettingsManager : ISettingsManager
     {
