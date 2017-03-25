@@ -1,19 +1,14 @@
-﻿<footer role="contentinfo">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-                <!--<p>Your IP Adress: @ViewBag.IpAddress</p>-->
-                <p class="copyright">
-                    <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year
-                    <strong>@ViewBag.Settings["Author"]</strong>.
-                </p>
-                <!--<p>
-                    <a href="https://github.com/csyntax/BlogSystem" target="_blank">
-                        <i class="fa fa-github" aria-hidden="true"></i>
-                        Open Source Blogging System
-                    </a> version. @ViewBag.Version <span class="label label-default">Beta</span>
-                </p>-->
-            </div>
+﻿<footer class="container-fluid" role="contentinfo">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <a href="http://jobhound.eu" target="_blank">
+                <img src="~/images/friends-logos/Jason Hound Hound.png" class="img-fluid" width="150" />
+            </a>
+            <p class="copyright">
+                <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year
+                <strong>@ViewBag.Settings["Author"]</strong>.
+            </p>
+        </div>
  
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <ul class="social">
@@ -40,5 +35,4 @@
                 </ul>
             </div>
         </div>
-    </div>
 </footer>
