@@ -139,22 +139,22 @@ ul {
     margin-top: 2.5em;
 }
 
-[role="main"] article .post-content ul {
+[role="main"] .post-container .post-content ul {
     list-style: square !important;
 }
 
-[role="main"] article .post-content table td {
+[role="main"] .post-container .post-content table td {
     vertical-align: top !important;
 }
 
-[role="main"] article,
+[role="main"] .post-container,
 [role="main"] .widget {
     position: relative;
     overflow: hidden;
     background: white;
 }
 
-[role="main"] article {
+[role="main"] .post-container {
     margin-bottom: 2.5em;
     padding: 2.5em 2em;
 }
@@ -187,10 +187,9 @@ ul {
 
 [role="main"] .widget ul li {
     font-weight: 700;
-    text-transform: uppercase;
 }
 
-[role="main"] article:before,
+[role="main"] .post-container:before,
 [role="main"] .widget:before {
     content: "";
     position: absolute;
@@ -216,7 +215,7 @@ ul {
     text-align: center;
 }
 
-[role="main"] article .post-meta {
+[role="main"] .post-container .post-meta {
     margin: 0;
     margin-top: 10px;
     padding: 0;
@@ -224,61 +223,61 @@ ul {
     font-size: 12px;
 }
 
-[role="main"] article .post-meta li,
-[role="main"] article .post-meta li a {
+[role="main"] .post-container .post-meta li,
+[role="main"] .post-container .post-meta li a {
     color: #bbb;
 }
 
-[role="main"] article .post-meta li {
+[role="main"] .post-container .post-meta li {
     display: inline-block;
     margin-right: 12px;
 }
 
-[role="main"] article .post-content {
+[role="main"] .post-container .post-content {
     margin-top: 30px;
     line-height: 25px;
 }
 
-[role="main"] article .post-comments {
+[role="main"] .post-container .post-comments {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #f4f4f4;
 }
 
-[role="main"] article .post-comments h3 {
+[role="main"] .post-container .post-comments h3 {
     margin: 0;
     margin-bottom: 20px;
     font-size: 18px;
 }
 
-[role="main"] article .post-comments ul {
+[role="main"] .post-container .post-comments ul {
     margin-bottom: 5px;
     color: #888;
     font-size: 13px;
 }
 
-[role="main"] article .post-comments .comments-list {
+[role="main"] .post-container .post-comments .comments-list {
     padding: 0;
 }
 
-[role="main"] article .post-comments .comments-list .comment {
+[role="main"] .post-container .post-comments .comments-list .comment {
     margin: 20px 0 30px;
     position: relative;
     list-style: none;
 }
 
-[role="main"] article .post-comments .comments-list .comment .comment-meta {
+[role="main"] .post-container .post-comments .comments-list .comment .comment-meta {
     margin-bottom: 5px;
     color: #888;
     font-size: 13px;
 }
 
-[role="main"] article .post-comments .comments-list .comment-author {
+[role="main"] .post-container .post-comments .comments-list .comment-author {
     font-size: 14px;
     color: rgb(93, 67, 132);
 }
 
-[role="main"] article .post-read-more {
+[role="main"] .post-container .post-read-more {
     margin-top: 1.5em;
 }
 
@@ -307,9 +306,9 @@ ul {
 }
 
 [role="contentinfo"] .social li [rel="me"] > .fa {
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
+    width: 35px;
+    height: 35px;
+    font-size: 35px;
     color: #777;
 }
 

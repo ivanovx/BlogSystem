@@ -19,7 +19,6 @@
                     "~/Content/bootstrap.css",
                     "~/Content/font-awesome.css",
                     "~/Content/tether.css",
-                    "~/Content/vs.css",
                     "~/Content/blog.css"
                 ));
         }
@@ -42,10 +41,6 @@
             bundles
                 .Add(new ScriptBundle("~/bundles/bootstrap")
                 .Include("~/Scripts/tether.js", "~/Scripts/bootstrap.js"));
-
-            bundles
-                .Add(new ScriptBundle("~/bundles/highlight")
-                .Include("~/Scripts/highlight.pack.js"));
 
             bundles
                 .Add(new ScriptBundle("~/bundles/notify")

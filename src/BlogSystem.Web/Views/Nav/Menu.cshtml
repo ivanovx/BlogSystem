@@ -18,7 +18,7 @@
             @foreach (var page in Model)
             {
                 <li class="nav-item">
-                    @Html.ActionLink(page.Title, page.Permalink, "Pages",  new { area=string.Empty },new { @class="nav-link" })
+                    @Html.ActionLink(page.Title, page.Permalink, "Pages",  new { area = string.Empty },new { @class="nav-link" })
                 </li>
             }
         </ul>
