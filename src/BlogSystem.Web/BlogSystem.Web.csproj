@@ -307,6 +307,7 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="images\friends-logos\Jason Hound Hound.png" />
+    <Content Include="images\friends-logos\Silent City.png" />
     <Content Include="images\header.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\loading.gif" />

@@ -14,7 +14,8 @@
             this.settingsManager = DependencyResolver.Current.GetService<ISettingsManager>();
         }
 
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
+        protected override IAsyncResult BeginExecute(RequestContext requestContext, 
+            AsyncCallback callback, object state)
         {
             this.ViewBag.Settings = settingsManager;
 

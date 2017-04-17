@@ -13,7 +13,8 @@
         private readonly ICacheService cacheService;
         private readonly IMappingService mappingService;
 
-        public NavController(IPagesDataService pagesData, ICacheService cacheService, IMappingService mappingService)
+        public NavController(IPagesDataService pagesData, ICacheService cacheService, 
+            IMappingService mappingService)
         {
             this.pagesData = pagesData;
             this.cacheService = cacheService;
