@@ -18,10 +18,6 @@
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
 
-        public AccountController()
-        {
-        }
-
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
@@ -34,7 +30,8 @@
             {
                 return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            set
+
+            private set
             {
                 this.signInManager = value;
             }
@@ -46,7 +43,8 @@
             {
                 return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-            set
+
+            private set
             {
                 this.userManager = value;
             }

@@ -13,13 +13,13 @@
             You're logged in as <strong>@User.Identity.GetUserName()</strong>
         </div>
 
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change password", "ChangePassword", new { area = string.Empty }, new { @class = "btn btn-warning" })
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-        </div>
+        @if (Model.HasPassword)
+        {
+            @Html.ActionLink("Change password", "ChangePassword", new { area = string.Empty }, new { @class = "btn btn-warning" })
+        }
+        else
+        { 
+            @Html.ActionLink("Create", "SetPassword")
+        }
+    </div>
 </section>
