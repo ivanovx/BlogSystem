@@ -6,21 +6,21 @@
     using Autofac;
     using Autofac.Integration.Mvc;
     using AutoMapper;
+    using System.Web;
+    using Microsoft.Owin.Security;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Data;
+    using Data.Models;
     using Data.Repositories;
+    using Services.Data;
+    using Services.Web;
+    using Identity;
     using Controllers;
     using Infrastructure;
     using Infrastructure.Helpers.Url;
     using Infrastructure.Identity;
     using Infrastructure.Mapping;
-    using Services.Data;
-    using Services.Web;
-    using BlogSystem.Web.Identity;
-    using BlogSystem.Data.Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Web;
-    using Microsoft.Owin.Security;
-    using Microsoft.AspNet.Identity.Owin;
 
     public static class AutofacConfig
     { 
@@ -55,14 +55,40 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
-            builder.Register(c => c.Resolve<ApplicationDbContext>()).As<DbContext>().InstancePerRequest();
-            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
+            builder
+                .RegisterType<ApplicationDbContext>()
+                .AsSelf()
+                .InstancePerRequest();
 
-            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
-            builder.Register(c => new UserStore<ApplicationUser>(c.Resolve<DbContext>())).AsImplementedInterfaces().InstancePerRequest();
-            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+            builder
+                .Register(c => c.Resolve<ApplicationDbContext>())
+                .As<DbContext>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<ApplicationUserManager>()
+                .AsSelf()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<ApplicationSignInManager>()
+                .AsSelf()
+                .InstancePerRequest();
+
+            builder
+                .Register(c => new UserStore<ApplicationUser>(c.Resolve<DbContext>()))
+                .AsImplementedInterfaces()
+                .InstancePerRequest();
+
+            builder
+                .Register(c => HttpContext.Current.GetOwinContext().Authentication)
+                .As<IAuthenticationManager>();
+
             builder.Register(c => new IdentityFactoryOptions<ApplicationUserManager>
             {
                 DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Application​")
