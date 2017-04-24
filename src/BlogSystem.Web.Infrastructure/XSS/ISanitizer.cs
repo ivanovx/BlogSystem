@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Infrastructure
+﻿namespace BlogSystem.Web.Infrastructure.XSS
 {
     public interface ISanitizer
     {

@@ -29,8 +29,8 @@
         [ChildActionOnly]
         public PartialViewResult Index()
         {
-            var posts = this.postsData.GetLatest();
-            var pages = this.pagesData.GetAll();
+            var posts = this.postsData.GetLatestPosts();
+            var pages = this.pagesData.GetAllPages();
 
             var model = new SidebarViewModel
             {

@@ -5,11 +5,11 @@
     using Data.Models;
     using Data.Repositories;
     using ViewModels.Pages;
-    using Infrastructure;
     using Infrastructure.Identity;
     using Infrastructure.Helpers.Url;
+    using Infrastructure.XSS;
     using Services.Web.Mapping;
-    
+
     public class PagesController : AdministrationController
     {
         private readonly IDbRepository<Page> pagesData;

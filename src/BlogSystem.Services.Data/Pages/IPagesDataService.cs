@@ -5,9 +5,9 @@
 
     public interface IPagesDataService
     {
-        IQueryable<Page> GetAll();
+        IQueryable<Page> GetAllPages();
 
-        IQueryable<Page> GetAllForMenu();
+        IQueryable<Page> GetAllPagesForMenu();
 
         Page GetPage(string permalink);
     }

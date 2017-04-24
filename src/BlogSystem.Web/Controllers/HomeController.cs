@@ -22,7 +22,7 @@
         [HttpGet]
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
-            var pagesCount = (int) Math.Ceiling(this.postsData.GetAll().Count() / (decimal) perPage);
+            var pagesCount = (int) Math.Ceiling(this.postsData.GetAllPosts().Count() / (decimal) perPage);
             var posts = this.postsData.GetPagePosts(page, perPage);
             var postsPage = this.mappingService.Map<PostConciseViewModel>(posts).ToList();
 

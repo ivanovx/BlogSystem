@@ -13,7 +13,7 @@
             this.pages = pages;
         }
 
-        public IQueryable<Page> GetAll()
+        public IQueryable<Page> GetAllPages()
         {
             var pages = this.pages
                 .All()
@@ -22,7 +22,7 @@
             return pages;
         }
 
-        public IQueryable<Page> GetAllForMenu()
+        public IQueryable<Page> GetAllPagesForMenu()
         {
             var pages = this.pages
                 .All()

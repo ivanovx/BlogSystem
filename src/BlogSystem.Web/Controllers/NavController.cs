@@ -24,7 +24,7 @@
         [ChildActionOnly]
         public PartialViewResult Menu()
         {
-            var pages = this.pagesData.GetAllForMenu();
+            var pages = this.pagesData.GetAllPagesForMenu();
             var model = this.cacheService.Get("Menu", () => this.mappingService.Map<MenuItemViewModel>(pages).ToList(), 600);
 
             return this.PartialView(model);

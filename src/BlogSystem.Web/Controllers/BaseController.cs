@@ -1,9 +1,9 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
     using System;
-    using System.Web.Routing;
     using System.Web.Mvc;
-    using Infrastructure;
+    using System.Web.Routing;
+    using Infrastructure.Settings;
 
     public abstract class BaseController : Controller
     {

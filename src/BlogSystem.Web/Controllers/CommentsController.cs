@@ -2,11 +2,11 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Comments;
-    using Infrastructure.Identity;
     using Services.Data.Comments;
     using Services.Web.Mapping;
-    using Web.Infrastructure;
+    using ViewModels.Comments;
+    using Infrastructure.Identity;
+    using Infrastructure.XSS;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -29,7 +29,7 @@
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {
-            var comments = this.commentsData.GetAllByPost(id);
+            var comments = this.commentsData.GetAllCommentsByPost(id);
             var model = this.mappingService.Map<CommentViewModel>(comments).ToList();
 
             return this.PartialView(model);

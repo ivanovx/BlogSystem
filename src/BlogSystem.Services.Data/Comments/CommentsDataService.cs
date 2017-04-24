@@ -13,12 +13,14 @@
             this.comments = comments;
         }
 
-        public IQueryable<Comment> GetAllByPost(int id)
+        public IQueryable<Comment> GetAllCommentsByPost(int id)
         {
-            return this.comments
+            var comments = this.comments
                 .All()
                 .Where(c => !c.IsDeleted && c.PostId == id)
                 .OrderByDescending(c => c.CreatedOn);
+
+            return comments;
         }
 
         public Comment AddCommentToPost(int postId, string content, string userId)

@@ -14,26 +14,25 @@
             this.posts = posts;
         }
 
-        public IQueryable<Post> GetAll()
+        public IQueryable<Post> GetAllPosts()
         {
             var posts = this.posts
                 .All()
-                .Where(p => !p.IsDeleted)
-                .OrderByDescending(p => p.CreatedOn);
+                .Where(p => !p.IsDeleted);
 
             return posts;
         }
 
-        public IQueryable<Post> GetLatest()
+        public IQueryable<Post> GetLatestPosts(int size = GlobalConstants.DefaultPageSize)
         {
-            var posts = this.GetAll().Take(GlobalConstants.DefaultPageSize);
+            var posts = this.GetAllPosts().OrderByDescending(p => p.CreatedOn).Take(size);
 
             return posts;
         }
 
         public IQueryable<Post> GetPagePosts(int page, int perPage)
         {
-            return this.GetAll().Skip(perPage * (page - 1)).Take(perPage);
+            return this.GetAllPosts().OrderByDescending(p => p.CreatedOn).Skip(perPage * (page - 1)).Take(perPage);
         }
 
         public Post GetPost(int id)

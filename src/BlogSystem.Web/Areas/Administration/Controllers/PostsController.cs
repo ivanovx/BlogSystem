@@ -2,14 +2,14 @@
 {
     using System;
     using System.Linq;
-    using System.Web.Mvc;
+    using System.Web.Mvc;   
+    using Common;
+    using Data.Models;
+    using Data.Repositories;
+    using Services.Web.Mapping;
+    using Web.Infrastructure.XSS;
     using ViewModels.Posts;
     using Infrastructure.Identity;
-    using Data.Repositories;
-    using BlogSystem.Services.Web.Mapping;
-    using Common;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure;
 
     public class PostsController : AdministrationController
     {

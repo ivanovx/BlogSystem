@@ -6,9 +6,9 @@
     using Common;
     using Data.Repositories;
     using ViewModels.Comments;
-    using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Data.Models;
-    using BlogSystem.Web.Infrastructure;
+    using Services.Web.Mapping;
+    using Data.Models;
+    using Infrastructure.XSS;
 
     public class CommentsController : AdministrationController
     {

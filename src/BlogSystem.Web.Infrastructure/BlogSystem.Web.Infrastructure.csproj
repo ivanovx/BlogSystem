@@ -101,16 +101,16 @@
     <Compile Include="Helpers\Url\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
-    <Compile Include="ISanitizer.cs" />
-    <Compile Include="ISettingsManager.cs" />
+    <Compile Include="XSS\ISanitizer.cs" />
+    <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Mapping\IMapTo.cs" />
     <Compile Include="Mapping\TypeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HtmlSanitizerAdapter.cs" />
-    <Compile Include="SettingsManager.cs" />
+    <Compile Include="XSS\HtmlSanitizerAdapter.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

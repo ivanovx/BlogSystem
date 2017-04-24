@@ -1,12 +1,12 @@
 ﻿namespace BlogSystem.Web
 {
+    using System.Web;
+    using System.Web.Mvc;
     using System.Data.Entity;
     using System.Reflection;
-    using System.Web.Mvc;
     using Autofac;
     using Autofac.Integration.Mvc;
     using AutoMapper;
-    using System.Web;
     using Microsoft.Owin.Security;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -17,10 +17,11 @@
     using Services.Web;
     using Identity;
     using Controllers;
-    using Infrastructure;
     using Infrastructure.Helpers.Url;
     using Infrastructure.Identity;
     using Infrastructure.Mapping;
+    using Infrastructure.Settings;
+    using Infrastructure.XSS;
 
     public static class AutofacConfig
     { 

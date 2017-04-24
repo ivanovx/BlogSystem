@@ -5,7 +5,7 @@
 
     public interface ICommentsDataService
     {
-        IQueryable<Comment> GetAllByPost(int id);
+        IQueryable<Comment> GetAllCommentsByPost(int id);
 
         Comment AddCommentToPost(int postId, string content, string userId);
     }

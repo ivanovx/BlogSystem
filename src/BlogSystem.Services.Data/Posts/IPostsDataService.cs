@@ -2,12 +2,13 @@
 {
     using System.Linq;
     using BlogSystem.Data.Models;
+    using BlogSystem.Common;
 
     public interface IPostsDataService
     {
-        IQueryable<Post> GetAll();
+        IQueryable<Post> GetAllPosts();
 
-        IQueryable<Post> GetLatest();
+        IQueryable<Post> GetLatestPosts(int size = GlobalConstants.DefaultPageSize);
 
         IQueryable<Post> GetPagePosts(int page, int perPage);
 

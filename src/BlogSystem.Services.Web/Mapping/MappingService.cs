@@ -13,7 +13,8 @@
             this.mapper = mapper;
         }
 
-        public TDestination Map<TDestination>(object source) where TDestination : class
+        public TDestination Map<TDestination>(object source) 
+            where TDestination : class
         {
             return this.mapper.Map<TDestination>(source);
         }
