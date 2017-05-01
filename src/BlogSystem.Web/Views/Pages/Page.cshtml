@@ -6,7 +6,7 @@
 
 <article class="post-container">
     <header class="post-header">
-        <h2 class="post-title">@Model.Title</h2>
+        <h2 class="post-title">@Html.DisplayFor(model => Model.Title)</h2>
         <ul class="post-meta">
             <li>
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -17,6 +17,7 @@
                 @Html.DisplayFor(model => Model.Author)
             </li>
         </ul>
+        <hr />
     </header>
     <div class="post-content">
         @Html.DisplayFor(model => Model.Content)

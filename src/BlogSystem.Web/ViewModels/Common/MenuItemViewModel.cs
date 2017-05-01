@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Nav
+﻿namespace BlogSystem.Web.ViewModels.Common
 {
     using Data.Models;
     using Infrastructure.Mapping;

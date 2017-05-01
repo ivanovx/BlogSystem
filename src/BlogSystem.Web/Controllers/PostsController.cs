@@ -23,7 +23,7 @@
 
             var post = this.postsData.GetPost(id);
 
-            if(post == null)
+            if (post == null)
             {
                 return this.HttpNotFound();
             }

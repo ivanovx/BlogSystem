@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Sidebar
+﻿namespace BlogSystem.Web.ViewModels.Common
 {
     using System.Collections.Generic;
     using Posts;

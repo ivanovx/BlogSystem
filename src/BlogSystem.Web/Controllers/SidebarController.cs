@@ -2,13 +2,13 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels.Sidebar;
-    using ViewModels.Posts;
-    using ViewModels.Pages;
     using Services.Data.Pages;
     using Services.Data.Posts;
     using Services.Web.Caching;
     using Services.Web.Mapping;
+    using ViewModels.Common;
+    using ViewModels.Posts;
+    using ViewModels.Pages;
 
     public class SidebarController : BaseController
     {
@@ -34,8 +34,10 @@
 
             var model = new SidebarViewModel
             {
-                RecentPosts = this.cacheService.Get("RecentPosts", () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
-                AllPages = this.cacheService.Get("AllPages", () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
+                RecentPosts = this.cacheService.Get("RecentPosts", 
+                    () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
+                AllPages = this.cacheService.Get("AllPages", 
+                    () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
             };
 
             return this.PartialView(model);
