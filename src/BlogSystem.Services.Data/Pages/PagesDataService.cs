@@ -17,25 +17,24 @@
         {
             var pages = this.pages
                 .All()
-                .Where(p => !p.IsDeleted);
+                .Where(p => !p.IsDeleted)
+                .AsQueryable();
 
             return pages;
         }
 
         public IQueryable<Page> GetAllPagesForMenu()
         {
-            var pages = this.pages
-                .All()
-                .Where(p => !p.IsDeleted && p.VisibleInMenu);
+            var pages = this.GetAllPages()
+                .Where(p => p.VisibleInMenu == true)
+                .AsQueryable();
 
             return pages;
         }
 
         public Page GetPage(string permalink)
         {
-            var page = this.pages
-                .All()
-                .FirstOrDefault(p => !p.IsDeleted && p.Permalink.ToLower().Trim() == permalink.ToLower().Trim());
+            var page = this.GetAllPages().FirstOrDefault(p => p.Permalink.ToLower().Trim() == permalink.ToLower().Trim());
 
             return page;
         }

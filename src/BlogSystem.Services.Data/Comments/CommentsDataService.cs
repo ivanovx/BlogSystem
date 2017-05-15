@@ -18,7 +18,8 @@
             var comments = this.comments
                 .All()
                 .Where(c => !c.IsDeleted && c.PostId == id)
-                .OrderByDescending(c => c.CreatedOn);
+                .OrderByDescending(c => c.CreatedOn)
+                .AsQueryable();
 
             return comments;
         }

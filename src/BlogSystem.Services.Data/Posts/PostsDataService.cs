@@ -18,26 +18,37 @@
         {
             var posts = this.posts
                 .All()
-                .Where(p => !p.IsDeleted);
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.CreatedOn)
+                .AsQueryable();
 
             return posts;
         }
 
         public IQueryable<Post> GetLatestPosts(int size = GlobalConstants.DefaultPageSize)
         {
-            var posts = this.GetAllPosts().OrderByDescending(p => p.CreatedOn).Take(size);
+            var posts = this.GetAllPosts()
+                .Take(size)
+                .AsQueryable();
 
             return posts;
         }
 
         public IQueryable<Post> GetPagePosts(int page, int perPage)
         {
-            return this.GetAllPosts().OrderByDescending(p => p.CreatedOn).Skip(perPage * (page - 1)).Take(perPage);
+            var posts = this.GetAllPosts()
+                .Skip(perPage * (page - 1))
+                .Take(perPage)
+                .AsQueryable();
+
+            return posts;
         }
 
         public Post GetPost(int id)
         {
-            return this.posts.All().FirstOrDefault(p => !p.IsDeleted && p.Id == id);
+            var post = this.GetAllPosts().FirstOrDefault(p => p.Id == id);
+
+            return post;
         }
     }
 }
