@@ -2,12 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Contracts.Models;
 
-    public class Comment : ContentHolder
+    public class Comment : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [DataType(DataType.Html)]
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]

@@ -312,6 +312,7 @@
     <Content Include="images\header.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\loading.gif" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\blog.js" />

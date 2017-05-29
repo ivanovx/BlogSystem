@@ -1,12 +1,14 @@
-﻿namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Contracts.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts;
 
-    public abstract class ContentHolder : IAuditInfo, IDeletableEntity
+    public abstract class BaseModel<TKey> : IAuditInfo, IDeletableEntity
     {
+        [Key]
+        public TKey Id { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
 

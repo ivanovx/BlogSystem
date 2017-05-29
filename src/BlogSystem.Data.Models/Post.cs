@@ -3,8 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Contracts.Models;
 
-    public class Post : ContentHolder
+    public class Post : BaseModel<int>
     {
         private ICollection<Comment> comments;
 
@@ -13,10 +14,8 @@
             this.comments = new HashSet<Comment>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
+        [MinLength(3, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Title { get; set; }
 
         [Required]
@@ -24,6 +23,7 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
@@ -31,8 +31,14 @@
 
         public virtual ICollection<Comment> Comments
         {
-            get { return this.comments; }
-            set { this.comments = value; }
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
+            }
         }
     }
 }
