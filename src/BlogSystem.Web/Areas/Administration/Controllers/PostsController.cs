@@ -66,7 +66,7 @@
                 {
                     Title = model.Title,
                     Content = this.sanitizer.Sanitize(model.Content),
-                    AuthorId = this.currentUser.GetUser.Id
+                    AuthorId = this.currentUser.GetUser().Id
                 };
 
                 this.postsData.Add(post);

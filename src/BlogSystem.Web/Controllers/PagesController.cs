@@ -2,9 +2,8 @@
 {
     using System.Web.Mvc;
     using ViewModels.Pages;
-    using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Services.Data.Pages;
-    using System;
+    using Services.Web.Mapping;
+    using Services.Data.Pages;
 
     public class PagesController : BaseController
     {

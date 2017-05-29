@@ -4,6 +4,6 @@
 
     public interface ICacheService : IWebService
     {
-        T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds) where T : class;
+        T Get <T> (string itemName, Func<T> getDataFunc, int durationInSeconds) where T : class;
     }
 }

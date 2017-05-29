@@ -5,8 +5,8 @@
     using System.Web.Mvc;
     using Common;
     using ViewModels.Home;
-    using BlogSystem.Services.Web.Mapping;
-    using BlogSystem.Services.Data.Posts;
+    using Services.Data.Posts;
+    using Services.Web.Mapping;
 
     public class HomeController : BaseController
     {
@@ -23,12 +23,12 @@
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             var pagesCount = (int) Math.Ceiling(this.postsData.GetAllPosts().Count() / (decimal) perPage);
-            var posts = this.postsData.GetPagePosts(page, perPage);
-            var postsPage = this.mappingService.Map<PostConciseViewModel>(posts).ToList();
+            var postsPage = this.postsData.GetPagePosts(page, perPage);
+            var posts = this.mappingService.Map<PostConciseViewModel>(postsPage).ToList();
 
             var model = new IndexPageViewModel
             {
-                Posts = postsPage,
+                Posts = posts,
                 CurrentPage = page,
                 PagesCount = pagesCount
             };

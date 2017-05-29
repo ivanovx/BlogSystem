@@ -59,7 +59,7 @@
                     Title = model.Title,
                     Content =  this.sanitizer.Sanitize(model.Content),
                     VisibleInMenu = model.VisibleInMenu,
-                    AuthorId = this.currentUser.GetUser.Id,
+                    AuthorId = this.currentUser.GetUser().Id,
                     Permalink = this.urlGenerator.GenerateUrl(model.Title)
                 };
 

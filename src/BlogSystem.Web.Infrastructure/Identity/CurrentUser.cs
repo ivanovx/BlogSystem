@@ -14,14 +14,11 @@
             this.users = users;
         }
 
-        public ApplicationUser GetUser
+        public ApplicationUser GetUser()
         {
-            get
-            {
-                var userId = HttpContext.Current.User.Identity.GetUserId();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
 
-                return this.users.Find(userId);
-            }
+            return this.users.Find(userId);
         }
     }
 }

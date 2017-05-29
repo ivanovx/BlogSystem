@@ -4,9 +4,9 @@
     using System.Web.Mvc;
     using Services.Data.Comments;
     using Services.Web.Mapping;
-    using ViewModels.Comments;
     using Infrastructure.Identity;
     using Infrastructure.XSS;
+    using ViewModels.Comments;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -41,7 +41,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var userId = this.currentUser.GetUser.Id;
+                var userId = this.currentUser.GetUser().Id;
                 var content = this.sanitizer.Sanitize(model.Content);
 
                 this.commentsData.AddCommentToPost(id, content, userId);

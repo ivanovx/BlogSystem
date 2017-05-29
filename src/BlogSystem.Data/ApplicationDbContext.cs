@@ -22,8 +22,6 @@ namespace BlogSystem.Data
 
         public IDbSet<Setting> Settings { get; set; }
 
-        //public static ApplicationDbContext Create() => new ApplicationDbContext();
-
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
@@ -35,7 +33,8 @@ namespace BlogSystem.Data
         {
             var entitySet = this.ChangeTracker
                 .Entries()
-                .Where(e => e.Entity is IAuditInfo && (e.State == EntityState.Added || e.State == EntityState.Modified));
+                .Where(e => e.Entity is IAuditInfo && 
+                    (e.State == EntityState.Added || e.State == EntityState.Modified));
 
             foreach (var entry in entitySet)
             {

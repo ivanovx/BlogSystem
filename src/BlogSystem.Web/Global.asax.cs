@@ -11,7 +11,7 @@
     using Infrastructure.Mapping;
 
     public class MvcApplication : HttpApplication
-    {
+    {   
         protected void Application_Start()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
