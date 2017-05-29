@@ -5,6 +5,7 @@
     using System.Web.Routing;
     using Infrastructure.Settings;
 
+    [HandleError]
     public abstract class BaseController : Controller
     {
         private readonly ISettingsManager settingsManager;
