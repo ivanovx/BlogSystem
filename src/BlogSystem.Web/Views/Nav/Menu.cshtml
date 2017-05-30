@@ -25,7 +25,7 @@
         </ul>
         
         <ul class="navbar-nav navbar-right">
-            @if (User.IsInRole(GlobalConstants.AdminRoleName))
+            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item">
                     @Html.ActionLink("Administration", "Index", "Home", new { area = "Administration" }, new { @class = "nav-link" })

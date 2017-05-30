@@ -7,15 +7,9 @@
     using System;
     using Web.Controllers;
 
-    [Authorize(Roles = GlobalConstants.AdminRoleName)]
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public abstract class AdministrationController : BaseController
     {
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
-        {
-            this.ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version;
-            this.ViewBag.IpAddress = requestContext.HttpContext.Request.UserHostAddress;
-
-            return base.BeginExecute(requestContext, callback, state);
-        }
+        
     }
 }

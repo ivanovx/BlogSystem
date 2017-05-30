@@ -60,12 +60,17 @@ namespace BlogSystem.Data.Migrations
             };
 
             this.userManager.Create(admin, "admin123456");
-            this.userManager.AddToRole(admin.Id, GlobalConstants.AdminRoleName);
+            this.userManager.AddToRole(admin.Id, GlobalConstants.AdministratorRoleName);
         }
 
         private void SeedRoles(ApplicationDbContext context)
         {
-            context.Roles.AddOrUpdate(u => u.Name, new IdentityRole(GlobalConstants.AdminRoleName));
+            context.Roles.AddOrUpdate(
+                u => u.Name, 
+                new IdentityRole(GlobalConstants.AdministratorRoleName),
+                new IdentityRole(GlobalConstants.UserRoleName)
+            );
+
             context.SaveChanges();
         }
     }
