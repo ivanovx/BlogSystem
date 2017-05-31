@@ -24,7 +24,11 @@
 
         public string Author { get; set; }
 
+        [Display(Name = "Category")]
+        [UIHint("DropDownList")]
         public int? CategoryId { get; set; }
+
+        public IEnumerable<SelectListItem> Categories { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {

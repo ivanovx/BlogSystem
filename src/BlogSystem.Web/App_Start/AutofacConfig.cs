@@ -23,6 +23,7 @@
     using Infrastructure.Mapping;
     using Infrastructure.Settings;
     using Infrastructure.XSS;
+    using BlogSystem.Web.Infrastructure.Populators;
 
     public class AutofacConfig
     { 
@@ -114,6 +115,11 @@
             builder
                 .RegisterType<HtmlSanitizerAdapter>()
                 .As<ISanitizer>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<DropDownListPopulator>()
+                .As<IDropDownListPopulator>()
                 .InstancePerRequest();
 
             builder

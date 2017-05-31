@@ -7,9 +7,10 @@
     using Data.Models;
     using Data.Repositories;
     using Services.Web.Mapping;
-    using Web.Infrastructure.XSS;
+    using ViewModels.Posts;
+    using Infrastructure.XSS;
     using Infrastructure.Identity;
-    using ViewModels.Posts;    
+    using Infrastructure.Populators;
 
     public class PostsController : AdministrationController
     {
@@ -17,15 +18,18 @@
         private readonly IDbRepository<Category> categoriesData;
         private readonly IMappingService mappingService;
         private readonly ICurrentUser currentUser;
+        private readonly IDropDownListPopulator populator;
         private readonly ISanitizer sanitizer;
 
         public PostsController(IDbRepository<Post> postsData, IDbRepository<Category> categoriesData,
-            IMappingService mappingService, ICurrentUser currentUser, ISanitizer sanitizer) 
+            IMappingService mappingService, ICurrentUser currentUser, 
+            IDropDownListPopulator populator, ISanitizer sanitizer) 
         {
             this.postsData = postsData;
             this.categoriesData = categoriesData;
             this.mappingService = mappingService;
             this.currentUser = currentUser;
+            this.populator = populator;
             this.sanitizer = sanitizer;
         }
 
@@ -55,9 +59,12 @@
         [HttpGet]
         public ActionResult Create()
         {            
-            this.ViewBag.Categories = this.categoriesData.All().ToList(); 
+            var model = new PostViewModel
+            {
+                Categories = this.populator.GetCategories()
+            };
 
-            return this.View();
+            return this.View(model);
         }
 
         [HttpPost]
@@ -86,8 +93,6 @@
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            this.ViewBag.Categories = this.categoriesData.All().ToList();
-
             var post = this.postsData.Find(id);
 
             if (post == null)
@@ -96,6 +101,8 @@
             }
 
             var model = this.mappingService.Map<PostViewModel>(post);
+
+            model.Categories = this.populator.GetCategories();
 
             return this.View(model);
         }

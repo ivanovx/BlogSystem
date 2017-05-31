@@ -102,6 +102,8 @@
     <Compile Include="Helpers\Url\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
+    <Compile Include="Populators\DropDownListPopulator.cs" />
+    <Compile Include="Populators\IDropDownListPopulator.cs" />
     <Compile Include="XSS\ISanitizer.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />

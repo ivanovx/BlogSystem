@@ -7,10 +7,6 @@
 <h2>@ViewBag.Title</h2>
 <hr />
 
-@{
-    var selectList = new SelectList(ViewBag.Categories, "Id", "Name");
-}
-
 @using (Html.BeginForm("Edit", "Posts", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -38,7 +34,10 @@
         @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
     </div>
 
-    @Html.DropDownListFor(m => m.CategoryId, selectList, "Select Category")
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId)
+        @Html.DropDownListFor(m => m.CategoryId, Model.Categories, "Select Category", new { @class = "form-control" })
+    </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">Save</button>
