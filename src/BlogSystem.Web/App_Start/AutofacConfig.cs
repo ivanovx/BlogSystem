@@ -23,7 +23,7 @@
     using Infrastructure.Settings;
     using Infrastructure.XSS;
 
-    public static class AutofacConfig
+    public class AutofacConfig
     { 
         public static void RegisterAutofac()
         {

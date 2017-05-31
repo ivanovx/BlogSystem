@@ -22,6 +22,8 @@ namespace BlogSystem.Data
 
         public IDbSet<Setting> Settings { get; set; }
 
+        public IDbSet<Category> Categories { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

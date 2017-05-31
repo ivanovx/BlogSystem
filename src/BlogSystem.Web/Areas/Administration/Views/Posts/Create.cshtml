@@ -6,6 +6,10 @@
 
 <h2>@ViewBag.Title</h2>
 <hr />
+
+@{ 
+    var selectList = new SelectList(ViewBag.Categories, "Id", "Name");
+}
             
 @using (Html.BeginForm("Create", "Posts", FormMethod.Post))
 {
@@ -25,6 +29,8 @@
         @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
     </div>
+
+    @Html.DropDownListFor(m => m.CategoryId, selectList, "Select Category")
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">Create</button>

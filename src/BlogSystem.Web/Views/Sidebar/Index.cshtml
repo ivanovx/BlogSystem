@@ -19,6 +19,25 @@
         </div>
     }
 
+    @if (Model.RecentPosts.Any())
+    {
+        <div class="widget">
+            <h3>
+                <span>Categories</span>
+            </h3>
+            <ul>
+                @foreach (var category in Model.Categories)
+                {
+                    <li>
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                        <a href="#">@category.Name</a>
+                        @category.Posts.Count()
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
     @if (Model.AllPages.Any())
     {
         <div class="widget">

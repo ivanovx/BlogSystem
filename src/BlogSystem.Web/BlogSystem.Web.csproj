@@ -209,6 +209,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\PostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
@@ -304,6 +305,7 @@
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\AdminMenu.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Pagination.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\Create.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />

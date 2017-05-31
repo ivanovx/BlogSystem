@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Comment.cs" />

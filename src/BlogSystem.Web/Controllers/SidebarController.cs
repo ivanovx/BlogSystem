@@ -9,6 +9,8 @@
     using ViewModels.Common;
     using ViewModels.Posts;
     using ViewModels.Pages;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
 
     public class SidebarController : BaseController
     {
@@ -17,11 +19,15 @@
         private readonly ICacheService cacheService;
         private readonly IMappingService mappingService;
 
-        public SidebarController(IPostsDataService postsData, IPagesDataService pagesData, 
-            ICacheService cacheService, IMappingService mappingService)
+        private readonly IDbRepository<Category> categoriesData;
+
+        public SidebarController(IPostsDataService postsData, IPagesDataService pagesData,
+           IDbRepository<Category> categoriesData, ICacheService cacheService, 
+           IMappingService mappingService)
         {
             this.postsData = postsData;
             this.pagesData = pagesData;
+            this.categoriesData = categoriesData;
             this.cacheService = cacheService;
             this.mappingService = mappingService;
         }
@@ -32,12 +38,15 @@
             var posts = this.postsData.GetLatestPosts();
             var pages = this.pagesData.GetAllPages();
 
+            var categories = this.categoriesData.All().ToList();
+
             var model = new SidebarViewModel
             {
                 RecentPosts = this.cacheService.Get("RecentPosts", 
                     () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
                 AllPages = this.cacheService.Get("AllPages", 
-                    () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
+                    () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600),
+                Categories = categories
             };
 
             return this.PartialView(model);

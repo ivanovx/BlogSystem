@@ -6,6 +6,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
     using Administration;
+    using System.Collections.Generic;
 
     public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IHaveCustomMappings
     {
@@ -22,6 +23,8 @@
         public string AuthorId { get; set; }
 
         public string Author { get; set; }
+
+        public int? CategoryId { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
