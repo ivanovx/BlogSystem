@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Areas.Administration.Controllers
+﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+    using Data.Models;
+    using Data.Repositories;
+
     public class CategoriesController : AdministrationController
     {
         private readonly IDbRepository<Category> dbRepository;
@@ -17,9 +14,12 @@ namespace BlogSystem.Web.Areas.Administration.Controllers
             this.dbRepository = dbRepository;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var categories = this.dbRepository.All().ToList();
+
+            return this.View(categories);
         }
 
         [HttpGet]

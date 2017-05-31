@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  blogsystem.web:
+    image: blogsystem.web:dev
+    build:
+      args:
+        source: ${DOCKER_BUILD_SOURCE}
+    volumes:
+      - .\BlogSystem.Web:C:\inetpub\wwwroot
+      - ~\msvsmon:C:\msvsmon:ro
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=windows"

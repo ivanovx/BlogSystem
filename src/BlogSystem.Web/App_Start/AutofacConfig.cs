@@ -10,6 +10,7 @@
     using Microsoft.Owin.Security;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin.Security.DataProtection;
     using Data;
     using Data.Models;
     using Data.Repositories;
@@ -92,7 +93,7 @@
 
             builder.Register(c => new IdentityFactoryOptions<ApplicationUserManager>
             {
-                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Application​")
+                DataProtectionProvider = new DpapiDataProtectionProvider("Application​")
             });
 
             builder

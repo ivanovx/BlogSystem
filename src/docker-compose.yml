@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  blogsystem.web:
+    image: blogsystem.web
+    build:
+      context: .\BlogSystem.Web
+      dockerfile: Dockerfile

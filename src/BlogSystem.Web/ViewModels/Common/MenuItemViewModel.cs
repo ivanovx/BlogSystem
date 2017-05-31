@@ -3,7 +3,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class MenuItemViewModel: IMapFrom<Page>
+    public class MenuItemViewModel : IMapFrom<Page>
     {
         public string Title { get; set; }
 

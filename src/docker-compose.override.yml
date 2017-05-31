@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  blogsystem.web:
+    ports:
+      - "80"
+networks:
+  default:
+    external:
+      name: nat

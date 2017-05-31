@@ -7,6 +7,7 @@
     using Infrastructure.Identity;
     using Infrastructure.XSS;
     using ViewModels.Comments;
+    using BlogSystem.Web.Infrastructure.Attributes;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -26,6 +27,7 @@
         }
 
         [HttpGet]
+        [AjaxOnly]
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {

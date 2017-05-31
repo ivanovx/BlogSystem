@@ -37,16 +37,15 @@
         {
             var posts = this.postsData.GetLatestPosts();
             var pages = this.pagesData.GetAllPages();
-
-            var categories = this.categoriesData.All().ToList();
+            var categories = this.categoriesData.All();
 
             var model = new SidebarViewModel
             {
-                RecentPosts = this.cacheService.Get("RecentPosts", 
+                RecentPosts = this.cacheService.Get("RecentPosts",
                     () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
-                AllPages = this.cacheService.Get("AllPages", 
+                AllPages = this.cacheService.Get("AllPages",
                     () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600),
-                Categories = categories
+                Categories = this.mappingService.Map<CategoryViewModel>(categories).ToList()
             };
 
             return this.PartialView(model);
