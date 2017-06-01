@@ -9,33 +9,32 @@
             </a>
             <p class="copyright">
                 <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year
-                @*<strong>@ViewBag.Settings["Author"]</strong>.*@
+                <strong>@ViewData["BlogAuthor"]</strong>.
             </p>
         </div>
- 
-            @*<div class="col-lg-4 col-md-4 col-sm-12">
-                <ul class="social">
-                    <li>
-                        <a href="@ViewBag.Settings["Facebook"]" title="Facebook" rel="me">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@ViewBag.Settings["Twitter"]" title="Twitter" rel="me">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@ViewBag.Settings["LinkedIn"]" title="LinkedIn" rel="me">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@ViewBag.Settings["GitHub"]" title="GitHub" rel="me">
-                            <i class="fa fa-github" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>*@
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <ul class="social">
+                <li>
+                    <a href="@ViewData["FacebookProfile"]" title="Facebook" rel="me">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@ViewData["TwitterProfile"]" title="Twitter" rel="me">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@ViewData["LinkedIn"]" title="LinkedIn" rel="me">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@ViewData["GitHubProfile"]" title="GitHub" rel="me">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
 </footer>

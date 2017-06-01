@@ -6,16 +6,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
-        @*<meta name="author" content="@ViewBag.Settings["Author"]" />
-        <meta name="keywords" content="@ViewBag.Settings["Keywords"]" />
-        <meta name="description" content="@ViewBag.Settings["Title"] : @ViewBag.Settings["Description"]" />
-        *@
-        <title>@ViewBag.Title - @ViewData["Author"]</title>        
+        <meta name="author" content="@ViewData["BlogAuthor"]" />
+        <meta name="keywords" content="@ViewData["BlogKeywords"]" />
+        <meta name="description" content="@ViewData["BlogTitle"] : @ViewData["BlogDescription"]" />
+       
+        <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>        
 
         @Styles.Render("~/Content/css")
 
         <link href="~/Content/vs.css" rel="stylesheet" />
-        
+  
 		<script>
 		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

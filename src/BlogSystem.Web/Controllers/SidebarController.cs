@@ -19,15 +19,15 @@
         private readonly ICacheService cacheService;
         private readonly IMappingService mappingService;
 
-       // private readonly IDbRepository<Category> categoriesData;
+        private readonly IDbRepository<Category> categoriesData;
 
         public SidebarController(IPostsDataService postsData, IPagesDataService pagesData,
-           /*IDbRepository<Category> categoriesData,*/ ICacheService cacheService, 
+           IDbRepository<Category> categoriesData, ICacheService cacheService, 
            IMappingService mappingService)
         {
             this.postsData = postsData;
             this.pagesData = pagesData;
-           // this.categoriesData = categoriesData;
+            this.categoriesData = categoriesData;
             this.cacheService = cacheService;
             this.mappingService = mappingService;
         }
@@ -37,15 +37,15 @@
         {
             var posts = this.postsData.GetLatestPosts();
             var pages = this.pagesData.GetAllPages();
-           // var categories = this.categoriesData.All();
+            var categories = this.categoriesData.All();
 
             var model = new SidebarViewModel
             {
                 RecentPosts = this.cacheService.Get("RecentPosts",
                     () => this.mappingService.Map<PostViewModel>(posts).ToList(), 600),
                 AllPages = this.cacheService.Get("AllPages",
-                    () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600)
-               // Categories = this.mappingService.Map<CategoryViewModel>(categories).ToList()
+                    () => this.mappingService.Map<PageViewModel>(pages).ToList(), 600),
+                Categories = this.mappingService.Map<CategoryViewModel>(categories).ToList()
             };
 
             return this.PartialView(model);

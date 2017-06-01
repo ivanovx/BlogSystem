@@ -1,10 +1,19 @@
 ﻿<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNVKNT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KXNVKNT" 
+            height="0" 
+            width="0" 
+            style="display:none;visibility:hidden">
+    </iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-@{ Html.RenderAction("Menu", "Nav"); }
+@{ 
+    Html.RenderAction("Menu", "Nav"); 
+}
 
 <header role="banner">
-    @*<h1>@ViewBag.Settings["Title"]</h1>
-    <h2>@ViewBag.Settings["Description"]</h2>*@
+    <h1>@ViewData["BlogTitle"]</h1>
+    <h2>@ViewData["BlogDescription"]</h2>
 </header>

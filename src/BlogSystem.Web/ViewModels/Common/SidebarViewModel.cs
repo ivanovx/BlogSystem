@@ -10,6 +10,6 @@
 
         public IEnumerable<PageViewModel> AllPages { get; set; }
 
-        //public IEnumerable<CategoryViewModel> Categories { get; set; }
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }
