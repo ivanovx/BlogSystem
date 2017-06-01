@@ -23,7 +23,7 @@
     using Infrastructure.Mapping;
     using Infrastructure.Settings;
     using Infrastructure.XSS;
-    using BlogSystem.Web.Infrastructure.Populators;
+    using Infrastructure.Populators;
 
     public class AutofacConfig
     { 

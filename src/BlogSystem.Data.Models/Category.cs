@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using BlogSystem.Data.Contracts.Models;
-
-namespace BlogSystem.Data.Models
+﻿namespace BlogSystem.Data.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using Contracts.Models;
+
     public class Category : BaseModel<int>
     {
         private ICollection<Post> posts;

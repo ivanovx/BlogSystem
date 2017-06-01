@@ -2,10 +2,12 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Services.Data.Pages;
-    using Services.Web.Caching;
-    using Services.Web.Mapping;
-    using ViewModels.Common;
+
+    using BlogSystem.Services.Data.Pages;
+    using BlogSystem.Services.Web.Caching;
+    using BlogSystem.Services.Web.Mapping;
+
+    using BlogSystem.Web.ViewModels.Common;
 
     public class NavController : BaseController
     {

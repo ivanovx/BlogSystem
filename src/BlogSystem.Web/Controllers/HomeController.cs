@@ -19,7 +19,6 @@
             this.mappingService = mappingService;
         }
 
-        [HttpGet]
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             var pagesCount = (int) Math.Ceiling(this.postsData.GetAllPosts().Count() / (decimal) perPage);

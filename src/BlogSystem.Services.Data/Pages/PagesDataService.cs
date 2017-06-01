@@ -6,16 +6,16 @@
 
     public class PagesDataService : IPagesDataService
     {
-        private readonly IDbRepository<Page> pages;
+        private readonly IDbRepository<Page> pagesData;
 
-        public PagesDataService(IDbRepository<Page> pages)
+        public PagesDataService(IDbRepository<Page> pagesData)
         {
-            this.pages = pages;
+            this.pagesData = pagesData;
         }
 
         public IQueryable<Page> GetAllPages()
         {
-            var pages = this.pages
+            var pages = this.pagesData
                 .All()
                 .Where(p => !p.IsDeleted)
                 .AsQueryable();
@@ -25,9 +25,7 @@
 
         public IQueryable<Page> GetAllPagesForMenu()
         {
-            var pages = this.GetAllPages()
-                .Where(p => p.VisibleInMenu == true)
-                .AsQueryable();
+            var pages = this.GetAllPages().Where(p => p.VisibleInMenu == true).AsQueryable();
 
             return pages;
         }

@@ -30,7 +30,11 @@
                 {
                     <li>
                         <i class="fa fa-file" aria-hidden="true"></i>
-                        <a href="#">@category.Name</a>
+                        
+                        <a href="@Url.Action("PostsByCategory", "Posts", new { id = category.Id })">
+                            @category.Name
+                        </a>
+
                         <span class="badge badge-default">
                             @category.PostsCont
                         </span>

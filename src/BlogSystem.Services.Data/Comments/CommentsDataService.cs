@@ -6,16 +6,16 @@
 
     public class CommentsDataService : ICommentsDataService
     {
-        private readonly IDbRepository<Comment> comments;
+        private readonly IDbRepository<Comment> commentsData;
 
-        public CommentsDataService(IDbRepository<Comment> comments)
+        public CommentsDataService(IDbRepository<Comment> commentsData)
         {
-            this.comments = comments;
+            this.commentsData = commentsData;
         }
 
         public IQueryable<Comment> GetAllCommentsByPost(int id)
         {
-            var comments = this.comments
+            var comments = this.commentsData
                 .All()
                 .Where(c => !c.IsDeleted && c.PostId == id)
                 .OrderByDescending(c => c.CreatedOn)
@@ -33,8 +33,8 @@
                 AuthorId = userId
             };
 
-            this.comments.Add(comment);
-            this.comments.SaveChanges();
+            this.commentsData.Add(comment);
+            this.commentsData.SaveChanges();
 
             return comment;
         }

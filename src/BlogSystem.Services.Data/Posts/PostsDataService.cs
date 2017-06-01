@@ -1,24 +1,36 @@
 ﻿namespace BlogSystem.Services.Data.Posts
 {
     using System.Linq;
+
+    using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
-    using Common;
-
+   
     public class PostsDataService : IPostsDataService
     {
-        private readonly IDbRepository<Post> posts;
+        private readonly IDbRepository<Post> postsData;
 
-        public PostsDataService(IDbRepository<Post> posts)
+        public PostsDataService(IDbRepository<Post> postsData)
         {
-            this.posts = posts;
+            this.postsData = postsData;
         }
 
         public IQueryable<Post> GetAllPosts()
         {
-            var posts = this.posts
+            var posts = this.postsData
                 .All()
                 .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.CreatedOn)
+                .AsQueryable();
+
+            return posts;
+        }
+
+        public IQueryable<Post> GetAllPostsByCategory(int id)
+        {
+            var posts = this.postsData
+                .All()
+                .Where(p => !p.IsDeleted && p.CategoryId == id)
                 .OrderByDescending(p => p.CreatedOn)
                 .AsQueryable();
 

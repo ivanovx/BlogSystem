@@ -1,10 +1,12 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using BlogSystem.Data.Models;
-using BlogSystem.Data.Repositories;
-
-namespace BlogSystem.Web.Infrastructure.Attributes
+﻿namespace BlogSystem.Web.Infrastructure.Attributes
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Data.Models;
+    using Data.Repositories;
+
+    [AttributeUsage(AttributeTargets.Class)]
     public class PassSettingsToViewDataAttribute : ActionFilterAttribute, IActionFilter
     {
         private readonly IDbRepository<Setting> settingsData;
