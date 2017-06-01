@@ -34,15 +34,15 @@ namespace BlogSystem.Data.Migrations
                 return;
             }
 
-            context.Settings.Add(new Setting { Key = "Title", Value = "Blog Title" });
-            context.Settings.Add(new Setting { Key = "Description", Value = "Blog Description" });
-            context.Settings.Add(new Setting { Key = "Keywords", Value = "Blog Keywords" });
-            context.Settings.Add(new Setting { Key = "Author", Value = "Blog Author" });
-            context.Settings.Add(new Setting { Key = "GitHub", Value = "GitHub Profile" });
-            context.Settings.Add(new Setting { Key = "LinkedIn", Value = "LinkedIn Profile" });
-            context.Settings.Add(new Setting { Key = "Email", Value = "Author Email" });
-            context.Settings.Add(new Setting { Key = "Facebook", Value = "Facebook Profile" });
-            context.Settings.Add(new Setting { Key = "Twitter", Value = "Twitter Profile" });
+            context.Settings.Add(new Setting { Key = "BlogTitle", Value = "Blog Title" });
+            context.Settings.Add(new Setting { Key = "BlogDescription", Value = "Blog Description" });
+            context.Settings.Add(new Setting { Key = "BlogKeywords", Value = "Blog Keywords" });
+            context.Settings.Add(new Setting { Key = "BlogAuthor", Value = "Blog Author" });
+            context.Settings.Add(new Setting { Key = "GitHubProfile", Value = "GitHub Profile" });
+            context.Settings.Add(new Setting { Key = "LinkedInProfile", Value = "LinkedIn Profile" });
+            context.Settings.Add(new Setting { Key = "AuthorEmail", Value = "Author Email" });
+            context.Settings.Add(new Setting { Key = "FacebookProfile", Value = "Facebook Profile" });
+            context.Settings.Add(new Setting { Key = "TwitterProfile", Value = "Twitter Profile" });
         }
 
         private void SeedAdmin(ApplicationDbContext context)

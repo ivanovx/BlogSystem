@@ -76,7 +76,7 @@
                 var post = new Post
                 {
                     Title = model.Title,
-                    CategoryId = model.CategoryId,
+                    //CategoryId = model.CategoryId,
                     Content = this.sanitizer.Sanitize(model.Content),
                     AuthorId = this.currentUser.GetUser().Id
                 };
@@ -117,7 +117,7 @@
 
                 post.Title = model.Title;
                 post.Content = this.sanitizer.Sanitize(model.Content);
-                post.CategoryId = model.CategoryId;
+                //post.CategoryId = model.CategoryId;
 
                 this.postsData.Update(post);
                 this.postsData.SaveChanges();

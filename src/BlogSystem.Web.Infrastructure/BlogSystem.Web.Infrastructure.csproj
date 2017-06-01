@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
+    <Compile Include="Attributes\PassSettingsToViewDataAttribute.cs" />
     <Compile Include="Helpers\Html\DateTimeHelper.cs" />
     <Compile Include="Helpers\Html\ShortContentHelper.cs" />
     <Compile Include="Helpers\Url\IUrlGenerator.cs" />
