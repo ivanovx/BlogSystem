@@ -6,5 +6,7 @@
     public interface IDropDownListPopulator
     {
         IEnumerable<SelectListItem> GetCategories();
+
+        IEnumerable<SelectListItem> DefaultDropDown();
     }
 }

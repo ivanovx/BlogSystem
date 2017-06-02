@@ -24,6 +24,13 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                         @Html.DisplayFor(model => post.Author)
                     </li>
+                    @if (post.Category != null)
+                    {
+                        <li>
+                            <i class="fa fa-tags" aria-hidden="true"></i>
+                            @Html.DisplayFor(model => post.Category)
+                        </li>
+                    }                    
                     <li>
                         <i class="fa fa-comments" aria-hidden="true"></i>
                         @Html.DisplayFor(model => post.CommentsCount) comments

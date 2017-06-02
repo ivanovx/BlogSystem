@@ -4,31 +4,24 @@
     using System.Web.Mvc;
 
     using BlogSystem.Services.Data.Pages;
-    using BlogSystem.Services.Web.Caching;
-    using BlogSystem.Services.Web.Mapping;
-
     using BlogSystem.Web.ViewModels.Common;
 
     public class NavController : BaseController
     {
         private readonly IPagesDataService pagesData;
-        private readonly ICacheService cacheService;
-        private readonly IMappingService mappingService;
 
-        public NavController(IPagesDataService pagesData, ICacheService cacheService, 
-            IMappingService mappingService)
+        public NavController(IPagesDataService pagesData)
         {
             this.pagesData = pagesData;
-            this.cacheService = cacheService;
-            this.mappingService = mappingService;
         }
 
         [ChildActionOnly]
         public PartialViewResult Menu()
         {
             var pages = this.pagesData.GetAllPagesForMenu();
-            var model = this.cacheService.Get("Menu",
-                () => this.mappingService.Map<MenuItemViewModel>(pages).ToList(), 600);
+            var model = this.cache.Get("Menu", () => {
+                return this.mapping.Map<MenuItemViewModel>(pages).ToList();
+            }, 600);
 
             return this.PartialView(model);
         }

@@ -2,23 +2,25 @@
 {
     using System.Web;
     using Microsoft.AspNet.Identity;
-    using Data.Models;
-    using Data.Repositories;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
 
     public class CurrentUser : ICurrentUser
     {
-        private readonly IDbRepository<ApplicationUser> users;
+        private readonly IDbRepository<ApplicationUser> usersData;
 
-        public CurrentUser(IDbRepository<ApplicationUser> users)
+        public CurrentUser(IDbRepository<ApplicationUser> usersData)
         {
-            this.users = users;
+            this.usersData = usersData;
         }
 
         public ApplicationUser GetUser()
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
+            var user = this.usersData.Find(userId);
 
-            return this.users.Find(userId);
+            return user;
         }
     }
 }

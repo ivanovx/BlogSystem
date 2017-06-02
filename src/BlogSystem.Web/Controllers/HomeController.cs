@@ -11,19 +11,17 @@
     public class HomeController : BaseController
     {
         private readonly IPostsDataService postsData;
-        private readonly IMappingService mappingService;
 
-        public HomeController(IPostsDataService postsData, IMappingService mappingService)
+        public HomeController(IPostsDataService postsData)
         {
             this.postsData = postsData;
-            this.mappingService = mappingService;
         }
 
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             var pagesCount = (int) Math.Ceiling(this.postsData.GetAllPosts().Count() / (decimal) perPage);
             var postsPage = this.postsData.GetPagePosts(page, perPage);
-            var posts = this.mappingService.Map<PostConciseViewModel>(postsPage).ToList();
+            var posts = this.mapping.Map<PostConciseViewModel>(postsPage).ToList();
 
             var model = new IndexPageViewModel
             {

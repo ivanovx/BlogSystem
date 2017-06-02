@@ -29,6 +29,8 @@
 
         public string Author { get; set; }
 
+        public string Category { get; set; }
+
         public int CommentsCount { get; set; }
 
         public string Url => this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
@@ -37,6 +39,7 @@
         {
             config.CreateMap<Post, PostConciseViewModel>()
                 .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
+                .ForMember(m => m.Category, c => c.MapFrom(post => post.Category.Name))
                 .ForMember(m => m.CommentsCount, c => c.MapFrom(post => post.Comments.Count));
         }
     }

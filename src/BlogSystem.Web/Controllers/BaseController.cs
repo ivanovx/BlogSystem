@@ -2,10 +2,9 @@
 {
     using System.Web.Mvc;
 
-    using BlogSystem.Web.Infrastructure.Attributes;
-
     using BlogSystem.Services.Web.Caching;
     using BlogSystem.Services.Web.Mapping;
+    using BlogSystem.Web.Infrastructure.Attributes;
 
     [HandleError]
     [PassSettingsToViewData]
