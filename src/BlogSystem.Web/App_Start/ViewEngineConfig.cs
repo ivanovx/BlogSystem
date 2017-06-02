@@ -4,7 +4,7 @@
 
     public class ViewEngineConfig
     {
-        public static void RegisterViewEngines(ViewEngineCollection viewEngines)
+        internal static void RegisterViewEngines(ViewEngineCollection viewEngines)
         {
             viewEngines.Clear();
 

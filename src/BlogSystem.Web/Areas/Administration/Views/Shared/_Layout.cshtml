@@ -8,6 +8,9 @@
         <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>
 
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/bootstrap")
+        @Styles.Render("~/Content/fonts")
+        @Styles.Render("~/Content/blog")
     </head>
     <body class="administration">
         @Html.Partial("_Header")
@@ -25,7 +28,10 @@
         </div>
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryajax")
         @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/blog")
+
         @RenderSection("scripts", false)
     </body>
 </html>

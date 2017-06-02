@@ -317,6 +317,10 @@ ul {
     color: rgb(5, 103, 140);
 }
 
+[role="contentinfo"] .info {
+    background: rgb(37, 37, 37);
+}
+
 .administration {
     background: none;
     padding-top: 57px;

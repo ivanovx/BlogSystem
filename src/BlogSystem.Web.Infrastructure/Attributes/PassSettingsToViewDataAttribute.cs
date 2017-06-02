@@ -3,10 +3,11 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.Repositories;
 
-    [AttributeUsage(AttributeTargets.Class)]
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class PassSettingsToViewDataAttribute : ActionFilterAttribute, IActionFilter
     {
         private readonly IDbRepository<Setting> settingsData;

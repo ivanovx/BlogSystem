@@ -26,7 +26,7 @@
     using Infrastructure.Populators;
 
     public class AutofacConfig
-    { 
+    {
         public static void RegisterAutofac()
         {
             var builder = new ContainerBuilder();
@@ -58,10 +58,7 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder
-                .RegisterType<ApplicationDbContext>()
-                .AsSelf()
-                .InstancePerRequest();
+            builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
 
             builder
                 .Register(c => c.Resolve<ApplicationDbContext>())

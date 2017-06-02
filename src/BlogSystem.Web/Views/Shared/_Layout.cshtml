@@ -13,6 +13,9 @@
         <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>        
 
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/bootstrap")
+        @Styles.Render("~/Content/fonts")
+        @Styles.Render("~/Content/blog")
 
         <link href="~/Content/vs.css" rel="stylesheet" />
   
@@ -51,7 +54,9 @@
         @Html.Partial("_Footer")
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryajax")
         @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/blog")
 
         <script src="~/Scripts/highlight.pack.js"></script>
 
