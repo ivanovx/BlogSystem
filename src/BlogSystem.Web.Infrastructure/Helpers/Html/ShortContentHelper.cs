@@ -12,7 +12,7 @@
             var document = htmlParser.Parse(text);
             var p = document.QuerySelector("p");
 
-            if (p is null)
+            if (p == null)
             {
                 return helper.Raw(string.Empty);
             }
