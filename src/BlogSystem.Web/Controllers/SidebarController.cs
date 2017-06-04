@@ -26,21 +26,22 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 10 * 60)]
         public PartialViewResult Index()
         {
-            var posts = this.postsData.GetLatestPosts();
-            var pages = this.pagesData.GetAllPages();
-            var categories = this.categoriesData.GetAllCategories();
+            var latestPosts = this.postsData.GetLatestPosts();
+            var allPages = this.pagesData.GetAllPages();
+            var allCategories = this.categoriesData.GetAllCategories();
 
             var model = new SidebarViewModel
             {
-                RecentPosts = this.cache.Get("RecentPosts", () => {
-                    return this.mapping.Map<PostViewModel>(posts).ToList();
+                RecentPosts = this.cache.Get("LatestPosts", () => {
+                    return this.mapper.Map<PostViewModel>(latestPosts).ToList();
                 }, 600),
                 AllPages = this.cache.Get("AllPages", () => {
-                    return this.mapping.Map<PageViewModel>(pages).ToList();
+                    return this.mapper.Map<PageViewModel>(allPages).ToList();
                 }, 600),
-                Categories = this.mapping.Map<CategoryViewModel>(categories).ToList()
+                Categories = this.mapper.Map<CategoryViewModel>(allCategories).ToList()
             };
 
             return this.PartialView(model);

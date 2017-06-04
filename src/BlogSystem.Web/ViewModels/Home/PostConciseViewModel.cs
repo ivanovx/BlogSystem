@@ -4,17 +4,23 @@
     using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
-    using Data.Models;
-    using Infrastructure.Mapping;
-    using Infrastructure.Helpers.Url;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Web.Infrastructure.Mapping;
+    using BlogSystem.Web.Infrastructure.Helpers.Url;
 
     public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IUrlGenerator urlGenerator;
 
-        public PostConciseViewModel()
+        public PostConciseViewModel() : this(new UrlGenerator())
         {
-            this.urlGenerator = DependencyResolver.Current.GetService<IUrlGenerator>();
+
+        }
+
+        public PostConciseViewModel(IUrlGenerator urlGenerator)
+        {
+            this.urlGenerator = urlGenerator;
         }
 
         public int Id { get; set; }

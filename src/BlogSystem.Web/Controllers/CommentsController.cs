@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Services.Data.Comments;
-    using Services.Web.Mapping;
-    using Infrastructure.Identity;
-    using Infrastructure.XSS;
-    using ViewModels.Comments;
+
+    using BlogSystem.Services.Data.Comments;
+
+    using BlogSystem.Web.ViewModels.Comments;
+    using BlogSystem.Web.Infrastructure.XSS;
+    using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Attributes;
 
     [Authorize]
@@ -14,15 +15,12 @@
     {
         private readonly ICommentsDataService commentsData;
         private readonly ICurrentUser currentUser;
-        private readonly IMappingService mappingService;
         private readonly ISanitizer sanitizer;
 
-        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, 
-            IMappingService mappingService, ISanitizer sanitizer)
+        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, ISanitizer sanitizer)
         {
             this.commentsData = commentsData;
             this.currentUser = currentUser;
-            this.mappingService = mappingService;
             this.sanitizer = sanitizer;
         }
 
@@ -32,7 +30,7 @@
         public PartialViewResult All(int id)
         {
             var comments = this.commentsData.GetAllCommentsByPost(id);
-            var model = this.mappingService.Map<CommentViewModel>(comments).ToList();
+            var model = this.mapper.Map<CommentViewModel>(comments).ToList();
 
             return this.PartialView(model);
         }

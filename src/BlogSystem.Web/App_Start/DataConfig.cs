@@ -6,7 +6,7 @@
 
     public class DataConfig
     {
-        public static void ConfigureDatabase()
+        internal static void ConfigureDatabase()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }

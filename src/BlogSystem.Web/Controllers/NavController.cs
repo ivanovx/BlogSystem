@@ -16,11 +16,12 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 6 * 10 * 60)]
         public PartialViewResult Menu()
         {
             var pages = this.pagesData.GetAllPagesForMenu();
             var model = this.cache.Get("Menu", () => {
-                return this.mapping.Map<MenuItemViewModel>(pages).ToList();
+                return this.mapper.Map<MenuItemViewModel>(pages).ToList();
             }, 600);
 
             return this.PartialView(model);

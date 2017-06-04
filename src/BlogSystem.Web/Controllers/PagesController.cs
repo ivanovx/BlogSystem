@@ -23,7 +23,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapping.Map<PageViewModel>(page);
+            var model = this.mapper.Map<PageViewModel>(page);
 
             return this.View(model);
         }

@@ -10,12 +10,7 @@
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class PassSettingsToViewDataAttribute : ActionFilterAttribute, IActionFilter
     {
-        private readonly IDbRepository<Setting> settingsData;
-
-        public PassSettingsToViewDataAttribute()
-        {
-            this.settingsData = DependencyResolver.Current.GetService<IDbRepository<Setting>>();
-        }
+        public IDbRepository<Setting> Settings { get; set; }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -24,7 +19,7 @@
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var settings = this.settingsData.All().ToList();
+            var settings = this.Settings.All().ToList();
             var viewData = filterContext.Controller.ViewData;
 
             foreach(var setting in settings)

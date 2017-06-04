@@ -4,26 +4,33 @@
     using System.Web.Mvc;
     using System.Data.Entity;
     using System.Reflection;
+
     using Autofac;
     using Autofac.Integration.Mvc;
+
     using AutoMapper;
+
     using Microsoft.Owin.Security;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin.Security.DataProtection;
-    using Data;
-    using Data.Models;
-    using Data.Repositories;
-    using Services.Data;
-    using Services.Web;
-    using Identity;
-    using Controllers;
-    using Infrastructure.Helpers.Url;
-    using Infrastructure.Identity;
-    using Infrastructure.Mapping;
-    using Infrastructure.Settings;
-    using Infrastructure.XSS;
-    using Infrastructure.Populators;
+
+    using BlogSystem.Data;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+
+    using BlogSystem.Services.Data;
+    using BlogSystem.Services.Web;
+
+    using BlogSystem.Web.Identity;
+    using BlogSystem.Web.Controllers;
+
+    using BlogSystem.Web.Infrastructure.Helpers.Url;
+    using BlogSystem.Web.Infrastructure.Identity;
+    using BlogSystem.Web.Infrastructure.Mapping;
+    using BlogSystem.Web.Infrastructure.Settings;
+    using BlogSystem.Web.Infrastructure.XSS;
+    using BlogSystem.Web.Infrastructure.Populators;
 
     public class AutofacConfig
     {
@@ -70,15 +77,9 @@
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
 
-            builder
-                .RegisterType<ApplicationUserManager>()
-                .AsSelf()
-                .InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
 
-            builder
-                .RegisterType<ApplicationSignInManager>()
-                .AsSelf()
-                .InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
 
             builder
                 .Register(c => new UserStore<ApplicationUser>(c.Resolve<DbContext>()))
@@ -94,30 +95,18 @@
                 DataProtectionProvider = new DpapiDataProtectionProvider("Application​")
             });
 
-            builder
-                .RegisterType<CurrentUser>()
-                .As<ICurrentUser>()
-                .InstancePerRequest();
+            builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerRequest();
 
-            builder
-                .RegisterType<SettingsManager>()
-                .As<ISettingsManager>()
-                .InstancePerRequest();
+           // builder
+             //   .RegisterType<SettingsManager>()
+              //  .As<ISettingsManager>()
+              //  .InstancePerRequest();
 
-            builder
-                .RegisterType<UrlGenerator>()
-                .As<IUrlGenerator>()
-                .InstancePerRequest();
+            builder.RegisterType<UrlGenerator>().As<IUrlGenerator>().InstancePerRequest();
 
-            builder
-                .RegisterType<HtmlSanitizerAdapter>()
-                .As<ISanitizer>()
-                .InstancePerRequest();
+            builder.RegisterType<HtmlSanitizerAdapter>().As<ISanitizer>().InstancePerRequest();
 
-            builder
-                .RegisterType<DropDownListPopulator>()
-                .As<IDropDownListPopulator>()
-                .InstancePerRequest();
+            builder.RegisterType<DropDownListPopulator>().As<IDropDownListPopulator>().InstancePerRequest();
 
             builder
                 .Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())

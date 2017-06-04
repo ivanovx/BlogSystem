@@ -3,24 +3,26 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Data.Models;
-    using Data.Repositories;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+
+    using BlogSystem.Web.Areas.Administration.ViewModels.Categories;
 
     public class CategoriesController : AdministrationController
     {
-        private readonly IDbRepository<Category> dbRepository;
+        private readonly IDbRepository<Category> categoriesData;
 
-        public CategoriesController(IDbRepository<Category> dbRepository)
+        public CategoriesController(IDbRepository<Category> categoriesData)
         {
-            this.dbRepository = dbRepository;
+            this.categoriesData = categoriesData;
         }
 
-        [HttpGet]
         public ActionResult Index()
         {
-            var categories = this.dbRepository.All().ToList();
+            var allCategories = this.categoriesData.All().Where(c => !c.IsDeleted);
+            var model = this.mapper.Map<CategoryViewModel>(allCategories).ToList();
 
-            return this.View(categories);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -31,7 +33,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Category model)
+        public ActionResult Create(CategoryViewModel model)
         {
             if (model != null && ModelState.IsValid)
             {
@@ -40,8 +42,8 @@
                     Name = model.Name
                 };
 
-                this.dbRepository.Add(category);
-                this.dbRepository.SaveChanges();
+                this.categoriesData.Add(category);
+                this.categoriesData.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }

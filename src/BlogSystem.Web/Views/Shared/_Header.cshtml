@@ -1,4 +1,6 @@
-﻿<!-- Google Tag Manager (noscript) -->
+﻿@using BlogSystem.Common
+
+<!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe 
             src="https://www.googletagmanager.com/ns.html?id=GTM-KXNVKNT" 
@@ -9,9 +11,30 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-@{ 
-    Html.RenderAction("Menu", "Nav"); 
-}
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="/" class="navbar-brand" title="@*ViewBag.Settings[" Title"]*@">
+        <img src="~/images/logo.png" width="125" height="85" alt="Site logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbar">
+        @{
+            Html.RenderAction("Menu", "Nav");
+        }
+
+        <ul class="navbar-nav navbar-right">
+            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Administration", "Index", "Home", new { area = "Administration" }, new { @class = "nav-link" })
+                </li>
+            }
+        </ul>
+
+        @Html.Partial("_LoginPartial")
+    </div>
+</nav>
 
 <header role="banner">
     <h1>@ViewData["BlogTitle"]</h1>

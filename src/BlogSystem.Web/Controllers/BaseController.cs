@@ -11,12 +11,12 @@
     public abstract class BaseController : Controller
     {
         protected readonly ICacheService cache;
-        protected readonly IMappingService mapping;
+        protected readonly IMappingService mapper;
         
         protected BaseController()
         {
             this.cache = DependencyResolver.Current.GetService<ICacheService>();
-            this.mapping = DependencyResolver.Current.GetService<IMappingService>();
+            this.mapper = DependencyResolver.Current.GetService<IMappingService>();
         }
     }
 }

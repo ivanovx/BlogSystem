@@ -3,26 +3,25 @@
     using System.Linq;
     using System.Data.Entity;
 
-    public class DbRepository<T> : IDbRepository<T> 
-        where T : class
+    public class DbRepository<T> : IDbRepository<T> where T : class
     {
         private readonly DbContext dbContext;
-        private readonly IDbSet<T> entitySet;
+        private readonly IDbSet<T> dbSet;
 
         public DbRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.entitySet = this.dbContext.Set<T>();
+            this.dbSet = this.dbContext.Set<T>();
         }
 
         public IQueryable<T> All()
         {
-            return this.entitySet.AsQueryable();
+            return this.dbSet.AsQueryable();
         }
 
         public T Find(object id)
         {
-            return this.entitySet.Find(id);
+            return this.dbSet.Find(id);
         }
 
         public T Add(T entity)
@@ -60,7 +59,7 @@
 
             if (entry.State == EntityState.Detached)
             {
-                this.entitySet.Attach(entity);
+                this.dbSet.Attach(entity);
             }
 
             entry.State = state;

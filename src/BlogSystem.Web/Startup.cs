@@ -1,8 +1,7 @@
-﻿using BlogSystem.Web;
+﻿using Owin;
 using Microsoft.Owin;
-using Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup(typeof(BlogSystem.Web.Startup))]
 namespace BlogSystem.Web
 {
     public partial class Startup

@@ -31,7 +31,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapping.Map<PostViewModel>(post);
+            var model = this.mapper.Map<PostViewModel>(post);
 
             return this.View(model);
         }
@@ -41,7 +41,7 @@
             var category = this.categoriesData.GetCategory(id);
             var postsByCategory = this.postsData.GetAllPostsByCategory(id);
 
-            var posts = this.mapping.Map<PostViewModel>(postsByCategory).ToList();
+            var posts = this.mapper.Map<PostViewModel>(postsByCategory).ToList();
 
             var model = new PostsByCategoryViewModel
             {

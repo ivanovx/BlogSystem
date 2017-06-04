@@ -1,7 +1,7 @@
-﻿@model IEnumerable<BlogSystem.Data.Models.Category>
+﻿@model IEnumerable<BlogSystem.Web.Areas.Administration.ViewModels.Categories.CategoryViewModel>
 
 @{
-    ViewBag.Title = "All categories";
+    ViewBag.Title = "All Categories";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -17,18 +17,25 @@
         <th>Actions</th>
     </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var category in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(model => category.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(model => category.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                <div class="btn-group">
+                    <a href="@Url.Action("Edit", "Categories", new {area = "Administration", id = category.Id})" class="btn btn-warning">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        Edit
+                    </a>
+                    <a href="@Url.Action("Delete", "Categories", new {area = "Administration", id = category.Id})" class="btn btn-danger">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        Delete
+                    </a>
+                </div>
             </td>
         </tr>
     }

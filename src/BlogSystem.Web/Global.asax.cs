@@ -5,7 +5,8 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using System.Reflection;
-    using Infrastructure.Mapping;
+
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     public class MvcApplication : HttpApplication
     {   
@@ -21,6 +22,8 @@
 
             AutofacConfig.RegisterAutofac();
             AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+
+            MvcHandler.DisableMvcResponseHeader = true;
         }
     }
 }
