@@ -2,32 +2,29 @@
 {
     using System;
     using System.Linq;
-    using System.Web.Mvc;   
-    using Common;
-    using Data.Models;
-    using Data.Repositories;
-    using Services.Web.Mapping;
-    using ViewModels.Posts;
-    using Infrastructure.XSS;
-    using Infrastructure.Identity;
-    using Infrastructure.Populators;
+    using System.Web.Mvc;
+    
+    using BlogSystem.Common;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+    using BlogSystem.Web.Infrastructure.XSS;
+    using BlogSystem.Web.Infrastructure.Identity;
+    using BlogSystem.Web.Infrastructure.Populators;
+    using BlogSystem.Web.Areas.Administration.ViewModels.Posts;
 
     public class PostsController : AdministrationController
     {
         private readonly IDbRepository<Post> postsData;
         private readonly IDbRepository<Category> categoriesData;
-        private readonly IMappingService mappingService;
         private readonly ICurrentUser currentUser;
         private readonly IDropDownListPopulator populator;
         private readonly ISanitizer sanitizer;
 
         public PostsController(IDbRepository<Post> postsData, IDbRepository<Category> categoriesData,
-            IMappingService mappingService, ICurrentUser currentUser, 
-            IDropDownListPopulator populator, ISanitizer sanitizer) 
+            ICurrentUser currentUser, IDropDownListPopulator populator, ISanitizer sanitizer) 
         {
             this.postsData = postsData;
             this.categoriesData = categoriesData;
-            this.mappingService = mappingService;
             this.currentUser = currentUser;
             this.populator = populator;
             this.sanitizer = sanitizer;
@@ -44,7 +41,7 @@
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-            var posts = this.mappingService.Map<PostViewModel>(postsPage).ToList();
+            var posts = this.mapper.Map<PostViewModel>(postsPage).ToList();
 
             var model = new IndexPostsPageViewModel
             {
@@ -100,7 +97,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mappingService.Map<PostViewModel>(post);
+            var model = this.mapper.Map<PostViewModel>(post);
 
             model.Categories = this.populator.GetCategories();
 

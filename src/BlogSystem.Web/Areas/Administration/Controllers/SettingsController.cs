@@ -2,22 +2,23 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.Repositories;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
 
     public class SettingsController : AdministrationController
     {
-        private readonly IDbRepository<Setting> settingsRepository;
+        private readonly IDbRepository<Setting> settingsData;
 
-        public SettingsController(IDbRepository<Setting> settingsRepository)
+        public SettingsController(IDbRepository<Setting> settingsData)
         {
-            this.settingsRepository = settingsRepository;
+            this.settingsData = settingsData;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var settings = this.settingsRepository.All().ToList();
+            var settings = this.settingsData.All().ToList();
 
             return this.View(settings);
         }
@@ -30,7 +31,7 @@
                 return this.HttpNotFound();
             }
 
-            var setting = this.settingsRepository.Find(id);
+            var setting = this.settingsData.Find(id);
 
             return this.View(setting);
         }
@@ -41,8 +42,10 @@
         {
             if (setting != null && ModelState.IsValid)
             {
-                this.settingsRepository.Update(setting);
-                this.settingsRepository.SaveChanges();
+                this.settingsData.Update(setting);
+                this.settingsData.SaveChanges();
+
+                this.cache.Remove("Settings");
 
                 return this.RedirectToAction("Index");
             }

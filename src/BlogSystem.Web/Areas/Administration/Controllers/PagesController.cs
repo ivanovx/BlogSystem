@@ -2,44 +2,42 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Data.Repositories;
-    using ViewModels.Pages;
-    using Infrastructure.Identity;
-    using Infrastructure.Helpers.Url;
-    using Infrastructure.XSS;
-    using Services.Web.Mapping;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+
+    using BlogSystem.Web.Infrastructure.Identity;
+    using BlogSystem.Web.Infrastructure.Helpers.Url;
+    using BlogSystem.Web.Infrastructure.XSS;
+    using BlogSystem.Web.Areas.Administration.ViewModels.Pages;
 
     public class PagesController : AdministrationController
     {
         private readonly IDbRepository<Page> pagesData;
-        private readonly IMappingService mappingService;
         private readonly IUrlGenerator urlGenerator;
         private readonly ICurrentUser currentUser;
         private readonly ISanitizer sanitizer;
 
-        public PagesController(IDbRepository<Page> pagesData, IMappingService mappingService, 
-            IUrlGenerator urlGenerator, ICurrentUser currentUser, ISanitizer sanitizer)
+        public PagesController(IDbRepository<Page> pagesData, IUrlGenerator urlGenerator, 
+            ICurrentUser currentUser, ISanitizer sanitizer)
         {
             this.pagesData = pagesData;
-            this.mappingService = mappingService;
             this.urlGenerator = urlGenerator;
             this.currentUser = currentUser;
             this.sanitizer = sanitizer;
         }
 
-        [HttpGet]
         public ActionResult Index()
         {
-            var pages = this.pagesData.All().OrderByDescending(p => p.CreatedOn);
-            var model = this.mappingService.Map<PageViewModel>(pages).ToList();
+            var allPages = this.pagesData.All().OrderByDescending(p => p.CreatedOn);
+            var pages = this.mapper.Map<PageViewModel>(allPages).ToList();
 
-            var viewModel = new IndexPagesViewModel
+            var model = new IndexPagesViewModel
             {
-                Pages = model
+                Pages = pages
             };
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -73,15 +71,16 @@
         }
 
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            var page = this.pagesData.Find(id);
+
+            if (page == null)
             {
                 return this.HttpNotFound();
             }
 
-            var page = this.pagesData.Find(id);
-            var model = this.mappingService.Map<PageViewModel>(page);
+            var model = this.mapper.Map<PageViewModel>(page);
 
             return this.View(model);
         }
@@ -111,12 +110,12 @@
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var page = this.pagesData.Find(id);
+
+            if (page == null)
             {
                 return this.HttpNotFound();
             }
-
-            var page = this.pagesData.Find(id);
 
             return this.View(page);
         }
