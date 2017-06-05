@@ -28,7 +28,6 @@
     using BlogSystem.Web.Infrastructure.Helpers.Url;
     using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Mapping;
-    using BlogSystem.Web.Infrastructure.Settings;
     using BlogSystem.Web.Infrastructure.XSS;
     using BlogSystem.Web.Infrastructure.Populators;
 
