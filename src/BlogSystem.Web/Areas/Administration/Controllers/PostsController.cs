@@ -1,6 +1,7 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
+    using System.Net;
     using System.Linq;
     using System.Web.Mvc;
     
@@ -90,6 +91,11 @@
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var post = this.postsData.Find(id);
 
             if (post == null)
@@ -130,10 +136,15 @@
         {
             if (id == null)
             {
-                return this.HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var post = this.postsData.Find(id);
+
+            if (post == null)
+            {
+                return this.HttpNotFound();
+            }
 
             return this.View(post);
         }

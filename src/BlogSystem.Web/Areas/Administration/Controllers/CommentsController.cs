@@ -1,40 +1,39 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
     using System;
+    using System.Net;
     using System.Linq;
     using System.Web.Mvc;
+
     using Common;
     using Data.Repositories;
     using ViewModels.Comments;
-    using Services.Web.Mapping;
     using Data.Models;
     using Infrastructure.XSS;
+    
 
     public class CommentsController : AdministrationController
     {
         private readonly IDbRepository<Comment> commentsData;
-        private readonly IMappingService mappingService;
         private readonly ISanitizer sanitizer;
 
-        public CommentsController(IDbRepository<Comment> commentsData, IMappingService mappingService, ISanitizer sanitizer) 
+        public CommentsController(IDbRepository<Comment> commentsData, ISanitizer sanitizer) 
         {
             this.commentsData = commentsData;
-            this.mappingService = mappingService;
             this.sanitizer = sanitizer;
         }
 
-        [HttpGet]
         public ActionResult Index(int page = 1, int perPage = GlobalConstants.DefaultPageSize)
         {
             int pagesCount = (int) Math.Ceiling(this.commentsData.All().Count() / (decimal) perPage);
 
-            var commentsPage = this.commentsData
+            var allComments = this.commentsData
                 .All()
                 .OrderByDescending(p => p.CreatedOn)
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-            var comments = this.mappingService.Map<CommentViewModel>(commentsPage).ToList();
+            var comments = this.mapper.Map<CommentViewModel>(allComments).ToList();
 
             var model = new IndexCommentsPageViewModel
             {
@@ -49,13 +48,19 @@
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+           if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var comment = this.commentsData.Find(id);
+
+            if (comment == null)
             {
                 return this.HttpNotFound();
             }
 
-            var comment = this.commentsData.Find(id);
-            var model = this.mappingService.Map<CommentViewModel>(comment);
+            var model = this.mapper.Map<CommentViewModel>(comment);
 
             return this.View(model);
         }
@@ -84,10 +89,15 @@
         {
             if (id == null)
             {
-                return this.HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var comment = this.commentsData.Find(id);
+
+            if (comment == null)
+            {
+                return this.HttpNotFound();
+            }
 
             return this.View(comment);
         }

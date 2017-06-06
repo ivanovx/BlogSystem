@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System.Net;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -15,7 +16,6 @@
             this.settingsData = settingsData;
         }
 
-        [HttpGet]
         public ActionResult Index()
         {
             var settings = this.settingsData.All().ToList();
@@ -28,10 +28,15 @@
         {
             if (id == null)
             {
-                return this.HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var setting = this.settingsData.Find(id);
+
+            if (setting == null)
+            {
+                return this.HttpNotFound();
+            }
 
             return this.View(setting);
         }

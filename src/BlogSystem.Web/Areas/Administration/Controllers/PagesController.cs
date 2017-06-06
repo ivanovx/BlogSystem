@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.Controllers
 {
+    using System.Net;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -10,6 +11,7 @@
     using BlogSystem.Web.Infrastructure.Helpers.Url;
     using BlogSystem.Web.Infrastructure.XSS;
     using BlogSystem.Web.Areas.Administration.ViewModels.Pages;
+    
 
     public class PagesController : AdministrationController
     {
@@ -71,8 +73,13 @@
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var page = this.pagesData.Find(id);
 
             if (page == null)
@@ -110,6 +117,11 @@
         [HttpGet]
         public ActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var page = this.pagesData.Find(id);
 
             if (page == null)
