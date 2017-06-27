@@ -7,32 +7,28 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
 
-    using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Helpers.Url;
     using BlogSystem.Web.Infrastructure.XSS;
+
     using BlogSystem.Web.Areas.Administration.ViewModels.Pages;
-    
 
     public class PagesController : AdministrationController
     {
         private readonly IDbRepository<Page> pagesData;
         private readonly IUrlGenerator urlGenerator;
-        private readonly ICurrentUser currentUser;
         private readonly ISanitizer sanitizer;
 
-        public PagesController(IDbRepository<Page> pagesData, IUrlGenerator urlGenerator, 
-            ICurrentUser currentUser, ISanitizer sanitizer)
+        public PagesController(IDbRepository<Page> pagesData, IUrlGenerator urlGenerator, ISanitizer sanitizer)
         {
             this.pagesData = pagesData;
             this.urlGenerator = urlGenerator;
-            this.currentUser = currentUser;
             this.sanitizer = sanitizer;
         }
 
         public ActionResult Index()
         {
             var allPages = this.pagesData.All().OrderByDescending(p => p.CreatedOn);
-            var pages = this.mapper.Map<PageViewModel>(allPages).ToList();
+            var pages = this.Mapper.Map<PageViewModel>(allPages).ToList();
 
             var model = new IndexPagesViewModel
             {
@@ -59,7 +55,7 @@
                     Title = model.Title,
                     Content =  this.sanitizer.Sanitize(model.Content),
                     VisibleInMenu = model.VisibleInMenu,
-                    AuthorId = this.currentUser.GetUser().Id,
+                    AuthorId = this.CurrentUser.GetUser().Id,
                     Permalink = this.urlGenerator.GenerateUrl(model.Title)
                 };
 
@@ -87,7 +83,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapper.Map<PageViewModel>(page);
+            var model = this.Mapper.Map<PageViewModel>(page);
 
             return this.View(model);
         }
@@ -104,6 +100,7 @@
                 page.Content = this.sanitizer.Sanitize(model.Content);
                 page.VisibleInMenu = model.VisibleInMenu;
                 page.Permalink = this.urlGenerator.GenerateUrl(model.Title);
+                page.AuthorId = this.CurrentUser.GetUser().Id;
 
                 this.pagesData.Update(page);
                 this.pagesData.SaveChanges();

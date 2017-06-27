@@ -1,7 +1,8 @@
 ﻿namespace BlogSystem.Web.ViewModels.Common
 {
-    using Data.Models;
-    using Infrastructure.Mapping;
+    using BlogSystem.Data.Models;
+
+    using BlogSystem.Web.Infrastructure.Mapping;
 
     public class MenuItemViewModel : IMapFrom<Page>
     {

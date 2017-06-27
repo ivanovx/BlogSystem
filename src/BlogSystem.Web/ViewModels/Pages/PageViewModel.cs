@@ -3,22 +3,21 @@
     using System;
     using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
-    using AutoMapper;
-    using Data.Models;
-    using Infrastructure.Mapping;
 
-    public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
+    using AutoMapper;
+
+    using BlogSystem.Data.Models;
+
+    using BlogSystem.Web.Infrastructure.Mapping;
+
+    public class PageViewModel : BaseViewModel, IMapFrom<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
         [AllowHtml]
-        [DataType(DataType.Html)]
         public string Content { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime CreatedOn { get; set; }
 
         public string Permalink { get; set; }
 

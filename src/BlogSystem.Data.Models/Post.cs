@@ -3,7 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts.Models;
+
+    using BlogSystem.Data.Contracts.Models;
 
     public class Post : BaseModel<int>
     {
@@ -23,15 +24,11 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
-
-        public int? CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
 
         public virtual ICollection<Comment> Comments
         {

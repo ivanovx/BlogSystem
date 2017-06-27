@@ -41,8 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categories\CategoriesDataService.cs" />
-    <Compile Include="Categories\ICategoriesDataService.cs" />
     <Compile Include="Comments\CommentsDataService.cs" />
     <Compile Include="Comments\ICommentsDataService.cs" />
     <Compile Include="IDataService.cs" />

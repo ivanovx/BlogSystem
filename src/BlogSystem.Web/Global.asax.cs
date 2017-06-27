@@ -21,7 +21,7 @@
             ViewEngineConfig.RegisterViewEngines(ViewEngines.Engines);
 
             AutofacConfig.RegisterAutofac();
-            AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
 
             MvcHandler.DisableMvcResponseHeader = true;
         }

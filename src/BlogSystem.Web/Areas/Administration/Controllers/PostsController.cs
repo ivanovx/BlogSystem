@@ -8,26 +8,18 @@
     using BlogSystem.Common;
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
+
     using BlogSystem.Web.Infrastructure.XSS;
-    using BlogSystem.Web.Infrastructure.Identity;
-    using BlogSystem.Web.Infrastructure.Populators;
     using BlogSystem.Web.Areas.Administration.ViewModels.Posts;
 
     public class PostsController : AdministrationController
     {
         private readonly IDbRepository<Post> postsData;
-        private readonly IDbRepository<Category> categoriesData;
-        private readonly ICurrentUser currentUser;
-        private readonly IDropDownListPopulator populator;
         private readonly ISanitizer sanitizer;
 
-        public PostsController(IDbRepository<Post> postsData, IDbRepository<Category> categoriesData,
-            ICurrentUser currentUser, IDropDownListPopulator populator, ISanitizer sanitizer) 
-        {
+        public PostsController(IDbRepository<Post> postsData, ISanitizer sanitizer)
+        { 
             this.postsData = postsData;
-            this.categoriesData = categoriesData;
-            this.currentUser = currentUser;
-            this.populator = populator;
             this.sanitizer = sanitizer;
         }
 
@@ -42,7 +34,7 @@
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-            var posts = this.mapper.Map<PostViewModel>(postsPage).ToList();
+            var posts = this.Mapper.Map<PostViewModel>(postsPage).ToList();
 
             var model = new IndexPostsPageViewModel
             {
@@ -56,13 +48,8 @@
 
         [HttpGet]
         public ActionResult Create()
-        {            
-            var model = new PostViewModel
-            {
-                Categories = this.populator.GetCategories()
-            };
-
-            return this.View(model);
+        {
+            return this.View();
         }
 
         [HttpPost]
@@ -74,9 +61,8 @@
                 var post = new Post
                 {
                     Title = model.Title,
-                    CategoryId = model.CategoryId,
                     Content = this.sanitizer.Sanitize(model.Content),
-                    AuthorId = this.currentUser.GetUser().Id
+                    AuthorId = this.CurrentUser.GetUser().Id
                 };
 
                 this.postsData.Add(post);
@@ -103,9 +89,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapper.Map<PostViewModel>(post);
-
-            model.Categories = this.populator.GetCategories();
+            var model = this.Mapper.Map<PostViewModel>(post);
 
             return this.View(model);
         }
@@ -120,7 +104,7 @@
 
                 post.Title = model.Title;
                 post.Content = this.sanitizer.Sanitize(model.Content);
-                post.CategoryId = model.CategoryId;
+                post.AuthorId = this.CurrentUser.GetUser().Id;
 
                 this.postsData.Update(post);
                 this.postsData.SaveChanges();

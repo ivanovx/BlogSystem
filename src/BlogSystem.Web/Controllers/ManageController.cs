@@ -1,14 +1,16 @@
 ﻿namespace BlogSystem.Web.Controllers
 {
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using Identity;
-    using ViewModels.Manage;
+
+    using BlogSystem.Web.Identity;
+    using BlogSystem.Web.ViewModels.Manage;
 
     [Authorize]
     public class ManageController : BaseController

@@ -4,6 +4,7 @@
     using System.Web.Mvc;
 
     using BlogSystem.Services.Data.Pages;
+
     using BlogSystem.Web.ViewModels.Common;
 
     public class NavController : BaseController
@@ -20,8 +21,8 @@
         public PartialViewResult Menu()
         {
             var pages = this.pagesData.GetAllPagesForMenu();
-            var model = this.cache.Get("Menu", () => {
-                return this.mapper.Map<MenuItemViewModel>(pages).ToList();
+            var model = this.Cache.Get("Menu", () => {
+                return this.Mapper.Map<MenuItemViewModel>(pages).ToList();
             }, 600);
 
             return this.PartialView(model);

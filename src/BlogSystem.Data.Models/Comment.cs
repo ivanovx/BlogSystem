@@ -2,7 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts.Models;
+
+    using BlogSystem.Data.Contracts.Models;
 
     public class Comment : BaseModel<int>
     {

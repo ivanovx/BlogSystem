@@ -50,7 +50,7 @@
                 this.settingsData.Update(setting);
                 this.settingsData.SaveChanges();
 
-                this.cache.Remove("Settings");
+                this.Cache.Remove("Settings");
 
                 return this.RedirectToAction("Index");
             }

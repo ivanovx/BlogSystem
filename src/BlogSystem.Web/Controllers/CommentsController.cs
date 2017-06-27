@@ -7,20 +7,17 @@
 
     using BlogSystem.Web.ViewModels.Comments;
     using BlogSystem.Web.Infrastructure.XSS;
-    using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Attributes;
 
     [Authorize]
     public class CommentsController : BaseController
     {
         private readonly ICommentsDataService commentsData;
-        private readonly ICurrentUser currentUser;
         private readonly ISanitizer sanitizer;
 
-        public CommentsController(ICommentsDataService commentsData, ICurrentUser currentUser, ISanitizer sanitizer)
+        public CommentsController(ICommentsDataService commentsData, ISanitizer sanitizer)
         {
             this.commentsData = commentsData;
-            this.currentUser = currentUser;
             this.sanitizer = sanitizer;
         }
 
@@ -30,7 +27,7 @@
         public PartialViewResult All(int id)
         {
             var comments = this.commentsData.GetAllCommentsByPost(id);
-            var model = this.mapper.Map<CommentViewModel>(comments).ToList();
+            var model = this.Mapper.Map<CommentViewModel>(comments).ToList();
 
             return this.PartialView(model);
         }
@@ -39,9 +36,9 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(int id, CommentViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (model != null && this.ModelState.IsValid)
             {
-                var userId = this.currentUser.GetUser().Id;
+                var userId = this.CurrentUser.GetUser().Id;
                 var content = this.sanitizer.Sanitize(model.Content);
 
                 this.commentsData.AddCommentToPost(id, content, userId);

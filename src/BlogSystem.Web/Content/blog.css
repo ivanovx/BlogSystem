@@ -11,6 +11,7 @@
 }
 
 body {
+    padding-top: 6.3em;
     background: rgb(238, 238, 238);
 }
 
@@ -19,8 +20,9 @@ body {
     background: rgb(5, 103, 140);
 }
 
-a {
-    color: rgb(5, 103, 140);
+::-moz-selection {
+    color: white;
+    background: rgb(5, 103, 140);
 }
 
 a:hover,
@@ -87,14 +89,15 @@ ul {
 [role="banner"] {
     padding: 0;
     position: relative;
-    background: transparent url("../images/header.jpg") no-repeat center top;
+    background: transparent url("/images/header.jpg") no-repeat center top;
+    background-attachment: fixed;
     background-size: 100% 100%;
     height: 250px;
 }
 
 @media (min-width: 750px) {
     [role="banner"] {
-        height: 400px;
+        height: 350px;
     }
 }
 
@@ -109,7 +112,7 @@ ul {
 }
 
 [role="banner"] > h1 {
-    padding-top: 1.5em;
+    padding-top: 0.5em;
     font-weight: 900;
     font-size: 2.5em;
 }
@@ -120,9 +123,11 @@ ul {
 
 @media (min-width: 650px) {
     [role="banner"] > h1 {
+        padding-top: 1.5em;
         font-size: 4.8vw;
     }
 }
+
 
 .navbar .navbar-nav .nav-link,
 .dropdown-item {
@@ -131,13 +136,51 @@ ul {
     font-style: normal;
 }
 
+/*
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+    color: rgb(5, 103, 140); 
+}*/
+
 .navbar .navbar-toggler-icon {
-    padding: 2em .75rem;
+    padding: 2em 1em;
 }
 
+.navbar .navbar-brand {
+    padding: 0;
+}
+
+.navbar #registerLink, 
+.navbar #loginLink {
+    margin: 0.2em;
+}
+
+.navbar .navbar-brand img {
+    width: 125px;
+    height: 85px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-shrink .navbar-toggler-icon {
+    padding: 1em;
+}
+
+.navbar-shrink .navbar-brand img {
+    width: 75px;
+    height: 55px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+/*
 [role="main"] {
     margin-top: 2.5em;
-}
+}*/
 
 [role="main"] .post-container .post-content ul {
     list-style: square !important;
@@ -154,6 +197,13 @@ ul {
     background: white;
 }
 
+[role="main"] .post-container,
+[role="main"] .widget {
+    margin: 1.5em auto;
+    padding: 1.5em 1.5em;
+}
+
+/*
 [role="main"] .post-container {
     margin-bottom: 2.5em;
     padding: 2.5em 2em;
@@ -163,6 +213,7 @@ ul {
     margin-bottom: 1.5em;
     padding: 1em 1.5em;
 }
+*/
 
 .widget h3 {
     position: relative;
@@ -187,12 +238,21 @@ ul {
 
 [role="main"] .widget ul li {
     font-weight: 700;
+    font-size: 1.1em;
+    margin: 1em auto;
+}
+
+[role="main"] .widget ul li .fa {
+    width: 20px;
+    height: 20px;
+    /*font-size: 25px;*/
 }
 
 [role="main"] .post-container:before,
 [role="main"] .widget:before {
-    content: "";
+    display: block;
     position: absolute;
+    content: "";
     top: 0;
     right: 0;
     z-index: 40;
@@ -203,16 +263,7 @@ ul {
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
     -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
     box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
-    display: block;
-    width: 0;
-}
-
-[role="main"] .widget ul li .fa {
-    width: 20px;
-    height: 20px;
-    padding-top: 5px;
-    font-size: 20px;
-    text-align: center;
+   /* width: 0;*/
 }
 
 [role="main"] .post-container .post-meta {
@@ -319,6 +370,14 @@ ul {
 
 [role="contentinfo"] .info {
     background: rgb(37, 37, 37);
+    text-align: center;
+    padding: 1em;
+}
+
+[role="contentinfo"] .info p {
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
 }
 
 .administration {

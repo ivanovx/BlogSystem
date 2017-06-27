@@ -9,8 +9,6 @@
     {
         IQueryable<Post> GetAllPosts();
 
-        IQueryable<Post> GetAllPostsByCategory(int id);
-
         IQueryable<Post> GetLatestPosts(int size = GlobalConstants.DefaultPageSize);
 
         IQueryable<Post> GetPagePosts(int page, int perPage);

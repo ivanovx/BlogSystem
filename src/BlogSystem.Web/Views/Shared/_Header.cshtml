@@ -11,12 +11,12 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top animated island" role="navigation">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a href="/" class="navbar-brand" title="@*ViewBag.Settings[" Title"]*@">
-        <img src="~/images/logo.png" width="125" height="85" alt="Site logo">
+    <a href="/" class="navbar-brand" title="@ViewData["SiteTitle"]">
+        <img src="~/images/logo.png" alt="Site logo" />
     </a>
     <div class="collapse navbar-collapse" id="navbar">
         @{

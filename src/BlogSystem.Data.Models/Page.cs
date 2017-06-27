@@ -1,9 +1,9 @@
 ﻿namespace BlogSystem.Data.Models
 {
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Contracts.Models;
+
+    using BlogSystem.Data.Contracts.Models;
 
     public class Page : BaseModel<int>
     {        

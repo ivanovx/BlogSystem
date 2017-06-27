@@ -21,7 +21,8 @@
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;

@@ -8,6 +8,7 @@ namespace BlogSystem.Data
 
     using BlogSystem.Data.Contracts;
     using BlogSystem.Data.Models;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -24,42 +25,13 @@ namespace BlogSystem.Data
 
         public virtual IDbSet<Setting> Settings { get; set; }
 
-        public virtual IDbSet<Category> Categories { get; set; }
-
         public override int SaveChanges()
         {
-            //this.ApplyAuditInfoRules();
-
             this.ApplyAuditInfoRules();
             this.ApplyDeletableEntityRules();
 
             return base.SaveChanges();
         }
-
-        //private void ApplyAuditInfoRules()
-        /*{
-            var entitySet = this.ChangeTracker
-                .Entries()
-                .Where(e => e.Entity is IAuditInfo && 
-                    (e.State == EntityState.Added || e.State == EntityState.Modified));
-
-            foreach (var entry in entitySet)
-            {
-                var entity = (IAuditInfo) entry.Entity;
-
-                if (entry.State == EntityState.Added)
-                {
-                    if (!entity.PreserveCreatedOn)
-                    {
-                        entity.CreatedOn = DateTime.Now;
-                    }
-                }
-                else
-                {
-                    entity.ModifiedOn = DateTime.Now;
-                }
-            }
-        }*/
 
         private void ApplyAuditInfoRules()
         {
@@ -109,6 +81,8 @@ namespace BlogSystem.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,7 +1,7 @@
 ﻿@model BlogSystem.Web.ViewModels.Home.IndexPageViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 @if (Model.Posts.Any())
@@ -23,14 +23,7 @@
                     <li>
                         <i class="fa fa-user" aria-hidden="true"></i>
                         @Html.DisplayFor(model => post.Author)
-                    </li>
-                    @if (post.Category != null)
-                    {
-                        <li>
-                            <i class="fa fa-tags" aria-hidden="true"></i>
-                            @Html.DisplayFor(model => post.Category)
-                        </li>
-                    }                    
+                    </li>                
                     <li>
                         <i class="fa fa-comments" aria-hidden="true"></i>
                         @Html.DisplayFor(model => post.CommentsCount) comments

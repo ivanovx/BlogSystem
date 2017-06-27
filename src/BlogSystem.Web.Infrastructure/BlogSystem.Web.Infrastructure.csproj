@@ -35,8 +35,8 @@
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -104,8 +104,6 @@
     <Compile Include="Helpers\Url\UrlGenerator.cs" />
     <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Identity\ICurrentUser.cs" />
-    <Compile Include="Populators\DropDownListPopulator.cs" />
-    <Compile Include="Populators\IDropDownListPopulator.cs" />
     <Compile Include="XSS\ISanitizer.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />

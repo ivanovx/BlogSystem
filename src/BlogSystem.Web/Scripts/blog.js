@@ -23,8 +23,20 @@ BlogSystem.onCreateCommentFailure = function(data) {
     console.log(data);
 };
 
+$(window).scroll(function () {
+    if ($(document).scrollTop() > 50) {
+        $(".navbar").addClass("navbar-shrink");
+    } else {
+        $(".navbar").removeClass("navbar-shrink");
+    }
+});
+
 $(document).ready(function () {
-    $("pre").each(function (i, block) {
+    $("pre > code").each(function (i, block) {
         hljs.highlightBlock(block);
     });
+});
+
+$(document).ready(function (e) {
+    console.log(e);
 });

@@ -3,10 +3,12 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Common;
-    using ViewModels.Home;
-    using Services.Data.Posts;
-    using Services.Web.Mapping;
+
+    using BlogSystem.Common;
+
+    using BlogSystem.Web.ViewModels.Home;
+
+    using BlogSystem.Services.Data.Posts;
 
     public class HomeController : BaseController
     {
@@ -21,7 +23,7 @@
         {
             var pagesCount = (int) Math.Ceiling(this.postsData.GetAllPosts().Count() / (decimal) perPage);
             var postsPage = this.postsData.GetPagePosts(page, perPage);
-            var posts = this.mapper.Map<PostConciseViewModel>(postsPage).ToList();
+            var posts = this.Mapper.Map<PostConciseViewModel>(postsPage).ToList();
 
             var model = new IndexPageViewModel
             {

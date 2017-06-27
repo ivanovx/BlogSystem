@@ -4,6 +4,7 @@
 
     using BlogSystem.Web.ViewModels.Pages;
     using BlogSystem.Services.Data.Pages;
+    using BlogSystem.Services.Web.Mapping;
 
     public class PagesController : BaseController
     {
@@ -23,7 +24,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapper.Map<PageViewModel>(page);
+            var model = this.Mapper.Map<PageViewModel>(page);
 
             return this.View(model);
         }

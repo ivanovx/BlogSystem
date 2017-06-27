@@ -1,15 +1,15 @@
 ﻿namespace BlogSystem.Web.ViewModels.Home
 {
-    using System;
     using System.Web.Mvc;
-    using System.ComponentModel.DataAnnotations;
+
     using AutoMapper;
 
     using BlogSystem.Data.Models;
+
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Web.Infrastructure.Helpers.Url;
 
-    public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
+    public class PostConciseViewModel : BaseViewModel, IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IUrlGenerator urlGenerator;
 
@@ -30,12 +30,7 @@
         [AllowHtml]
         public string Content { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime CreatedOn { get; set; }
-
         public string Author { get; set; }
-
-        public string Category { get; set; }
 
         public int CommentsCount { get; set; }
 
@@ -45,7 +40,6 @@
         {
             config.CreateMap<Post, PostConciseViewModel>()
                 .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
-                .ForMember(m => m.Category, c => c.MapFrom(post => post.Category.Name))
                 .ForMember(m => m.CommentsCount, c => c.MapFrom(post => post.Comments.Count));
         }
     }

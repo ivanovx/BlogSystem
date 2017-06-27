@@ -16,7 +16,7 @@
 
         [Required]
         [AllowHtml]
-        [UIHint("tinymce_full")]
+        [UIHint("TinyMCE")]
         public string Content { get; set; }
 
         public string Permalink { get; set; }

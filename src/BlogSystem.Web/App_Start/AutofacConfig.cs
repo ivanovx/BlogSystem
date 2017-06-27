@@ -29,7 +29,6 @@
     using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Web.Infrastructure.XSS;
-    using BlogSystem.Web.Infrastructure.Populators;
 
     public class AutofacConfig
     {
@@ -66,15 +65,9 @@
         {
             builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
 
-            builder
-                .Register(c => c.Resolve<ApplicationDbContext>())
-                .As<DbContext>()
-                .InstancePerRequest();
+            builder.Register(c => c.Resolve<ApplicationDbContext>()).As<DbContext>().InstancePerRequest();
 
-            builder
-                .RegisterGeneric(typeof(DbRepository<>))
-                .As(typeof(IDbRepository<>))
-                .InstancePerRequest();
+            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
 
@@ -85,9 +78,7 @@
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
 
-            builder
-                .Register(c => HttpContext.Current.GetOwinContext().Authentication)
-                .As<IAuthenticationManager>();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
 
             builder.Register(c => new IdentityFactoryOptions<ApplicationUserManager>
             {
@@ -95,17 +86,10 @@
             });
 
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerRequest();
-
-           // builder
-             //   .RegisterType<SettingsManager>()
-              //  .As<ISettingsManager>()
-              //  .InstancePerRequest();
-
+            
             builder.RegisterType<UrlGenerator>().As<IUrlGenerator>().InstancePerRequest();
 
             builder.RegisterType<HtmlSanitizerAdapter>().As<ISanitizer>().InstancePerRequest();
-
-            builder.RegisterType<DropDownListPopulator>().As<IDropDownListPopulator>().InstancePerRequest();
 
             builder
                 .Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())

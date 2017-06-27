@@ -12,7 +12,7 @@
         public int Id { get; set; }
 
         [AllowHtml]
-        [UIHint("tinymce_full")]
+        [UIHint("TinyMCE")]
         public string Content { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]

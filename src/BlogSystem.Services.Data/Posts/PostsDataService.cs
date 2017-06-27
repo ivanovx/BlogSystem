@@ -26,17 +26,6 @@
             return posts;
         }
 
-        public IQueryable<Post> GetAllPostsByCategory(int id)
-        {
-            var posts = this.postsData
-                .All()
-                .Where(p => !p.IsDeleted && p.CategoryId == id)
-                .OrderByDescending(p => p.CreatedOn)
-                .AsQueryable();
-
-            return posts;
-        }
-
         public IQueryable<Post> GetLatestPosts(int size = GlobalConstants.DefaultPageSize)
         {
             var posts = this.GetAllPosts()

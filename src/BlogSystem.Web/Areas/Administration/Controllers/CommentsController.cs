@@ -10,7 +10,6 @@
     using ViewModels.Comments;
     using Data.Models;
     using Infrastructure.XSS;
-    
 
     public class CommentsController : AdministrationController
     {
@@ -29,11 +28,12 @@
 
             var allComments = this.commentsData
                 .All()
+                .Where(x => !x.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
                 .Skip(perPage * (page - 1))
                 .Take(perPage);
 
-            var comments = this.mapper.Map<CommentViewModel>(allComments).ToList();
+            var comments = this.Mapper.Map<CommentViewModel>(allComments).ToList();
 
             var model = new IndexCommentsPageViewModel
             {
@@ -49,9 +49,9 @@
         public ActionResult Edit(int? id)
         {
            if (id == null)
-            {
+           {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           }
 
             var comment = this.commentsData.Find(id);
 
@@ -60,7 +60,7 @@
                 return this.HttpNotFound();
             }
 
-            var model = this.mapper.Map<CommentViewModel>(comment);
+            var model = this.Mapper.Map<CommentViewModel>(comment);
 
             return this.View(model);
         }

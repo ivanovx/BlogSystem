@@ -4,19 +4,17 @@
 
     using BlogSystem.Services.Web.Caching;
     using BlogSystem.Services.Web.Mapping;
+
+    using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Attributes;
 
-    [HandleError]
     [PassSettingsToViewData]
     public abstract class BaseController : Controller
     {
-        protected readonly ICacheService cache;
-        protected readonly IMappingService mapper;
-        
-        protected BaseController()
-        {
-            this.cache = DependencyResolver.Current.GetService<ICacheService>();
-            this.mapper = DependencyResolver.Current.GetService<IMappingService>();
-        }
+        public ICurrentUser CurrentUser { get; set; }
+
+        public IMappingService Mapper { get; set; }
+
+        public ICacheService Cache { get; set; }
     }
 }
