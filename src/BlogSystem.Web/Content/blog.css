@@ -1,4 +1,4 @@
-@-ms-viewport {
+/*@-ms-viewport {
     width: device-width;
 }
 
@@ -8,7 +8,7 @@
 
 @viewport {
     width: device-width;
-}
+}*/
 
 body {
     padding-top: 6.3em;
@@ -35,7 +35,7 @@ a:focus {
     transition: all 0.5s ease;
 }
 
-h1,
+/*h1,
 h2,
 h3,
 h4,
@@ -45,6 +45,18 @@ h6 {
     font-style: normal;
     line-height: 25px;
     color: rgb(5, 103, 140);
+}*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    color: rgb(79, 148, 153);
 }
 
 .btn {
@@ -195,13 +207,18 @@ ul {
     position: relative;
     overflow: hidden;
     background: white;
-}
-
-[role="main"] .post-container,
-[role="main"] .widget {
     margin: 1.5em auto;
     padding: 1.5em 1.5em;
 }
+
+/*
+[role="main"] .post-container,
+[role="main"] .widget {
+    
+}*/
+    /*
+    rgb(79, 148, 153)
+*/
 
 /*
 [role="main"] .post-container {
@@ -215,37 +232,54 @@ ul {
 }
 */
 
-.widget h3 {
+[role="main"] .widget h3 {
     position: relative;
     font-size: 15px;
-    color: #666;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgb(238,238,238);
 }
 
-.widget h3 span {
+[role="main"] .widget h3 span {
     display: inline-block;
     position: relative;
     bottom: -1px;
     padding-bottom: 5px;
-    border-bottom: 1px solid rgb(5, 103, 140);
+    border-bottom: 2px solid rgb(79, 148, 153);
 }
 
-.widget > ul {
-    padding-left: 0;
+[role="main"] .widget > ul {
+    padding: 0;
 }
 
 [role="main"] .widget ul li {
     font-weight: 700;
-    font-size: 1.1em;
-    margin: 1em auto;
+    /*font-size: 1.1em;
+   /* margin: 1em auto;*/
 }
 
-[role="main"] .widget ul li .fa {
-    width: 20px;
-    height: 20px;
-    /*font-size: 25px;*/
+[role="main"] .widget ul li:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: FontAwesome;
+    content: "\f15b";
+    font-size: 1.2em;
+    color: rgb(53, 121, 178);
+}
+
+[role="main"] .widget ul li {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+    color: rgb(63, 65, 66);
+    position: relative;
+    padding-left: 2em;
+    }
+
+[role="main"] .widget ul li a {
+    padding: 0;
+    margin: 0;
+    word-break: break-word;
 }
 
 [role="main"] .post-container:before,
@@ -263,7 +297,11 @@ ul {
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
     -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
     box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
-   /* width: 0;*/
+    width: 0;
+}
+
+[role="main"] .post-container .post-header h2 > a {
+    word-wrap: break-word; 
 }
 
 [role="main"] .post-container .post-meta {
@@ -336,6 +374,11 @@ ul {
     border-top: 1px solid #eee;
 }
 
+.previous a > .fa,
+.next a > .fa {
+    font-size: 1.1em;
+}
+
 [role="contentinfo"] {
     padding-top: 1em;
     background: rgb(41, 43, 44);
@@ -345,6 +388,26 @@ ul {
 [role="contentinfo"] .copyright {
     line-height: 25px;
     margin-top: 0.5em;
+}
+
+[role="contentinfo"] .copyright,
+[role="contentinfo"] .ojs {
+    text-align: center;
+}
+
+[role="contentinfo"] .ojs {
+
+}
+
+[role="contentinfo"] .ojs > a {
+    color: rgb(14, 93, 162);
+    text-decoration: none;
+    border: none;
+}
+
+[role="contentinfo"] .ojs > a:hover,
+[role="contentinfo"] .ojs > a:focus {
+    text-decoration: underline;
 }
 
 [role="contentinfo"] .social {

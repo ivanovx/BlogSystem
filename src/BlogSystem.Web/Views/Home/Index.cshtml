@@ -10,10 +10,8 @@
     {
         <article class="post-container">
             <header class="post-header">
-                <h2 class="post-title">
-                    <a href="@post.Url" title="@post.Title">
-                        @Html.DisplayFor(model => post.Title)
-                    </a>
+                <h2>
+                    <a href="@post.Url" title="@post.Title" class="post-title">@post.Title</a>
                 </h2>
                 <ul class="post-meta">
                     <li>

@@ -7,11 +7,8 @@
             <a href="https://www.facebook.com/silentcityofficial/?fref=ts" target="_blank">
                 <img src="~/images/friends-logos/Silent City.png" class="img-fluid" width="150" />
             </a>
-            <p class="copyright">
-                <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year
-                <strong>@ViewData["BlogAuthor"]</strong>.
-            </p>
         </div>
+
         <div class="col-lg-4 col-md-4 col-sm-12">
             <ul class="social">
                 <li>
@@ -37,8 +34,51 @@
             </ul>
         </div>
 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <p class="copyright">
+                <i class="fa fa-copyright" aria-hidden="true"></i> @DateTime.Now.Year
+                <strong>@ViewData["BlogAuthor"]</strong>.
+            </p>
+            <!--<p class="ojs">
+                <a href="" data-toggle="modal" data-target="#exampleModalLong">
+                    Open Blog System <i class="fa fa-smile-o"></i>
+                </a>
+            </p>-->
+
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Open Blog System</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul style="list-style: circle">
+                                <li class="front-end">
+                                    <strong>Front-End</strong> - HTML5, CSS3, Font Awesome, TinyMCE, jQuery, Ajax, Tether and Twitter Bootstrap.
+                                </li>
+                                <li class="back-end">
+                                   <strong>Back-End</strong> - C#, ASP.NET MVC, Entity Framework, Autofac, AutoMapper, Owin, Razor, Roslyn, HtmlSanitizer, AngleSharp; 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Source code avaisable in GitHub and licensed under MIT.</p>
+                            <p>Inspired by Nikolay Kostov is Blog System.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
         <section class="col-lg-12 col-md-12 col-sm-12 info">
-            <p>Powered by ASP.NET MVC and running on Windows.</p>
+            <p>
+                Powered by <a href="https://www.asp.net" target="_blank">ASP.NET MVC</a> 
+                and running on Windows.
+            </p>
         </section>
     </div>
 </footer>

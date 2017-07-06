@@ -11,7 +11,7 @@
                 @foreach (var post in Model.RecentPosts)
                 {
                     <li>
-                        <i class="fa fa-file" aria-hidden="true"></i>
+                        <!---<i class="fa fa-file" aria-hidden="true"></i>-->
                         <a href="@post.Url">@post.Title</a>
                     </li>
                 }
@@ -29,7 +29,6 @@
                 @foreach (var page in Model.AllPages)
                 {
                     <li>
-                        <i class="fa fa-file" aria-hidden="true"></i>
                         @Html.RouteLink(page.Title, "Page", new { permalink = page.Permalink })
                     </li>
                 }
@@ -37,7 +36,7 @@
         </div>
     }
     
-    <div class="widget">
+    <!--<div class="widget">
         <h3>
             <span>Me on Spotify</span>
         </h3>
@@ -46,5 +45,5 @@
                 height="500"
                 frameborder="0"
                 allowtransparency="true"></iframe>
-    </div>
+    </div>-->
 </aside>

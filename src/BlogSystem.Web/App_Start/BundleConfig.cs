@@ -13,7 +13,9 @@
 
         private static void RegisterStyles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/bootstrap.css", "~/Content/tether.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/tether").Include("~/Content/tether/tether.css"));
 
             bundles.Add(new StyleBundle("~/Content/fonts").Include("~/Content/font-awesome.css"));
 
@@ -28,7 +30,7 @@
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/tether.js", "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/notify").Include("~/Scripts/notify.js"));
 
