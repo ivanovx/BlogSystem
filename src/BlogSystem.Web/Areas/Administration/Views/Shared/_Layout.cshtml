@@ -7,19 +7,18 @@
 
         <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>
 
-        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/tether")
         @Styles.Render("~/Content/bootstrap")
         @Styles.Render("~/Content/fonts")
         @Styles.Render("~/Content/blog")
+        @Styles.Render("~/Content/administration")
     </head>
     <body class="administration">
         @Html.Partial("_Header")
         
         <div class="container-fluid">
             <div class="row">
-                @{ 
-                    Html.RenderAction("AdminMenu", "Home");
-                }
+                @{ Html.RenderAction("AdminMenu", "Home"); }
 
                 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                     @RenderBody()
@@ -28,7 +27,7 @@
         </div>
 
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryajax")
+        @Scripts.Render("~/bundles/tether")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/blog")
 

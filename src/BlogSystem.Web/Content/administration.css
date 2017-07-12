@@ -1,0 +1,46 @@
+﻿.administration {
+    background: none;
+    padding-top: 57px;
+}
+
+    .administration header {
+        margin-bottom: 5em;
+    }
+
+    .administration h1,
+    .administration h2,
+    .administration h3,
+    .administration h4,
+    .administration h5,
+    .administration h6 {
+        text-transform: none;
+        color: rgb(41, 43, 44);
+    }
+
+    .administration .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 20px 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-right: 1px solid #eee;
+    }
+
+        .administration .sidebar .nav {
+            margin-bottom: 20px;
+        }
+
+        .administration .sidebar .nav-item {
+            width: 100%;
+        }
+
+            .administration .sidebar .nav-item + .nav-item {
+                margin-left: 0;
+            }
+
+        .administration .sidebar .nav-link {
+            border-radius: 0;
+        }

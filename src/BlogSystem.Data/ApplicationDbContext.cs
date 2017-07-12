@@ -83,7 +83,13 @@ namespace BlogSystem.Data
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Comment>().HasRequired(t => t.Post).WithMany(t => t.Comments).HasForeignKey(d => d.PostId).WillCascadeOnDelete(true);
+
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Post>().ToTable("Posts");
+            modelBuilder.Entity<Comment>().ToTable("Comments");
         }
     }
 }

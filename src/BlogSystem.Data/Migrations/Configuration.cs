@@ -56,12 +56,12 @@ namespace BlogSystem.Data.Migrations
 
             var admin = new ApplicationUser
             {
-                Email = "admin@mysite.com",
-                UserName = "Administrator",
+                Email = "csyntax@outlook.com",
+                UserName = "csyntax",
                 CreatedOn = DateTime.Now
             };
 
-            this.userManager.Create(admin, "admin123456");
+            this.userManager.Create(admin, "csyntax11");
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdministratorRoleName);
         }
 

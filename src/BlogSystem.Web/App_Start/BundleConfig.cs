@@ -20,11 +20,15 @@
             bundles.Add(new StyleBundle("~/Content/fonts").Include("~/Content/font-awesome.css"));
 
             bundles.Add(new StyleBundle("~/Content/blog").Include("~/Content/blog.css"));
+
+            bundles.Add(new StyleBundle("~/Content/administration").Include("~/Content/administration.css"));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tether").Include("~/Scripts/tether.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include("~/Scripts/jquery.unobtrusive-ajax.js"));
 

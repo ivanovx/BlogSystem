@@ -1,15 +1,3 @@
-/*@-ms-viewport {
-    width: device-width;
-}
-
-@-o-viewport {
-    width: device-width;
-}
-
-@viewport {
-    width: device-width;
-}*/
-
 body {
     padding-top: 6.3em;
     background: rgb(238, 238, 238);
@@ -28,24 +16,9 @@ body {
 a:hover,
 a:focus {
     color: rgb(93, 67, 132);
-    text-decoration: none;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
 }
 
-/*h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 700;
-    font-style: normal;
-    line-height: 25px;
-    color: rgb(5, 103, 140);
-}*/
+
 
 h1,
 h2,
@@ -86,6 +59,12 @@ ul {
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
     border-color: #ddd;
+}
+
+.navbar,
+[role="contentinfo"]{
+    background: url("https://tylergaw.com./images/bg-crud.png");
+    background-attachment: fixed;
 }
 
 .pagination .page-item .page-link {
@@ -143,8 +122,8 @@ ul {
 
 .navbar .navbar-nav .nav-link,
 .dropdown-item {
-    font-weight: 700;
-    text-transform: uppercase;
+    font-weight: 900;
+    /*text-transform: uppercase;*/
     font-style: normal;
 }
 
@@ -236,7 +215,7 @@ ul {
     position: relative;
     font-size: 15px;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     border-bottom: 1px solid rgb(238,238,238);
 }
 
@@ -379,7 +358,7 @@ ul {
     font-size: 1.1em;
 }
 
-[role="contentinfo"] {
+/*[role="contentinfo"] {
     padding-top: 1em;
     background: rgb(41, 43, 44);
     color: #777;
@@ -442,50 +421,61 @@ ul {
     margin: 0;
     font-size: 1.2em;
 }
+*/
 
-.administration {
-    background: none;
-    padding-top: 57px;
+[role="contentinfo"]  {
+    text-align: center;
 }
 
-.administration header {
-    margin-bottom: 5em;
+[role="contentinfo"] .social {
+    padding: 0;
 }
 
-.administration h1,
-.administration h2,
-.administration h3,
-.administration h4,
-.administration h5,
-.administration h6 {
-    text-transform: none;
-    color: rgb(41, 43, 44);
+[role="contentinfo"] .social > li {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1.5;
+    padding: 1em;
 }
 
-.administration .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 20px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border-right: 1px solid #eee;
+[role="contentinfo"] .social > li .fa {
+    font-size: 2.5em;
+    color: rgb(3, 115, 212);
 }
 
-.administration .sidebar .nav {
-    margin-bottom: 20px;
+[role="contentinfo"] .social > li .fa:hover,
+[role="contentinfo"] .social > li .fa:focus {
+    color: rgb(53, 121, 178);
 }
 
-.administration .sidebar .nav-item {
-    width: 100%;
+.copyright {
+    color: rgb(79, 148, 153);
+    font-size: 1em;
 }
 
-.administration .sidebar .nav-item + .nav-item {
-    margin-left: 0;
+           /* [role="contentinfo"] .social li [rel="me"] > .fa {
+                
+                font-size: 35px;
+                color: #777;
+            }
+
+                [role="contentinfo"] .social li [rel="me"] > .fa:hover,
+                [role="contentinfo"] .social li [rel="me"] > .fa:focus {
+                    color: rgb(5, 103, 140);
+                }*/
+
+a {
+    color: rgb(2, 117, 216);
+    text-decoration: none;
 }
 
-.administration .sidebar .nav-link {
-    border-radius: 0;
-}
+    a:hover,
+    a:focus,
+    a:active {
+        color: rgb(53, 121, 178);
+        text-decoration: none;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }

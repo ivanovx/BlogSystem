@@ -21,7 +21,7 @@
     <body>
 		@Html.Partial("_Header")
         
-        <section class="container-fluid flash animated" role="main">
+        <section class="container-fluid" role="main">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     @RenderBody()
@@ -33,13 +33,10 @@
         </section>
         
         @Html.Partial("_Footer")
-        
-        <script src="~/Scripts/tether.min.js"></script>
 
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryajax")
+        @Scripts.Render("~/bundles/tether")
         @Scripts.Render("~/bundles/bootstrap")
-
         @Scripts.Render("~/bundles/blog")
 
         @RenderSection("scripts", false)

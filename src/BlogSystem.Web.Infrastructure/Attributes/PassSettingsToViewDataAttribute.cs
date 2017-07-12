@@ -9,7 +9,7 @@
     using BlogSystem.Services.Web.Caching;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class PassSettingsToViewDataAttribute : ActionFilterAttribute, IActionFilter
+    public class PassSettingsToViewDataAttribute : ActionFilterAttribute, IDisposable
     {
         public IDbRepository<Setting> Settings { get; set; }
         public ICacheService Cache { get; set; }
@@ -32,6 +32,11 @@
             {
                 viewData.Add(setting.Key, setting.Value);
             }
+        }
+
+        public void Dispose()
+        {
+            this.Settings.Dispose();
         }
     }
 }

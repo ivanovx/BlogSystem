@@ -17,7 +17,7 @@ BlogSystem.onAddCommentSuccess = function () {
     console.log("Comment successfully created!");
 };
 
-BlogSystem.onCreateCommentFailure = function(data) {
+BlogSystem.onCreateCommentFailure = function (data) {
     $.notify("An error has occurred. Please try again later...", "error");
 
     console.log(data);
@@ -29,14 +29,4 @@ $(window).scroll(function () {
     } else {
         $(".navbar").removeClass("navbar-shrink");
     }
-});
-
-$(document).ready(function () {
-    $("pre > code").each(function (i, block) {
-        hljs.highlightBlock(block);
-    });
-});
-
-$(document).ready(function (e) {
-    console.log(e);
 });
