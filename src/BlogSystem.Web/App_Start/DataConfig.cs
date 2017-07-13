@@ -1,8 +1,9 @@
 ﻿namespace BlogSystem.Web
 {
     using System.Data.Entity;
-    using Data;
-    using Data.Migrations;
+
+    using BlogSystem.Data;
+    using BlogSystem.Data.Migrations;
 
     public class DataConfig
     {
