@@ -43,19 +43,27 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "Key,Value")] Setting setting)
+        public ActionResult Update([Bind(Include = "Key, Value")] Setting setting)
         {
             if (setting != null && ModelState.IsValid)
             {
                 this.settingsData.Update(setting);
                 this.settingsData.SaveChanges();
 
-                this.Cache.Remove("Settings");
-
                 return this.RedirectToAction("Index");
             }
 
             return this.View(setting);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.settingsData.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }

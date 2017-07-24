@@ -11,59 +11,17 @@
 
     using BlogSystem.Data.Contracts;
 
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser, IAuditInfo
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
-        private ICollection<Comment> comments;
-        private ICollection<Post> posts;
-        private ICollection<Page> pages;
-
         public ApplicationUser()
             : base()
         {
-            this.posts = new HashSet<Post>();
-            this.comments = new HashSet<Comment>();
-            this.pages = new HashSet<Page>();
+            this.Posts = new HashSet<Post>();
+            this.Comments = new HashSet<Comment>();
+            this.Pages = new HashSet<Page>();
         }
 
-        public virtual ICollection<Post> Posts
-        {
-            get
-            {
-                return this.posts;
-            }
-
-            set
-            {
-                this.posts = value;
-            }
-        }
-
-        public virtual ICollection<Comment> Comments
-        {
-            get
-            {
-                return this.comments;
-            }
-
-            set
-            {
-                this.comments = value;
-            }
-        }
-
-        public virtual ICollection<Page> Pages
-        {
-            get
-            {
-                return this.pages;
-            }
-
-            set
-            {
-                this.pages = value;
-            }
-        }
+        public byte[] Avatar { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
@@ -71,6 +29,16 @@
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Page> Pages { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

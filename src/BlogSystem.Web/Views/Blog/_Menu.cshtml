@@ -1,0 +1,14 @@
+﻿@model IEnumerable<BlogSystem.Web.ViewModels.MenuItemViewModel>
+
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+        @Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, new { @class = "nav-link" })
+    </li>
+
+    @foreach (var page in Model)
+    {
+        <li class="nav-item">
+            @Html.RouteLink(page.Title, new { permalink = page.Permalink }, new { @class= "nav-link" })
+        </li>        
+    }
+</ul>

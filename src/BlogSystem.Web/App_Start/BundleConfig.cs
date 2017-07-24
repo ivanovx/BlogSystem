@@ -21,6 +21,8 @@
 
             bundles.Add(new StyleBundle("~/Content/blog").Include("~/Content/blog.css"));
 
+            bundles.Add(new StyleBundle("~/Content/users").Include("~/Content/users.css"));
+
             bundles.Add(new StyleBundle("~/Content/administration").Include("~/Content/administration.css"));
         }
 

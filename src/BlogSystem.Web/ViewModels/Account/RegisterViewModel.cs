@@ -1,7 +1,8 @@
 namespace BlogSystem.Web.ViewModels.Account
 {
+    using System.Web;
     using System.ComponentModel.DataAnnotations;
-
+    
     public class RegisterViewModel
     {
         [Required]
@@ -24,5 +25,7 @@ namespace BlogSystem.Web.ViewModels.Account
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public HttpPostedFileBase Avatar { get; set; }
     }
 }

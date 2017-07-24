@@ -3,19 +3,20 @@
     using System;
     using System.Linq;
 
-    public interface IDbRepository<T> : IDisposable where T : class
+    public interface IDbRepository<TEntity> : IDisposable 
+        where TEntity : class
     {
-        IQueryable<T> All();
+        IQueryable<TEntity> All();
 
-        T Find(object id);
+        TEntity Find(object id);
 
-        T Add(T entity);
+        TEntity Add(TEntity entity);
 
-        T Update(T entity);
+        TEntity Update(TEntity entity);
 
-        T Remove(object id);
+        TEntity Remove(object id);
 
-        void Remove(T entity);
+        void Remove(TEntity entity);
 
         int SaveChanges();
     }

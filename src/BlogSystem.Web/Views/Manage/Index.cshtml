@@ -1,24 +1,36 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@model BlogSystem.Web.ViewModels.Manage.IndexViewModel
 
-@model BlogSystem.Web.ViewModels.Manage.IndexViewModel
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Manage Account";
 }
 
-<section class="post-container">
-    <div class="post-content">
+<section class="entry">
+    <header class="e-header">
         <h2>@ViewBag.Title</h2>
-        <div class="alert alert-success" role="alert">
+    </header>
+
+    <div class="e-content">
+        <div class="alert alert-success">
             You're logged in as <strong>@User.Identity.GetUserName()</strong>
         </div>
 
-        @if (Model.HasPassword)
+        @if (Model.Avatar != null)
+            {
+            @Html.ActionLink("Change Avatar", "ChangeAvatar", new { area = string.Empty }, new { @class = "btn btn-primary" })
+        }
+        else
         {
+            @Html.ActionLink("Add Avatar", "AddAvatar", new { area = string.Empty }, new { @class = "btn btn-success" })
+        }
+
+        @if (Model.HasPassword)
+            {
             @Html.ActionLink("Change password", "ChangePassword", new { area = string.Empty }, new { @class = "btn btn-warning" })
         }
         else
-        { 
+        {
             @Html.ActionLink("Create", "SetPassword")
         }
     </div>

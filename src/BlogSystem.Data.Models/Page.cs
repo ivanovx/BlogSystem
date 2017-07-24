@@ -18,9 +18,8 @@
 
         public string Permalink { get; set; }
 
-        public bool VisibleInMenu { get; set; }
+        public bool ShowInMenu { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]

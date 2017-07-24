@@ -24,21 +24,17 @@
             @foreach (var comment in Model.Comments)
             {
                 <tr>
+                    <td>@comment.Id</td>
                     <td>
-                        @Html.DisplayFor(model => comment.Id)
+                        @Html.RouteLink(comment.Post, "Posts", new { Area = string.Empty, Id = comment.PostId, Title = comment.PostUrl })
                     </td>
+                    <td>@comment.Author</td>
                     <td>
-                        @Html.RouteLink(comment.Post, "Post", new { Area = string.Empty, Id = comment.PostId })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => comment.Author)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => comment.CreatedOn)
+                        @Html.DisplayFor(m => comment.CreatedOn)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(model => comment.ModifiedOn)
+                        @Html.DisplayFor(m => comment.ModifiedOn)
                     </td>
                     <td>
                         <div class="btn-group">

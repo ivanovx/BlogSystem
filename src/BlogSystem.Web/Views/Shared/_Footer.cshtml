@@ -1,25 +1,10 @@
-﻿<footer class="container-fluid" role="contentinfo">
-    <div class="row">
-        <!--<div class="col-lg-8 col-md-8 col-sm-12">
-            <a href="http://jobhound.eu" target="_blank">
-                <img src="~/images/friends-logos/Jason Hound Hound.png" class="img-fluid" width="150" />
-            </a>
-            <a href="https://www.facebook.com/silentcityofficial/?fref=ts" target="_blank">
-                <img src="~/images/friends-logos/Silent City.png" class="img-fluid" width="150" />
-            </a>
-        </div>-->
-
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <ul class="social">
+﻿@*<footer role="contentinfo">
+    <ul class="social">
+        <li>
+            
+        </li>
                 <li>
-                    <a href="@ViewData["FacebookProfile"]" title="Facebook" rel="me">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="@ViewData["TwitterProfile"]" title="Twitter" rel="me">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </a>
+                   
                 </li>
                 <li>
                     <a href="@ViewData["LinkedInProfile"]" title="LinkedIn" rel="me">
@@ -41,8 +26,6 @@
 
         <div class="col-lg-4 col-md-4 col-sm-12">
             
-                
-            </ul>
         </div>
 
        @* <div class="col-lg-12 col-md-12 col-sm-12">
@@ -90,5 +73,29 @@
                 and running on Windows.
             </p>
         </section>*@
-    </div>
+ <!--   </div>
+</footer>
+     -->
+
+<footer role="contentinfo" class="container-fluid">
+    <a href="@ViewData["Facebook_Profile"]" rel="me" class="facebook">
+        <strong>Facebook</strong>
+    </a>
+    <a href="@ViewData["Twitter_Profile"]" rel="me" class="twitter">
+        <strong>Twitter</strong>
+    </a>
+    <a href="@ViewData["GitHub_Profile"]" rel="me" class="github">
+        <strong>GitHub</strong>
+    </a>
+    <a href="@ViewData["YouTube_Profile"]" rel="me" class="youtube">
+        <strong>YouTube</strong>
+    </a>
+    <a href="@ViewData["Instagram_Profile"]" rel="me" class="instagram">
+        <strong>Instagram</strong>
+    </a>
+
+    <p class="copyright">
+        @DateTime.Now.Year
+        <strong>@ViewData["Blog_Author"]</strong>.
+    </p>
 </footer>

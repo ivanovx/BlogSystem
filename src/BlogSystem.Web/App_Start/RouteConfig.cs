@@ -10,11 +10,11 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-               name: "Post",
-               url: "Posts/{year}/{month}/{title}/{id}",
+               name: "Posts",
+               url: "Posts/{title}/{id}",
                defaults: new
                {
-                   controller = "Posts",
+                   controller = "Blog",
                    action = "Post"
                },
                namespaces: new[]
@@ -23,11 +23,11 @@
                });
 
             routes.MapRoute(
-                name: "Page",
+                name: "Pages",
                 url: "Pages/{permalink}",
                 defaults: new
                 {
-                    controller = "Pages",
+                    controller = "Blog",
                     action = "Page"
                 },
                 namespaces: new[]

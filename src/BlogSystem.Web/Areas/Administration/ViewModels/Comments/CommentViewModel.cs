@@ -1,19 +1,35 @@
 ﻿namespace BlogSystem.Web.Areas.Administration.ViewModels.Comments
 {
-    using AutoMapper;
-    using Data.Models;
-    using Infrastructure.Mapping;
-    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    using Administration;
+    using System.ComponentModel.DataAnnotations;
+
+    using AutoMapper;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Web.Infrastructure.Mapping;   
+    using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
+
+    using BlogSystem.Web.Infrastructure.Helpers.Url;
 
     public class CommentViewModel: AdministrationViewModel, IMapFrom<Comment>, IHaveCustomMappings
     {
+        private readonly IUrlGenerator urlGenerator;
+
+        public CommentViewModel() : this(new UrlGenerator())
+        {
+
+        }
+
+        public CommentViewModel(IUrlGenerator urlGenerator)
+        {
+            this.urlGenerator = urlGenerator;
+        }
+
         public int Id { get; set; }
 
         [Required]
         [AllowHtml]
-        [UIHint("tinymce_full")]
+        [UIHint("TinyMCE")]
         public string Content { get; set; }
 
         public string Author { get; set; }
@@ -22,6 +38,8 @@
         public string AuthorId { get; set; }
 
         public string Post { get; set; }
+
+        public string PostUrl => this.urlGenerator.GenerateUrl(this.Post);
 
         [Required]
         public int PostId { get; set; }

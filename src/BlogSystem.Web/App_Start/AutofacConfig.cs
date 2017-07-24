@@ -19,7 +19,6 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
 
-    using BlogSystem.Services.Data;
     using BlogSystem.Services.Web;
 
     using BlogSystem.Web.Identity;
@@ -91,10 +90,7 @@
 
             builder.RegisterType<HtmlSanitizerAdapter>().As<ISanitizer>().InstancePerRequest();
 
-            builder
-                .Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper())
-                .As<IMapper>()
-                .SingleInstance();
+            builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
             builder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
@@ -102,14 +98,9 @@
                 .PropertiesAutowired();
 
             builder
-                .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IDataService)))
-                .AsImplementedInterfaces()
-                .InstancePerRequest();
-
-            builder
                 .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IWebService)))
                 .AsImplementedInterfaces()
-                .InstancePerRequest();
+                .SingleInstance();
         }
     }
 }

@@ -8,10 +8,6 @@
         {
             var sanitizer = new HtmlSanitizer();
 
-            sanitizer.AllowedTags.Add("iframe");
-            sanitizer.AllowedAttributes.Add("class");
-            sanitizer.AllowedAttributes.Add("id");
-
             return sanitizer.Sanitize(html);
         }
     }

@@ -9,18 +9,15 @@
         [Key]
         public TKey Id { get; set; }
 
-        [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
 
         [NotMapped]
         public bool PreserveCreatedOn { get; set; }
 
-        [DataType(DataType.Date)]
         public DateTime? ModifiedOn { get; set; }
 
         public bool IsDeleted { get; set; }
 
-        [DataType(DataType.Date)]
         public DateTime? DeletedOn { get; set; }
     }
 }

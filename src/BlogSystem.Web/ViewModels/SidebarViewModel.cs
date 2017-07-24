@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.ViewModels.Common
+﻿namespace BlogSystem.Web.ViewModels
 {
     using System.Collections.Generic;
 

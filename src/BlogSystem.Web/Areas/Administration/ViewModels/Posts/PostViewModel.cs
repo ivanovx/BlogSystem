@@ -5,9 +5,9 @@
 
     using AutoMapper;
 
-    using Data.Models;
-    using Infrastructure.Mapping;
-    using Administration;
+    using BlogSystem.Data.Models;
+    using BlogSystem.Web.Infrastructure.Mapping;
+    using BlogSystem.Web.Areas.Administration.ViewModels.Administration;
 
     public class PostViewModel : AdministrationViewModel, IMapFrom<Post>, IHaveCustomMappings
     {

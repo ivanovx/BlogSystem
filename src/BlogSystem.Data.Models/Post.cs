@@ -8,11 +8,9 @@
 
     public class Post : BaseModel<int>
     {
-        private ICollection<Comment> comments;
-
         public Post()
         {
-            this.comments = new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
 
         [Required]
@@ -20,26 +18,15 @@
         public string Title { get; set; }
 
         [Required]
-        [DataType(DataType.Html)]
+        [DataType(DataType.MultilineText)]
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual ICollection<Comment> Comments
-        {
-            get
-            {
-                return this.comments;
-            }
-            set
-            {
-                this.comments = value;
-            }
-        }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

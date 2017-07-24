@@ -7,14 +7,16 @@
     using AutoMapper;
 
     using BlogSystem.Data.Models;
-
     using BlogSystem.Web.Infrastructure.Mapping;
 
-    public class PageViewModel : BaseViewModel, IMapFrom<Page>, IHaveCustomMappings
+    public class PageViewModel : IMapFrom<Page>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
+        public DateTime CreatedOn { get; set; }
 
         [AllowHtml]
         public string Content { get; set; }

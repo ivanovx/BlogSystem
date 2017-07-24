@@ -1,24 +1,42 @@
+html, 
 body {
-    padding-top: 6.3em;
-    background: rgb(238, 238, 238);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(242, 244, 243);
 }
 
 ::selection {
-    color: white;
+    color: rgb(242, 244, 243);
     background: rgb(5, 103, 140);
 }
 
 ::-moz-selection {
-    color: white;
+    color: rgb(242, 244, 243);
     background: rgb(5, 103, 140);
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+a {
+    color: rgb(72, 175, 221);
 }
 
 a:hover,
 a:focus {
-    color: rgb(93, 67, 132);
+    color: rgb(0, 123, 196);
+    -webkit-transition: color 1s ease-out;
+    -moz-transition: color 1s ease-out;
+    -o-transition: color 1s ease-out;
+    transition: color 1s ease-out;
 }
-
-
 
 h1,
 h2,
@@ -28,21 +46,23 @@ h5,
 h6 {
     font-weight: 900;
     font-style: normal;
-    letter-spacing: 0.1em;
-    color: rgb(79, 148, 153);
+    letter-spacing: 0.25rem;
+    color: rgb(72, 175, 221);
 }
 
+/*
 .btn {
     font-weight: 700;
     font-style: normal;
     text-transform: uppercase;
-}
+}*/
 
+/*
 ul {
     list-style: none;
-}
+}*/
 
-.btn-default,
+/*.btn-default,
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
@@ -59,25 +79,15 @@ ul {
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
     border-color: #ddd;
-}
+}*/
 
-.navbar,
-[role="contentinfo"]{
+/*.navbar,
+[role="contentinfo"] {
     background: url("https://tylergaw.com./images/bg-crud.png");
     background-attachment: fixed;
-}
+}*/
 
-.pagination .page-item .page-link {
-    color: rgb(5, 103, 140);
-}
-
-.pagination .page-item.active .page-link {
-    color: #fff;
-    background: rgb(5, 103, 140);
-    border-color: rgb(5, 103, 140);
-}
-
-[role="banner"] {
+/*[role="banner"] {
     padding: 0;
     position: relative;
     background: transparent url("/images/header.jpg") no-repeat center top;
@@ -117,35 +127,78 @@ ul {
         padding-top: 1.5em;
         font-size: 4.8vw;
     }
+}*/
+
+[role="banner"] {
+    position: relative;
+    background: transparent url("/images/header.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50%;
 }
 
+    [role="banner"] hgroup {
+        position: absolute;
+        left: 2.5%;
+        top: 45%;
+        width: 90%;
+    }
 
-.navbar .navbar-nav .nav-link,
+        [role="banner"] hgroup h1,
+        [role="banner"] hgroup h2 {
+            color: rgb(242, 244, 243);
+            text-shadow: 2px 2px rgb(0, 123, 196);
+            font-family: 'Lemonada', cursive;
+            line-height: 1.5;
+        }
+            /*
+.navbar {
+    background: rgb(0, 123, 196);
+}*/
+            /*  */
+            /*.navbar .navbar-nav .nav-link,
 .dropdown-item {
-    font-weight: 900;
-    /*text-transform: uppercase;*/
-    font-style: normal;
-}
-
-/*
+    font-weight: 900;*/
+            /*text-transform: uppercase;*/
+            /*  font-style: normal;
+}*/
+            /*
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link:focus {
     color: rgb(5, 103, 140); 
 }*/
-
-.navbar .navbar-toggler-icon {
+            /*.navbar .navbar-toggler-icon {
     padding: 2em 1em;
-}
-
+}*/
+            /*
 .navbar .navbar-brand {
     padding: 0;
+}*/
+            .center {
+                text-align: center;
+            }
+
+.navbar {
+    background: rgb(0, 123, 196);
 }
 
 .navbar #registerLink, 
 .navbar #loginLink {
-    margin: 0.2em;
+    margin: 0.25rem;
 }
 
+.navbar #registerLink:hover,
+.navbar #registerLink:focus,
+.navbar #loginLink:hover,
+.navbar #loginLink:focus {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+/*
 .navbar .navbar-brand img {
     width: 125px;
     height: 85px;
@@ -167,28 +220,30 @@ ul {
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-
+*/
 /*
 [role="main"] {
     margin-top: 2.5em;
 }*/
 
+/*
 [role="main"] .post-container .post-content ul {
     list-style: square !important;
-}
+}*/
 
+/*
 [role="main"] .post-container .post-content table td {
     vertical-align: top !important;
-}
+}*/
 
-[role="main"] .post-container,
+/*[role="main"] .post-container,
 [role="main"] .widget {
     position: relative;
     overflow: hidden;
     background: white;
     margin: 1.5em auto;
     padding: 1.5em 1.5em;
-}
+}*/
 
 /*
 [role="main"] .post-container,
@@ -211,12 +266,13 @@ ul {
 }
 */
 
+/*
 [role="main"] .widget h3 {
     position: relative;
     font-size: 15px;
-    letter-spacing: 1px;
+    letter-spacing: 1px;*/
     /*text-transform: uppercase;*/
-    border-bottom: 1px solid rgb(238,238,238);
+   /* border-bottom: 1px solid rgb(238,238,238);
 }
 
 [role="main"] .widget h3 span {
@@ -233,9 +289,9 @@ ul {
 
 [role="main"] .widget ul li {
     font-weight: 700;
-    /*font-size: 1.1em;
+    /*font-size: 1.1em;*/
    /* margin: 1em auto;*/
-}
+/*}
 
 [role="main"] .widget ul li:before {
     position: absolute;
@@ -304,9 +360,229 @@ ul {
 [role="main"] .post-container .post-content {
     margin-top: 30px;
     line-height: 25px;
+}*/
+
+.entry,
+.widget {
+    position: relative;
+    overflow: hidden;
+    margin: 1.55rem auto;
+    padding: 1.55rem;
+    background: white;
 }
 
-[role="main"] .post-container .post-comments {
+.entry:before,
+.widget:before {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    z-index: 40;
+    border-width: 0 15px 15px 0;
+    border-style: solid;
+    border-color: rgb(255,255,255) rgb(242, 244, 243) rgb(255,255,255) rgb(255,255,255);
+    background: rgb(101, 142, 21);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08), -1px 1px 1px rgba(0,0,0,0.08);
+}
+
+.widget h3 {
+    position: relative;
+    font-size: 0.95rem;
+    letter-spacing: 0.25rem;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.widget h3 span {
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid rgb(0, 123, 196);
+}
+
+.widget ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widget ul li {
+    position: relative;
+    margin: 0.55rem 0;
+    padding-left: 1.75rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: rgb(63, 65, 66);
+}
+
+    .widget ul li:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-family: "FontAwesome";
+        content: "\f15b";
+        color: rgb(0, 123, 196);
+    }
+
+.widget ul li a {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+.post > .post-header > h2 {
+    border-bottom: 1px solid rgb(58, 106, 127);
+    padding-bottom: 0.2em;
+    margin: 0;
+}*/
+/*
+.post > .post-header > .post-meta {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgb(58, 106, 127);
+    padding-bottom: 0.2em;
+}
+
+.post > .post-header > .post-meta li {
+    display: inline-block;
+    padding: 0.2em;
+    font-size: 1.03em;
+}
+
+.post > .post-header > .post-meta li:first-child {
+    padding-left: 0;
+}
+
+.post > .post-header > .post-meta li:last-child {
+    padding-right: 0;
+}
+
+.post > .post-header > .post-meta > li > .fa {
+    color: rgb(115, 170, 174);
+}
+
+.post > .post-header > .post-meta > li {
+    color: rgb(2, 117, 216);
+    font-weight: 900;
+}
+*/
+
+/*
+.post .post-content {
+    /*margin: 1em 0;*/
+ /*   
+}
+     todo
+    .post .post-content p {
+        margin: 0;
+        font-size: 1.15em;
+        line-height: 1.6;
+    }*/
+    /*  .post > .post-header > .post-meta:before,
+    .post > .post-header:after {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 1px;
+        padding: 0;
+        content: "";
+        background: rgb(58, 106, 127);
+        margin: 0.3em 0 0.5em 0;
+    }*/
+    /*
+    OLD STYLES
+*/
+
+/*
+    NEW STYLES FOR HEADER
+*/
+
+.entry .e-header,
+.comment .c-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+    padding-bottom: 0.05rem;
+    margin-bottom: 0.99rem;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.entry .e-header .e-title {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0.35rem;
+    width: 100%;
+    font-size: 2.05rem;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+    .entry .e-header > .e-date,
+    .entry .e-header > .e-author,
+    .comment .c-header > .c-date,
+    .comment .c-header > .c-author {
+        width: 49.99%;
+        font-weight: 700;
+        font-size: 0.99rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        color: rgb(0, 123, 196);
+    }
+
+.entry .e-header .e-date,
+.comment .c-header .c-date {
+    text-align: left;
+}
+
+.entry .e-header .e-author,
+.comment .c-header .c-author {
+    text-align: right;
+}
+
+    .entry .e-header .e-date:before,
+    .entry .e-header .e-author:before,
+    .comment .c-header .c-author,
+    .comment .c-header .c-date {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        padding-right: 0.35rem;
+        color: rgb(4, 74, 90);
+    }
+
+.entry .e-header .e-date:before,
+.comment .c-header .c-date:before {
+    content: "\f017";
+}
+
+.entry .e-header .e-author:before,
+.comment .c-header .c-author:before {
+    content: "\f007";
+}
+
+.entry .e-content {
+    color: rgb(30, 30, 29);
+}
+
+.entry .e-comments {
+    padding-top: 0.75rem;
+}
+
+    .entry .e-comments h4 {
+        color: rgb(4, 74, 90);
+    }
+
+/*
+    old
+*/
+/*[role="main"] .post-container .post-comments {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid #f4f4f4;
@@ -345,12 +621,26 @@ ul {
     color: rgb(93, 67, 132);
 }
 
+/*
 [role="main"] .post-container .post-read-more {
     margin-top: 1.5em;
-}
-
+}*/
+/*
 #new-comment {
     border-top: 1px solid #eee;
+}*/
+
+/*
+    TODO NEW pagination style
+*/
+.pagination .page-item .page-link {
+    color: rgb(5, 103, 140);
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background: rgb(5, 103, 140);
+    border-color: rgb(5, 103, 140);
 }
 
 .previous a > .fa,
@@ -423,6 +713,7 @@ ul {
 }
 */
 
+/*
 [role="contentinfo"]  {
     text-align: center;
 }
@@ -452,7 +743,7 @@ ul {
     color: rgb(79, 148, 153);
     font-size: 1em;
 }
-
+*/
            /* [role="contentinfo"] .social li [rel="me"] > .fa {
                 
                 font-size: 35px;
@@ -464,18 +755,66 @@ ul {
                     color: rgb(5, 103, 140);
                 }*/
 
-a {
-    color: rgb(2, 117, 216);
-    text-decoration: none;
+/*
+    FOOTER
+*/
+
+[role="contentinfo"] {
+    margin: 0 auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background: rgb(4, 74, 90);
+    text-align: center;
 }
 
-    a:hover,
-    a:focus,
-    a:active {
-        color: rgb(53, 121, 178);
-        text-decoration: none;
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
+[role="contentinfo"] [rel="me"] {
+    font-size: 2.45rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+[role="contentinfo"] [rel="me"] strong {
+    display: none;
+}
+
+    [role="contentinfo"] .facebook:before {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        content: "\f230";
     }
+
+    [role="contentinfo"] .twitter:before {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        content: "\f099";
+    }
+
+    [role="contentinfo"] .github:before {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        content: "\f09b";
+    }
+
+    [role="contentinfo"] .youtube:before {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        content: "\f16a";
+    }
+
+    [role="contentinfo"] .instagram:before {
+        font-weight: 900;
+        font-family: "FontAwesome";
+        content: "\f16d";
+    }
+
+    [role="contentinfo"] .copyright {
+        margin: 0.95rem 0;
+        color: rgb(242, 244, 243);
+        font-size: 1.25rem;
+    }
+
+        [role="contentinfo"] .copyright:before {
+            font-weight: 900;
+            font-family: "FontAwesome";
+            content: "\f1f9";
+        }

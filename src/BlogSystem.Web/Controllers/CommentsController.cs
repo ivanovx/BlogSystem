@@ -3,30 +3,31 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using BlogSystem.Services.Data.Comments;
-
     using BlogSystem.Web.ViewModels.Comments;
+
     using BlogSystem.Web.Infrastructure.XSS;
     using BlogSystem.Web.Infrastructure.Attributes;
+
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
 
     [Authorize]
     public class CommentsController : BaseController
     {
-        private readonly ICommentsDataService commentsData;
+        private readonly IDbRepository<Comment> commentsData;
         private readonly ISanitizer sanitizer;
 
-        public CommentsController(ICommentsDataService commentsData, ISanitizer sanitizer)
+        public CommentsController(IDbRepository<Comment> commentsData, ISanitizer sanitizer)
         {
             this.commentsData = commentsData;
             this.sanitizer = sanitizer;
         }
 
-        [HttpGet]
         [AjaxOnly]
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {
-            var comments = this.commentsData.GetAllCommentsByPost(id);
+            var comments = this.commentsData.All().Where(c => c.PostId == id);
             var model = this.Mapper.Map<CommentViewModel>(comments).ToList();
 
             return this.PartialView(model);
@@ -34,16 +35,24 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, CommentViewModel model)
+        public ActionResult Create(CommentViewModel model)
         {
             if (model != null && this.ModelState.IsValid)
             {
                 var userId = this.CurrentUser.GetUser().Id;
                 var content = this.sanitizer.Sanitize(model.Content);
 
-                this.commentsData.AddCommentToPost(id, content, userId);
+                var comment = new Comment
+                {
+                    PostId = model.Id,
+                    Content = content,
+                    AuthorId = userId
+                };
 
-                return this.RedirectToAction("All", new { id });
+                this.commentsData.Add(comment);
+                this.commentsData.SaveChanges();
+
+                return this.RedirectToAction("All", new { id = model.Id });
             }
 
             return this.Json("Content is required");

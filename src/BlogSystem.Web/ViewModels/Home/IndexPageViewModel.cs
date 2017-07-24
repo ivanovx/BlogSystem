@@ -1,8 +1,8 @@
 ﻿namespace BlogSystem.Web.ViewModels.Home
 {
-    using BlogSystem.Web.ViewModels.Common;
-
     using System.Collections.Generic;
+
+    using BlogSystem.Web.ViewModels;
 
     public class IndexPageViewModel : PaginationViewModel
     {

@@ -1,36 +1,41 @@
 ﻿<!doctype html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 days" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <meta name="author" content="@ViewData["BlogAuthor"]" />
-        <meta name="keywords" content="@ViewData["BlogKeywords"]" />
-        <meta name="description" content="@ViewData["BlogTitle"] : @ViewData["BlogDescription"]" />
+        <meta name="robots" content="index, follow">
+        <meta name="revisit-after" content="1 days">
+
+        <meta name="author" content="@ViewData["Blog_Author"]">
+        <meta name="keywords" content="@ViewData["Blog_Keywords"]">
+        <meta name="description" content="@ViewData["Blog_Title"] - @ViewData["Blog_Description"]">
        
-        <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>
+        <title>@ViewBag.Title - @ViewData["Blog_Title"]</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Lemonada" rel="stylesheet">
 
         @Styles.Render("~/Content/bootstrap")
         @Styles.Render("~/Content/tether")
         @Styles.Render("~/Content/fonts")
         @Styles.Render("~/Content/blog")
+
+        <link href="~/Content/prism/prism.css" rel="stylesheet" />
     </head>
     <body>
 		@Html.Partial("_Header")
         
-        <section class="container-fluid" role="main">
+        <main class="container-fluid" role="main">
             <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    @{ Html.RenderAction("Sidebar", "Blog"); }
+                </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     @RenderBody()
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    @{ Html.RenderAction("Index", "Sidebar"); }
-                </div>
+                </div>                
             </div>
-        </section>
+        </main>
         
         @Html.Partial("_Footer")
 
@@ -38,6 +43,8 @@
         @Scripts.Render("~/bundles/tether")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/blog")
+
+        <script src="~/Content/prism/prism.js"></script>
 
         @RenderSection("scripts", false)
     </body>

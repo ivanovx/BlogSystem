@@ -9,18 +9,15 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
 
-    using BlogSystem.Web.Infrastructure.XSS;
     using BlogSystem.Web.Areas.Administration.ViewModels.Posts;
 
     public class PostsController : AdministrationController
     {
         private readonly IDbRepository<Post> postsData;
-        private readonly ISanitizer sanitizer;
 
-        public PostsController(IDbRepository<Post> postsData, ISanitizer sanitizer)
+        public PostsController(IDbRepository<Post> postsData)
         { 
             this.postsData = postsData;
-            this.sanitizer = sanitizer;
         }
 
         [HttpGet]
@@ -61,7 +58,7 @@
                 var post = new Post
                 {
                     Title = model.Title,
-                    Content = this.sanitizer.Sanitize(model.Content),
+                    Content = model.Content,
                     AuthorId = this.CurrentUser.GetUser().Id
                 };
 
@@ -103,7 +100,7 @@
                 var post = this.postsData.Find(model.Id);
 
                 post.Title = model.Title;
-                post.Content = this.sanitizer.Sanitize(model.Content);
+                post.Content = model.Content;
                 post.AuthorId = this.CurrentUser.GetUser().Id;
 
                 this.postsData.Update(post);

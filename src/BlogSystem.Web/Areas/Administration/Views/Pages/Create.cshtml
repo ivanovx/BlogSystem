@@ -5,6 +5,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<hr />
 
 @using (Html.BeginForm("Create", "Pages", FormMethod.Post))
 {
@@ -34,6 +35,8 @@
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">Create</button>
+
+        @Html.ActionLink("Cancel", "Index", "Pages", new { area = "Administration" }, new { @class = "btn btn-danger" })
     </div>
 }
 

@@ -1,29 +1,38 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using BlogSystem.Common
 
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<ul class="navbar-nav navbar-right">
+
+    @if (Request.IsAuthenticated)
     {
-        @Html.AntiForgeryToken()
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="@Url.Action("Avatar", "Account", new { username = User.Identity.Name })" alt="Avatar" width="25" height="25" class="rounded-circle" />
+                Hello @User.Identity.Name
+            </a>
+            <div class="dropdown-menu" aria-labelledby="user">
+                @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    @Html.ActionLink("Administration", "Index", "Home", new { area = "Administration" }, new { @class = "dropdown-item" })
+                }
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                @Html.ActionLink($"Hello {User.Identity.GetUserName()}!", "Index", "Manage", new { area = string.Empty }, new { @class = "nav-link", title = "Manage" })
-            </li>
-            <li class="nav-item">
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-outline-primary my-2 my-sm-0">Log off</a>
-            </li>
-        </ul>
+                @Html.ActionLink("Manage", "Index", "Manage", new { area = string.Empty }, new { @class = "dropdown-item", title = "Manage" })
+
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">Log off</a>
+                }
+            </div>
+        </li>
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
+    else
+    {
         <li class="nav-item">
-            @Html.ActionLink("Register", "Register", "Account", new { area = string.Empty }, new { @class = "btn btn-outline-success my-2 my-sm-0", id = "registerLink"})
+            @Html.ActionLink("Register", "Register", "Account", new { area = string.Empty }, new { @class = "btn btn-outline-success my-2 my-sm-0", id = "registerLink" })
         </li>
         <li class="nav-item">
             @Html.ActionLink("Log in", "Login", "Account", new { area = string.Empty }, new { @class = "btn btn-outline-success my-2 my-sm-0", id = "loginLink" })
         </li>
-    </ul>
-}
+    }
+</ul>

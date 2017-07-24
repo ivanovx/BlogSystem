@@ -4,31 +4,30 @@
     ViewBag.Title = "Edit Comment";
 }
 
-        <h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Title</h2>
 
-        @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+@using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.PostId)
-                @Html.HiddenFor(model => model.AuthorId)
-                @Html.HiddenFor(model => model.CreatedOn)
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.PostId)
+    @Html.HiddenFor(m => m.AuthorId)
+    @Html.HiddenFor(m => m.CreatedOn)
 
-                <div class="form-group">
-                    @Html.EditorFor(model => model.Content)
-                    @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
-                </div>
+    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Save</button>
+    <div class="form-group">
+        @Html.EditorFor(model => model.Content)
+        @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
+    </div>
 
-                    @Html.ActionLink("Cancel", "Index", "Comments", new { area = "Administration" }, new { @class = "btn btn-danger" })
-                </div>
-            </div>
-        }
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Save</button>
+
+        @Html.ActionLink("Cancel", "Index", "Comments", new { area = "Administration" }, new { @class = "btn btn-danger" })
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

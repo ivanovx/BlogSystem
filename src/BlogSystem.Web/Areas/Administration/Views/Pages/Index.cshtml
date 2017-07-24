@@ -5,7 +5,7 @@
 }
 
 <header>
-    <h2 class="float-left">@ViewBag.Title</h2>
+    <h1 class="float-left">@ViewBag.Title</h1>
 
     <a href="@Url.Action("Create", "Pages", new { area = "Administration" })" class="btn btn-success float-right">
         <span class="fa fa-plus" aria-hidden="true"></span>
@@ -27,31 +27,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Pages)
+            @foreach (var page in Model.Pages)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Author)
-                    </td>
+                    <td>@page.Id</td>
+                    <td>@page.Title</td>
+                    <td>@Html.DisplayFor(m => page.CreatedOn)</td>
+                    <td>@Html.DisplayFor(m => page.ModifiedOn)</td>
+                    <td>@page.Author</td>
                     <td>
                         <div class="btn-group">
-                            <a href="@Url.Action("Edit", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-warning">
+                            <a href="@Url.Action("Edit", "Pages", new { area = "Administration", id = page.Id })" class="btn btn-warning">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 Edit
                             </a>
-                            <a href="@Url.Action("Delete", "Pages", new {area = "Administration", id = item.Id})" class="btn btn-danger">
+                            <a href="@Url.Action("Delete", "Pages", new { area = "Administration", id = page.Id })" class="btn btn-danger">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Delete
                             </a>

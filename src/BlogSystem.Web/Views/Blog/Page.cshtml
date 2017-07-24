@@ -1,0 +1,19 @@
+﻿@model BlogSystem.Web.ViewModels.Pages.PageViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<article class="entry">
+    <header class="e-header">
+        <h2 class="e-title">@Model.Title</h2>
+
+        <time datetime="@Model.CreatedOn" class="e-date">@Html.DisplayFor(m => Model.CreatedOn)</time>
+
+        <strong class="e-author">@Model.Author</strong>
+    </header>
+
+    <div class="e-content">
+        @Html.Raw(Model.Content)
+    </div>
+</article>

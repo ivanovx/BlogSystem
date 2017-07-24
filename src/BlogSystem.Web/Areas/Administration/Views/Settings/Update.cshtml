@@ -4,14 +4,14 @@
     ViewBag.Title = "Update Setting";
 }
 
-<h2>@ViewBag.Title: @Model.Key</h2>
+<h2>@Model.Key.Replace('_', ' ')</h2>
 <hr />
 
 @using (Html.BeginForm("Update", "Settings", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
     @Html.HiddenFor(model => Model.Key)
 
     <div class="form-group">
@@ -19,5 +19,5 @@
         @Html.ValidationMessageFor(model => Model.Value, "", new { @class = "text-danger" })
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-success">Update</button>
 }

@@ -1,0 +1,55 @@
+﻿@model BlogSystem.Web.ViewModels.Posts.PostViewModel
+
+@using BlogSystem.Web.ViewModels.Comments
+
+@{ 
+    ViewBag.Title = Model.Title;
+
+    const string commentsPartialViewsFolder = "~/Views/Comments/{0}.cshtml";
+}
+
+<article class="entry">
+    <header class="e-header">
+        <h2 class="e-title">@Model.Title</h2>
+
+        <time datetime="@Model.CreatedOn" class="e-date">@Html.DisplayFor(model => Model.CreatedOn)</time>
+
+        <strong class="e-author">@Model.Author</strong>
+    </header>
+
+    <!--TODO First letter-->
+    <div class="e-content">
+        @Html.Raw(Model.Content)
+    </div>
+
+    <div class="e-comments">
+        @Ajax.ActionLink("View Comments", "All", new
+        {
+           id = Model.Id,
+           controller = "Comments",
+        },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            OnSuccess = "BlogSystem.onGetCommentsSuccess",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "comments"
+        },
+        new
+        {
+            id = "show-comments",
+            @class = "btn btn-success"
+        })
+
+        <div id="comments"></div>
+
+        <div id="new-comment">
+            @Html.Partial(string.Format(commentsPartialViewsFolder, "_CreateComment"), new CommentViewModel())
+        </div>
+    </div>
+</article>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/notify")
+    @Scripts.Render("~/bundles/jqueryajax")
+}

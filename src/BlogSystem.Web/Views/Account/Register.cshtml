@@ -4,16 +4,24 @@
     ViewBag.Title = "Register";
 }
 
-<section class="post-container">
-    <div class="post-content">
+<section class="entry">
+    <header class="e-header">
         <h2>@ViewBag.Title</h2>
-        <h4>Create a new account.</h4>
-        
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+    </header>
+
+    <div class="e-content">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-
             @Html.ValidationSummary(string.Empty, new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Avatar, new { @class = "col-md-2 control-label" })
+
+                <div class="col-md-10">
+                    <input type="file" name="Avatar" class="form-control" />
+                </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
@@ -47,14 +55,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <button type="submit" class="btn btn-success">Register</button>
                     </div>
-                </div>
         }
     </div>
 </section>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

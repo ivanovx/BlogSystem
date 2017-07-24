@@ -25,7 +25,7 @@
 
         public IQueryable<Page> GetAllPagesForMenu()
         {
-            var pages = this.GetAllPages().Where(p => p.VisibleInMenu == true).AsQueryable();
+            var pages = this.GetAllPages().Where(p => p.ShowInMenu == true).AsQueryable();
 
             return pages;
         }

@@ -1,15 +1,16 @@
 ﻿namespace BlogSystem.Web.ViewModels.Home
 {
+    using System;
     using System.Web.Mvc;
-
+    
     using AutoMapper;
 
     using BlogSystem.Data.Models;
 
     using BlogSystem.Web.Infrastructure.Mapping;
     using BlogSystem.Web.Infrastructure.Helpers.Url;
-
-    public class PostConciseViewModel : BaseViewModel, IMapFrom<Post>, IHaveCustomMappings
+    
+    public class PostConciseViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IUrlGenerator urlGenerator;
 
@@ -30,17 +31,15 @@
         [AllowHtml]
         public string Content { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public string Author { get; set; }
 
-        public int CommentsCount { get; set; }
-
-        public string Url => this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
+        public string Url => this.urlGenerator.GenerateUrl(this.Title);
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            config.CreateMap<Post, PostConciseViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName))
-                .ForMember(m => m.CommentsCount, c => c.MapFrom(post => post.Comments.Count));
+            config.CreateMap<Post, PostConciseViewModel>().ForMember(m => m.Author, c => c.MapFrom(post => post.Author.UserName));
         }
     }
 }

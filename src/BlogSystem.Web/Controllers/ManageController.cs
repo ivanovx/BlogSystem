@@ -11,6 +11,7 @@
 
     using BlogSystem.Web.Identity;
     using BlogSystem.Web.ViewModels.Manage;
+    using System.IO;
 
     [Authorize]
     public class ManageController : BaseController
@@ -68,9 +69,12 @@
                                                                            : string.Empty;
 
             var userId = this.User.Identity.GetUserId();
+            var user = await this.userManager.FindByIdAsync(userId);
+
             var model = new IndexViewModel
             {
-                HasPassword = this.HasPassword(), 
+                HasPassword = this.HasPassword(),
+                Avatar = user.Avatar,
                 PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId), 
                 TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId), 
                 Logins = await this.UserManager.GetLoginsAsync(userId), 
@@ -109,6 +113,74 @@
             {
                 Message = message
             });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> AddAvatar()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = await this.UserManager.FindByIdAsync(userId);
+
+            if (user.Avatar == null)
+            {
+                return this.View();
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddAvatar(UserAvatarViewModel model)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = await this.UserManager.FindByIdAsync(userId);
+
+            if (ModelState.IsValid && model != null)
+            {
+                using (var memory = new MemoryStream())
+                {
+                    model.Avatar.InputStream.CopyTo(memory);
+
+                    user.Avatar = memory.GetBuffer();
+                }
+
+                await this.UserManager.UpdateAsync(user);
+
+                return this.RedirectToAction("Index");
+            }            
+
+            return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeAvatar()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeAvatar(UserAvatarViewModel model)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = await this.UserManager.FindByIdAsync(userId);
+
+            if (ModelState.IsValid && model != null)
+            {
+                using (var memory = new MemoryStream())
+                {
+                    model.Avatar.InputStream.CopyTo(memory);
+
+                    user.Avatar = memory.GetBuffer();
+                }
+
+                await this.UserManager.UpdateAsync(user);
+
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View(model);
         }
 
         // GET: /Manage/AddPhoneNumber

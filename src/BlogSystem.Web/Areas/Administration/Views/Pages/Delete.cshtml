@@ -4,37 +4,8 @@
     ViewBag.Title = "Delete Page";
 }
 
-        <h2>@ViewBag.Title</h2>
-        <h3 class="text-danger">Are you sure you want to delete this page?</h3>
-
-        <div class="panel-group">
-            <div class="panel panel-primary">
-                <div data-toggle="collapse" data-target="#authorDetails" class="panel-heading">
-                    <div class="panel-title">
-                        <i class="glyphicon glyphicon-collapse-down"></i>
-                        Author Details
-                    </div>
-                </div>
-                <div id="authorDetails" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul class="list-unstyled">
-                            <li>
-                                <strong>Author Id: </strong>
-                                @Html.DisplayFor(model => model.AuthorId)
-                            </li>
-                            <li>
-                                <strong>Email: </strong>
-                                @Html.DisplayFor(model => model.Author.Email)
-                            </li>
-                            <li>
-                                <strong>Username: </strong>
-                                @Html.DisplayFor(model => model.Author.UserName)
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<h2>@ViewBag.Title</h2>
+<h3 class="text-danger">Are you sure you want to delete this page?</h3>
 
         <div class="panel-group">
             <div class="panel panel-primary">
@@ -89,13 +60,11 @@
             </div>
         </div>
         
-        @using (Html.BeginForm("Delete", "Pages", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+@using (Html.BeginForm("Delete", "Pages", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-            <button type="submit" class="btn btn-danger">Delete</button>
+   <button type="submit" class="btn btn-danger">Delete</button>
 
-            <a href="@Url.Action("Index", "Pages", new { area = "Administration" })" class="btn btn-default">
-                Cancel
-            </a>
-        }
+    @Html.ActionLink("Cancel", "Index", "Pages", new { area = "Administration" }, new { @class = "btn btn-danger" })
+}

@@ -1,0 +1,36 @@
+﻿@model BlogSystem.Web.ViewModels.SidebarViewModel
+
+<div class="widget">
+    <h3>
+        <span>Recent Posts</span>
+    </h3>
+    @if (Model.RecentPosts.Any())
+    {
+        <ul>
+            @foreach (var post in Model.RecentPosts)
+            {
+                <li>
+                    @Html.RouteLink(post.Title, "Posts", new { title = post.Url, id = post.Id })
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+<div class="widget">
+    <h3>
+        <span>Pages</span>
+    </h3>
+    
+    @if (Model.AllPages.Any())
+    {
+        <ul>
+            @foreach (var page in Model.AllPages)
+            {
+                <li>
+                    @Html.RouteLink(page.Title, "Pages", new { permalink = page.Permalink })
+                </li>
+            }
+        </ul>
+    }
+</div>

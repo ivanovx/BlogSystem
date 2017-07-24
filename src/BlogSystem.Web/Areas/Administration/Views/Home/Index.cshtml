@@ -1,18 +1,5 @@
-﻿@model BlogSystem.Web.Areas.Administration.ViewModels.BaseInfoViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Administration";
 }
 
-<h2>Administration</h2>
-<hr />
-
-<div class="card card-inverse card-primary mb-3 text-center">
-    <div class="card-block">
-        <blockquote class="card-blockquote">
-            <h3>Your Browser: @Model.Browser</h3>
-            <h3>Your IP Adress: @Model.IpAddress</h3>
-            <h3>Your OS: @Model.Platform</h3>
-        </blockquote>
-    </div>
-</div>
+<h2>@ViewBag.Title</h2>

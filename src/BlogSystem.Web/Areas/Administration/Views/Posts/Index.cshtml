@@ -30,11 +30,11 @@
             @foreach (var post in Model.Posts)
                 {
                 <tr>
-                    <td>@Html.DisplayFor(m => post.Id)</td>
-                    <td>@Html.DisplayFor(m => post.Title)</td>
+                    <td>@post.Id</td>
+                    <td>@post.Title</td>
                     <td>@Html.DisplayFor(m => post.CreatedOn)</td>
                     <td>@Html.DisplayFor(m => post.ModifiedOn)</td>
-                    <td>@Html.DisplayFor(m => post.Author)</td>
+                    <td>@post.Author</td>
                     <td>
                         <div class="btn-group">
                             <a href="@Url.Action("Edit", "Posts", new {area = "Administration", id = post.Id})" class="btn btn-warning">

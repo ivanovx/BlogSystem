@@ -8,7 +8,6 @@
     using BlogSystem.Data.Repositories;
 
     using BlogSystem.Web.Infrastructure.Helpers.Url;
-    using BlogSystem.Web.Infrastructure.XSS;
 
     using BlogSystem.Web.Areas.Administration.ViewModels.Pages;
 
@@ -16,13 +15,11 @@
     {
         private readonly IDbRepository<Page> pagesData;
         private readonly IUrlGenerator urlGenerator;
-        private readonly ISanitizer sanitizer;
 
-        public PagesController(IDbRepository<Page> pagesData, IUrlGenerator urlGenerator, ISanitizer sanitizer)
+        public PagesController(IDbRepository<Page> pagesData, IUrlGenerator urlGenerator)
         {
             this.pagesData = pagesData;
             this.urlGenerator = urlGenerator;
-            this.sanitizer = sanitizer;
         }
 
         public ActionResult Index()
@@ -48,13 +45,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(PageViewModel model)
         {
-            if(model != null && this.ModelState.IsValid)
+            if (model != null && this.ModelState.IsValid)
             {
                 var page = new Page
                 {
                     Title = model.Title,
-                    Content =  this.sanitizer.Sanitize(model.Content),
-                    VisibleInMenu = model.VisibleInMenu,
+                    Content =  model.Content,
+                    ShowInMenu = model.VisibleInMenu,
                     AuthorId = this.CurrentUser.GetUser().Id,
                     Permalink = this.urlGenerator.GenerateUrl(model.Title)
                 };
@@ -97,8 +94,8 @@
                 var page = this.pagesData.Find(model.Id);
 
                 page.Title = model.Title;
-                page.Content = this.sanitizer.Sanitize(model.Content);
-                page.VisibleInMenu = model.VisibleInMenu;
+                page.Content = model.Content;
+                page.ShowInMenu = model.VisibleInMenu;
                 page.Permalink = this.urlGenerator.GenerateUrl(model.Title);
                 page.AuthorId = this.CurrentUser.GetUser().Id;
 

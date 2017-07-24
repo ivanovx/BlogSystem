@@ -1,12 +1,13 @@
 ﻿@model BlogSystem.Web.ViewModels.Comments.CommentViewModel
 
-<h3>Leave a Comment</h3>
+<h5>Leave a Comment</h5>
 
 @if (User.Identity.IsAuthenticated)
 {
-    using (Ajax.BeginForm("Create", "Comments", 
-        new { id = ViewData["id"] }, 
-        new AjaxOptions {
+    using (Ajax.BeginForm("Create", "Comments",
+        new { id = ViewData["id"] },
+        new AjaxOptions
+        {
             HttpMethod = "Post",
             InsertionMode = InsertionMode.Replace,
             UpdateTargetId = "comments",
@@ -24,7 +25,7 @@
             @Html.ValidationMessageFor(model => model.Content, string.Empty, new { @class = "text-danger" })
         </div>
 
-        <button type="submit" class="btn btn-success">Add Comment</button>
+        <button type="submit" class="btn btn-lg btn-success">Add Comment</button>
     }
 }
 else

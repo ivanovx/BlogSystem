@@ -216,7 +216,6 @@
     <Compile Include="Areas\Administration\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Administration\AdministrationViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Administration\PaginationViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\BaseInfoViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Posts\PostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Pages\IndexPagesViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Pages\PageViewModel.cs" />
@@ -224,13 +223,10 @@
     <Compile Include="Areas\Administration\ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NavController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
-    <Compile Include="Controllers\SidebarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,8 +238,8 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Common\PaginationViewModel.cs" />
+    <Compile Include="ViewModels\Manage\UserAvatarViewModel.cs" />
+    <Compile Include="ViewModels\PaginationViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\Home\PostConciseViewModel.cs" />
@@ -259,9 +255,9 @@
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\Common\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\PageViewModel.cs" />
-    <Compile Include="ViewModels\Common\SidebarViewModel.cs" />
+    <Compile Include="ViewModels\SidebarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\ViewModels\Posts\IndexPostsPageViewModel.cs" />
@@ -275,6 +271,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\prism\prism.css" />
+    <Content Include="Content\prism\prism.js" />
     <Content Include="Content\tether\tether-theme-arrows-dark.css" />
     <Content Include="Content\tether\tether-theme-arrows-dark.min.css" />
     <Content Include="Content\tether\tether-theme-arrows.css" />
@@ -284,7 +282,6 @@
     <Content Include="Content\tether\tether.css" />
     <Content Include="Content\tether\tether.min.css" />
     <Content Include="Content\vs.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
@@ -302,7 +299,6 @@
     <Content Include="Areas\Administration\Views\Pages\Delete.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="Areas\Administration\Views\Shared\_Header.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Settings\Update.cshtml" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -314,17 +310,11 @@
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\AdminMenu.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Pagination.cshtml" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="images\friends-logos\Jason Hound Hound.png" />
-    <Content Include="images\friends-logos\Silent City.png" />
     <Content Include="images\header.jpg" />
     <Content Include="images\logo.png" />
-    <Content Include="images\loading.gif" />
     <Content Include="robots.txt" />
-    <Content Include="Scripts\ai.0.22.19-build00125.js" />
-    <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\blog.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -337,7 +327,6 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.nicescroll.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -506,9 +495,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Nav\Menu.cshtml" />
-    <Content Include="Views\Pages\Page.cshtml" />
-    <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TinyMCE.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
@@ -517,7 +503,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LoginRegisterPartial.cshtml" />
-    <Content Include="Views\Sidebar\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
@@ -537,6 +522,12 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Blog\_Menu.cshtml" />
+    <Content Include="Views\Blog\_Sidebar.cshtml" />
+    <Content Include="Views\Blog\Page.cshtml" />
+    <Content Include="Views\Manage\AddAvatar.cshtml" />
+    <Content Include="Views\Manage\ChangeAvatar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -560,10 +551,6 @@
     <ProjectReference Include="..\BlogSystem.Data\BlogSystem.Data.csproj">
       <Project>{17485a92-aa59-4324-b830-37d935148532}</Project>
       <Name>BlogSystem.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlogSystem.Services.Data\BlogSystem.Services.Data.csproj">
-      <Project>{3ABCEC4B-5A4A-4699-A6F7-98A22C61B133}</Project>
-      <Name>BlogSystem.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\BlogSystem.Services.Web\BlogSystem.Services.Web.csproj">
       <Project>{F68F0757-E9AB-4B8E-8864-67F457E88C8A}</Project>

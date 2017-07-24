@@ -35,7 +35,7 @@
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
         public DateTime CreatedOn { get; set; }
 
-        public string Url => this.urlGenerator.ToUrl(this.Id, this.Title, this.CreatedOn);
+        public string Url => this.urlGenerator.GenerateUrl(this.Title);
         
         public void CreateMappings(IMapperConfigurationExpression config)
         {

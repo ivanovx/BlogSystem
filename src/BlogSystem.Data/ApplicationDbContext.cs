@@ -8,7 +8,6 @@ namespace BlogSystem.Data
 
     using BlogSystem.Data.Contracts;
     using BlogSystem.Data.Models;
-    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -74,22 +73,15 @@ namespace BlogSystem.Data
             }
         }
 
-        public new IDbSet<T> Set<T>() where T : class
+        public new IDbSet<T> Set<T>() 
+            where T : class
         {
             return base.Set<T>();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<Comment>().HasRequired(t => t.Post).WithMany(t => t.Comments).HasForeignKey(d => d.PostId).WillCascadeOnDelete(true);
-
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Post>().ToTable("Posts");
-            modelBuilder.Entity<Comment>().ToTable("Comments");
         }
     }
 }

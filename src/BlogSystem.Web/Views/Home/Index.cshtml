@@ -8,44 +8,33 @@
 {
     foreach (var post in Model.Posts)
     {
-        <article class="post-container">
-            <header class="post-header">
-                <h2>
-                    <a href="@post.Url" title="@post.Title" class="post-title">@post.Title</a>
+        <article class="entry">
+            <header class="e-header">
+                <h2 class="e-title">
+                    @Html.RouteLink(post.Title, "Posts", new { title = post.Url, id = post.Id })
                 </h2>
-                <hr />
-                <ul class="post-meta">
-                    <li>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        @Html.Timeago(post.CreatedOn)
-                    </li>
-                    <li>
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        @Html.DisplayFor(model => post.Author)
-                    </li>                
-                    <li>
-                        <i class="fa fa-comments" aria-hidden="true"></i>
-                        @Html.DisplayFor(model => post.CommentsCount) comments
-                    </li>
-                </ul>
+
+                <time datetime="@post.CreatedOn" class="e-date">@Html.Timeago(post.CreatedOn)</time>
+
+                <strong class="e-author">@post.Author</strong>
             </header>
 
-            <div class="post-content">
+            <!--TODO First letter-->
+            <div class="e-content">
                 @Html.Truncate(post.Content)
             </div>
 
-            <div class="post-read-more">
+            <!--<div class="post-read-more">
                 <a href="@post.Url" class="btn btn-default" title="@post.Title">Read more!</a>
-            </div>
+            </div>-->
         </article>
     }
 }
 else
 {
-    <article class="post-container">
-        <header class="post-header">
-            <h2 class="post-title">Sorry, nothing here...</h2>
-        </header>
+    <article class="entry center">
+        <h2>Error</h2>
+        <h3>Sorry, nothing here...</h3>
     </article>
 }
 

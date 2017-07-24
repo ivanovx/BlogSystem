@@ -40,10 +40,10 @@ namespace BlogSystem.Data.Migrations
             context.Settings.Add(new Setting { Key = "Blog_Description", Value = "Blog Description" });
             context.Settings.Add(new Setting { Key = "Blog_Keywords", Value = "Blog Keywords" });
             context.Settings.Add(new Setting { Key = "Blog_Author", Value = "Blog Author" });
-            context.Settings.Add(new Setting { Key = "GitHub_Profile", Value = "GitHub Profile" });
             context.Settings.Add(new Setting { Key = "Author_Email", Value = "Author Email" });
             context.Settings.Add(new Setting { Key = "Facebook_Profile", Value = "Facebook Profile" });
             context.Settings.Add(new Setting { Key = "Twitter_Profile", Value = "Twitter Profile" });
+            context.Settings.Add(new Setting { Key = "GitHub_Profile", Value = "GitHub Profile" });
             context.Settings.Add(new Setting { Key = "Instagram_Profile", Value = "Instagram Profile" });
             context.Settings.Add(new Setting { Key = "YouTube_Profile", Value = "YouTube Profile" });
         }
@@ -62,7 +62,7 @@ namespace BlogSystem.Data.Migrations
                 CreatedOn = DateTime.Now
             };
 
-            this.userManager.Create(admin, "csyntax11");
+            this.userManager.Create(admin, "administrator");
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdministratorRoleName);
         }
 

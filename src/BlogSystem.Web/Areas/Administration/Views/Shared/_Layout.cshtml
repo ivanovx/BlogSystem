@@ -5,15 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <title>@ViewBag.Title - @ViewData["BlogTitle"]</title>
+        <title>@ViewBag.Title - @ViewData["Blog_Title"]</title>
 
         @Styles.Render("~/Content/tether")
         @Styles.Render("~/Content/bootstrap")
         @Styles.Render("~/Content/fonts")
-        @Styles.Render("~/Content/blog")
         @Styles.Render("~/Content/administration")
     </head>
-    <body class="administration">
+    <body>
         @Html.Partial("_Header")
         
         <div class="container-fluid">
@@ -29,7 +28,6 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/tether")
         @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/blog")
 
         @RenderSection("scripts", false)
     </body>
