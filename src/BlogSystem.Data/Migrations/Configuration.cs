@@ -37,6 +37,7 @@ namespace BlogSystem.Data.Migrations
             }
 
             context.Settings.Add(new Setting { Key = "Blog_Title", Value = "Blog Title" });
+            context.Settings.Add(new Setting { Key = "Blog_Logo", Value = "Blog Logo" });
             context.Settings.Add(new Setting { Key = "Blog_Description", Value = "Blog Description" });
             context.Settings.Add(new Setting { Key = "Blog_Keywords", Value = "Blog Keywords" });
             context.Settings.Add(new Setting { Key = "Blog_Author", Value = "Blog Author" });
@@ -46,6 +47,7 @@ namespace BlogSystem.Data.Migrations
             context.Settings.Add(new Setting { Key = "GitHub_Profile", Value = "GitHub Profile" });
             context.Settings.Add(new Setting { Key = "Instagram_Profile", Value = "Instagram Profile" });
             context.Settings.Add(new Setting { Key = "YouTube_Profile", Value = "YouTube Profile" });
+            context.Settings.Add(new Setting { Key = "Spotify_Profile", Value = "Spotify Profile" });
         }
 
         private void SeedAdmin(ApplicationDbContext context)
@@ -57,12 +59,12 @@ namespace BlogSystem.Data.Migrations
 
             var admin = new ApplicationUser
             {
-                Email = "admin@admin.com",
-                UserName = "administrator",
+                Email = "csyntax@outlook.com",
+                UserName = "csyntax",
                 CreatedOn = DateTime.Now
             };
 
-            this.userManager.Create(admin, "administrator");
+            this.userManager.Create(admin, "csyntax");
             this.userManager.AddToRole(admin.Id, GlobalConstants.AdministratorRoleName);
         }
 

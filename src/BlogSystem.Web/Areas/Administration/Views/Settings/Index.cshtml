@@ -24,7 +24,15 @@
         {
             <tr>
                 <td>@setting.Key.Replace('_', ' ')</td>
-                <td>@setting.Value</td>
+                <td>
+                    @if(setting.Value.Length > 50)
+                    {
+                        @setting.Value.Substring(0, 50)
+                    }
+                    else {
+                        @setting.Value
+                    }
+                </td>
                 <td>
                     @Html.ActionLink("Update", "Update", new { id = setting.Key, area = "Administration" }, new { @class="btn btn-info "})
                 </td>
