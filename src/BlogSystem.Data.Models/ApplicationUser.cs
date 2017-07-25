@@ -21,8 +21,6 @@
             this.Pages = new HashSet<Page>();
         }
 
-        public byte[] Avatar { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
         [NotMapped]

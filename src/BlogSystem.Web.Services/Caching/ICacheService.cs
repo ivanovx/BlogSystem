@@ -1,12 +1,12 @@
-﻿namespace BlogSystem.Services.Web.Caching
+﻿namespace BlogSystem.Web.Services.Caching
 {
     using System;
 
-    public interface ICacheService : IWebService
+    public interface ICacheService
     {
         T Get <T> (string itemName, Func<T> getDataFunc, int durationInSeconds) 
             where T : class;
 
-        void Remove(string name);
+        void Remove(string itemName);
     }
 }

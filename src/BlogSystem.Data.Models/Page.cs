@@ -16,10 +16,12 @@
         [MinLength(10, ErrorMessage = "The {0} must be at least {1} characters long.")]
         public string Content { get; set; }
 
-        public string Permalink { get; set; }
+        [Required]
+        public string Slug { get; set; }
 
         public bool ShowInMenu { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]

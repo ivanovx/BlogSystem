@@ -11,7 +11,7 @@
 
             routes.MapRoute(
                name: "Posts",
-               url: "Posts/{title}/{id}",
+               url: "Posts/{slug}/{id}",
                defaults: new
                {
                    controller = "Blog",
@@ -24,7 +24,7 @@
 
             routes.MapRoute(
                 name: "Pages",
-                url: "Pages/{permalink}",
+                url: "Pages/{slug}/{id}",
                 defaults: new
                 {
                     controller = "Blog",

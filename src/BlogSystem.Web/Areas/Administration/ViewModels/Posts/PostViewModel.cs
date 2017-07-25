@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
-
+   
     using AutoMapper;
 
     using BlogSystem.Data.Models;
@@ -27,8 +27,7 @@
 
         public void CreateMappings(IMapperConfigurationExpression config)
         {
-            config.CreateMap<Post, PostViewModel>()
-                .ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));
+            config.CreateMap<Post, PostViewModel>().ForMember(m => m.Author, c => c.MapFrom(p => p.Author.UserName));
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace BlogSystem.Services.Web.Mapping
+﻿namespace BlogSystem.Web.Services.Mapping
 {
     using System.Linq;
 
-    public interface IMappingService : IWebService
+    public interface IMappingService
     {
         TDestination Map<TDestination>(object source)
             where TDestination : class;

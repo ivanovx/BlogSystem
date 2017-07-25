@@ -7,8 +7,6 @@
     {
         public bool HasPassword { get; set; }
 
-        public byte[] Avatar { get; set; }
-
         public IList<UserLoginInfo> Logins { get; set; }
 
         public string PhoneNumber { get; set; }

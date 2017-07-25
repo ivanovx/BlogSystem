@@ -19,10 +19,10 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Data.Repositories;
 
-    using BlogSystem.Services.Web;
-
     using BlogSystem.Web.Identity;
     using BlogSystem.Web.Controllers;
+    using BlogSystem.Web.Services.Caching;
+    using BlogSystem.Web.Services.Mapping;
 
     using BlogSystem.Web.Infrastructure.Helpers.Url;
     using BlogSystem.Web.Infrastructure.Identity;
@@ -72,10 +72,7 @@
 
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
 
-            builder
-                .Register(c => new UserStore<ApplicationUser>(c.Resolve<DbContext>()))
-                .AsImplementedInterfaces()
-                .InstancePerRequest();
+            builder.Register(c => new UserStore<ApplicationUser>(c.Resolve<DbContext>())).AsImplementedInterfaces().InstancePerRequest();
 
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
 
@@ -90,17 +87,13 @@
 
             builder.RegisterType<HtmlSanitizerAdapter>().As<ISanitizer>().InstancePerRequest();
 
+            builder.RegisterType<CacheService>().As<ICacheService>().InstancePerRequest();
+
+            builder.RegisterType<MappingService>().As<IMappingService>().InstancePerRequest();
+
             builder.Register(c => AutoMapperConfig.MapperConfiguration.CreateMapper()).As<IMapper>().SingleInstance();
 
-            builder
-                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<BaseController>()
-                .PropertiesAutowired();
-
-            builder
-                .RegisterAssemblyTypes(Assembly.GetAssembly(typeof(IWebService)))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AssignableTo<BaseController>().PropertiesAutowired();
         }
     }
 }

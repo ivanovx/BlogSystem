@@ -11,13 +11,17 @@
 
     using BlogSystem.Web.Areas.Administration.ViewModels.Posts;
 
+    using BlogSystem.Web.Infrastructure.Helpers.Url;
+
     public class PostsController : AdministrationController
     {
         private readonly IDbRepository<Post> postsData;
+        private readonly IUrlGenerator urlGenerator;
 
-        public PostsController(IDbRepository<Post> postsData)
+        public PostsController(IDbRepository<Post> postsData, IUrlGenerator urlGenerator)
         { 
             this.postsData = postsData;
+            this.urlGenerator = urlGenerator;
         }
 
         [HttpGet]
@@ -59,6 +63,7 @@
                 {
                     Title = model.Title,
                     Content = model.Content,
+                    Slug = this.urlGenerator.GenerateUrl(model.Title),
                     AuthorId = this.CurrentUser.GetUser().Id
                 };
 
@@ -101,6 +106,7 @@
 
                 post.Title = model.Title;
                 post.Content = model.Content;
+                post.Slug = this.urlGenerator.GenerateUrl(model.Title);
                 post.AuthorId = this.CurrentUser.GetUser().Id;
 
                 this.postsData.Update(post);

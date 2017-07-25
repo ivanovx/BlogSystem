@@ -135,10 +135,6 @@
       <Project>{17485a92-aa59-4324-b830-37d935148532}</Project>
       <Name>BlogSystem.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BlogSystem.Services.Web\BlogSystem.Services.Web.csproj">
-      <Project>{F68F0757-E9AB-4B8E-8864-67F457E88C8A}</Project>
-      <Name>BlogSystem.Services.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

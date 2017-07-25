@@ -16,15 +16,6 @@
             You're logged in as <strong>@User.Identity.GetUserName()</strong>
         </div>
 
-        @if (Model.Avatar != null)
-            {
-            @Html.ActionLink("Change Avatar", "ChangeAvatar", new { area = string.Empty }, new { @class = "btn btn-primary" })
-        }
-        else
-        {
-            @Html.ActionLink("Add Avatar", "AddAvatar", new { area = string.Empty }, new { @class = "btn btn-success" })
-        }
-
         @if (Model.HasPassword)
             {
             @Html.ActionLink("Change password", "ChangePassword", new { area = string.Empty }, new { @class = "btn btn-warning" })

@@ -15,15 +15,14 @@
 
         public string Title { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime CreatedOn { get; set; }
-
-        [AllowHtml]
         public string Content { get; set; }
 
-        public string Permalink { get; set; }
+        public string Slug { get; set; }
 
         public string Author { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
+        public DateTime CreatedOn { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {

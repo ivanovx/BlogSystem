@@ -41,7 +41,7 @@ namespace BlogSystem.Data
                         e =>
                         e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
-                var entity = (IAuditInfo)entry.Entity;
+                var entity = (IAuditInfo) entry.Entity;
 
                 if (entry.State == EntityState.Added)
                 {
@@ -65,7 +65,7 @@ namespace BlogSystem.Data
                     this.ChangeTracker.Entries()
                         .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
             {
-                var entity = (IDeletableEntity)entry.Entity;
+                var entity = (IDeletableEntity) entry.Entity;
 
                 entity.DeletedOn = DateTime.Now;
                 entity.IsDeleted = true;
@@ -73,15 +73,24 @@ namespace BlogSystem.Data
             }
         }
 
-        public new IDbSet<T> Set<T>() 
-            where T : class
+        public new IDbSet<TEntity> Set<TEntity>() 
+            where TEntity : class
         {
-            return base.Set<T>();
+            return base.Set<TEntity>();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Post>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Page>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Comment>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }

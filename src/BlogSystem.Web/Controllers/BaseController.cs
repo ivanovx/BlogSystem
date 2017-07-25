@@ -2,11 +2,11 @@
 {
     using System.Web.Mvc;
 
-    using BlogSystem.Services.Web.Caching;
-    using BlogSystem.Services.Web.Mapping;
-
     using BlogSystem.Web.Infrastructure.Identity;
     using BlogSystem.Web.Infrastructure.Attributes;
+
+    using BlogSystem.Web.Services.Mapping;
+    using BlogSystem.Web.Services.Caching;
 
     [PassSettingsToViewData]
     public abstract class BaseController : Controller

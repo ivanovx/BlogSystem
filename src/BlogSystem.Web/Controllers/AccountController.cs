@@ -184,16 +184,6 @@
                     CreatedOn = DateTime.Now
                 };
 
-                if (model.Avatar != null)
-                {
-                    using (var memory = new MemoryStream())
-                    {
-                        model.Avatar.InputStream.CopyTo(memory);
-
-                        user.Avatar = memory.GetBuffer();
-                    }
-                }
-
                 var result = await this.UserManager.CreateAsync(user, model.Password);
 
                 await this.UserManager.AddToRoleAsync(user.Id, "User");
@@ -487,19 +477,6 @@
         public ActionResult ExternalLoginFailure()
         {
             return this.View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult Avatar(string username)
-        {
-            var user = userManager.FindByName(username);
-
-            if (user == null)
-            {
-                return this.HttpNotFound();
-            }
-
-            return this.File(user.Avatar, "image/png");
         }
 
         protected override void Dispose(bool disposing)

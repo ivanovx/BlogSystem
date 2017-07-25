@@ -1,6 +1,7 @@
-﻿namespace BlogSystem.Services.Web.Mapping
+﻿namespace BlogSystem.Web.Services.Mapping
 {
     using System.Linq;
+
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 

@@ -10,7 +10,7 @@
             @foreach (var post in Model.RecentPosts)
             {
                 <li>
-                    @Html.RouteLink(post.Title, "Posts", new { title = post.Url, id = post.Id })
+                    @Html.RouteLink(post.Title, "Posts", new { slug = post.Slug, id = post.Id })
                 </li>
             }
         </ul>
@@ -28,7 +28,7 @@
             @foreach (var page in Model.AllPages)
             {
                 <li>
-                    @Html.RouteLink(page.Title, "Pages", new { permalink = page.Permalink })
+                    @Html.RouteLink(page.Title, "Pages", new { slug = page.Slug, id = page.Id })
                 </li>
             }
         </ul>

@@ -11,7 +11,7 @@
         <article class="entry">
             <header class="e-header">
                 <h2 class="e-title">
-                    @Html.RouteLink(post.Title, "Posts", new { title = post.Url, id = post.Id })
+                    @Html.RouteLink(post.Title, "Posts", new { slug = post.Slug, id = post.Id })
                 </h2>
 
                 <time datetime="@post.CreatedOn" class="e-date">@Html.Timeago(post.CreatedOn)</time>
@@ -19,14 +19,9 @@
                 <strong class="e-author">@post.Author</strong>
             </header>
 
-            <!--TODO First letter-->
             <div class="e-content">
                 @Html.Truncate(post.Content)
             </div>
-
-            <!--<div class="post-read-more">
-                <a href="@post.Url" class="btn btn-default" title="@post.Title">Read more!</a>
-            </div>-->
         </article>
     }
 }

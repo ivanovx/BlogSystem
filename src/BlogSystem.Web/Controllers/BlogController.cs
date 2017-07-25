@@ -11,6 +11,7 @@
     using BlogSystem.Web.ViewModels.Posts;
 
     using BlogSystem.Web.Infrastructure.Attributes;
+    using BlogSystem.Common;
 
     public class BlogController : BaseController
     {
@@ -24,9 +25,9 @@
         }
 
         [PassRouteValuesToViewData]
-        public ActionResult Post(int id)
+        public ActionResult Post(string slug, int id)
         {
-            var post = this.postsData.All().Where(p => !p.IsDeleted && p.Id == id).FirstOrDefault();
+            var post = this.postsData.All().Where(p => !p.IsDeleted && p.Slug == slug && p.Id == id).FirstOrDefault();
 
             if (post == null)
             {
@@ -38,9 +39,9 @@
             return this.View(model);
         }
 
-        public ActionResult Page(string permalink)
+        public ActionResult Page(string slug, int id)
         {
-            var page = this.pagesData.All().Where(p => !p.IsDeleted && p.Permalink == permalink).FirstOrDefault();
+            var page = this.pagesData.All().Where(p => !p.IsDeleted && p.Slug == slug && p.Id == id).FirstOrDefault();
 
             if (page == null)
             {
@@ -67,7 +68,7 @@
         public PartialViewResult Sidebar()
         {
             var allPages = this.pagesData.All().Where(p => !p.IsDeleted);
-            var recentPosts = this.postsData.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn);
+            var recentPosts = this.postsData.All().Where(p => !p.IsDeleted).OrderByDescending(p => p.CreatedOn).Take(GlobalConstants.DefaultPageSize);
 
             var model = new SidebarViewModel
             {

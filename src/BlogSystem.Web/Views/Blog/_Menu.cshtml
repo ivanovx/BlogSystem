@@ -8,7 +8,7 @@
     @foreach (var page in Model)
     {
         <li class="nav-item">
-            @Html.RouteLink(page.Title, new { permalink = page.Permalink }, new { @class= "nav-link" })
+            @Html.RouteLink(page.Title, "Pages", new { slug = page.Slug, id = page.Id }, new { @class = "nav-link" })
         </li>        
     }
 </ul>

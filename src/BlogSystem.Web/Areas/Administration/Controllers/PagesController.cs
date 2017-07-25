@@ -53,7 +53,7 @@
                     Content =  model.Content,
                     ShowInMenu = model.VisibleInMenu,
                     AuthorId = this.CurrentUser.GetUser().Id,
-                    Permalink = this.urlGenerator.GenerateUrl(model.Title)
+                    Slug = this.urlGenerator.GenerateUrl(model.Title)
                 };
 
                 this.pagesData.Add(page);
@@ -96,7 +96,7 @@
                 page.Title = model.Title;
                 page.Content = model.Content;
                 page.ShowInMenu = model.VisibleInMenu;
-                page.Permalink = this.urlGenerator.GenerateUrl(model.Title);
+                page.Slug = this.urlGenerator.GenerateUrl(model.Title);
                 page.AuthorId = this.CurrentUser.GetUser().Id;
 
                 this.pagesData.Update(page);
