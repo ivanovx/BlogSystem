@@ -1,6 +1,5 @@
 ﻿namespace BlogSystem.Web.ViewModels.Comments
 {
-    using System;
     using System.Web.Mvc;
     using System.ComponentModel.DataAnnotations;
    
@@ -9,16 +8,13 @@
     using BlogSystem.Data.Models;
     using BlogSystem.Web.Infrastructure.Mapping;
 
-    public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
+    public class CommentViewModel : BaseViewModel, IMapFrom<Comment>, IHaveCustomMappings
     { 
         public int Id { get; set; }
 
         [AllowHtml]
         [UIHint("TinyMCE")]
         public string Content { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime CreatedOn { get; set; }
 
         public string Author { get; set; }
 

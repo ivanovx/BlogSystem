@@ -84,6 +84,7 @@ namespace BlogSystem.Data
             modelBuilder.Entity<Post>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Page>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Comment>().HasRequired(c => c.Author).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Comment>().HasRequired(c => c.Post).WithMany().WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

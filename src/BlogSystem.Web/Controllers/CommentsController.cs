@@ -3,13 +3,13 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using BlogSystem.Data.Models;
+    using BlogSystem.Data.Repositories;
+
     using BlogSystem.Web.ViewModels.Comments;
 
     using BlogSystem.Web.Infrastructure.XSS;
     using BlogSystem.Web.Infrastructure.Attributes;
-
-    using BlogSystem.Data.Models;
-    using BlogSystem.Data.Repositories;
 
     [Authorize]
     public class CommentsController : BaseController
@@ -27,7 +27,7 @@
         [AllowAnonymous]
         public PartialViewResult All(int id)
         {
-            var comments = this.commentsData.All().Where(c => c.PostId == id);
+            var comments = this.commentsData.All().Where(c => c.PostId == id).OrderByDescending(c => c.CreatedOn);
             var model = this.Mapper.Map<CommentViewModel>(comments).ToList();
 
             return this.PartialView(model);
@@ -35,7 +35,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CommentViewModel model)
+        public ActionResult Create(int id, CommentViewModel model)
         {
             if (model != null && this.ModelState.IsValid)
             {
@@ -44,7 +44,7 @@
 
                 var comment = new Comment
                 {
-                    PostId = model.Id,
+                    PostId = id,
                     Content = content,
                     AuthorId = userId
                 };
