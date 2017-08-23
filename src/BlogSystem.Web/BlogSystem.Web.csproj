@@ -314,7 +314,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="images\header.jpg" />
-    <Content Include="images\logo.png" />
+    <Content Include="images\old-header.jpg" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\blog.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -9,13 +9,14 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <a href="/" title="@ViewData["Blog_Title"]" class="navbar-brand">
         <img src="@ViewData["Blog_Logo"]" alt="Blog logo" width="50" height="35" />
         <span class="sr-only">@ViewData["Blog_Title"]</span>
     </a>
+
     <div class="collapse navbar-collapse" id="navbar">
         @{ Html.RenderAction("Menu", "Blog"); }
-
         @Html.Partial("_LoginPartial")
     </div>
 </nav>
